@@ -16,14 +16,138 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     
     // MARK: - Conversation Handling
-    
-    override func willBecomeActive(with conversation: MSConversation) {
-        // Called when the extension is about to move from the inactive to active state.
-        // This will happen when the extension is about to present UI.
+    fileprivate func composeMessage() -> MSMessage {
+        // Configure the appearance of the message
+        let layout = MSMessageTemplateLayout()
+        layout.caption = "Hello"
+        layout.image = UIImage(named: "placeholder.png")
         
-        // Use this method to configure the extension and restore previously stored state.
+        let message = MSMessage()
+        message.layout = layout
+        
+        return message
     }
     
+    public func SendMessage() {
+        let message = composeMessage()
+        guard let conversation = activeConversation else { fatalError("Expected a conversation") }
+        conversation.insert(message) { error in
+            if let error = error {
+                print(error)
+            }
+            
+        }
+    }
+    
+    // MARK: Determine active view controller before extension becomes active
+    override func willBecomeActive(with conversation: MSConversation) {
+        super.willBecomeActive(with: conversation)
+        
+        // Present the view controller appropriate for the conversation and presentation style.
+        presentViewController(for: conversation, with: presentationStyle)
+    }
+    
+    // MARK: Determine active view controller
+    private func presentViewController(for conversation: MSConversation, with presenentationStyle: MSMessagesAppPresentationStyle) {
+        // Remove any child view controllers that have been presented
+        removeAllChildViewControllers()
+        
+        let controller: UIViewController
+        if presentationStyle == .compact {
+            // Show a list of previously created ice creams.
+            controller = instantiatePreviewViewController()
+        } else {
+             // Parse a `Schedule` from the conversation's `selectedMessage` or create a new `Schedule`.
+            let collectiveSchedule = CollectiveSchedule(message: conversation.selectedMessage) ?? CollectiveSchedule()
+
+            // Show either the in process construction process or the completed ice cream.
+            if collectiveSchedule.allSchedules.count == 0 {
+                controller = instantiateScheduleInProgressViewController()
+            } else {
+                controller = instantiateScheduleFinishedViewController()
+            }
+        }
+        
+        addChild(controller)
+        controller.view.frame = view.bounds
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(controller.view)
+        
+        NSLayoutConstraint.activate([
+            controller.view.leftAnchor.constraint(equalTo: view.leftAnchor),
+            controller.view.rightAnchor.constraint(equalTo: view.rightAnchor),
+            controller.view.topAnchor.constraint(equalTo: view.topAnchor),
+            controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+        
+        controller.didMove(toParent: self)
+    }
+    
+    // MARK: Switch view controller
+    // Tells the view controller that the extension is about to transition to a new presentation style
+    // Transition styles include compact (inside keyboard area), expanded (fills most of screen) and
+    // transcript (displayed in the input field)
+    override func willTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
+        super.willTransition(to: presentationStyle)
+        
+        // Hide child view controllers during the transition.
+        removeAllChildViewControllers()
+    }
+    
+    // Tells the view controller that the extenson has transitioned to a new presentation style
+    override func didTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
+        super.didTransition(to: presentationStyle)
+        
+        // Present the view controller appropriate for the conversation and presentation style.
+        guard let conversation = activeConversation else { fatalError("Expected an active converstation") }
+        
+        // Determine the view that is going to be shown based on the presentation style
+        presentViewController(for: conversation, with: presentationStyle)
+    }
+    
+    // MARK: Controller instantiation
+    private func instantiatePreviewViewController() -> UIViewController {
+        // Get the view controller from the storyboard
+        guard let controller = storyboard?.instantiateViewController(withIdentifier: SchedulePreviewViewController.storyboardIdentifier)
+            as? SchedulePreviewViewController
+            else { fatalError("Unable to instantiate an IceCreamsViewController from the storyboard") }
+        
+        controller.delegate = self
+        
+        return controller
+    }
+    
+    private func instantiateScheduleInProgressViewController() -> UIViewController {
+        // Get the view controller from the storyboard
+        guard let controller = storyboard?.instantiateViewController(withIdentifier: ScheduleInProgressViewController.storyboardIdentifier)
+            as? ScheduleInProgressViewController
+            else { fatalError("Unable to instantiate an IceCreamsViewController from the storyboard") }
+        
+        controller.delegate = self
+        
+        return controller
+    }
+    
+    private func instantiateScheduleFinishedViewController() -> UIViewController {
+        // Get the view controller from the storyboard
+        guard let controller = storyboard?.instantiateViewController(withIdentifier: ScheduleFinishedViewController.storyboardIdentifier)
+            as? ScheduleFinishedViewController
+            else { fatalError("Unable to instantiate an IceCreamsViewController from the storyboard") }
+        
+        controller.delegate = self
+        
+        return controller
+    }
+    
+    // MARK: Convenience
+    private func removeAllChildViewControllers() {
+        for child in children {
+            child.willMove(toParent: nil)
+            child.view.removeFromSuperview()
+            child.removeFromParent()
+        }
+    }
+
     override func didResignActive(with conversation: MSConversation) {
         // Called when the extension is about to move from the active to inactive state.
         // This will happen when the user dismisses the extension, changes to a different
@@ -50,17 +174,26 @@ class MessagesViewController: MSMessagesAppViewController {
     
         // Use this to clean up state related to the deleted message.
     }
-    
-    override func willTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
-        // Called before the extension transitions to a new presentation style.
-    
-        // Use this method to prepare for the change in presentation style.
-    }
-    
-    override func didTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
-        // Called after the extension transitions to a new presentation style.
-    
-        // Use this method to finalize any behaviors associated with the change in presentation style.
-    }
 
+}
+
+// MARK: implement the delegate for each screen
+
+extension MessagesViewController: ScheduleInProgressViewControllerDelegate {
+    func scheduleInProgressViewController(_ controller: ScheduleInProgressViewController) {
+        SendMessage()
+        dismiss()
+    }
+}
+
+extension MessagesViewController: SchedulePreviewControllerDelegate {
+    func schedulePreviewViewControllerDidSelectExpand(_ controller: SchedulePreviewViewController) {
+        requestPresentationStyle(.expanded)
+    }
+}
+
+extension MessagesViewController: ScheduleFinishedViewControllerDelegate {
+    func scheduleFininishedViewControllerDidSelectExpand(_ controller: ScheduleFinishedViewController) {
+        print("sent2");
+    }
 }

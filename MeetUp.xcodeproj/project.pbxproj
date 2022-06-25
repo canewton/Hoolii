@@ -13,6 +13,12 @@
 		9142F97E285FA20E0070661F /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F97D285FA20E0070661F /* MessagesViewController.swift */; };
 		9142F981285FA20E0070661F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9142F97F285FA20E0070661F /* MainInterface.storyboard */; };
 		9142F983285FA20F0070661F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9142F982285FA20F0070661F /* Assets.xcassets */; };
+		9142F994285FFDD20070661F /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F993285FFDD20070661F /* Schedule.swift */; };
+		9142F996286002580070661F /* CollectiveSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F995286002580070661F /* CollectiveSchedule.swift */; };
+		9142F998286022460070661F /* SchedulePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F997286022460070661F /* SchedulePreviewViewController.swift */; };
+		9142F99A286024170070661F /* ScheduleInProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F999286024170070661F /* ScheduleInProgressViewController.swift */; };
+		9142F99C286024A00070661F /* ScheduleFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */; };
+		91F40B6F2863FE6600B6912D /* SendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F40B6E2863FE6600B6912D /* SendButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +54,13 @@
 		9142F980285FA20E0070661F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		9142F982285FA20F0070661F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9142F984285FA20F0070661F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9142F993285FFDD20070661F /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		9142F995286002580070661F /* CollectiveSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectiveSchedule.swift; sourceTree = "<group>"; };
+		9142F997286022460070661F /* SchedulePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePreviewViewController.swift; sourceTree = "<group>"; };
+		9142F999286024170070661F /* ScheduleInProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleInProgressViewController.swift; sourceTree = "<group>"; };
+		9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFinishedViewController.swift; sourceTree = "<group>"; };
+		91F40B6D286164C900B6912D /* MeetUp MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MeetUp MessagesExtension.entitlements"; sourceTree = "<group>"; };
+		91F40B6E2863FE6600B6912D /* SendButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,12 +113,27 @@
 		9142F97C285FA20E0070661F /* MeetUp MessagesExtension */ = {
 			isa = PBXGroup;
 			children = (
+				91F40B6D286164C900B6912D /* MeetUp MessagesExtension.entitlements */,
+				9142F992285FFDAE0070661F /* Model */,
 				9142F97D285FA20E0070661F /* MessagesViewController.swift */,
+				9142F997286022460070661F /* SchedulePreviewViewController.swift */,
+				9142F999286024170070661F /* ScheduleInProgressViewController.swift */,
+				9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */,
 				9142F97F285FA20E0070661F /* MainInterface.storyboard */,
 				9142F982285FA20F0070661F /* Assets.xcassets */,
 				9142F984285FA20F0070661F /* Info.plist */,
 			);
 			path = "MeetUp MessagesExtension";
+			sourceTree = "<group>";
+		};
+		9142F992285FFDAE0070661F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9142F993285FFDD20070661F /* Schedule.swift */,
+				9142F995286002580070661F /* CollectiveSchedule.swift */,
+				91F40B6E2863FE6600B6912D /* SendButton.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,7 +235,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91F40B6F2863FE6600B6912D /* SendButton.swift in Sources */,
+				9142F998286022460070661F /* SchedulePreviewViewController.swift in Sources */,
+				9142F99C286024A00070661F /* ScheduleFinishedViewController.swift in Sources */,
+				9142F994285FFDD20070661F /* Schedule.swift in Sources */,
 				9142F97E285FA20E0070661F /* MessagesViewController.swift in Sources */,
+				9142F996286002580070661F /* CollectiveSchedule.swift in Sources */,
+				9142F99A286024170070661F /* ScheduleInProgressViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +387,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_ENTITLEMENTS = "MeetUp MessagesExtension/MeetUp MessagesExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XSTA74W85B;
@@ -360,6 +395,7 @@
 				INFOPLIST_FILE = "MeetUp MessagesExtension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = MeetUp;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -379,6 +415,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_ENTITLEMENTS = "MeetUp MessagesExtension/MeetUp MessagesExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XSTA74W85B;
@@ -386,6 +423,7 @@
 				INFOPLIST_FILE = "MeetUp MessagesExtension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = MeetUp;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
