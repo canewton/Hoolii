@@ -10,6 +10,7 @@ import Messages
 
 struct CollectiveSchedule {
     var allSchedules: [Schedule] = []
+    var dates: Int = 1
 }
 
 /// Extends `CollectiveSchedule` to be able to be represented by and created with an array of `NSURLQueryItems`s
@@ -34,8 +35,9 @@ extension CollectiveSchedule {
         
         for queryItem in queryItems {
             // guard let value = queryItem.value else { continue }
+            print(queryItem)
             
-            if queryItem.name == QueryItemKeys.schedule {
+            if queryItem.name == Schedule.queryItemKey {
                 allSchedules.append(Schedule(timesFree: 0, person: ""))
             }
         }

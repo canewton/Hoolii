@@ -16,26 +16,35 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     
     // MARK: - Conversation Handling
-    fileprivate func composeMessage() -> MSMessage {
+    fileprivate func composeMessage(
+        with collectiveSchedule: CollectiveSchedule,
+        _ caption: String,
+        _ session: MSSession? = nil
+    ) -> MSMessage {
+        
+        // URLComponents are a structure that parses URLs into and constructs URLs from their constituent parts
+        var components = URLComponents()
+        components.queryItems = collectiveSchedule.queryItems
+        
         // Configure the appearance of the message
         let layout = MSMessageTemplateLayout()
-        layout.caption = "Hello"
+        layout.caption = caption
         layout.image = UIImage(named: "placeholder.png")
         
-        let message = MSMessage()
+        let message = MSMessage(session: session ?? MSSession())
+        message.url = components.url!
         message.layout = layout
         
         return message
     }
     
-    public func SendMessage() {
-        let message = composeMessage()
+    public func SendMessage(_ collectiveSchedule: CollectiveSchedule, _ caption: String) {
         guard let conversation = activeConversation else { fatalError("Expected a conversation") }
+        let message = composeMessage(with: collectiveSchedule, caption, conversation.selectedMessage?.session)
         conversation.insert(message) { error in
             if let error = error {
                 print(error)
             }
-            
         }
     }
     
@@ -59,9 +68,13 @@ class MessagesViewController: MSMessagesAppViewController {
         } else {
              // Parse a `Schedule` from the conversation's `selectedMessage` or create a new `Schedule`.
             let collectiveSchedule = CollectiveSchedule(message: conversation.selectedMessage) ?? CollectiveSchedule()
+            print(collectiveSchedule)
+            if(collectiveSchedule.allSchedules.count > 0) {
+                print(collectiveSchedule.allSchedules[0])
+            }
 
             // Show either the in process construction process or the completed ice cream.
-            if collectiveSchedule.allSchedules.count == 0 {
+            if collectiveSchedule.dates == 1 {
                 controller = instantiateScheduleInProgressViewController()
             } else {
                 controller = instantiateScheduleFinishedViewController()
@@ -181,7 +194,10 @@ class MessagesViewController: MSMessagesAppViewController {
 
 extension MessagesViewController: ScheduleInProgressViewControllerDelegate {
     func scheduleInProgressViewController(_ controller: ScheduleInProgressViewController) {
-        SendMessage()
+        var collectiveSchedule: CollectiveSchedule = CollectiveSchedule();
+        collectiveSchedule.allSchedules = [Schedule(timesFree: 1, person: "Caden"), Schedule(timesFree: 3, person: "Alyssa")]
+        collectiveSchedule.dates = 1
+        SendMessage(collectiveSchedule, "When should we meet up?")
         dismiss()
     }
 }

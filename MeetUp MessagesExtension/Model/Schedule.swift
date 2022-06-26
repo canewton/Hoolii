@@ -6,21 +6,28 @@
 //
 
 import Foundation
-import Messages
+import UIKit
 
-struct Schedule {
+class Schedule: QueryItemRepresentable {
     
     // MARK: Properties
     var timesFree: Int
     var person: String
+    static var queryItemKey: String {
+        return "schedule"
+    }
+    let jsonValue: String;
     
-    var queryItem: URLQueryItem {
-        return URLQueryItem(name: QueryItemKeys.schedule, value: "rawValue")
+    init(timesFree: Int, person: String) {
+        self.timesFree = timesFree
+        self.person = person
+        self.jsonValue = "{\"timesFree\":\"\(String(timesFree))\", \"person\":\"\(person)\"}"
     }
 }
 
-struct QueryItemKeys {
-    static var schedule: String {
-        return "Schedule"
+extension QueryItemRepresentable where Self: Schedule {
+    var queryItem: URLQueryItem {
+        return URLQueryItem(name: Self.queryItemKey, value: jsonValue)
     }
+
 }
