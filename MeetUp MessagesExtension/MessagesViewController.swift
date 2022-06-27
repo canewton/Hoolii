@@ -68,10 +68,10 @@ class MessagesViewController: MSMessagesAppViewController {
         } else {
              // Parse a `Schedule` from the conversation's `selectedMessage` or create a new `Schedule`.
             let collectiveSchedule = CollectiveSchedule(message: conversation.selectedMessage) ?? CollectiveSchedule()
-            print(collectiveSchedule)
-            if(collectiveSchedule.allSchedules.count > 0) {
-                print(collectiveSchedule.allSchedules[0])
-            }
+            // print(collectiveSchedule)
+            // if(collectiveSchedule.allSchedules.count > 0) {
+            //     print(collectiveSchedule.allSchedules[0].schedule)
+            // }
 
             // Show either the in process construction process or the completed ice cream.
             if collectiveSchedule.dates == 1 {
@@ -195,7 +195,7 @@ class MessagesViewController: MSMessagesAppViewController {
 extension MessagesViewController: ScheduleInProgressViewControllerDelegate {
     func scheduleInProgressViewController(_ controller: ScheduleInProgressViewController) {
         var collectiveSchedule: CollectiveSchedule = CollectiveSchedule();
-        collectiveSchedule.allSchedules = [Schedule(timesFree: 1, person: "Caden"), Schedule(timesFree: 3, person: "Alyssa")]
+        collectiveSchedule.allSchedules = [ScheduleSendable(timesFree: 1, person: "Caden"), ScheduleSendable(timesFree: 3, person: "Alyssa")]
         collectiveSchedule.dates = 1
         SendMessage(collectiveSchedule, "When should we meet up?")
         dismiss()

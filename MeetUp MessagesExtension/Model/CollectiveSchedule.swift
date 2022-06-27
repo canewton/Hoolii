@@ -9,7 +9,7 @@ import Foundation
 import Messages
 
 struct CollectiveSchedule {
-    var allSchedules: [Schedule] = []
+    var allSchedules: [ScheduleSendable] = []
     var dates: Int = 1
 }
 
@@ -31,14 +31,11 @@ extension CollectiveSchedule {
     // MARK: Initialization
     
     init?(queryItems: [URLQueryItem]) {
-        var allSchedules: [Schedule] = []
+        var allSchedules: [ScheduleSendable] = []
         
         for queryItem in queryItems {
-            // guard let value = queryItem.value else { continue }
-            print(queryItem)
-            
-            if queryItem.name == Schedule.queryItemKey {
-                allSchedules.append(Schedule(timesFree: 0, person: ""))
+            if queryItem.name == ScheduleSendable.queryItemKey {
+                allSchedules.append(ScheduleSendable(jsonValue: queryItem.value!))
             }
         }
         

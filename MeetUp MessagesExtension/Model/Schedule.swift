@@ -2,32 +2,22 @@
 //  Schedule.swift
 //  MeetUp MessagesExtension
 //
-//  Created by Caden Newton on 6/19/22.
+//  Created by Caden Newton on 6/26/22.
 //
 
 import Foundation
 import UIKit
 
-class Schedule: QueryItemRepresentable {
+struct Schedule: Codable {
     
     // MARK: Properties
     var timesFree: Int
-    var person: String
-    static var queryItemKey: String {
-        return "schedule"
-    }
-    let jsonValue: String;
+    var personName: String
+    var personID: String
     
-    init(timesFree: Int, person: String) {
+    init(timesFree: Int, personName: String, personID: String) {
         self.timesFree = timesFree
-        self.person = person
-        self.jsonValue = "{\"timesFree\":\"\(String(timesFree))\", \"person\":\"\(person)\"}"
+        self.personName = personName
+        self.personID = personID
     }
-}
-
-extension QueryItemRepresentable where Self: Schedule {
-    var queryItem: URLQueryItem {
-        return URLQueryItem(name: Self.queryItemKey, value: jsonValue)
-    }
-
 }
