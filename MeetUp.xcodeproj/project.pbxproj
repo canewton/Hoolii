@@ -20,6 +20,7 @@
 		9142F998286022460070661F /* SchedulePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F997286022460070661F /* SchedulePreviewViewController.swift */; };
 		9142F99A286024170070661F /* ScheduleInProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F999286024170070661F /* ScheduleInProgressViewController.swift */; };
 		9142F99C286024A00070661F /* ScheduleFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */; };
+		916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D270B288319E4003C96BD /* CreateProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		9142F997286022460070661F /* SchedulePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePreviewViewController.swift; sourceTree = "<group>"; };
 		9142F999286024170070661F /* ScheduleInProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleInProgressViewController.swift; sourceTree = "<group>"; };
 		9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFinishedViewController.swift; sourceTree = "<group>"; };
+		916D270B288319E4003C96BD /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		91F40B6D286164C900B6912D /* MeetUp MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MeetUp MessagesExtension.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,12 +117,9 @@
 		9142F97C285FA20E0070661F /* MeetUp MessagesExtension */ = {
 			isa = PBXGroup;
 			children = (
+				916D270A2883190E003C96BD /* Controllers */,
 				91F40B6D286164C900B6912D /* MeetUp MessagesExtension.entitlements */,
-				9142F992285FFDAE0070661F /* Model */,
-				9142F97D285FA20E0070661F /* MessagesViewController.swift */,
-				9142F997286022460070661F /* SchedulePreviewViewController.swift */,
-				9142F999286024170070661F /* ScheduleInProgressViewController.swift */,
-				9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */,
+				9142F992285FFDAE0070661F /* Models */,
 				9142F97F285FA20E0070661F /* MainInterface.storyboard */,
 				9142F982285FA20F0070661F /* Assets.xcassets */,
 				9142F984285FA20F0070661F /* Info.plist */,
@@ -128,7 +127,7 @@
 			path = "MeetUp MessagesExtension";
 			sourceTree = "<group>";
 		};
-		9142F992285FFDAE0070661F /* Model */ = {
+		9142F992285FFDAE0070661F /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				9142F993285FFDD20070661F /* ScheduleSendable.swift */,
@@ -136,7 +135,19 @@
 				913EF7972868E83700D5DB08 /* QueryItemRepresentable.swift */,
 				913EF79928693DBB00D5DB08 /* Schedule.swift */,
 			);
-			path = Model;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		916D270A2883190E003C96BD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9142F97D285FA20E0070661F /* MessagesViewController.swift */,
+				9142F997286022460070661F /* SchedulePreviewViewController.swift */,
+				9142F999286024170070661F /* ScheduleInProgressViewController.swift */,
+				9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */,
+				916D270B288319E4003C96BD /* CreateProfileViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9142F998286022460070661F /* SchedulePreviewViewController.swift in Sources */,
+				916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */,
 				913EF7982868E83700D5DB08 /* QueryItemRepresentable.swift in Sources */,
 				9142F99C286024A00070661F /* ScheduleFinishedViewController.swift in Sources */,
 				9142F994285FFDD20070661F /* ScheduleSendable.swift in Sources */,
