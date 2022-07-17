@@ -10,10 +10,7 @@ import Messages
 
 class MessagesViewController: MSMessagesAppViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
+    var allSchedules: [ScheduleSendable] = []
     
     // MARK: - Conversation Handling
     fileprivate func composeMessage(
@@ -69,9 +66,12 @@ class MessagesViewController: MSMessagesAppViewController {
              // Parse a `Schedule` from the conversation's `selectedMessage` or create a new `Schedule`.
             let collectiveSchedule = CollectiveSchedule(message: conversation.selectedMessage) ?? CollectiveSchedule()
             print(collectiveSchedule)
+            
+            allSchedules = collectiveSchedule.allSchedules
+            
             if(collectiveSchedule.allSchedules.count > 0) {
                  print(collectiveSchedule.allSchedules[0].schedule)
-             }
+            }
 
             // Show either the in process construction process or the completed ice cream.
             if collectiveSchedule.dates == 1 {
@@ -193,10 +193,25 @@ class MessagesViewController: MSMessagesAppViewController {
 // MARK: implement the delegate for each screen
 
 extension MessagesViewController: ScheduleInProgressViewControllerDelegate {
-    func scheduleInProgressViewController(_ controller: ScheduleInProgressViewController) {
+    func addDataToMessage(schedule: ScheduleSendable) {
         var collectiveSchedule: CollectiveSchedule = CollectiveSchedule();
-        collectiveSchedule.allSchedules = [ScheduleSendable(timesFree: 1, personName: "Caden", personId: "2"),
-                                           ScheduleSendable(timesFree: 3, personName: "Alyssa", personId: "3")]
+        
+        var userScheduleIndex: Int = -1
+        for i in 0..<allSchedules.count {
+            if self.allSchedules[i].schedule.user.id == schedule.schedule.user.id {
+                userScheduleIndex = i
+            }
+        }
+        
+        if userScheduleIndex >= 0 {
+            // edit the user if the user already replied
+            self.allSchedules[userScheduleIndex] = schedule
+        } else {
+            // append the user if the user has not replied
+            self.allSchedules.append(schedule)
+        }
+        
+        collectiveSchedule.allSchedules = self.allSchedules
         collectiveSchedule.dates = 1
         SendMessage(collectiveSchedule, "When should we meet up?")
         dismiss()

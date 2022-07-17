@@ -8,13 +8,17 @@
 import UIKit
 
 protocol ScheduleInProgressViewControllerDelegate: AnyObject {
-    func scheduleInProgressViewController(_ controller: ScheduleInProgressViewController)
+    func addDataToMessage(schedule: ScheduleSendable)
 }
 
 class ScheduleInProgressViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var userIDLabel: UILabel!
     weak var delegate: ScheduleInProgressViewControllerDelegate?
     let defaults = UserDefaults.standard
+    
+    var name: String = ""
+    var id: String = ""
     
     // MARK: Properties
     static let storyboardIdentifier = "ScheduleInProgressViewController"
@@ -22,14 +26,18 @@ class ScheduleInProgressViewController: UIViewController {
     override func viewDidLoad() {
         if let name = defaults.string(forKey: "username") {
             self.usernameLabel.text = name
+            self.name = name
+        }
+        
+        if let id = defaults.string(forKey: "userID") {
+            self.userIDLabel.text = id
+            self.id = id
         }
     }
     
     
     @IBAction func SendButton(_ sender: Any) {
-        print("hi")
-        print(delegate)
-        delegate?.scheduleInProgressViewController(self)
+        delegate?.addDataToMessage(schedule: ScheduleSendable(timesFree: 20, user: User(id: self.id, name: self.name)))
     }
     
     @IBAction func onProfilePressed(_ sender: Any) {

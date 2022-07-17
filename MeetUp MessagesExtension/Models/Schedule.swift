@@ -12,12 +12,10 @@ struct Schedule: Codable {
     
     // MARK: Properties
     var timesFree: Int
-    var personName: String
-    var personID: String
+    var user: User
     
-    init(timesFree: Int, personName: String, personID: String) {
+    init(timesFree: Int, user: User) {
         self.timesFree = timesFree
-        self.personName = personName
-        self.personID = personID
+        self.user = user
     }
 }

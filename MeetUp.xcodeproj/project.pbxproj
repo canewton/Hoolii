@@ -21,6 +21,7 @@
 		9142F99A286024170070661F /* ScheduleInProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F999286024170070661F /* ScheduleInProgressViewController.swift */; };
 		9142F99C286024A00070661F /* ScheduleFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */; };
 		916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D270B288319E4003C96BD /* CreateProfileViewController.swift */; };
+		916D270E28836F3A003C96BD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D270D28836F3A003C96BD /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		9142F999286024170070661F /* ScheduleInProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleInProgressViewController.swift; sourceTree = "<group>"; };
 		9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFinishedViewController.swift; sourceTree = "<group>"; };
 		916D270B288319E4003C96BD /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
+		916D270D28836F3A003C96BD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		91F40B6D286164C900B6912D /* MeetUp MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MeetUp MessagesExtension.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,6 +136,7 @@
 				9142F995286002580070661F /* CollectiveSchedule.swift */,
 				913EF7972868E83700D5DB08 /* QueryItemRepresentable.swift */,
 				913EF79928693DBB00D5DB08 /* Schedule.swift */,
+				916D270D28836F3A003C96BD /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				9142F97E285FA20E0070661F /* MessagesViewController.swift in Sources */,
 				9142F996286002580070661F /* CollectiveSchedule.swift in Sources */,
 				913EF79A28693DBB00D5DB08 /* Schedule.swift in Sources */,
+				916D270E28836F3A003C96BD /* User.swift in Sources */,
 				9142F99A286024170070661F /* ScheduleInProgressViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
