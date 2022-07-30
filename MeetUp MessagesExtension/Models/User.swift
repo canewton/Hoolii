@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User: Codable {
+struct User: Codable, Equatable {
     
     // MARK: Properties
     var id: String
@@ -16,5 +16,9 @@ struct User: Codable {
     init(id: String, name: String) {
         self.id = id
         self.name = name
+    }
+    
+    static func == (lhs: User, rhs: User) -> Bool {
+        return lhs.id == rhs.id
     }
 }

@@ -16,8 +16,8 @@ class ScheduleSendable: QueryItemRepresentable {
     }
     let jsonValue: String;
     
-    init(timesFree: Int, user: User) {
-        self.schedule = Schedule(timesFree: timesFree, user: user)
+    init(datesFree: [Day], user: User) {
+        self.schedule = Schedule(datesFree: datesFree, user: user)
         let encodedData = try! JSONEncoder().encode(self.schedule)
         self.jsonValue = String(data: encodedData, encoding: .utf8)!
     }

@@ -37,7 +37,7 @@ class ScheduleInProgressViewController: UIViewController {
     
     
     @IBAction func SendButton(_ sender: Any) {
-        delegate?.addDataToMessage(schedule: ScheduleSendable(timesFree: 20, user: User(id: self.id, name: self.name)))
+        delegate?.addDataToMessage(schedule: ScheduleSendable(datesFree: [Day(dateString: "07-16-2022", timesFree: [TimeRange(from: 13, to: 18)])], user: User(id: self.id, name: self.name)))
     }
     
     @IBAction func onProfilePressed(_ sender: Any) {

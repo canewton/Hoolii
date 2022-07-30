@@ -22,6 +22,9 @@
 		9142F99C286024A00070661F /* ScheduleFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */; };
 		916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D270B288319E4003C96BD /* CreateProfileViewController.swift */; };
 		916D270E28836F3A003C96BD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D270D28836F3A003C96BD /* User.swift */; };
+		916D2711288CA97C003C96BD /* GetAvailabilityLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D2710288CA97B003C96BD /* GetAvailabilityLogic.swift */; };
+		91B2D420289577FE00D0AAD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B2D41F289577FE00D0AAD4 /* AppDelegate.swift */; };
+		91B2D42428957CA200D0AAD4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91B2D42328957CA200D0AAD4 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +69,9 @@
 		9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFinishedViewController.swift; sourceTree = "<group>"; };
 		916D270B288319E4003C96BD /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		916D270D28836F3A003C96BD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		916D2710288CA97B003C96BD /* GetAvailabilityLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAvailabilityLogic.swift; sourceTree = "<group>"; };
+		91B2D41F289577FE00D0AAD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		91B2D42328957CA200D0AAD4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		91F40B6D286164C900B6912D /* MeetUp MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MeetUp MessagesExtension.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,12 +125,15 @@
 		9142F97C285FA20E0070661F /* MeetUp MessagesExtension */ = {
 			isa = PBXGroup;
 			children = (
+				91B2D41F289577FE00D0AAD4 /* AppDelegate.swift */,
+				916D270F288CA93D003C96BD /* Logic */,
 				916D270A2883190E003C96BD /* Controllers */,
 				91F40B6D286164C900B6912D /* MeetUp MessagesExtension.entitlements */,
 				9142F992285FFDAE0070661F /* Models */,
 				9142F97F285FA20E0070661F /* MainInterface.storyboard */,
 				9142F982285FA20F0070661F /* Assets.xcassets */,
 				9142F984285FA20F0070661F /* Info.plist */,
+				91B2D42328957CA200D0AAD4 /* GoogleService-Info.plist */,
 			);
 			path = "MeetUp MessagesExtension";
 			sourceTree = "<group>";
@@ -153,6 +162,14 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		916D270F288CA93D003C96BD /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				916D2710288CA97B003C96BD /* GetAvailabilityLogic.swift */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -169,6 +186,8 @@
 				9142F978285FA20E0070661F /* PBXTargetDependency */,
 			);
 			name = MeetUp;
+			packageProductDependencies = (
+			);
 			productName = MeetUp;
 			productReference = 9142F96C285FA20A0070661F /* MeetUp.app */;
 			productType = "com.apple.product-type.application.messages";
@@ -217,6 +236,8 @@
 				Base,
 			);
 			mainGroup = 9142F965285FA20A0070661F;
+			packageReferences = (
+			);
 			productRefGroup = 9142F96D285FA20A0070661F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -242,6 +263,7 @@
 			files = (
 				9142F983285FA20F0070661F /* Assets.xcassets in Resources */,
 				9142F981285FA20E0070661F /* MainInterface.storyboard in Resources */,
+				91B2D42428957CA200D0AAD4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91B2D420289577FE00D0AAD4 /* AppDelegate.swift in Sources */,
 				9142F998286022460070661F /* SchedulePreviewViewController.swift in Sources */,
 				916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */,
 				913EF7982868E83700D5DB08 /* QueryItemRepresentable.swift in Sources */,
@@ -261,6 +284,7 @@
 				9142F996286002580070661F /* CollectiveSchedule.swift in Sources */,
 				913EF79A28693DBB00D5DB08 /* Schedule.swift in Sources */,
 				916D270E28836F3A003C96BD /* User.swift in Sources */,
+				916D2711288CA97C003C96BD /* GetAvailabilityLogic.swift in Sources */,
 				9142F99A286024170070661F /* ScheduleInProgressViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
