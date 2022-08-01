@@ -10,6 +10,8 @@
 		786FA81693DFDB12B129D124 /* libPods-MeetUp MessagesExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14EC7703F3F50A9EAC6D1947 /* libPods-MeetUp MessagesExtension.a */; };
 		9103E5732896479100CA661B /* libFirebaseDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9103E5722896479100CA661B /* libFirebaseDatabase.a */; };
 		9103E575289647B700CA661B /* libFirebaseCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9103E574289647B700CA661B /* libFirebaseCore.a */; };
+		9103E5782896DA0400CA661B /* AvailabilityBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E5772896DA0400CA661B /* AvailabilityBar.swift */; };
+		9103E57A2897550500CA661B /* TimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E5792897550500CA661B /* TimeBlock.swift */; };
 		913EF7982868E83700D5DB08 /* QueryItemRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913EF7972868E83700D5DB08 /* QueryItemRepresentable.swift */; };
 		913EF79A28693DBB00D5DB08 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913EF79928693DBB00D5DB08 /* Schedule.swift */; };
 		9142F970285FA20E0070661F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9142F96F285FA20E0070661F /* Assets.xcassets */; };
@@ -59,6 +61,8 @@
 		5F58E1F15807BCDD82783B75 /* Pods-MeetUp MessagesExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetUp MessagesExtension.release.xcconfig"; path = "Target Support Files/Pods-MeetUp MessagesExtension/Pods-MeetUp MessagesExtension.release.xcconfig"; sourceTree = "<group>"; };
 		9103E5722896479100CA661B /* libFirebaseDatabase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseDatabase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9103E574289647B700CA661B /* libFirebaseCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9103E5772896DA0400CA661B /* AvailabilityBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityBar.swift; sourceTree = "<group>"; };
+		9103E5792897550500CA661B /* TimeBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBlock.swift; sourceTree = "<group>"; };
 		913EF7972868E83700D5DB08 /* QueryItemRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryItemRepresentable.swift; sourceTree = "<group>"; };
 		913EF79928693DBB00D5DB08 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		9142F96C285FA20A0070661F /* MeetUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +123,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		9103E5762896D9DE00CA661B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				9103E5772896DA0400CA661B /* AvailabilityBar.swift */,
+				9103E5792897550500CA661B /* TimeBlock.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		9142F965285FA20A0070661F = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +175,7 @@
 		9142F97C285FA20E0070661F /* MeetUp MessagesExtension */ = {
 			isa = PBXGroup;
 			children = (
+				9103E5762896D9DE00CA661B /* Components */,
 				916D270F288CA93D003C96BD /* Logic */,
 				916D270A2883190E003C96BD /* Controllers */,
 				91F40B6D286164C900B6912D /* MeetUp MessagesExtension.entitlements */,
@@ -360,8 +374,10 @@
 				916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */,
 				913EF7982868E83700D5DB08 /* QueryItemRepresentable.swift in Sources */,
 				9142F99C286024A00070661F /* ScheduleFinishedViewController.swift in Sources */,
+				9103E5782896DA0400CA661B /* AvailabilityBar.swift in Sources */,
 				9142F994285FFDD20070661F /* ScheduleSendable.swift in Sources */,
 				9142F97E285FA20E0070661F /* MessagesViewController.swift in Sources */,
+				9103E57A2897550500CA661B /* TimeBlock.swift in Sources */,
 				9142F996286002580070661F /* CollectiveSchedule.swift in Sources */,
 				913EF79A28693DBB00D5DB08 /* Schedule.swift in Sources */,
 				916D270E28836F3A003C96BD /* User.swift in Sources */,

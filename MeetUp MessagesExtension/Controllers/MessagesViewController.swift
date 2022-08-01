@@ -13,16 +13,14 @@ import Firebase
 class MessagesViewController: MSMessagesAppViewController {
     
     override func viewDidLoad() {
-        FirebaseApp.configure()
-        
-        let uid = "test"
-        
+//        FirebaseApp.configure()
+//        let uid = "test"
         print("Database:")
-        let db = Database.database()
-        print(db)
-        
-        let databasePath: DatabaseReference! = Database.database().reference().child("users/\(uid)/thoughts")
-        databasePath.childByAutoId().setValue("{ 'hi': 'hi' }")
+//        let db = Database.database()
+//        print(db)
+//
+//        let databasePath: DatabaseReference! = Database.database().reference().child("users/\(uid)/thoughts")
+//        databasePath.childByAutoId().setValue("{ 'hi': 'hi' }")
     }
     
     var allSchedules: [ScheduleSendable] = []

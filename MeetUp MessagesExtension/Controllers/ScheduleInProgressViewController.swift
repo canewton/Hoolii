@@ -14,6 +14,7 @@ protocol ScheduleInProgressViewControllerDelegate: AnyObject {
 class ScheduleInProgressViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var userIDLabel: UILabel!
+    @IBOutlet weak var availabilityBarContainer: UIView!
     weak var delegate: ScheduleInProgressViewControllerDelegate?
     let defaults = UserDefaults.standard
     
@@ -24,6 +25,7 @@ class ScheduleInProgressViewController: UIViewController {
     static let storyboardIdentifier = "ScheduleInProgressViewController"
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         if let name = defaults.string(forKey: "username") {
             self.usernameLabel.text = name
             self.name = name
@@ -33,6 +35,12 @@ class ScheduleInProgressViewController: UIViewController {
             self.userIDLabel.text = id
             self.id = id
         }
+        
+        let avaiabilityBar = AvailabilityBar(frame: availabilityBarContainer.frame)
+        avaiabilityBar.frame.size.height = UIScreen.main.bounds.height - 350
+        view.addSubview(avaiabilityBar)
+        avaiabilityBar.configure(with: "hello there")
+        availabilityBarContainer.backgroundColor = UIColor.clear
     }
     
     

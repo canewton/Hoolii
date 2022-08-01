@@ -82,62 +82,76 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDL-eb-UrE">
-                                <rect key="frame" x="110" y="146" width="100" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="DID-JC-d32"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Profile"/>
-                                <connections>
-                                    <action selector="onProfilePressed:" destination="nK6-Jf-k7m" eventType="touchUpInside" id="CrU-9z-vrr"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsH-yL-YDZ">
-                                <rect key="frame" x="120.5" y="54" width="79" height="21"/>
+                                <rect key="frame" x="20" y="20" width="78.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7AI-Qz-XQ0">
+                                <rect key="frame" x="60" y="447" width="200" height="31"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDL-eb-UrE">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="DID-JC-d32"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Profile"/>
+                                        <connections>
+                                            <action selector="onProfilePressed:" destination="nK6-Jf-k7m" eventType="touchUpInside" id="CrU-9z-vrr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Djt-Sk-RkE">
+                                        <rect key="frame" x="100" y="0.0" width="100" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="h4r-Vh-ygv"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Send">
+                                            <backgroundConfiguration key="background">
+                                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                            </backgroundConfiguration>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="SendButton:" destination="nK6-Jf-k7m" eventType="touchUpInside" id="KmR-6L-dnY"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEz-20-Tge">
-                                <rect key="frame" x="134" y="95" width="52" height="21"/>
+                                <rect key="frame" x="180" y="20" width="100" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="aEF-VL-3mb"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Djt-Sk-RkE">
-                                <rect key="frame" x="110" y="447" width="100" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="h4r-Vh-ygv"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Send">
-                                    <backgroundConfiguration key="background">
-                                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
-                                    </backgroundConfiguration>
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="SendButton:" destination="nK6-Jf-k7m" eventType="touchUpInside" id="KmR-6L-dnY"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uzj-oB-aVd">
+                                <rect key="frame" x="50" y="75" width="85" height="353"/>
+                                <color key="backgroundColor" systemColor="systemFillColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Mie-3n-byn"/>
-                        <color key="backgroundColor" systemColor="systemBrownColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="IDL-eb-UrE" firstAttribute="centerX" secondItem="FvX-dD-Wok" secondAttribute="centerX" id="6kI-gR-cQw"/>
-                            <constraint firstItem="fEz-20-Tge" firstAttribute="centerX" secondItem="FvX-dD-Wok" secondAttribute="centerX" id="COr-Ql-bYe"/>
-                            <constraint firstItem="Mie-3n-byn" firstAttribute="bottom" secondItem="Djt-Sk-RkE" secondAttribute="bottom" constant="50" id="DWj-ao-eBe"/>
-                            <constraint firstItem="Djt-Sk-RkE" firstAttribute="centerX" secondItem="FvX-dD-Wok" secondAttribute="centerX" id="FrK-Oh-l3T"/>
-                            <constraint firstItem="hsH-yL-YDZ" firstAttribute="top" secondItem="Mie-3n-byn" secondAttribute="top" constant="10" id="OSS-pv-bwx"/>
-                            <constraint firstItem="IDL-eb-UrE" firstAttribute="top" secondItem="fEz-20-Tge" secondAttribute="bottom" constant="30" id="ZUB-n1-OcB"/>
-                            <constraint firstItem="fEz-20-Tge" firstAttribute="top" secondItem="hsH-yL-YDZ" secondAttribute="bottom" constant="20" id="hGd-c6-eoK"/>
-                            <constraint firstItem="hsH-yL-YDZ" firstAttribute="centerX" secondItem="FvX-dD-Wok" secondAttribute="centerX" id="iDN-B3-CVj"/>
+                            <constraint firstItem="Mie-3n-byn" firstAttribute="bottom" secondItem="7AI-Qz-XQ0" secondAttribute="bottom" constant="50" id="1Pf-lC-x5m"/>
+                            <constraint firstItem="uzj-oB-aVd" firstAttribute="top" secondItem="FvX-dD-Wok" secondAttribute="top" constant="75" id="80r-NB-JCT"/>
+                            <constraint firstItem="hsH-yL-YDZ" firstAttribute="top" secondItem="FvX-dD-Wok" secondAttribute="top" constant="20" id="B9x-Pf-WRY"/>
+                            <constraint firstItem="Mie-3n-byn" firstAttribute="trailing" secondItem="fEz-20-Tge" secondAttribute="trailing" constant="40" id="HXb-eA-lpe"/>
+                            <constraint firstItem="hsH-yL-YDZ" firstAttribute="leading" secondItem="FvX-dD-Wok" secondAttribute="leading" constant="20" id="L5Y-uR-Wns"/>
+                            <constraint firstItem="7AI-Qz-XQ0" firstAttribute="centerX" secondItem="FvX-dD-Wok" secondAttribute="centerX" id="X4B-yM-8v0"/>
+                            <constraint firstItem="fEz-20-Tge" firstAttribute="top" secondItem="FvX-dD-Wok" secondAttribute="top" constant="20" id="k1v-HQ-oOM"/>
+                            <constraint firstItem="uzj-oB-aVd" firstAttribute="leading" secondItem="Mie-3n-byn" secondAttribute="leading" constant="50" id="pWu-qO-gsm"/>
+                            <constraint firstAttribute="trailing" secondItem="fEz-20-Tge" secondAttribute="trailing" constant="20" id="pfi-UJ-rid"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="528"/>
                     <connections>
+                        <outlet property="availabilityBarContainer" destination="uzj-oB-aVd" id="Erw-JW-xxk"/>
                         <outlet property="userIDLabel" destination="fEz-20-Tge" id="hhD-JR-cQs"/>
                         <outlet property="usernameLabel" destination="hsH-yL-YDZ" id="t74-JY-PzO"/>
                         <segue destination="RBV-bn-Gz5" kind="presentation" identifier="goToProfile" modalPresentationStyle="fullScreen" id="lmh-CV-1KU"/>
@@ -190,8 +204,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
