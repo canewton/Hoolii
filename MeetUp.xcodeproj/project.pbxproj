@@ -12,6 +12,8 @@
 		9103E575289647B700CA661B /* libFirebaseCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9103E574289647B700CA661B /* libFirebaseCore.a */; };
 		9103E5782896DA0400CA661B /* AvailabilityBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E5772896DA0400CA661B /* AvailabilityBar.swift */; };
 		9103E57A2897550500CA661B /* TimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E5792897550500CA661B /* TimeBlock.swift */; };
+		9103E57C289B897600CA661B /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E57B289B897600CA661B /* Day.swift */; };
+		9103E57E289B89B700CA661B /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E57D289B89B700CA661B /* TimeRange.swift */; };
 		913EF7982868E83700D5DB08 /* QueryItemRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913EF7972868E83700D5DB08 /* QueryItemRepresentable.swift */; };
 		913EF79A28693DBB00D5DB08 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913EF79928693DBB00D5DB08 /* Schedule.swift */; };
 		9142F970285FA20E0070661F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9142F96F285FA20E0070661F /* Assets.xcassets */; };
@@ -63,6 +65,8 @@
 		9103E574289647B700CA661B /* libFirebaseCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9103E5772896DA0400CA661B /* AvailabilityBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityBar.swift; sourceTree = "<group>"; };
 		9103E5792897550500CA661B /* TimeBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBlock.swift; sourceTree = "<group>"; };
+		9103E57B289B897600CA661B /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		9103E57D289B89B700CA661B /* TimeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRange.swift; sourceTree = "<group>"; };
 		913EF7972868E83700D5DB08 /* QueryItemRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryItemRepresentable.swift; sourceTree = "<group>"; };
 		913EF79928693DBB00D5DB08 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		9142F96C285FA20A0070661F /* MeetUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +200,8 @@
 				913EF7972868E83700D5DB08 /* QueryItemRepresentable.swift */,
 				913EF79928693DBB00D5DB08 /* Schedule.swift */,
 				916D270D28836F3A003C96BD /* User.swift */,
+				9103E57B289B897600CA661B /* Day.swift */,
+				9103E57D289B89B700CA661B /* TimeRange.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -370,6 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9103E57C289B897600CA661B /* Day.swift in Sources */,
 				9142F998286022460070661F /* SchedulePreviewViewController.swift in Sources */,
 				916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */,
 				913EF7982868E83700D5DB08 /* QueryItemRepresentable.swift in Sources */,
@@ -381,6 +388,7 @@
 				9142F996286002580070661F /* CollectiveSchedule.swift in Sources */,
 				913EF79A28693DBB00D5DB08 /* Schedule.swift in Sources */,
 				916D270E28836F3A003C96BD /* User.swift in Sources */,
+				9103E57E289B89B700CA661B /* TimeRange.swift in Sources */,
 				916D2711288CA97C003C96BD /* GetAvailabilityLogic.swift in Sources */,
 				9142F99A286024170070661F /* ScheduleInProgressViewController.swift in Sources */,
 			);

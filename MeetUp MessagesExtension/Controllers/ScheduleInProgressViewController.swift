@@ -39,7 +39,6 @@ class ScheduleInProgressViewController: UIViewController {
         let avaiabilityBar = AvailabilityBar(frame: availabilityBarContainer.frame)
         avaiabilityBar.frame.size.height = UIScreen.main.bounds.height - 350
         view.addSubview(avaiabilityBar)
-        avaiabilityBar.configure(with: "hello there")
         availabilityBarContainer.backgroundColor = UIColor.clear
     }
     

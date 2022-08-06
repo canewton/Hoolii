@@ -20,58 +20,6 @@ struct Schedule: Codable {
     }
 }
 
-struct Day: Codable {
-    
-    // MARK: Properties
-    var dateString: String
-    var timesFree: [TimeRange]
-    
-    init(dateString: String, timesFree: [TimeRange]) {
-        self.dateString = dateString
-        self.timesFree = timesFree
-    }
-}
-
-struct TimeRange: Codable {
-    
-    // MARK: Properties
-    
-    // represented in hours from 12am
-    var from: Int
-    var to: Int
-    
-    init(from: Int, to: Int) {
-        self.from = from
-        self.to = to
-    }
-}
-
-struct DayCollective {
-    
-    // MARK: Properties
-    var dateString: String
-    var timesFree: [TimeRangeCollective]
-    
-    init(dateString: String, timesFree: [TimeRangeCollective]) {
-        self.dateString = dateString
-        self.timesFree = timesFree
-    }
-}
-
-struct TimeRangeCollective {
-    
-    // MARK: Properties
-    var from: Int
-    var to: Int
-    var users: [User]
-    
-    init(from: Int, to: Int, users: [User]) {
-        self.from = from
-        self.to = to
-        self.users = users
-    }
-}
-
 struct TimeStamp {
     
     // MARK: Properties
