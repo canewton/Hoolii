@@ -15,6 +15,8 @@ class CreateProfileViewController: UIViewController {
     var callback: ((String) -> Void)?
     let defaults = UserDefaults.standard
     
+    static let storyboardIdentifier = "CreateProfileViewController"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,8 +32,6 @@ class CreateProfileViewController: UIViewController {
         
         self.dismiss(animated: true, completion: nil)
     }
-    
-    static let storyboardIdentifier = "CreateProfileViewController"
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         usernameField.resignFirstResponder()

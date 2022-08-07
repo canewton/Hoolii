@@ -74,8 +74,8 @@ class MessagesViewController: MSMessagesAppViewController {
         
         let controller: UIViewController
         if presentationStyle == .compact {
-            // Show a list of previously created ice creams.
-            controller = instantiatePreviewViewController()
+            let schedulePreviewController: SchedulePreviewViewController = instantiateController()
+            controller = schedulePreviewController
         } else {
              // Parse a `Schedule` from the conversation's `selectedMessage` or create a new `Schedule`.
             let collectiveSchedule = CollectiveSchedule(message: conversation.selectedMessage) ?? CollectiveSchedule()
@@ -85,15 +85,16 @@ class MessagesViewController: MSMessagesAppViewController {
             
             getDaysAndTimesFree(allSchedules)
             
-            if(collectiveSchedule.allSchedules.count > 0) {
+            if collectiveSchedule.allSchedules.count > 0 {
                  print(collectiveSchedule.allSchedules[0].schedule)
             }
 
-            // Show either the in process construction process or the completed ice cream.
-            if true {
-                controller = instantiateScheduleInProgressViewController()
+            if collectiveSchedule.allSchedules.count > 0  {
+                let allAvailabilitiesController: AllAvailabilitiesViewController = instantiateController()
+                controller = allAvailabilitiesController
             } else {
-                controller = instantiateScheduleFinishedViewController()
+                let newMeetingController: NewMeetingViewController = instantiateController()
+                controller = newMeetingController
             }
         }
         
@@ -114,8 +115,6 @@ class MessagesViewController: MSMessagesAppViewController {
     
     // MARK: Switch view controller
     // Tells the view controller that the extension is about to transition to a new presentation style
-    // Transition styles include compact (inside keyboard area), expanded (fills most of screen) and
-    // transcript (displayed in the input field)
     override func willTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
         super.willTransition(to: presentationStyle)
         
@@ -134,40 +133,6 @@ class MessagesViewController: MSMessagesAppViewController {
         presentViewController(for: conversation, with: presentationStyle)
     }
     
-    // MARK: Controller instantiation
-    private func instantiatePreviewViewController() -> UIViewController {
-        // Get the view controller from the storyboard
-        guard let controller = storyboard?.instantiateViewController(withIdentifier: SchedulePreviewViewController.storyboardIdentifier)
-            as? SchedulePreviewViewController
-            else { fatalError("Unable to instantiate an IceCreamsViewController from the storyboard") }
-        
-        controller.delegate = self
-        
-        return controller
-    }
-    
-    private func instantiateScheduleInProgressViewController() -> UIViewController {
-        // Get the view controller from the storyboard
-        guard let controller = storyboard?.instantiateViewController(withIdentifier: ScheduleInProgressViewController.storyboardIdentifier)
-            as? ScheduleInProgressViewController
-            else { fatalError("Unable to instantiate an IceCreamsViewController from the storyboard") }
-        
-        controller.delegate = self
-        
-        return controller
-    }
-    
-    private func instantiateScheduleFinishedViewController() -> UIViewController {
-        // Get the view controller from the storyboard
-        guard let controller = storyboard?.instantiateViewController(withIdentifier: ScheduleFinishedViewController.storyboardIdentifier)
-            as? ScheduleFinishedViewController
-            else { fatalError("Unable to instantiate an IceCreamsViewController from the storyboard") }
-        
-        controller.delegate = self
-        
-        return controller
-    }
-    
     // MARK: Convenience
     private func removeAllChildViewControllers() {
         for child in children {
@@ -176,60 +141,15 @@ class MessagesViewController: MSMessagesAppViewController {
             child.removeFromParent()
         }
     }
-}
-
-// MARK: implement the delegate for each screen
-
-extension MessagesViewController: ScheduleInProgressViewControllerDelegate {
-    func addDataToMessage(schedule: ScheduleSendable) {
-        var collectiveSchedule: CollectiveSchedule = CollectiveSchedule();
-        
-//        var userScheduleIndex: Int = -1
-//        for i in 0..<allSchedules.count {
-//            if self.allSchedules[i].schedule.user.id == schedule.schedule.user.id {
-//                userScheduleIndex = i
-//            }
-//        }
-        
-//        if userScheduleIndex >= 0 {
-//            // edit the user if the user already replied
-//            self.allSchedules[userScheduleIndex] = schedule
-//        } else {
-//            // append the user if the user has not replied
-//            self.allSchedules.append(schedule)
-//        }
-        
-        self.allSchedules = [ScheduleSendable(datesFree: [Day(dateString: "07-16-2022", timesFree: [TimeRange(from: 8, to: 10), TimeRange(from: 13, to: 18), TimeRange(from: 20, to: 22)])], user: User(id: "1", name: "Caden")),
-                             ScheduleSendable(datesFree: [Day(dateString: "07-16-2022", timesFree: [TimeRange(from: 8, to: 10), TimeRange(from: 14, to: 18), TimeRange(from: 20, to: 21)])], user: User(id: "2", name: "Alyssa")),
-                             ScheduleSendable(datesFree: [Day(dateString: "07-16-2022", timesFree: [TimeRange(from: 8, to: 11), TimeRange(from: 15, to: 18), TimeRange(from: 19, to: 23)])], user: User(id: "3", name: "Colin"))]
-        
-        collectiveSchedule.allSchedules = self.allSchedules
-        collectiveSchedule.expirationDateString = "09-04-2022"
-        SendMessage(collectiveSchedule, "When should we meet up?")
-        dismiss()
-    }
-}
-
-extension MessagesViewController: SchedulePreviewControllerDelegate {
-    func schedulePreviewViewControllerDidSelectExpand(_ controller: SchedulePreviewViewController) {
-        if let url = URL(string: "http://localhost:8080/schedule"){
-            let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: url, completionHandler: handle(data: response: error: ))
-            task.resume()
-        }
-        requestPresentationStyle(.expanded)
-    }
     
-    func handle(data: Data?, response: URLResponse?, error: Error?) {
-        if let safeData = data {
-            let dataString: String = String(data: safeData, encoding: .utf8)!
-            print(dataString)
-        }
-    }
-}
-
-extension MessagesViewController: ScheduleFinishedViewControllerDelegate {
-    func scheduleFininishedViewControllerDidSelectExpand(_ controller: ScheduleFinishedViewController) {
-        print("sent2");
+    func instantiateController<T: ViewControllerWithIdentifier>() -> T {
+        // Get the view controller from the storyboard
+        guard var controller = storyboard?.instantiateViewController(withIdentifier: T.storyboardIdentifier)
+                as? T
+            else { fatalError("Unable to instantiate an IceCreamsViewController from the storyboard") }
+        
+        controller.delegate = self
+        
+        return controller
     }
 }

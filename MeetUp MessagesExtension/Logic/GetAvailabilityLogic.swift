@@ -114,7 +114,5 @@ extension MessagesViewController {
         }
         let sortedTimeStampCollections: [[TimeStamp]] = sortTimeStamps(unsortedTimeStampCollections)
         let allAvailability: [DayCollective] = getAvailabilityFromTimestamps(sortedTimeStampCollections, dateStrings)
-        
-        print(allAvailability)
     }
 }

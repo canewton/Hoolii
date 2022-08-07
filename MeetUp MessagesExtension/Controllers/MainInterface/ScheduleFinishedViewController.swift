@@ -7,15 +7,17 @@
 
 import UIKit
 
-class ScheduleFinishedViewController: UIViewController {
+class ScheduleFinishedViewController: UIViewController, ViewControllerWithIdentifier {
     
     // MARK: Properties
     static let storyboardIdentifier = "ScheduleFinishedViewController"
     
-    weak var delegate: ScheduleFinishedViewControllerDelegate?
+    weak var delegate: AnyObject?
     
 }
 
 protocol ScheduleFinishedViewControllerDelegate: AnyObject {
-    func scheduleFininishedViewControllerDidSelectExpand(_ controller: ScheduleFinishedViewController)
+}
+
+extension MessagesViewController: ScheduleFinishedViewControllerDelegate {
 }

@@ -14,6 +14,9 @@
 		9103E57A2897550500CA661B /* TimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E5792897550500CA661B /* TimeBlock.swift */; };
 		9103E57C289B897600CA661B /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E57B289B897600CA661B /* Day.swift */; };
 		9103E57E289B89B700CA661B /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E57D289B89B700CA661B /* TimeRange.swift */; };
+		9103E587289F4F5900CA661B /* YourAvailabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E586289F4F5900CA661B /* YourAvailabilityViewController.swift */; };
+		9103E58A289F50BC00CA661B /* NewMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E589289F50BC00CA661B /* NewMeetingViewController.swift */; };
+		9103E58E289F99F100CA661B /* ViewControllerWithIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E58D289F99F100CA661B /* ViewControllerWithIdentifier.swift */; };
 		913EF7982868E83700D5DB08 /* QueryItemRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913EF7972868E83700D5DB08 /* QueryItemRepresentable.swift */; };
 		913EF79A28693DBB00D5DB08 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913EF79928693DBB00D5DB08 /* Schedule.swift */; };
 		9142F970285FA20E0070661F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9142F96F285FA20E0070661F /* Assets.xcassets */; };
@@ -25,7 +28,7 @@
 		9142F994285FFDD20070661F /* ScheduleSendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F993285FFDD20070661F /* ScheduleSendable.swift */; };
 		9142F996286002580070661F /* CollectiveSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F995286002580070661F /* CollectiveSchedule.swift */; };
 		9142F998286022460070661F /* SchedulePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F997286022460070661F /* SchedulePreviewViewController.swift */; };
-		9142F99A286024170070661F /* ScheduleInProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F999286024170070661F /* ScheduleInProgressViewController.swift */; };
+		9142F99A286024170070661F /* AllAvailabilitiesViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F999286024170070661F /* AllAvailabilitiesViewContoller.swift */; };
 		9142F99C286024A00070661F /* ScheduleFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */; };
 		916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D270B288319E4003C96BD /* CreateProfileViewController.swift */; };
 		916D270E28836F3A003C96BD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D270D28836F3A003C96BD /* User.swift */; };
@@ -67,6 +70,9 @@
 		9103E5792897550500CA661B /* TimeBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBlock.swift; sourceTree = "<group>"; };
 		9103E57B289B897600CA661B /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		9103E57D289B89B700CA661B /* TimeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRange.swift; sourceTree = "<group>"; };
+		9103E586289F4F5900CA661B /* YourAvailabilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourAvailabilityViewController.swift; sourceTree = "<group>"; };
+		9103E589289F50BC00CA661B /* NewMeetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMeetingViewController.swift; sourceTree = "<group>"; };
+		9103E58D289F99F100CA661B /* ViewControllerWithIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerWithIdentifier.swift; sourceTree = "<group>"; };
 		913EF7972868E83700D5DB08 /* QueryItemRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryItemRepresentable.swift; sourceTree = "<group>"; };
 		913EF79928693DBB00D5DB08 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		9142F96C285FA20A0070661F /* MeetUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,7 +86,7 @@
 		9142F993285FFDD20070661F /* ScheduleSendable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSendable.swift; sourceTree = "<group>"; };
 		9142F995286002580070661F /* CollectiveSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectiveSchedule.swift; sourceTree = "<group>"; };
 		9142F997286022460070661F /* SchedulePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePreviewViewController.swift; sourceTree = "<group>"; };
-		9142F999286024170070661F /* ScheduleInProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleInProgressViewController.swift; sourceTree = "<group>"; };
+		9142F999286024170070661F /* AllAvailabilitiesViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllAvailabilitiesViewContoller.swift; sourceTree = "<group>"; };
 		9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFinishedViewController.swift; sourceTree = "<group>"; };
 		916D270B288319E4003C96BD /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		916D270D28836F3A003C96BD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -136,6 +142,42 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		9103E57F289F459700CA661B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9142F97F285FA20E0070661F /* MainInterface.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9103E582289F499C00CA661B /* MainInterface */ = {
+			isa = PBXGroup;
+			children = (
+				9142F97D285FA20E0070661F /* MessagesViewController.swift */,
+				9142F997286022460070661F /* SchedulePreviewViewController.swift */,
+				9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */,
+				916D270B288319E4003C96BD /* CreateProfileViewController.swift */,
+			);
+			path = MainInterface;
+			sourceTree = "<group>";
+		};
+		9103E583289F49B000CA661B /* ScheduleInProgress */ = {
+			isa = PBXGroup;
+			children = (
+				9142F999286024170070661F /* AllAvailabilitiesViewContoller.swift */,
+				9103E586289F4F5900CA661B /* YourAvailabilityViewController.swift */,
+			);
+			path = ScheduleInProgress;
+			sourceTree = "<group>";
+		};
+		9103E588289F501600CA661B /* CreateMeeting */ = {
+			isa = PBXGroup;
+			children = (
+				9103E589289F50BC00CA661B /* NewMeetingViewController.swift */,
+			);
+			path = CreateMeeting;
+			sourceTree = "<group>";
+		};
 		9142F965285FA20A0070661F = {
 			isa = PBXGroup;
 			children = (
@@ -184,7 +226,7 @@
 				916D270A2883190E003C96BD /* Controllers */,
 				91F40B6D286164C900B6912D /* MeetUp MessagesExtension.entitlements */,
 				9142F992285FFDAE0070661F /* Models */,
-				9142F97F285FA20E0070661F /* MainInterface.storyboard */,
+				9103E57F289F459700CA661B /* Views */,
 				9142F982285FA20F0070661F /* Assets.xcassets */,
 				9142F984285FA20F0070661F /* Info.plist */,
 				91B2D42328957CA200D0AAD4 /* GoogleService-Info.plist */,
@@ -209,11 +251,10 @@
 		916D270A2883190E003C96BD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9142F97D285FA20E0070661F /* MessagesViewController.swift */,
-				9142F997286022460070661F /* SchedulePreviewViewController.swift */,
-				9142F999286024170070661F /* ScheduleInProgressViewController.swift */,
-				9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */,
-				916D270B288319E4003C96BD /* CreateProfileViewController.swift */,
+				9103E58D289F99F100CA661B /* ViewControllerWithIdentifier.swift */,
+				9103E588289F501600CA661B /* CreateMeeting */,
+				9103E582289F499C00CA661B /* MainInterface */,
+				9103E583289F49B000CA661B /* ScheduleInProgress */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -381,8 +422,10 @@
 				916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */,
 				913EF7982868E83700D5DB08 /* QueryItemRepresentable.swift in Sources */,
 				9142F99C286024A00070661F /* ScheduleFinishedViewController.swift in Sources */,
+				9103E58A289F50BC00CA661B /* NewMeetingViewController.swift in Sources */,
 				9103E5782896DA0400CA661B /* AvailabilityBar.swift in Sources */,
 				9142F994285FFDD20070661F /* ScheduleSendable.swift in Sources */,
+				9103E587289F4F5900CA661B /* YourAvailabilityViewController.swift in Sources */,
 				9142F97E285FA20E0070661F /* MessagesViewController.swift in Sources */,
 				9103E57A2897550500CA661B /* TimeBlock.swift in Sources */,
 				9142F996286002580070661F /* CollectiveSchedule.swift in Sources */,
@@ -390,7 +433,8 @@
 				916D270E28836F3A003C96BD /* User.swift in Sources */,
 				9103E57E289B89B700CA661B /* TimeRange.swift in Sources */,
 				916D2711288CA97C003C96BD /* GetAvailabilityLogic.swift in Sources */,
-				9142F99A286024170070661F /* ScheduleInProgressViewController.swift in Sources */,
+				9142F99A286024170070661F /* AllAvailabilitiesViewContoller.swift in Sources */,
+				9103E58E289F99F100CA661B /* ViewControllerWithIdentifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,6 +18,10 @@ final class AvailabilityBar: UIView {
     
     var day: Day = Day(dateString: "08-03-2022", timesFree: [])
     
+    public func getDay() -> Day {
+        return day
+    }
+    
     private let label: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
@@ -53,7 +57,6 @@ final class AvailabilityBar: UIView {
                     blockString = "  \(time - 12)pm"
                 }
             }
-            print(blockString)
             block.configure(with: blockString)
             verticalStack.addArrangedSubview(block)
         }

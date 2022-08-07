@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Messages View Controller-->
+        <scene sceneID="7MM-of-jgj">
+            <objects>
+                <viewController id="ObA-dk-sSI" customClass="MessagesViewController" customModule="MeetUp_MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zMn-AG-sqS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="LDy-ih-0nr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="528"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X47-rx-isc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="64" y="100"/>
+        </scene>
+        <!--Schedule Preview View Controller-->
+        <scene sceneID="dWt-wt-F9i">
+            <objects>
+                <viewController storyboardIdentifier="SchedulePreviewViewController" id="uOv-OI-fts" customClass="SchedulePreviewViewController" customModule="MeetUp_MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kXJ-PS-H3o">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9b-Mj-yUL">
+                                <rect key="frame" x="124" y="248.5" width="72" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Expand"/>
+                                <connections>
+                                    <action selector="ExpandButton:" destination="uOv-OI-fts" eventType="touchUpInside" id="64X-3t-AlZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9bo-7t-nXx"/>
+                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                        <constraints>
+                            <constraint firstItem="h9b-Mj-yUL" firstAttribute="centerX" secondItem="kXJ-PS-H3o" secondAttribute="centerX" id="VJd-Ca-RKx"/>
+                            <constraint firstItem="h9b-Mj-yUL" firstAttribute="centerY" secondItem="kXJ-PS-H3o" secondAttribute="centerY" id="xky-Z0-rvL"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="528"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UYB-Cq-LnI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="581" y="100"/>
+        </scene>
+        <!--Schedule Finished View Controller-->
+        <scene sceneID="0r6-21-cfG">
+            <objects>
+                <viewController storyboardIdentifier="ScheduleFinishedViewController" id="yLW-aA-FOt" customClass="ScheduleFinishedViewController" customModule="MeetUp_MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="E32-Dt-cxy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="dxv-dv-0jY"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="528"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gdZ-qK-jsL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1099" y="100"/>
+        </scene>
+        <!--Create Profile View Controller-->
+        <scene sceneID="LSq-7F-vna">
+            <objects>
+                <viewController storyboardIdentifier="CreateProfileViewController" id="RBV-bn-Gz5" customClass="CreateProfileViewController" customModule="MeetUp_MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YQG-WD-Jq4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rg5-xT-7KP">
+                                <rect key="frame" x="68" y="253" width="185" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Create Profile"/>
+                                <connections>
+                                    <action selector="onCreateProfilePressed:" destination="RBV-bn-Gz5" eventType="touchUpInside" id="DdI-oC-Nml"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WWB-FT-Fsh">
+                                <rect key="frame" x="112" y="141" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="WQd-dh-Tof"/>
+                        <color key="backgroundColor" red="0.65787620430000004" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="sSt-6W-Abv"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="528"/>
+                    <connections>
+                        <outlet property="usernameField" destination="WWB-FT-Fsh" id="tlv-6H-d0q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HEl-JM-vDE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2173.913043478261" y="99.776785714285708"/>
+        </scene>
+        <!--New Meeting View Controller-->
+        <scene sceneID="pif-a0-6jg">
+            <objects>
+                <viewController storyboardIdentifier="NewMeetingViewController" id="aQX-sg-Rru" customClass="NewMeetingViewController" customModule="MeetUp_MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b6N-qO-pJy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wwX-C3-yif">
+                                <rect key="frame" x="85" y="467" width="150" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="W7m-RF-7Cw"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Set Timeframe"/>
+                                <connections>
+                                    <action selector="OnSetTimeframe:" destination="aQX-sg-Rru" eventType="touchUpInside" id="I0V-DD-1aX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3NC-5B-BfO"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3NC-5B-BfO" firstAttribute="bottom" secondItem="wwX-C3-yif" secondAttribute="bottom" constant="30" id="5QL-Xh-Uxa"/>
+                            <constraint firstItem="wwX-C3-yif" firstAttribute="centerX" secondItem="b6N-qO-pJy" secondAttribute="centerX" id="yC0-mE-vwh"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="528"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0P6-9H-CoU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="536"/>
+        </scene>
+        <!--All Availabilities View Controller-->
+        <scene sceneID="inZ-bi-gmS">
+            <objects>
+                <viewController storyboardIdentifier="AllAvailabilitiesViewController" id="1LE-rA-2Wz" customClass="AllAvailabilitiesViewController" customModule="MeetUp_MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GQI-wd-blC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDD-xz-2OJ">
+                                <rect key="frame" x="20" y="20" width="78.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d0k-g0-2rK">
+                                <rect key="frame" x="200" y="20" width="100" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="kL3-Kr-MYO"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Profile"/>
+                                <connections>
+                                    <action selector="onProfilePressed:" destination="1LE-rA-2Wz" eventType="touchUpInside" id="gLT-BY-9e9"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ove-nP-2oU">
+                                <rect key="frame" x="20" y="46" width="100" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="hAG-DD-BdH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V4z-2E-4Dc">
+                                <rect key="frame" x="50" y="75" width="85" height="353"/>
+                                <color key="backgroundColor" systemColor="systemFillColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Kg-8m-pZO">
+                                <rect key="frame" x="60" y="477" width="200" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="4YK-CP-eUj"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Edit Availabilities"/>
+                                <connections>
+                                    <action selector="OnEditAvailabilities:" destination="1LE-rA-2Wz" eventType="touchUpInside" id="GxT-j6-OkT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tqa-c7-y8R"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="d0k-g0-2rK" firstAttribute="top" secondItem="GQI-wd-blC" secondAttribute="top" constant="20" id="6tw-x9-ODG"/>
+                            <constraint firstItem="0Kg-8m-pZO" firstAttribute="centerX" secondItem="GQI-wd-blC" secondAttribute="centerX" id="LAb-Xb-dlG"/>
+                            <constraint firstItem="tqa-c7-y8R" firstAttribute="bottom" secondItem="0Kg-8m-pZO" secondAttribute="bottom" constant="20" id="LWI-uN-Xy3"/>
+                            <constraint firstItem="Ove-nP-2oU" firstAttribute="top" secondItem="tqa-c7-y8R" secondAttribute="top" constant="2" id="N1z-ur-feO"/>
+                            <constraint firstItem="aDD-xz-2OJ" firstAttribute="top" secondItem="GQI-wd-blC" secondAttribute="top" constant="20" id="PkC-ka-pH1"/>
+                            <constraint firstItem="Ove-nP-2oU" firstAttribute="leading" secondItem="tqa-c7-y8R" secondAttribute="leading" constant="20" id="R6w-Wc-x5H"/>
+                            <constraint firstItem="V4z-2E-4Dc" firstAttribute="top" secondItem="GQI-wd-blC" secondAttribute="top" constant="75" id="RJF-wE-wIf"/>
+                            <constraint firstItem="aDD-xz-2OJ" firstAttribute="leading" secondItem="GQI-wd-blC" secondAttribute="leading" constant="20" id="Vvy-6O-8sr"/>
+                            <constraint firstAttribute="trailing" secondItem="d0k-g0-2rK" secondAttribute="trailing" constant="20" id="hGw-0Z-DKd"/>
+                            <constraint firstItem="V4z-2E-4Dc" firstAttribute="leading" secondItem="tqa-c7-y8R" secondAttribute="leading" constant="50" id="lKH-db-Wzb"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="528"/>
+                    <connections>
+                        <outlet property="availabilityBarContainer" destination="V4z-2E-4Dc" id="b4T-gW-vJZ"/>
+                        <outlet property="userIDLabel" destination="Ove-nP-2oU" id="eRy-fH-C0d"/>
+                        <outlet property="usernameLabel" destination="aDD-xz-2OJ" id="ocz-13-Ox8"/>
+                        <segue destination="7j8-YE-M34" kind="presentation" identifier="goToYourAvailabilities" id="ogm-xB-8vY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rmy-p7-WyJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="51" y="989"/>
+        </scene>
+        <!--Your Availabilities View Controller-->
+        <scene sceneID="HMI-4u-NBK">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LqO-5z-ZiD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="YourAvailabilitiesViewController" modalPresentationStyle="fullScreen" id="7j8-YE-M34" customClass="YourAvailabilitiesViewController" customModule="MeetUp_MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7PI-fN-qxi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bbi-IE-P3T">
+                                <rect key="frame" x="60" y="477" width="200" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="lXG-DC-MKm"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Save &amp; Send"/>
+                                <connections>
+                                    <action selector="OnSaveAndSend:" destination="7j8-YE-M34" eventType="touchUpInside" id="ZGM-7m-Ejy"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lst-Qn-sqx">
+                                <rect key="frame" x="50" y="75" width="85" height="353"/>
+                                <color key="backgroundColor" systemColor="systemFillColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="etX-1K-2sB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="lst-Qn-sqx" firstAttribute="top" secondItem="7PI-fN-qxi" secondAttribute="top" constant="75" id="GNl-X9-5XE"/>
+                            <constraint firstItem="lst-Qn-sqx" firstAttribute="leading" secondItem="etX-1K-2sB" secondAttribute="leading" constant="50" id="J5D-2r-gXW"/>
+                            <constraint firstItem="etX-1K-2sB" firstAttribute="bottom" secondItem="Bbi-IE-P3T" secondAttribute="bottom" constant="20" id="dTq-Gm-oIn"/>
+                            <constraint firstItem="Bbi-IE-P3T" firstAttribute="centerX" secondItem="7PI-fN-qxi" secondAttribute="centerX" id="s21-Wn-irb"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="528"/>
+                    <connections>
+                        <outlet property="availabilityBarContainer" destination="lst-Qn-sqx" id="nEX-DA-j1q"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="580" y="988"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
