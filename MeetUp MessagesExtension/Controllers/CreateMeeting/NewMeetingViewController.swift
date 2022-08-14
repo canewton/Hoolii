@@ -8,7 +8,7 @@
 import UIKit
 import JTAppleCalendar
 
-class NewMeetingViewController: UIViewController, ViewControllerWithIdentifier {
+class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     
     // MARK: Properties
     static let storyboardIdentifier = "NewMeetingViewController"
@@ -16,12 +16,25 @@ class NewMeetingViewController: UIViewController, ViewControllerWithIdentifier {
     var allAvailabilitiesViewController: AllAvailabilitiesViewController?
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var arrowLeft: UIButton!
+    @IBOutlet weak var arrowRight: UIButton!
+    @IBOutlet weak var fromDropDown: AppDropDown!
+    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var mainViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var mainViewTopContraint: NSLayoutConstraint!
+    
     let formatter = DateFormatter()
     
+    
     override func viewDidLoad() {
-       super.viewDidLoad()
-       calendarView.allowsMultipleSelection = true
-       calendarView.isRangeSelectionUsed = true
+        super.viewDidLoad()
+        mainViewBottomConstraint.isActive = true
+        super.configure(bottomConstraint: mainViewBottomConstraint, topConstraint: mainViewTopContraint)
+        print(mainView.frame)
+        print(mainViewBottomConstraint.constant)
+        calendarView.allowsMultipleSelection = true
+        calendarView.isRangeSelectionUsed = true
+        fromDropDown.configure(options: ["hi", "bye"])
     }
     
     @IBAction func OnSetTimeframe(_ sender: Any) {
@@ -36,6 +49,8 @@ class NewMeetingViewController: UIViewController, ViewControllerWithIdentifier {
     
     @IBAction func OnLeftArrow(_ sender: Any) {
         calendarView.scrollToSegment(.previous)
+        print(mainView.frame)
+        print(mainViewBottomConstraint.constant)
     }
     @IBAction func OnRightArrow(_ sender: Any) {
         calendarView.scrollToSegment(.next)
@@ -62,19 +77,19 @@ class NewMeetingViewController: UIViewController, ViewControllerWithIdentifier {
     }
     
     func handleCellSelected(cell: DateCell, cellState: CellState) {
-        cell.selectedView.backgroundColor = cellState.isSelected ? .purple : .clear
+        cell.selectedView.backgroundColor = cellState.isSelected ? AppColors.main : .clear
         cell.selectedView.layer.cornerRadius = 15
         switch cellState.selectedPosition() {
             
         case .left:
-            cell.selectedViewRight.backgroundColor = .purple
+            cell.selectedViewRight.backgroundColor = AppColors.main
             cell.selectedViewLeft.backgroundColor = .clear
         case .middle:
-            cell.selectedViewRight.backgroundColor = .purple
-            cell.selectedViewLeft.backgroundColor = .purple
+            cell.selectedViewRight.backgroundColor = AppColors.main
+            cell.selectedViewLeft.backgroundColor = AppColors.main
         case .right:
             cell.selectedViewRight.backgroundColor = .clear
-            cell.selectedViewLeft.backgroundColor = .purple
+            cell.selectedViewLeft.backgroundColor = AppColors.main
         case .full:
             cell.selectedViewRight.backgroundColor = .clear
             cell.selectedViewLeft.backgroundColor = .clear

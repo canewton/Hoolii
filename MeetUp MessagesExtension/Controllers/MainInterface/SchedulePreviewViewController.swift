@@ -24,11 +24,11 @@ protocol SchedulePreviewControllerDelegate: AnyObject {
 
 extension MessagesViewController: SchedulePreviewControllerDelegate {
     func schedulePreviewViewControllerDidSelectExpand(_ controller: SchedulePreviewViewController) {
-        if let url = URL(string: "http://localhost:8080/schedule"){
-            let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: url, completionHandler: handle(data: response: error: ))
-            task.resume()
-        }
+//        if let url = URL(string: "http://localhost:8080/schedule"){
+//            let session = URLSession(configuration: .default)
+//            let task = session.dataTask(with: url, completionHandler: handle(data: response: error: ))
+//            task.resume()
+//        }
         requestPresentationStyle(.expanded)
     }
     
