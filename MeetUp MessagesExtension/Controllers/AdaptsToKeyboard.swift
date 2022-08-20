@@ -7,12 +7,14 @@
 
 import UIKit
 
-public class AdaptsToKeyboard: UIViewController {
+class AdaptsToKeyboard: AppViewController {
     var bottomConstraint: NSLayoutConstraint?
     var topConstraint: NSLayoutConstraint?
     var animationDuration: Double = 0
     var animationCurveOptions: UIView.AnimationOptions = UIView.AnimationOptions()
     var keyboardHeight: CGFloat = 0
+    var tap: UITapGestureRecognizer = UITapGestureRecognizer()
+    
     
     public func configure(bottomConstraint: NSLayoutConstraint, topConstraint: NSLayoutConstraint) {
         self.bottomConstraint = bottomConstraint
@@ -22,6 +24,8 @@ public class AdaptsToKeyboard: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
+        tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        
         // Observe keyboard frame changes.
         NotificationCenter.default.addObserver(
             self,
@@ -29,9 +33,6 @@ public class AdaptsToKeyboard: UIViewController {
             name: UIResponder.keyboardWillChangeFrameNotification,
             object: nil
         )
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
     }
     
     @objc private func keyboardWillChangeFrame(_ notification: NSNotification) {
@@ -52,6 +53,8 @@ public class AdaptsToKeyboard: UIViewController {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             keyboardHeight = keyboardFrame.cgRectValue.height
         }
+        
+        view.addGestureRecognizer(tap)
 
         // Animate bottom constraint.
         UIView.animate(
@@ -69,6 +72,8 @@ public class AdaptsToKeyboard: UIViewController {
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+        
+        view.removeGestureRecognizer(tap)
         
         UIView.animate(
             withDuration: animationDuration,

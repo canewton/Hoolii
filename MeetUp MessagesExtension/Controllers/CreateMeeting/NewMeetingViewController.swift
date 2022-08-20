@@ -13,7 +13,7 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     // MARK: Properties
     static let storyboardIdentifier = "NewMeetingViewController"
     weak var delegate: AnyObject?
-    var allAvailabilitiesViewController: AllAvailabilitiesViewController?
+    var yourAvailabiliesViewController: YourAvailabilitiesViewController?
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var arrowLeft: UIButton!
@@ -22,38 +22,64 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var mainViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var mainViewTopContraint: NSLayoutConstraint!
+    let arrowLeftIcon: ScaledIcon = ScaledIcon(name: "chevron-left-solid", width: 15, height: 15)
+    let arrowRightIcon: ScaledIcon = ScaledIcon(name: "chevron-right-solid", width: 15, height: 15)
+    @IBOutlet weak var sliderLabel: UILabel!
+    @IBOutlet weak var slider: UISlider!
     
     let formatter = DateFormatter()
+    var collectiveSchedule: CollectiveSchedule!
+    var userSchedule: ScheduleSendable!
     
+    @IBAction func sliderChange(_ sender: Any) {
+        slider.setValue(slider.value.rounded(.down), animated: false)
+        sliderLabel.text = slider.value.description
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainViewBottomConstraint.isActive = true
-        super.configure(bottomConstraint: mainViewBottomConstraint, topConstraint: mainViewTopContraint)
-        print(mainView.frame)
-        print(mainViewBottomConstraint.constant)
-        calendarView.allowsMultipleSelection = true
-        calendarView.isRangeSelectionUsed = true
+        
+        configureUserSchedule()
+        configureCalendar()
+        configureArrowButtons()
+        configureMainViewConstraints()
         fromDropDown.configure(options: ["hi", "bye"])
     }
     
     @IBAction func OnSetTimeframe(_ sender: Any) {
-        (delegate as? NewMeetingViewControllerDelegate)?.transitonToAllAvailabilities(self)
-        
-        let secondVC = allAvailabilitiesViewController!
-        secondVC.modalPresentationStyle = .fullScreen
-        secondVC.modalTransitionStyle = .coverVertical
-        self.present(secondVC, animated:true, completion:nil)
+        (delegate as? NewMeetingViewControllerDelegate)?.transitonToYourAvailabilities(self)
+        print(userSchedule!.schedule.datesFree)
+        self.transitionToScreen(viewController: yourAvailabiliesViewController!)
     }
     
     
     @IBAction func OnLeftArrow(_ sender: Any) {
         calendarView.scrollToSegment(.previous)
-        print(mainView.frame)
-        print(mainViewBottomConstraint.constant)
     }
     @IBAction func OnRightArrow(_ sender: Any) {
         calendarView.scrollToSegment(.next)
+    }
+    
+    func configureUserSchedule() {
+        let username: String = StoredValues.get(key: StoredValuesConstants.username)!
+        let userID: String = StoredValues.get(key: StoredValuesConstants.userID)!
+        let user: User = User(id: userID, name: username)
+        userSchedule = ScheduleSendable(datesFree: [], user: user)
+    }
+    
+    func configureCalendar() {
+        calendarView.allowsMultipleSelection = true
+        calendarView.isRangeSelectionUsed = true
+    }
+    
+    func configureMainViewConstraints() {
+        mainViewBottomConstraint.isActive = true
+        super.configure(bottomConstraint: mainViewBottomConstraint, topConstraint: mainViewTopContraint)
+    }
+    
+    func configureArrowButtons() {
+        arrowLeft.setImage(arrowLeftIcon.image, for: .normal)
+        arrowRight.setImage(arrowRightIcon.image, for: .normal)
     }
     
     func configureCell(view: JTAppleCell?, cellState: CellState) {
@@ -122,10 +148,12 @@ extension NewMeetingViewController: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         configureCell(view: cell, cellState: cellState)
+        userSchedule.schedule.addDate(date)
     }
 
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         configureCell(view: cell, cellState: cellState)
+        userSchedule.schedule.removeDate(date)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
@@ -147,12 +175,12 @@ extension NewMeetingViewController: JTAppleCalendarViewDelegate {
 
 
 protocol NewMeetingViewControllerDelegate: AnyObject {
-    func transitonToAllAvailabilities(_ controller: NewMeetingViewController)
+    func transitonToYourAvailabilities(_ controller: NewMeetingViewController)
 }
 
 extension MessagesViewController: NewMeetingViewControllerDelegate {
-    func transitonToAllAvailabilities(_ controller: NewMeetingViewController) {
-        let allAvailabilitiesController: AllAvailabilitiesViewController = instantiateController()
-        controller.allAvailabilitiesViewController = allAvailabilitiesController
+    func transitonToYourAvailabilities(_ controller: NewMeetingViewController) {
+        let yourAvailabilitiesController: YourAvailabilitiesViewController = instantiateController()
+        controller.yourAvailabiliesViewController = yourAvailabilitiesController
     }
 }

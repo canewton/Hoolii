@@ -16,7 +16,7 @@ final class AvailabilityBar: UIView {
     let startTime: Int = 9
     let endTime: Int = 21
     
-    var day: Day = Day(dateString: "08-03-2022", timesFree: [])
+    var day: Day = Day(date: CalendarDate("08-15-2022").date, timesFree: [])
     
     public func getDay() -> Day {
         return day

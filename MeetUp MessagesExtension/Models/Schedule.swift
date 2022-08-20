@@ -18,6 +18,23 @@ struct Schedule: Codable {
         self.datesFree = datesFree
         self.user = user
     }
+    
+    mutating func addDate(_ date: Date) {
+        datesFree.append(Day(date: date, timesFree: []))
+    }
+    
+    mutating func addDate(_ date: Date, timesFree: [TimeRange]) {
+        datesFree.append(Day(date: date, timesFree: timesFree))
+    }
+    
+    mutating func removeDate(_ date: Date) {
+        for i in 0..<datesFree.count {
+            if datesFree[i].date == date {
+                datesFree.remove(at: i)
+                return
+            }
+        }
+    }
 }
 
 struct TimeStamp {

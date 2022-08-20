@@ -9,8 +9,9 @@ import Foundation
 
 import UIKit
 
-class CreateProfileViewController: UIViewController {
+class CreateProfileViewController: AppViewController {
     @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var backButton: BackButton!
     
     var callback: ((String) -> Void)?
     let defaults = UserDefaults.standard
@@ -21,10 +22,8 @@ class CreateProfileViewController: UIViewController {
         super.viewDidLoad()
         
         usernameField.delegate = self
-        
-        if defaults.string(forKey: "userID") == nil {
-            self.defaults.set(makeID(length: 20), forKey: "userID")
-        }
+        backButton.configure(viewController: self)
+        StoredValues.setIfEmpty(key: StoredValuesConstants.userID, value: makeID(length: 20))
     }
     
     @IBAction func onCreateProfilePressed(_ sender: Any) {

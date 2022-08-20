@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SchedulePreviewViewController: UIViewController, ViewControllerWithIdentifier {
+class SchedulePreviewViewController: AppViewController, ViewControllerWithIdentifier {
     
     // MARK: Properties
     static let storyboardIdentifier = "SchedulePreviewViewController"

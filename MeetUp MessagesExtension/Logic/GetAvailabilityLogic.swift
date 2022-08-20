@@ -8,7 +8,7 @@
 import Foundation
 
 extension MessagesViewController {
-    private func convertSchedulesToTimeStamps(_ allSchedules: [ScheduleSendable], _ updateDateStringsCallback: (String) -> ()) -> [[[TimeStamp]]] {
+    private func convertSchedulesToTimeStamps(_ allSchedules: [ScheduleSendable], _ updateDatesCallback: (Date) -> ()) -> [[[TimeStamp]]] {
         var unsortedTimeStampCollections: [[[TimeStamp]]] = []
         
         for schedule in allSchedules {
@@ -23,7 +23,7 @@ extension MessagesViewController {
                 let timesFree = day.timesFree
                 
                 if index == unsortedTimeStampCollections.count {
-                    updateDateStringsCallback(day.dateString)
+                    updateDatesCallback(day.date)
                     unsortedTimeStampCollections.append([])
                 }
                 
@@ -76,7 +76,7 @@ extension MessagesViewController {
         return sortedTimeStampCollections
     }
     
-    private func getAvailabilityFromTimestamps(_ sortedTimeStampCollections: [[TimeStamp]], _ dateStrings: [String]) -> [DayCollective] {
+    private func getAvailabilityFromTimestamps(_ sortedTimeStampCollections: [[TimeStamp]], _ dates: [Date]) -> [DayCollective] {
         var allAvailability: [DayCollective] = []
         
         for i in 0..<sortedTimeStampCollections.count {
@@ -100,19 +100,19 @@ extension MessagesViewController {
                 }
             }
             
-            allAvailability.append(DayCollective(dateString: dateStrings[i], timesFree: timeStampCollectiveCollection))
+            allAvailability.append(DayCollective(date: dates[i], timesFree: timeStampCollectiveCollection))
         }
         
         return allAvailability
     }
     
     func getDaysAndTimesFree(_ allSchedules: [ScheduleSendable]) {
-        var dateStrings: [String] = []
+        var dates: [Date] = []
         
-        let unsortedTimeStampCollections: [[[TimeStamp]]] = convertSchedulesToTimeStamps(allSchedules) { (dateString) -> () in
-            dateStrings.append(dateString)
+        let unsortedTimeStampCollections: [[[TimeStamp]]] = convertSchedulesToTimeStamps(allSchedules) { (date) -> () in
+            dates.append(date)
         }
         let sortedTimeStampCollections: [[TimeStamp]] = sortTimeStamps(unsortedTimeStampCollections)
-        let allAvailability: [DayCollective] = getAvailabilityFromTimestamps(sortedTimeStampCollections, dateStrings)
+        let allAvailability: [DayCollective] = getAvailabilityFromTimestamps(sortedTimeStampCollections, dates)
     }
 }

@@ -90,8 +90,8 @@ class MessagesViewController: MSMessagesAppViewController {
             }
 
             if collectiveSchedule.allSchedules.count > 0  {
-                let allAvailabilitiesController: AllAvailabilitiesViewController = instantiateController()
-                controller = allAvailabilitiesController
+                let yourAvailabilitiesController: YourAvailabilitiesViewController = instantiateController()
+                controller = yourAvailabilitiesController
             } else {
                 let newMeetingController: NewMeetingViewController = instantiateController()
                 controller = newMeetingController

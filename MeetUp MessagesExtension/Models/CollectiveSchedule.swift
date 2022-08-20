@@ -10,7 +10,7 @@ import Messages
 
 struct CollectiveSchedule {
     var allSchedules: [ScheduleSendable] = []
-    var expirationDateString: String = ""
+    var expirationDate: Date = Date()
 }
 
 /// Extends `CollectiveSchedule` to be able to be represented by and created with an array of `NSURLQueryItems`s

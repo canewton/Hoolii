@@ -22,6 +22,12 @@
 		9103E59528A73A7C00CA661B /* AppDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E59428A73A7C00CA661B /* AppDropDown.swift */; };
 		9103E59728A84A9900CA661B /* ThemedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E59628A84A9900CA661B /* ThemedButton.swift */; };
 		9125EEA128A89E8E005C5ED3 /* AdaptsToKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9125EEA028A89E8E005C5ED3 /* AdaptsToKeyboard.swift */; };
+		913C118B28A9787E00B5A66F /* ScaledIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C118A28A9787E00B5A66F /* ScaledIcon.swift */; };
+		913C118D28A9830600B5A66F /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C118C28A9830600B5A66F /* BackButton.swift */; };
+		913C118F28AA024A00B5A66F /* ProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C118E28AA024A00B5A66F /* ProfileButton.swift */; };
+		913C119128AB366C00B5A66F /* CalendarDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C119028AB366C00B5A66F /* CalendarDate.swift */; };
+		913C119328B07EDD00B5A66F /* StoredValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C119228B07EDD00B5A66F /* StoredValues.swift */; };
+		913C119528B0AAFA00B5A66F /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C119428B0AAFA00B5A66F /* AppViewController.swift */; };
 		913EF7982868E83700D5DB08 /* QueryItemRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913EF7972868E83700D5DB08 /* QueryItemRepresentable.swift */; };
 		913EF79A28693DBB00D5DB08 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913EF79928693DBB00D5DB08 /* Schedule.swift */; };
 		9142F970285FA20E0070661F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9142F96F285FA20E0070661F /* Assets.xcassets */; };
@@ -33,7 +39,6 @@
 		9142F994285FFDD20070661F /* ScheduleSendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F993285FFDD20070661F /* ScheduleSendable.swift */; };
 		9142F996286002580070661F /* CollectiveSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F995286002580070661F /* CollectiveSchedule.swift */; };
 		9142F998286022460070661F /* SchedulePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F997286022460070661F /* SchedulePreviewViewController.swift */; };
-		9142F99A286024170070661F /* AllAvailabilitiesViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F999286024170070661F /* AllAvailabilitiesViewContoller.swift */; };
 		9142F99C286024A00070661F /* ScheduleFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */; };
 		916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D270B288319E4003C96BD /* CreateProfileViewController.swift */; };
 		916D270E28836F3A003C96BD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D270D28836F3A003C96BD /* User.swift */; };
@@ -83,6 +88,12 @@
 		9103E59428A73A7C00CA661B /* AppDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDropDown.swift; sourceTree = "<group>"; };
 		9103E59628A84A9900CA661B /* ThemedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedButton.swift; sourceTree = "<group>"; };
 		9125EEA028A89E8E005C5ED3 /* AdaptsToKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptsToKeyboard.swift; sourceTree = "<group>"; };
+		913C118A28A9787E00B5A66F /* ScaledIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledIcon.swift; sourceTree = "<group>"; };
+		913C118C28A9830600B5A66F /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		913C118E28AA024A00B5A66F /* ProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButton.swift; sourceTree = "<group>"; };
+		913C119028AB366C00B5A66F /* CalendarDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDate.swift; sourceTree = "<group>"; };
+		913C119228B07EDD00B5A66F /* StoredValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredValues.swift; sourceTree = "<group>"; };
+		913C119428B0AAFA00B5A66F /* AppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
 		913EF7972868E83700D5DB08 /* QueryItemRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryItemRepresentable.swift; sourceTree = "<group>"; };
 		913EF79928693DBB00D5DB08 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		9142F96C285FA20A0070661F /* MeetUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,7 +107,6 @@
 		9142F993285FFDD20070661F /* ScheduleSendable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSendable.swift; sourceTree = "<group>"; };
 		9142F995286002580070661F /* CollectiveSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectiveSchedule.swift; sourceTree = "<group>"; };
 		9142F997286022460070661F /* SchedulePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePreviewViewController.swift; sourceTree = "<group>"; };
-		9142F999286024170070661F /* AllAvailabilitiesViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllAvailabilitiesViewContoller.swift; sourceTree = "<group>"; };
 		9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFinishedViewController.swift; sourceTree = "<group>"; };
 		916D270B288319E4003C96BD /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		916D270D28836F3A003C96BD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -151,7 +161,9 @@
 				9103E58F28A028C600CA661B /* DateCell.swift */,
 				9103E59428A73A7C00CA661B /* AppDropDown.swift */,
 				9103E59628A84A9900CA661B /* ThemedButton.swift */,
-				9125EEA028A89E8E005C5ED3 /* AdaptsToKeyboard.swift */,
+				913C118A28A9787E00B5A66F /* ScaledIcon.swift */,
+				913C118C28A9830600B5A66F /* BackButton.swift */,
+				913C118E28AA024A00B5A66F /* ProfileButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -178,7 +190,6 @@
 		9103E583289F49B000CA661B /* ScheduleInProgress */ = {
 			isa = PBXGroup;
 			children = (
-				9142F999286024170070661F /* AllAvailabilitiesViewContoller.swift */,
 				9103E586289F4F5900CA661B /* YourAvailabilityViewController.swift */,
 			);
 			path = ScheduleInProgress;
@@ -267,6 +278,7 @@
 				916D270D28836F3A003C96BD /* User.swift */,
 				9103E57B289B897600CA661B /* Day.swift */,
 				9103E57D289B89B700CA661B /* TimeRange.swift */,
+				913C119028AB366C00B5A66F /* CalendarDate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -274,6 +286,8 @@
 		916D270A2883190E003C96BD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				913C119428B0AAFA00B5A66F /* AppViewController.swift */,
+				9125EEA028A89E8E005C5ED3 /* AdaptsToKeyboard.swift */,
 				9103E58D289F99F100CA661B /* ViewControllerWithIdentifier.swift */,
 				9103E588289F501600CA661B /* CreateMeeting */,
 				9103E582289F499C00CA661B /* MainInterface */,
@@ -286,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				916D2710288CA97B003C96BD /* GetAvailabilityLogic.swift */,
+				913C119228B07EDD00B5A66F /* StoredValues.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -440,14 +455,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				913C118B28A9787E00B5A66F /* ScaledIcon.swift in Sources */,
+				913C118F28AA024A00B5A66F /* ProfileButton.swift in Sources */,
 				9103E57C289B897600CA661B /* Day.swift in Sources */,
 				9103E59028A028C600CA661B /* DateCell.swift in Sources */,
 				9125EEA128A89E8E005C5ED3 /* AdaptsToKeyboard.swift in Sources */,
+				913C118D28A9830600B5A66F /* BackButton.swift in Sources */,
 				9142F998286022460070661F /* SchedulePreviewViewController.swift in Sources */,
 				916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */,
 				913EF7982868E83700D5DB08 /* QueryItemRepresentable.swift in Sources */,
 				9142F99C286024A00070661F /* ScheduleFinishedViewController.swift in Sources */,
 				9103E58A289F50BC00CA661B /* NewMeetingViewController.swift in Sources */,
+				913C119528B0AAFA00B5A66F /* AppViewController.swift in Sources */,
 				9103E5782896DA0400CA661B /* AvailabilityBar.swift in Sources */,
 				9142F994285FFDD20070661F /* ScheduleSendable.swift in Sources */,
 				9103E59528A73A7C00CA661B /* AppDropDown.swift in Sources */,
@@ -459,9 +478,10 @@
 				9103E59328A72C5A00CA661B /* AppColors.swift in Sources */,
 				913EF79A28693DBB00D5DB08 /* Schedule.swift in Sources */,
 				916D270E28836F3A003C96BD /* User.swift in Sources */,
+				913C119328B07EDD00B5A66F /* StoredValues.swift in Sources */,
 				9103E57E289B89B700CA661B /* TimeRange.swift in Sources */,
 				916D2711288CA97C003C96BD /* GetAvailabilityLogic.swift in Sources */,
-				9142F99A286024170070661F /* AllAvailabilitiesViewContoller.swift in Sources */,
+				913C119128AB366C00B5A66F /* CalendarDate.swift in Sources */,
 				9103E58E289F99F100CA661B /* ViewControllerWithIdentifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

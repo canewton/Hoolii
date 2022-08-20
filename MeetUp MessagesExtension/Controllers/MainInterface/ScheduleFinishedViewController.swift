@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ScheduleFinishedViewController: UIViewController, ViewControllerWithIdentifier {
+class ScheduleFinishedViewController: AppViewController, ViewControllerWithIdentifier {
     
     // MARK: Properties
     static let storyboardIdentifier = "ScheduleFinishedViewController"

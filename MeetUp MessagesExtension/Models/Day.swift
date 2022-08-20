@@ -11,11 +11,11 @@ import UIKit
 struct Day: Codable {
     
     // MARK: Properties
-    var dateString: String
+    var date: Date
     var timesFree: [TimeRange]
     
-    init(dateString: String, timesFree: [TimeRange]) {
-        self.dateString = dateString
+    init(date: Date, timesFree: [TimeRange]) {
+        self.date = date
         self.timesFree = timesFree
     }
     
@@ -116,11 +116,11 @@ struct Day: Codable {
 struct DayCollective {
     
     // MARK: Properties
-    var dateString: String
+    var date: Date
     var timesFree: [TimeRangeCollective]
     
-    init(dateString: String, timesFree: [TimeRangeCollective]) {
-        self.dateString = dateString
+    init(date: Date, timesFree: [TimeRangeCollective]) {
+        self.date = date
         self.timesFree = timesFree
     }
 }
