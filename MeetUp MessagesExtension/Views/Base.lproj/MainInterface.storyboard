@@ -596,9 +596,20 @@
                                     <constraint firstAttribute="height" constant="60" id="y8t-Rf-mD9"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EYL-TN-dxb">
-                                <rect key="frame" x="0.0" y="177" width="78" height="515"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYL-TN-dxb">
+                                <rect key="frame" x="0.0" y="169" width="78" height="531"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="KRb-ck-RsC">
+                                        <rect key="frame" x="0.0" y="0.0" width="78" height="531"/>
+                                    </stackView>
+                                </subviews>
                                 <constraints>
+                                    <constraint firstItem="KRb-ck-RsC" firstAttribute="leading" secondItem="EYL-TN-dxb" secondAttribute="leading" id="9Bc-7J-AwL"/>
+                                    <constraint firstItem="KRb-ck-RsC" firstAttribute="width" secondItem="EYL-TN-dxb" secondAttribute="width" id="Qgr-RK-eRu"/>
+                                    <constraint firstItem="KRb-ck-RsC" firstAttribute="trailing" secondItem="EYL-TN-dxb" secondAttribute="trailing" id="UhG-oN-Kku"/>
+                                    <constraint firstAttribute="bottom" secondItem="KRb-ck-RsC" secondAttribute="bottom" id="VYy-n1-bDO"/>
+                                    <constraint firstItem="KRb-ck-RsC" firstAttribute="centerY" secondItem="EYL-TN-dxb" secondAttribute="centerY" placeholder="YES" id="Xx4-Sv-1ko"/>
+                                    <constraint firstItem="KRb-ck-RsC" firstAttribute="top" secondItem="EYL-TN-dxb" secondAttribute="top" id="qh3-z6-vn6"/>
                                     <constraint firstAttribute="width" constant="78" id="s1L-dm-8ta"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="jdg-aB-VBa"/>
@@ -639,6 +650,8 @@
                         <outlet property="datesScrollView" destination="SuZ-N1-UpL" id="eoG-je-B3n"/>
                         <outlet property="profileButton" destination="B8u-Bb-8Bp" id="2G3-j0-n2z"/>
                         <outlet property="sendButton" destination="Bbi-IE-P3T" id="cMN-jU-kQe"/>
+                        <outlet property="timeIndicatorScrollView" destination="EYL-TN-dxb" id="U7e-F5-YtK"/>
+                        <outlet property="timeIndicatorVerticalList" destination="KRb-ck-RsC" id="anl-Ea-GC7"/>
                         <outlet property="topBar" destination="R3T-gM-3s9" id="Slq-WA-dga"/>
                     </connections>
                 </viewController>

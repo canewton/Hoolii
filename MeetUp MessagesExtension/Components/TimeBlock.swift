@@ -12,34 +12,17 @@ final class TimeBlock: UIView {
     let activeColor: UIColor = AppColors.main
     let inactiveColor: UIColor = UIColor.clear
     var isActive: Bool = false
-    
-    private let label: UITextField = {
-        let label = UITextField()
-        label.textAlignment = .left
-        label.textColor = .black
-        label.isUserInteractionEnabled = false
-        label.contentVerticalAlignment = .bottom
-        label.font = .systemFont(ofSize: 10)
-        return label
-    }()
+    let minHeight: CGFloat = 60
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = inactiveColor
+        heightAnchor.constraint(equalToConstant: minHeight).isActive = true
         addBorders(edges: .top, color: AppColors.offBlack)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        label.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
     }
     
     required init?(coder: NSCoder) {
         fatalError()
-    }
-    
-    func configure(with text: String) {
-        label.text = text
     }
     
     func undoHighlight() {

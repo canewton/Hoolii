@@ -15,10 +15,10 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Apc-xB-rzy">
-                    <rect key="frame" x="0.0" y="6" width="100" height="788"/>
+                    <rect key="frame" x="0.0" y="7" width="100" height="786"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="feh-X6-WAR">
-                            <rect key="frame" x="0.0" y="0.0" width="100" height="788"/>
+                            <rect key="frame" x="0.0" y="0.0" width="100" height="786"/>
                         </stackView>
                     </subviews>
                     <constraints>
@@ -33,9 +33,9 @@
             <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Apc-xB-rzy" firstAttribute="leading" secondItem="CfV-xf-0HE" secondAttribute="leading" id="34c-M5-2gw"/>
-                <constraint firstItem="Apc-xB-rzy" firstAttribute="top" secondItem="CfV-xf-0HE" secondAttribute="top" constant="6" id="GaB-Aa-pki"/>
+                <constraint firstItem="Apc-xB-rzy" firstAttribute="top" secondItem="CfV-xf-0HE" secondAttribute="top" constant="7" id="GaB-Aa-pki"/>
                 <constraint firstItem="Apc-xB-rzy" firstAttribute="trailing" secondItem="CfV-xf-0HE" secondAttribute="trailing" id="Yth-Eg-8e3"/>
-                <constraint firstAttribute="bottom" secondItem="Apc-xB-rzy" secondAttribute="bottom" constant="6" id="sdA-XY-K68"/>
+                <constraint firstAttribute="bottom" secondItem="Apc-xB-rzy" secondAttribute="bottom" constant="7" id="sdA-XY-K68"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

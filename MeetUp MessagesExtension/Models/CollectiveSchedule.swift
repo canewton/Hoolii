@@ -12,6 +12,8 @@ struct CollectiveSchedule {
     var allSchedules: [ScheduleSendable] = []
     var expirationDate: Date = Date()
     var meetingName: String = ""
+    var startTime: Int = 0
+    var endTime: Int = 0
 }
 
 /// Extends `CollectiveSchedule` to be able to be represented by and created with an array of `NSURLQueryItems`s

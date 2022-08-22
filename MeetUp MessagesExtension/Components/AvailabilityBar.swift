@@ -13,22 +13,14 @@ final class AvailabilityBar: UIView {
     var performHighlightAction: Bool = true
     
     let hourDivisions: Int = 1
-    let startTime: Int = 9
-    let endTime: Int = 21
+    var startTime: Int = 0
+    var endTime: Int = 0
     
     var day: Day = Day(date: CalendarDate("08-15-2022").date, timesFree: [])
     
     public func getDay() -> Day {
         return day
     }
-    
-    private let label: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 1
-        label.textAlignment = .center
-        label.textColor = .black
-        return label
-    }()
     
     private func indexToTime(index: Int) -> Int {
         return index/hourDivisions + startTime
@@ -38,31 +30,26 @@ final class AvailabilityBar: UIView {
         super.init(coder: coder)
     }
     
-    override func awakeFromNib() {
-        nibSetup()
-    }
-    
     func nibSetup() {
         verticalStack.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         let numberOfBlocks: Int = (hourDivisions * (endTime - startTime))
         
         for i in 0..<numberOfBlocks {
             let block: TimeBlock = TimeBlock()
-            var blockString: String = ""
-            if i % hourDivisions == 0 {
-                let time: Int = indexToTime(index: i) + 1
-                if time < 12 {
-                    blockString = "  \(time)am"
-                } else if time == 12 {
-                    blockString = "  \(time)pm"
-                } else {
-                    blockString = "  \(time - 12)pm"
-                }
-            }
+//            var blockString: String = ""
+//            if i % hourDivisions == 0 {
+//                let time: Int = indexToTime(index: i) + 1
+//                if time < 12 {
+//                    blockString = "  \(time)am"
+//                } else if time == 12 {
+//                    blockString = "  \(time)pm"
+//                } else {
+//                    blockString = "  \(time - 12)pm"
+//                }
+//            }
             if i == numberOfBlocks - 1 {
                 block.addBorders(edges: .bottom, color: AppColors.offBlack)
             }
-            block.configure(with: blockString)
             verticalStack.addArrangedSubview(block)
         }
         
@@ -78,12 +65,12 @@ final class AvailabilityBar: UIView {
         self.addGestureRecognizer(tap)
     }
     
-    class func instanceFromNib() -> AvailabilityBar? {
-        return UINib(nibName: "AvailabilityBar", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? AvailabilityBar
-    }
-    
-    func configure(with text: String) {
-        label.text = text
+    class func instanceFromNib(startime: Int, endTime: Int) -> AvailabilityBar? {
+        let availabilityBar = UINib(nibName: "AvailabilityBar", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? AvailabilityBar
+        availabilityBar?.startTime = startime
+        availabilityBar?.endTime = endTime
+        availabilityBar?.nibSetup()
+        return availabilityBar
     }
     
     @objc func handleTapGesture(gesture: UITapGestureRecognizer) {

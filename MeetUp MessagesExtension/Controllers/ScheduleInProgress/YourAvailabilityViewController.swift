@@ -14,13 +14,16 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     @IBOutlet weak var profileButton: ProfileButton!
     @IBOutlet weak var datesHorizontalList: UIStackView!
     @IBOutlet weak var availabilityBarHorizontalList: UIStackView!
+    @IBOutlet weak var timeIndicatorVerticalList: UIStackView!
     @IBOutlet weak var datesScrollView: UIScrollView!
     @IBOutlet weak var availabilityBarScrollView: UIScrollView!
+    @IBOutlet weak var timeIndicatorScrollView: UIScrollView!
     
     var name: String = "Caden"
     var id: String = "hi"
     var collectiveSchedule: CollectiveSchedule = CollectiveSchedule()
     let availabilityBarWidth: CGFloat = 120
+    let timeIndicatorViewHeight: CGFloat = 15
     
     // MARK: Properties
     static let storyboardIdentifier = "YourAvailabilitiesViewController"
@@ -34,7 +37,9 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         
         datesScrollView.delegate = self
         availabilityBarScrollView.delegate = self
+        timeIndicatorScrollView.delegate = self
         
+        configureTimeIndicatorVerticalList()
         configureAvailabilityBarScrollView()
         configureDatesHorizontalList()
         configureProfileButton()
@@ -50,14 +55,41 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         availabilityBarScrollView.contentOffset.x = datesScrollView.contentOffset.x
+        if scrollView == availabilityBarScrollView {
+            timeIndicatorScrollView.contentOffset.y = availabilityBarScrollView.contentOffset.y
+        } else if scrollView == timeIndicatorScrollView {
+            availabilityBarScrollView.contentOffset.y = timeIndicatorScrollView.contentOffset.y
+        }
+    }
+    
+    func configureTimeIndicatorVerticalList() {
+        let startTime: Int = collectiveSchedule.startTime
+        let endTime: Int = collectiveSchedule.endTime
+        for time in startTime...endTime {
+            if let timeIndicatorView = TimeIndicatorView.instanceFromNib() {
+                var timeString: String = ""
+                if time < 12 {
+                    timeString = "  \(time) AM"
+                } else if time == 12 {
+                    timeString = "  \(time) PM"
+                } else {
+                    timeString = "  \(time - 12) PM"
+                }
+                timeIndicatorView.time.text = timeString
+                timeIndicatorView.heightAnchor.constraint(equalToConstant: timeIndicatorViewHeight).isActive = true
+                timeIndicatorVerticalList.addArrangedSubview(timeIndicatorView)
+                timeIndicatorVerticalList.spacing = 60 - timeIndicatorViewHeight
+            }
+        }
     }
     
     func configureAvailabilityBarScrollView() {
         let allDates: [Day] = collectiveSchedule.allSchedules[0].schedule.datesFree
+        let startTime: Int = collectiveSchedule.startTime
+        let endTime: Int = collectiveSchedule.endTime
         for i in 0..<allDates.count {
-            if let availabilityBar = AvailabilityBar.instanceFromNib() {
+            if let availabilityBar = AvailabilityBar.instanceFromNib(startime: startTime, endTime: endTime) {
                 availabilityBar.translatesAutoresizingMaskIntoConstraints = false
-                availabilityBar.heightAnchor.constraint(equalToConstant: 700).isActive = true
                 availabilityBar.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
                 availabilityBar.day = allDates[i]
                 availabilityBarHorizontalList.addArrangedSubview(availabilityBar)

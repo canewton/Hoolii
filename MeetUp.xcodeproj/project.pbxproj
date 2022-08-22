@@ -46,6 +46,8 @@
 		916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D270B288319E4003C96BD /* CreateProfileViewController.swift */; };
 		916D270E28836F3A003C96BD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D270D28836F3A003C96BD /* User.swift */; };
 		916D2711288CA97C003C96BD /* GetAvailabilityLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D2710288CA97B003C96BD /* GetAvailabilityLogic.swift */; };
+		91A76E5028B3183100F93DE2 /* TimeIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91A76E4F28B3183100F93DE2 /* TimeIndicatorView.xib */; };
+		91A76E5228B31B1C00F93DE2 /* TimeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A76E5128B31B1C00F93DE2 /* TimeIndicatorView.swift */; };
 		91B2D42428957CA200D0AAD4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91B2D42328957CA200D0AAD4 /* GoogleService-Info.plist */; };
 		AA37ABBC7DB2CC2583CC4D26 /* libPods-MeetUp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F32C2BB35CC49C0C1097DDD6 /* libPods-MeetUp.a */; };
 /* End PBXBuildFile section */
@@ -117,6 +119,8 @@
 		916D270B288319E4003C96BD /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		916D270D28836F3A003C96BD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		916D2710288CA97B003C96BD /* GetAvailabilityLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAvailabilityLogic.swift; sourceTree = "<group>"; };
+		91A76E4F28B3183100F93DE2 /* TimeIndicatorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeIndicatorView.xib; sourceTree = "<group>"; };
+		91A76E5128B31B1C00F93DE2 /* TimeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIndicatorView.swift; sourceTree = "<group>"; };
 		91B2D42328957CA200D0AAD4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		91F40B6D286164C900B6912D /* MeetUp MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MeetUp MessagesExtension.entitlements"; sourceTree = "<group>"; };
 		B9DE7B812DA84A9AE432A6BD /* Pods-MeetUp MessagesExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetUp MessagesExtension.debug.xcconfig"; path = "Target Support Files/Pods-MeetUp MessagesExtension/Pods-MeetUp MessagesExtension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 				913C118C28A9830600B5A66F /* BackButton.swift */,
 				913C118E28AA024A00B5A66F /* ProfileButton.swift */,
 				913C119828B1DFD100B5A66F /* DateHeaderView.swift */,
+				91A76E5128B31B1C00F93DE2 /* TimeIndicatorView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -181,6 +186,7 @@
 				9142F97F285FA20E0070661F /* MainInterface.storyboard */,
 				913C119628B1DE8100B5A66F /* DateHeaderView.xib */,
 				913C119A28B208C600B5A66F /* AvailabilityBar.xib */,
+				91A76E4F28B3183100F93DE2 /* TimeIndicatorView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -407,6 +413,7 @@
 				9142F983285FA20F0070661F /* Assets.xcassets in Resources */,
 				913C119728B1DE8100B5A66F /* DateHeaderView.xib in Resources */,
 				9142F981285FA20E0070661F /* MainInterface.storyboard in Resources */,
+				91A76E5028B3183100F93DE2 /* TimeIndicatorView.xib in Resources */,
 				913C119B28B208C700B5A66F /* AvailabilityBar.xib in Resources */,
 				91B2D42428957CA200D0AAD4 /* GoogleService-Info.plist in Resources */,
 			);
@@ -495,6 +502,7 @@
 				916D2711288CA97C003C96BD /* GetAvailabilityLogic.swift in Sources */,
 				913C119128AB366C00B5A66F /* CalendarDate.swift in Sources */,
 				9103E58E289F99F100CA661B /* ViewControllerWithIdentifier.swift in Sources */,
+				91A76E5228B31B1C00F93DE2 /* TimeIndicatorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

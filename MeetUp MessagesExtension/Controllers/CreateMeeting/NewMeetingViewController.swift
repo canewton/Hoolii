@@ -51,6 +51,8 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     @IBAction func OnSetTimeframe(_ sender: Any) {
         (delegate as? NewMeetingViewControllerDelegate)?.transitonToYourAvailabilities(self)
         collectiveSchedule.allSchedules.append(userSchedule)
+        collectiveSchedule.startTime = 9
+        collectiveSchedule.endTime = 21
         yourAvailabiliesViewController?.collectiveSchedule = collectiveSchedule
         self.transitionToScreen(viewController: yourAvailabiliesViewController!)
     }
