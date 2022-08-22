@@ -24,7 +24,8 @@ struct CalendarDate: Codable {
         year = components.year!
         month = components.month!
         day = components.day!
-        weekdayString = weekdaySymbols[components.weekday!]
+        let weekdayIndex: Int = components.weekday! - 1
+        weekdayString = weekdaySymbols[weekdayIndex]
     }
     
     init(_ dateString: String) {

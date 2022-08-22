@@ -20,11 +20,21 @@ struct Schedule: Codable {
     }
     
     mutating func addDate(_ date: Date) {
-        datesFree.append(Day(date: date, timesFree: []))
+        self.addDate(date, timesFree: [])
     }
     
     mutating func addDate(_ date: Date, timesFree: [TimeRange]) {
-        datesFree.append(Day(date: date, timesFree: timesFree))
+        var insertedDate: Bool = false
+        for i in 0..<datesFree.count {
+            if date.timeIntervalSince1970 < datesFree[i].date.timeIntervalSince1970 {
+                datesFree.insert(Day(date: date, timesFree: timesFree), at: i)
+                insertedDate = true
+                break
+            }
+        }
+        if !insertedDate {
+            datesFree.append(Day(date: date, timesFree: timesFree))
+        }
     }
     
     mutating func removeDate(_ date: Date) {

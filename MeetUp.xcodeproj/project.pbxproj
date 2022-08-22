@@ -28,6 +28,9 @@
 		913C119128AB366C00B5A66F /* CalendarDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C119028AB366C00B5A66F /* CalendarDate.swift */; };
 		913C119328B07EDD00B5A66F /* StoredValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C119228B07EDD00B5A66F /* StoredValues.swift */; };
 		913C119528B0AAFA00B5A66F /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C119428B0AAFA00B5A66F /* AppViewController.swift */; };
+		913C119728B1DE8100B5A66F /* DateHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913C119628B1DE8100B5A66F /* DateHeaderView.xib */; };
+		913C119928B1DFD100B5A66F /* DateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C119828B1DFD100B5A66F /* DateHeaderView.swift */; };
+		913C119B28B208C700B5A66F /* AvailabilityBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913C119A28B208C600B5A66F /* AvailabilityBar.xib */; };
 		913EF7982868E83700D5DB08 /* QueryItemRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913EF7972868E83700D5DB08 /* QueryItemRepresentable.swift */; };
 		913EF79A28693DBB00D5DB08 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913EF79928693DBB00D5DB08 /* Schedule.swift */; };
 		9142F970285FA20E0070661F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9142F96F285FA20E0070661F /* Assets.xcassets */; };
@@ -94,6 +97,9 @@
 		913C119028AB366C00B5A66F /* CalendarDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDate.swift; sourceTree = "<group>"; };
 		913C119228B07EDD00B5A66F /* StoredValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredValues.swift; sourceTree = "<group>"; };
 		913C119428B0AAFA00B5A66F /* AppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
+		913C119628B1DE8100B5A66F /* DateHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateHeaderView.xib; sourceTree = "<group>"; };
+		913C119828B1DFD100B5A66F /* DateHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHeaderView.swift; sourceTree = "<group>"; };
+		913C119A28B208C600B5A66F /* AvailabilityBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvailabilityBar.xib; sourceTree = "<group>"; };
 		913EF7972868E83700D5DB08 /* QueryItemRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryItemRepresentable.swift; sourceTree = "<group>"; };
 		913EF79928693DBB00D5DB08 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		9142F96C285FA20A0070661F /* MeetUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +170,7 @@
 				913C118A28A9787E00B5A66F /* ScaledIcon.swift */,
 				913C118C28A9830600B5A66F /* BackButton.swift */,
 				913C118E28AA024A00B5A66F /* ProfileButton.swift */,
+				913C119828B1DFD100B5A66F /* DateHeaderView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -172,6 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				9142F97F285FA20E0070661F /* MainInterface.storyboard */,
+				913C119628B1DE8100B5A66F /* DateHeaderView.xib */,
+				913C119A28B208C600B5A66F /* AvailabilityBar.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -396,7 +405,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9142F983285FA20F0070661F /* Assets.xcassets in Resources */,
+				913C119728B1DE8100B5A66F /* DateHeaderView.xib in Resources */,
 				9142F981285FA20E0070661F /* MainInterface.storyboard in Resources */,
+				913C119B28B208C700B5A66F /* AvailabilityBar.xib in Resources */,
 				91B2D42428957CA200D0AAD4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,6 +487,7 @@
 				9103E57A2897550500CA661B /* TimeBlock.swift in Sources */,
 				9142F996286002580070661F /* CollectiveSchedule.swift in Sources */,
 				9103E59328A72C5A00CA661B /* AppColors.swift in Sources */,
+				913C119928B1DFD100B5A66F /* DateHeaderView.swift in Sources */,
 				913EF79A28693DBB00D5DB08 /* Schedule.swift in Sources */,
 				916D270E28836F3A003C96BD /* User.swift in Sources */,
 				913C119328B07EDD00B5A66F /* StoredValues.swift in Sources */,

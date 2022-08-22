@@ -16,7 +16,7 @@ struct StoredValues {
     static let defaults = UserDefaults.standard
     
     static func get(key: String) -> String? {
-        return defaults.string(forKey: "username")!
+        return defaults.string(forKey: "username")
     }
     
     static func set(key: String, value: String) {

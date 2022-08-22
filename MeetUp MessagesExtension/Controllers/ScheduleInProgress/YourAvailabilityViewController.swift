@@ -7,16 +7,20 @@
 
 import UIKit
 
-class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIdentifier {
-    @IBOutlet weak var availabilityBarContainer: UIView!
+class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIdentifier, UIScrollViewDelegate {
     @IBOutlet weak var sendButton: ThemedButton!
     @IBOutlet weak var bottomBar: UIView!
     @IBOutlet weak var topBar: UIView!
     @IBOutlet weak var profileButton: ProfileButton!
+    @IBOutlet weak var datesHorizontalList: UIStackView!
+    @IBOutlet weak var availabilityBarHorizontalList: UIStackView!
+    @IBOutlet weak var datesScrollView: UIScrollView!
+    @IBOutlet weak var availabilityBarScrollView: UIScrollView!
     
-    var avaiabilityBar: AvailabilityBar = AvailabilityBar()
     var name: String = "Caden"
     var id: String = "hi"
+    var collectiveSchedule: CollectiveSchedule = CollectiveSchedule()
+    let availabilityBarWidth: CGFloat = 120
     
     // MARK: Properties
     static let storyboardIdentifier = "YourAvailabilitiesViewController"
@@ -25,16 +29,53 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(collectiveSchedule)
+        print(collectiveSchedule.allSchedules[0].schedule.datesFree)
+        
+        datesScrollView.delegate = self
+        availabilityBarScrollView.delegate = self
+        
+        configureAvailabilityBarScrollView()
+        configureDatesHorizontalList()
         configureProfileButton()
         configureSendButton()
-        configureAvailabilityBar()
         configureTopBar()
         configureBottomBar()
     }
     
     @IBAction func OnSaveAndSend(_ sender: Any) {
         print("sending")
-        (delegate as? YourAvaialabilitiesViewControllerDelegate)?.addDataToMessage(schedule: ScheduleSendable(datesFree: [avaiabilityBar.getDay()], user: User(id: self.id, name: self.name)))
+//        (delegate as? YourAvaialabilitiesViewControllerDelegate)?.addDataToMessage(schedule: collectiveSchedule.allSchedules, user: collectiveSchedule.allSchedules.))
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        availabilityBarScrollView.contentOffset.x = datesScrollView.contentOffset.x
+    }
+    
+    func configureAvailabilityBarScrollView() {
+        let allDates: [Day] = collectiveSchedule.allSchedules[0].schedule.datesFree
+        for i in 0..<allDates.count {
+            if let availabilityBar = AvailabilityBar.instanceFromNib() {
+                availabilityBar.translatesAutoresizingMaskIntoConstraints = false
+                availabilityBar.heightAnchor.constraint(equalToConstant: 700).isActive = true
+                availabilityBar.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
+                availabilityBar.day = allDates[i]
+                availabilityBarHorizontalList.addArrangedSubview(availabilityBar)
+            }
+        }
+    }
+    
+    func configureDatesHorizontalList() {
+        let allDates: [Day] = collectiveSchedule.allSchedules[0].schedule.datesFree
+        for i in 0..<allDates.count {
+            if let dateView = DateHeaderView.instanceFromNib() {
+                dateView.translatesAutoresizingMaskIntoConstraints = false
+                dateView.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
+                dateView.dateLabel.text = String(CalendarDate(allDates[i].date).day)
+                dateView.weekdayLabel.text = CalendarDate(allDates[i].date).weekdayString
+                datesHorizontalList.addArrangedSubview(dateView)
+            }
+        }
     }
     
     func configureProfileButton() {
@@ -54,13 +95,6 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         bottomBar.layer.shadowOpacity = 0.6
         bottomBar.layer.shadowOffset = .zero
         bottomBar.layer.shadowRadius = 10
-    }
-    
-    func configureAvailabilityBar() {
-        avaiabilityBar = AvailabilityBar(frame: availabilityBarContainer.frame)
-        avaiabilityBar.frame.size.height = UIScreen.main.bounds.height - 350
-        view.addSubview(avaiabilityBar)
-        availabilityBarContainer.backgroundColor = UIColor.clear
     }
     
     func configureSendButton() {

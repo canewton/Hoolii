@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class AvailabilityBar: UIView {
-    var verticalStack: UIStackView = UIStackView()
+    @IBOutlet weak var verticalStack: UIStackView!
     var performHighlightAction: Bool = true
     
     let hourDivisions: Int = 1
@@ -34,17 +34,19 @@ final class AvailabilityBar: UIView {
         return index/hourDivisions + startTime
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        verticalStack = UIStackView(frame: self.bounds)
-        verticalStack.distribution = .fillEqually
-        verticalStack.axis = .vertical
-        verticalStack.alignment = .fill
-        verticalStack.spacing = 1
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    override func awakeFromNib() {
+        nibSetup()
+    }
+    
+    func nibSetup() {
         verticalStack.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        verticalStack.backgroundColor = UIColor.clear
+        let numberOfBlocks: Int = (hourDivisions * (endTime - startTime))
         
-        for i in 0..<(hourDivisions * (endTime - startTime)) {
+        for i in 0..<numberOfBlocks {
             let block: TimeBlock = TimeBlock()
             var blockString: String = ""
             if i % hourDivisions == 0 {
@@ -57,13 +59,15 @@ final class AvailabilityBar: UIView {
                     blockString = "  \(time - 12)pm"
                 }
             }
+            if i == numberOfBlocks - 1 {
+                block.addBorders(edges: .bottom, color: AppColors.offBlack)
+            }
             block.configure(with: blockString)
             verticalStack.addArrangedSubview(block)
         }
         
-        addSubview(verticalStack)
         clipsToBounds = true
-        layer.cornerRadius = 8
+        layer.cornerRadius = 6
         isUserInteractionEnabled = true
         
         let longPress = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(gesture:)))
@@ -74,8 +78,8 @@ final class AvailabilityBar: UIView {
         self.addGestureRecognizer(tap)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError()
+    class func instanceFromNib() -> AvailabilityBar? {
+        return UINib(nibName: "AvailabilityBar", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? AvailabilityBar
     }
     
     func configure(with text: String) {

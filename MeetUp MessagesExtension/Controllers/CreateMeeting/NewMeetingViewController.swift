@@ -26,9 +26,10 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     let arrowRightIcon: ScaledIcon = ScaledIcon(name: "chevron-right-solid", width: 15, height: 15)
     @IBOutlet weak var sliderLabel: UILabel!
     @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var newMeetingField: UITextField!
     
     let formatter = DateFormatter()
-    var collectiveSchedule: CollectiveSchedule!
+    var collectiveSchedule: CollectiveSchedule = CollectiveSchedule()
     var userSchedule: ScheduleSendable!
     
     @IBAction func sliderChange(_ sender: Any) {
@@ -41,6 +42,7 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         
         configureUserSchedule()
         configureCalendar()
+        configureNameField()
         configureArrowButtons()
         configureMainViewConstraints()
         fromDropDown.configure(options: ["hi", "bye"])
@@ -48,7 +50,8 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     
     @IBAction func OnSetTimeframe(_ sender: Any) {
         (delegate as? NewMeetingViewControllerDelegate)?.transitonToYourAvailabilities(self)
-        print(userSchedule!.schedule.datesFree)
+        collectiveSchedule.allSchedules.append(userSchedule)
+        yourAvailabiliesViewController?.collectiveSchedule = collectiveSchedule
         self.transitionToScreen(viewController: yourAvailabiliesViewController!)
     }
     
@@ -61,8 +64,8 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     }
     
     func configureUserSchedule() {
-        let username: String = StoredValues.get(key: StoredValuesConstants.username)!
-        let userID: String = StoredValues.get(key: StoredValuesConstants.userID)!
+        let username: String = StoredValues.get(key: StoredValuesConstants.username) ?? "Caden"
+        let userID: String = StoredValues.get(key: StoredValuesConstants.userID) ?? "123"
         let user: User = User(id: userID, name: username)
         userSchedule = ScheduleSendable(datesFree: [], user: user)
     }
@@ -70,6 +73,10 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     func configureCalendar() {
         calendarView.allowsMultipleSelection = true
         calendarView.isRangeSelectionUsed = true
+    }
+    
+    func configureNameField() {
+        newMeetingField.addTarget(self, action: #selector(newMeetingFieldDidChange(_:)), for: .editingChanged)
     }
     
     func configureMainViewConstraints() {
@@ -89,6 +96,10 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         cell.selectedViewRight.backgroundColor = .clear
         handleCellTextColor(cell: cell, cellState: cellState)
         handleCellSelected(cell: cell, cellState: cellState)
+    }
+    
+    @objc func newMeetingFieldDidChange(_ textField: UITextField) {
+        collectiveSchedule.meetingName = textField.text!
     }
         
     func handleCellTextColor(cell: DateCell, cellState: CellState) {
