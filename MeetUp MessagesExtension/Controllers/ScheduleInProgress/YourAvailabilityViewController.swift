@@ -24,7 +24,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     
     var name: String = "Caden"
     var id: String = "hi"
-    var collectiveSchedule: CollectiveSchedule = CollectiveSchedule()
+    var collectiveSchedule: CollectiveSchedule!
     let availabilityBarWidth: CGFloat = 120
     let timeIndicatorViewHeight: CGFloat = 15
     
@@ -34,9 +34,6 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(collectiveSchedule)
-        print(collectiveSchedule.allSchedules[0].schedule.datesFree)
         
         datesScrollView.delegate = self
         availabilityBarScrollView.delegate = self
@@ -109,11 +106,15 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         let allDates: [Day] = collectiveSchedule.allSchedules[0].schedule.datesFree
         let startTime: Int = collectiveSchedule.startTime
         let endTime: Int = collectiveSchedule.endTime
+        
+        print("all dates")
+        print(allDates)
+        
         for i in 0..<allDates.count {
             if let availabilityBar = AvailabilityBar.instanceFromNib(startime: startTime, endTime: endTime) {
                 availabilityBar.translatesAutoresizingMaskIntoConstraints = false
                 availabilityBar.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
-                availabilityBar.day = allDates[i]
+                availabilityBar.setDay(day: allDates[i])
                 availabilityBar.configure(callback: buildCollectiveSchedule)
                 availabilityBarHorizontalList.addArrangedSubview(availabilityBar)
             }

@@ -13,6 +13,7 @@ struct CalendarDate: Codable {
     let day: Int
     let month: Int
     let year: Int
+    let dateString: String
     
     init(_ date: Date) {
         self.date = date
@@ -26,6 +27,7 @@ struct CalendarDate: Codable {
         day = components.day!
         let weekdayIndex: Int = components.weekday! - 1
         weekdayString = weekdaySymbols[weekdayIndex]
+        dateString = "\(String(format: "%02d", month))-\(String(format: "%02d", day))-\(String(format: "%04d", year))"
     }
     
     init(_ dateString: String) {

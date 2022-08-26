@@ -23,10 +23,21 @@ extension CollectiveSchedule {
     
     var queryItems: [URLQueryItem] {
         var items = [URLQueryItem]()
+//        var allSchedulesJson: [String] = []
+//
+//        for schedule in allSchedules {
+//            allSchedulesJson.append(schedule.getJsonValue())
+//            print(schedule.getJsonValue())
+//        }
         
-        for schedule in allSchedules {
-            items.append(schedule.queryItem)
-        }
+        let allSchedulesEncoded = try! JSONEncoder().encode(allSchedules)
+        let allSchedulesEncodedString = String(data: allSchedulesEncoded, encoding: .utf8)!
+        
+        items.append(URLQueryItem(name: "allSchedules", value: allSchedulesEncodedString))
+        items.append(URLQueryItem(name: "expirationDate", value: CalendarDate(expirationDate).dateString))
+        items.append(URLQueryItem(name: "meetingName", value: meetingName))
+        items.append(URLQueryItem(name: "startTime", value: String(startTime)))
+        items.append(URLQueryItem(name: "endTime", value: String(endTime)))
         
         return items
     }
@@ -34,14 +45,20 @@ extension CollectiveSchedule {
     // MARK: Initialization
     
     init?(queryItems: [URLQueryItem]) {
-        var allSchedules: [ScheduleSendable] = []
         for queryItem in queryItems {
-            if queryItem.name == ScheduleSendable.queryItemKey {
-                allSchedules.append(ScheduleSendable(jsonValue: queryItem.value!))
+            if queryItem.name == "allSchedules" {
+                let dataFromJsonString = queryItem.value!.data(using: .utf8)!
+                allSchedules = try! JSONDecoder().decode([ScheduleSendable].self, from: dataFromJsonString)
+            } else if queryItem.name == "expirationDate" {
+                expirationDate = CalendarDate(queryItem.value!).date
+            } else if queryItem.name == "meetingName" {
+                meetingName = queryItem.value!
+            } else if queryItem.name == "endTime" {
+                endTime = Int(queryItem.value!)!
+            } else if queryItem.name == "startTime" {
+                startTime = Int(queryItem.value!)!
             }
         }
-        
-        self.allSchedules = allSchedules
     }
     
     func getScheduleWithhUser(_ user: User) -> Schedule? {

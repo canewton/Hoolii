@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ScheduleSendable: QueryItemRepresentable {
+class ScheduleSendable: Codable {
     
     var schedule: Schedule;
     static var queryItemKey: String {
@@ -28,11 +28,4 @@ class ScheduleSendable: QueryItemRepresentable {
         let encodedData = try! JSONEncoder().encode(self.schedule)
         return String(data: encodedData, encoding: .utf8)!
     }
-}
-
-extension QueryItemRepresentable where Self: ScheduleSendable {
-    var queryItem: URLQueryItem {
-        return URLQueryItem(name: Self.queryItemKey, value: getJsonValue())
-    }
-
 }

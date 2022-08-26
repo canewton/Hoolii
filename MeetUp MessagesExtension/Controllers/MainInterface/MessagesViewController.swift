@@ -68,13 +68,6 @@ class MessagesViewController: MSMessagesAppViewController {
         } else {
              // Parse a `Schedule` from the conversation's `selectedMessage` or create a new `Schedule`.
             let collectiveSchedule = CollectiveSchedule(message: conversation.selectedMessage) ?? CollectiveSchedule()
-            print(conversation.selectedMessage ?? "")
-            print(collectiveSchedule)
-            
-            if collectiveSchedule.allSchedules.count > 0 {
-                print("schedule")
-                print(collectiveSchedule.allSchedules[0].schedule)
-            }
 
             if collectiveSchedule.allSchedules.count > 0  {
                 let yourAvailabilitiesController: YourAvailabilitiesViewController = instantiateController()

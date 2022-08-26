@@ -19,8 +19,34 @@ final class AvailabilityBar: UIView {
     var day: Day = Day(date: CalendarDate("08-15-2022").date, timesFree: [])
     var dayChangedCallback: ((Day) -> ())!
     
-    public func getDay() -> Day {
+    func getDay() -> Day {
         return day
+    }
+    
+    func setDay(day: Day) {
+        if day.timesFree.count == 0 {
+            return
+        }
+        
+        for i in 0..<verticalStack.arrangedSubviews.count {
+            let block: UIView = verticalStack.arrangedSubviews[i]
+            if block is TimeBlock {
+                let timeBlock = block as? TimeBlock
+                var timesFreeIndex: Int = 0
+                let time = indexToTime(index: i)
+                
+                if day.timesFree[timesFreeIndex].from <= time && day.timesFree[timesFreeIndex].to > time {
+                    timeBlock?.highlight()
+                } else if day.timesFree[timesFreeIndex].to < time && timesFreeIndex + 1 < day.timesFree.count {
+                    timesFreeIndex = timesFreeIndex + 1
+                    if day.timesFree[timesFreeIndex].from <= time && day.timesFree[timesFreeIndex].to > time {
+                        timeBlock?.highlight()
+                    }
+                } else if day.timesFree[timesFreeIndex].to < time {
+                    return
+                }
+            }
+        }
     }
     
     private func indexToTime(index: Int) -> Int {
