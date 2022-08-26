@@ -67,7 +67,7 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     
     func configureUserSchedule() {
         let username: String = StoredValues.get(key: StoredValuesConstants.username) ?? "Caden"
-        let userID: String = StoredValues.get(key: StoredValuesConstants.userID) ?? "123"
+        let userID: String = StoredValues.get(key: StoredValuesConstants.userID) ?? "hi"
         let user: User = User(id: userID, name: username)
         userSchedule = ScheduleSendable(datesFree: [], user: user)
     }

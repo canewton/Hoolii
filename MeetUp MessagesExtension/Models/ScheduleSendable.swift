@@ -14,24 +14,25 @@ class ScheduleSendable: QueryItemRepresentable {
     static var queryItemKey: String {
         return "schedule"
     }
-    let jsonValue: String;
     
     init(datesFree: [Day], user: User) {
         self.schedule = Schedule(datesFree: datesFree, user: user)
-        let encodedData = try! JSONEncoder().encode(self.schedule)
-        self.jsonValue = String(data: encodedData, encoding: .utf8)!
     }
     
     init(jsonValue: String) {
-        self.jsonValue = jsonValue
-        let dataFromJsonString = self.jsonValue.data(using: .utf8)!
+        let dataFromJsonString = jsonValue.data(using: .utf8)!
         self.schedule = try! JSONDecoder().decode(Schedule.self, from: dataFromJsonString)
+    }
+    
+    func getJsonValue() -> String {
+        let encodedData = try! JSONEncoder().encode(self.schedule)
+        return String(data: encodedData, encoding: .utf8)!
     }
 }
 
 extension QueryItemRepresentable where Self: ScheduleSendable {
     var queryItem: URLQueryItem {
-        return URLQueryItem(name: Self.queryItemKey, value: jsonValue)
+        return URLQueryItem(name: Self.queryItemKey, value: getJsonValue())
     }
 
 }

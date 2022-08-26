@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension MessagesViewController {
+extension YourAvailabilitiesViewController {
     private func convertSchedulesToTimeStamps(_ allSchedules: [ScheduleSendable], _ updateDatesCallback: (Date) -> ()) -> [[[TimeStamp]]] {
         var unsortedTimeStampCollections: [[[TimeStamp]]] = []
         
@@ -106,7 +106,7 @@ extension MessagesViewController {
         return allAvailability
     }
     
-    func getDaysAndTimesFree(_ allSchedules: [ScheduleSendable]) {
+    func getDaysAndTimesFree(_ allSchedules: [ScheduleSendable]) -> [DayCollective] {
         var dates: [Date] = []
         
         let unsortedTimeStampCollections: [[[TimeStamp]]] = convertSchedulesToTimeStamps(allSchedules) { (date) -> () in
@@ -114,5 +114,6 @@ extension MessagesViewController {
         }
         let sortedTimeStampCollections: [[TimeStamp]] = sortTimeStamps(unsortedTimeStampCollections)
         let allAvailability: [DayCollective] = getAvailabilityFromTimestamps(sortedTimeStampCollections, dates)
+        return allAvailability
     }
 }

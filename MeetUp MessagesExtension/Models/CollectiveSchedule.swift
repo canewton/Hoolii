@@ -35,7 +35,6 @@ extension CollectiveSchedule {
     
     init?(queryItems: [URLQueryItem]) {
         var allSchedules: [ScheduleSendable] = []
-        
         for queryItem in queryItems {
             if queryItem.name == ScheduleSendable.queryItemKey {
                 allSchedules.append(ScheduleSendable(jsonValue: queryItem.value!))
@@ -43,6 +42,24 @@ extension CollectiveSchedule {
         }
         
         self.allSchedules = allSchedules
+    }
+    
+    func getScheduleWithhUser(_ user: User) -> Schedule? {
+        for i in 0..<allSchedules.count {
+            if user == allSchedules[i].schedule.user {
+                return allSchedules[i].schedule
+            }
+        }
+        
+        return nil
+    }
+    
+    func setScheduleWithhUser(_ user: User, schedule: Schedule) {
+        for i in 0..<allSchedules.count {
+            if user == allSchedules[i].schedule.user {
+                allSchedules[i].schedule = schedule
+            }
+        }
     }
     
 }

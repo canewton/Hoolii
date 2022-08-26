@@ -18,6 +18,9 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     @IBOutlet weak var datesScrollView: UIScrollView!
     @IBOutlet weak var availabilityBarScrollView: UIScrollView!
     @IBOutlet weak var timeIndicatorScrollView: UIScrollView!
+    @IBOutlet weak var filterAvailabilitiesSwitch: FilterAvailabilitiesSwitch!
+    var displayPersonalView: Bool = true
+    var userSchedule: Schedule!
     
     var name: String = "Caden"
     var id: String = "hi"
@@ -39,6 +42,9 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         availabilityBarScrollView.delegate = self
         timeIndicatorScrollView.delegate = self
         
+        userSchedule = collectiveSchedule.getScheduleWithhUser(User(id: id, name: name))
+        
+        configureFilterSwitch()
         configureTimeIndicatorVerticalList()
         configureAvailabilityBarScrollView()
         configureDatesHorizontalList()
@@ -49,8 +55,8 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     }
     
     @IBAction func OnSaveAndSend(_ sender: Any) {
-        print("sending")
-//        (delegate as? YourAvaialabilitiesViewControllerDelegate)?.addDataToMessage(schedule: collectiveSchedule.allSchedules, user: collectiveSchedule.allSchedules.))
+        collectiveSchedule.setScheduleWithhUser(User(id: id, name: name), schedule: userSchedule)
+        (delegate as? YourAvaialabilitiesViewControllerDelegate)?.addDataToMessage(collectiveSchedule: collectiveSchedule)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -60,6 +66,22 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         } else if scrollView == timeIndicatorScrollView {
             availabilityBarScrollView.contentOffset.y = timeIndicatorScrollView.contentOffset.y
         }
+    }
+    
+    func toggleFilterSwitch(_ filter: String) {
+        if filter == "Group" {
+            displayPersonalView = false
+        } else {
+            displayPersonalView = true
+        }
+    }
+    
+    func buildCollectiveSchedule(_ day: Day) {
+        userSchedule.updateDay(day)
+    }
+    
+    func configureFilterSwitch() {
+        filterAvailabilitiesSwitch.configure(callback: toggleFilterSwitch)
     }
     
     func configureTimeIndicatorVerticalList() {
@@ -92,6 +114,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
                 availabilityBar.translatesAutoresizingMaskIntoConstraints = false
                 availabilityBar.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
                 availabilityBar.day = allDates[i]
+                availabilityBar.configure(callback: buildCollectiveSchedule)
                 availabilityBarHorizontalList.addArrangedSubview(availabilityBar)
             }
         }
@@ -136,30 +159,11 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
 }
 
 protocol YourAvaialabilitiesViewControllerDelegate: AnyObject {
-    func addDataToMessage(schedule: ScheduleSendable)
+    func addDataToMessage(collectiveSchedule: CollectiveSchedule)
 }
 
 extension MessagesViewController: YourAvaialabilitiesViewControllerDelegate {
-    func addDataToMessage(schedule: ScheduleSendable) {
-        var collectiveSchedule: CollectiveSchedule = CollectiveSchedule();
-        
-        var userScheduleIndex: Int = -1
-        for i in 0..<allSchedules.count {
-            if self.allSchedules[i].schedule.user.id == schedule.schedule.user.id {
-                userScheduleIndex = i
-            }
-        }
-        
-        if userScheduleIndex >= 0 {
-            // edit the user if the user already replied
-            self.allSchedules[userScheduleIndex] = schedule
-        } else {
-            // append the user if the user has not replied
-            self.allSchedules.append(schedule)
-        }
-        
-        collectiveSchedule.allSchedules = self.allSchedules
-        collectiveSchedule.expirationDate = CalendarDate("09-04-2022").date
+    func addDataToMessage(collectiveSchedule: CollectiveSchedule) {
         SendMessage(collectiveSchedule, "When should we meet up?")
         dismiss()
     }

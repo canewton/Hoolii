@@ -48,6 +48,7 @@
 		916D2711288CA97C003C96BD /* GetAvailabilityLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D2710288CA97B003C96BD /* GetAvailabilityLogic.swift */; };
 		91A76E5028B3183100F93DE2 /* TimeIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91A76E4F28B3183100F93DE2 /* TimeIndicatorView.xib */; };
 		91A76E5228B31B1C00F93DE2 /* TimeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A76E5128B31B1C00F93DE2 /* TimeIndicatorView.swift */; };
+		91A76E5628B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A76E5528B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift */; };
 		91B2D42428957CA200D0AAD4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91B2D42328957CA200D0AAD4 /* GoogleService-Info.plist */; };
 		AA37ABBC7DB2CC2583CC4D26 /* libPods-MeetUp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F32C2BB35CC49C0C1097DDD6 /* libPods-MeetUp.a */; };
 /* End PBXBuildFile section */
@@ -121,6 +122,7 @@
 		916D2710288CA97B003C96BD /* GetAvailabilityLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAvailabilityLogic.swift; sourceTree = "<group>"; };
 		91A76E4F28B3183100F93DE2 /* TimeIndicatorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeIndicatorView.xib; sourceTree = "<group>"; };
 		91A76E5128B31B1C00F93DE2 /* TimeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIndicatorView.swift; sourceTree = "<group>"; };
+		91A76E5528B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterAvailabilitiesSwitch.swift; sourceTree = "<group>"; };
 		91B2D42328957CA200D0AAD4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		91F40B6D286164C900B6912D /* MeetUp MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MeetUp MessagesExtension.entitlements"; sourceTree = "<group>"; };
 		B9DE7B812DA84A9AE432A6BD /* Pods-MeetUp MessagesExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetUp MessagesExtension.debug.xcconfig"; path = "Target Support Files/Pods-MeetUp MessagesExtension/Pods-MeetUp MessagesExtension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				913C118E28AA024A00B5A66F /* ProfileButton.swift */,
 				913C119828B1DFD100B5A66F /* DateHeaderView.swift */,
 				91A76E5128B31B1C00F93DE2 /* TimeIndicatorView.swift */,
+				91A76E5528B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				913C118D28A9830600B5A66F /* BackButton.swift in Sources */,
 				9142F998286022460070661F /* SchedulePreviewViewController.swift in Sources */,
 				916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */,
+				91A76E5628B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift in Sources */,
 				913EF7982868E83700D5DB08 /* QueryItemRepresentable.swift in Sources */,
 				9142F99C286024A00070661F /* ScheduleFinishedViewController.swift in Sources */,
 				9103E58A289F50BC00CA661B /* NewMeetingViewController.swift in Sources */,

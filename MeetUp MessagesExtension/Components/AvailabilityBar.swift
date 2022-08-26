@@ -17,6 +17,7 @@ final class AvailabilityBar: UIView {
     var endTime: Int = 0
     
     var day: Day = Day(date: CalendarDate("08-15-2022").date, timesFree: [])
+    var dayChangedCallback: ((Day) -> ())!
     
     public func getDay() -> Day {
         return day
@@ -30,23 +31,16 @@ final class AvailabilityBar: UIView {
         super.init(coder: coder)
     }
     
+    func configure(callback: @escaping (Day)->()) {
+        self.dayChangedCallback = callback
+    }
+    
     func nibSetup() {
         verticalStack.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         let numberOfBlocks: Int = (hourDivisions * (endTime - startTime))
         
         for i in 0..<numberOfBlocks {
             let block: TimeBlock = TimeBlock()
-//            var blockString: String = ""
-//            if i % hourDivisions == 0 {
-//                let time: Int = indexToTime(index: i) + 1
-//                if time < 12 {
-//                    blockString = "  \(time)am"
-//                } else if time == 12 {
-//                    blockString = "  \(time)pm"
-//                } else {
-//                    blockString = "  \(time - 12)pm"
-//                }
-//            }
             if i == numberOfBlocks - 1 {
                 block.addBorders(edges: .bottom, color: AppColors.offBlack)
             }
@@ -90,6 +84,8 @@ final class AvailabilityBar: UIView {
                     }
                 }
             }
+            
+            dayChangedCallback(day)
         }
     }
     
@@ -120,6 +116,8 @@ final class AvailabilityBar: UIView {
                     }
                 }
             }
+            
+            dayChangedCallback(day)
         }
     }
 }

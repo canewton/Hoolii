@@ -45,6 +45,15 @@ struct Schedule: Codable {
             }
         }
     }
+    
+    mutating func updateDay(_ day: Day) {
+        for i in 0..<datesFree.count {
+            if day.date == datesFree[i].date {
+                datesFree[i] = day
+                return
+            }
+        }
+    }
 }
 
 struct TimeStamp {

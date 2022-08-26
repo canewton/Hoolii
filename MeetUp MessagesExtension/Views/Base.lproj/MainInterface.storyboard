@@ -496,7 +496,7 @@
                                 <rect key="frame" x="78" y="169" width="282" height="531"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TU7-ei-G5G">
-                                        <rect key="frame" x="0.0" y="0.0" width="282" height="531"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="282" height="50"/>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -513,28 +513,94 @@
                                 <rect key="frame" x="0.0" y="700" width="360" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bbi-IE-P3T" customClass="ThemedButton" customModule="MeetUp_MessagesExtension" customModuleProvider="target">
-                                        <rect key="frame" x="230" y="10" width="100" height="31"/>
+                                        <rect key="frame" x="230" y="10" width="100" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="FWK-Xg-huN"/>
+                                            <constraint firstAttribute="height" constant="30" id="YbJ-VW-UlH"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title=" Send"/>
+                                        <buttonConfiguration key="configuration" style="filled" title=" Send">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="OnSaveAndSend:" destination="7j8-YE-M34" eventType="touchUpInside" id="ZGM-7m-Ejy"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l8Y-O7-v2w" customClass="FilterAvailabilitiesSwitch" customModule="MeetUp_MessagesExtension" customModuleProvider="target">
+                                        <rect key="frame" x="30" y="10" width="186" height="30"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xsr-XB-eo8">
+                                                <rect key="frame" x="0.0" y="0.0" width="95" height="30"/>
+                                                <color key="backgroundColor" red="0.56078431370000004" green="0.89019607840000003" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ks2-Pz-F6j">
+                                                <rect key="frame" x="0.0" y="0.0" width="186" height="30"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2p2-rp-pAl">
+                                                        <rect key="frame" x="0.0" y="0.0" width="93" height="30"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2A-ZO-BTQ">
+                                                                <rect key="frame" x="18.5" y="6.5" width="56" height="17"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="i2A-ZO-BTQ" firstAttribute="centerY" secondItem="2p2-rp-pAl" secondAttribute="centerY" id="VWO-Pg-dM3"/>
+                                                            <constraint firstItem="i2A-ZO-BTQ" firstAttribute="centerX" secondItem="2p2-rp-pAl" secondAttribute="centerX" id="axG-fP-CjM"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E6r-by-an3">
+                                                        <rect key="frame" x="93" y="0.0" width="93" height="30"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFP-rR-dr7">
+                                                                <rect key="frame" x="26.5" y="6.5" width="40" height="17"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="xFP-rR-dr7" firstAttribute="centerY" secondItem="E6r-by-an3" secondAttribute="centerY" id="L79-Q2-ffo"/>
+                                                            <constraint firstItem="xFP-rR-dr7" firstAttribute="centerX" secondItem="E6r-by-an3" secondAttribute="centerX" id="taz-d2-CAL"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="xsr-XB-eo8" firstAttribute="top" secondItem="l8Y-O7-v2w" secondAttribute="top" id="0MN-0I-XSr"/>
+                                            <constraint firstAttribute="bottom" secondItem="xsr-XB-eo8" secondAttribute="bottom" id="12l-ET-CgB"/>
+                                            <constraint firstAttribute="height" constant="30" id="FnJ-9o-VHs"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ks2-Pz-F6j" secondAttribute="trailing" id="U0l-dz-Y9e"/>
+                                            <constraint firstItem="Ks2-Pz-F6j" firstAttribute="top" secondItem="l8Y-O7-v2w" secondAttribute="top" id="U6h-YI-8fs"/>
+                                            <constraint firstItem="Ks2-Pz-F6j" firstAttribute="leading" secondItem="l8Y-O7-v2w" secondAttribute="leading" id="Vce-aW-xRr"/>
+                                            <constraint firstItem="xsr-XB-eo8" firstAttribute="width" secondItem="2p2-rp-pAl" secondAttribute="width" multiplier="1.02151" id="XOP-CW-d1E"/>
+                                            <constraint firstAttribute="bottom" secondItem="Ks2-Pz-F6j" secondAttribute="bottom" id="ehb-sa-nra"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="groupButton" destination="E6r-by-an3" id="psW-hj-r46"/>
+                                            <outlet property="highlight" destination="xsr-XB-eo8" id="A1e-aa-WaL"/>
+                                            <outlet property="personalButton" destination="2p2-rp-pAl" id="pr1-OA-5wK"/>
+                                        </connections>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Bbi-IE-P3T" secondAttribute="trailing" constant="30" id="2bs-VZ-1qz"/>
+                                    <constraint firstItem="Bbi-IE-P3T" firstAttribute="leading" secondItem="l8Y-O7-v2w" secondAttribute="trailing" constant="14" id="AU1-D3-gbX"/>
+                                    <constraint firstItem="l8Y-O7-v2w" firstAttribute="leading" secondItem="ZNu-2R-fyl" secondAttribute="leading" constant="30" id="DuS-3q-dXa"/>
                                     <constraint firstItem="Bbi-IE-P3T" firstAttribute="top" secondItem="ZNu-2R-fyl" secondAttribute="top" constant="10" id="U6y-Vx-5I1"/>
+                                    <constraint firstItem="l8Y-O7-v2w" firstAttribute="top" secondItem="ZNu-2R-fyl" secondAttribute="top" constant="10" id="XtM-DT-cdY"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R3T-gM-3s9">
                                 <rect key="frame" x="0.0" y="104" width="360" height="65"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="June" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLv-RP-2KK">
-                                        <rect key="frame" x="30" y="30" width="37" height="20"/>
+                                        <rect key="frame" x="30" y="30.5" width="37" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -573,7 +639,7 @@
                                 <rect key="frame" x="0.0" y="44" width="360" height="60"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meeting Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hwm-Ot-hLB">
-                                        <rect key="frame" x="30" y="15" width="122" height="22"/>
+                                        <rect key="frame" x="30" y="15" width="122" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -648,6 +714,7 @@
                         <outlet property="bottomBar" destination="ZNu-2R-fyl" id="Nim-hb-rpi"/>
                         <outlet property="datesHorizontalList" destination="xyp-t0-6zq" id="qGW-D6-K4v"/>
                         <outlet property="datesScrollView" destination="SuZ-N1-UpL" id="eoG-je-B3n"/>
+                        <outlet property="filterAvailabilitiesSwitch" destination="l8Y-O7-v2w" id="AH0-Cs-kO9"/>
                         <outlet property="profileButton" destination="B8u-Bb-8Bp" id="2G3-j0-n2z"/>
                         <outlet property="sendButton" destination="Bbi-IE-P3T" id="cMN-jU-kQe"/>
                         <outlet property="timeIndicatorScrollView" destination="EYL-TN-dxb" id="U7e-F5-YtK"/>
