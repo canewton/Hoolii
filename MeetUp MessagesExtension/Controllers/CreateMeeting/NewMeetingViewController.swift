@@ -30,7 +30,6 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     
     let formatter = DateFormatter()
     var collectiveSchedule: CollectiveSchedule = CollectiveSchedule()
-    var userSchedule: ScheduleSendable!
     
     @IBAction func sliderChange(_ sender: Any) {
         slider.setValue(slider.value.rounded(.down), animated: false)
@@ -40,7 +39,6 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureUserSchedule()
         configureCalendar()
         configureNameField()
         configureArrowButtons()
@@ -50,7 +48,6 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     
     @IBAction func OnSetTimeframe(_ sender: Any) {
         (delegate as? NewMeetingViewControllerDelegate)?.transitonToYourAvailabilities(self)
-        collectiveSchedule.allSchedules.append(userSchedule)
         collectiveSchedule.startTime = 9
         collectiveSchedule.endTime = 21
         yourAvailabiliesViewController?.collectiveSchedule = collectiveSchedule
@@ -63,13 +60,6 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     }
     @IBAction func OnRightArrow(_ sender: Any) {
         calendarView.scrollToSegment(.next)
-    }
-    
-    func configureUserSchedule() {
-        let username: String = StoredValues.get(key: StoredValuesConstants.username) ?? "Caden"
-        let userID: String = StoredValues.get(key: StoredValuesConstants.userID) ?? "hi"
-        let user: User = User(id: userID, name: username)
-        userSchedule = ScheduleSendable(datesFree: [], user: user)
     }
     
     func configureCalendar() {
@@ -156,17 +146,17 @@ extension NewMeetingViewController: JTAppleCalendarViewDelegate {
     }
         
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
-       configureCell(view: cell, cellState: cellState)
+        configureCell(view: cell, cellState: cellState)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         configureCell(view: cell, cellState: cellState)
-        userSchedule.schedule.addDate(date)
+        collectiveSchedule.addDate(date)
     }
 
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         configureCell(view: cell, cellState: cellState)
-        userSchedule.schedule.removeDate(date)
+        collectiveSchedule.removeDate(date)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {

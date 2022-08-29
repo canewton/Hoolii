@@ -11,40 +11,84 @@ import UIKit
 final class AvailabilityBar: UIView {
     @IBOutlet weak var verticalStack: UIStackView!
     var performHighlightAction: Bool = true
+    var displayAllUsers: Bool = false
     
     let hourDivisions: Int = 1
     var startTime: Int = 0
     var endTime: Int = 0
     
-    var day: Day = Day(date: CalendarDate("08-15-2022").date, timesFree: [])
+    var userDay: Day!
     var dayChangedCallback: ((Day) -> ())!
     
     func getDay() -> Day {
-        return day
+        return userDay
     }
     
     func setDay(day: Day) {
+        self.userDay = day
+        
         if day.timesFree.count == 0 {
             return
         }
         
+        if !displayAllUsers {
+            displayUserDay()
+        }
+    }
+    
+    func displayUserDay() {
+        var timesFreeIndex: Int = 0
         for i in 0..<verticalStack.arrangedSubviews.count {
             let block: UIView = verticalStack.arrangedSubviews[i]
             if block is TimeBlock {
                 let timeBlock = block as? TimeBlock
-                var timesFreeIndex: Int = 0
                 let time = indexToTime(index: i)
                 
-                if day.timesFree[timesFreeIndex].from <= time && day.timesFree[timesFreeIndex].to > time {
-                    timeBlock?.highlight()
-                } else if day.timesFree[timesFreeIndex].to < time && timesFreeIndex + 1 < day.timesFree.count {
-                    timesFreeIndex = timesFreeIndex + 1
-                    if day.timesFree[timesFreeIndex].from <= time && day.timesFree[timesFreeIndex].to > time {
+                if userDay.timesFree.count == 0 {
+                    timeBlock?.undoHighlight()
+                } else {
+                    if userDay.timesFree[timesFreeIndex].from <= time && userDay.timesFree[timesFreeIndex].to > time {
                         timeBlock?.highlight()
+                    } else if userDay.timesFree[timesFreeIndex].to <= time && timesFreeIndex + 1 < userDay.timesFree.count {
+                        timesFreeIndex = timesFreeIndex + 1
+                        if userDay.timesFree[timesFreeIndex].from <= time && userDay.timesFree[timesFreeIndex].to > time {
+                            timeBlock?.highlight()
+                        } else {
+                            timeBlock?.undoHighlight()
+                        }
+                    } else {
+                        timeBlock?.undoHighlight()
                     }
-                } else if day.timesFree[timesFreeIndex].to < time {
-                    return
                 }
+            }
+        }
+    }
+    
+    func displayAllUsersDay(day: DayCollective?, numUsers: Int) {
+        var timesFreeIndex: Int = 0
+        for i in 0..<verticalStack.arrangedSubviews.count {
+            let block: UIView = verticalStack.arrangedSubviews[i]
+            if block is TimeBlock {
+                let timeBlock = block as? TimeBlock
+                let time = indexToTime(index: i)
+                
+                if day != nil {
+                    if day!.timesFree[timesFreeIndex].from <= time && day!.timesFree[timesFreeIndex].to > time {
+                        timeBlock?.highlight(numPeople: day!.timesFree[timesFreeIndex].users.count, totalPeople: numUsers)
+                    } else if day!.timesFree[timesFreeIndex].to <= time && timesFreeIndex + 1 < day!.timesFree.count {
+                        timesFreeIndex = timesFreeIndex + 1
+                        if day!.timesFree[timesFreeIndex].from <= time && day!.timesFree[timesFreeIndex].to > time {
+                            timeBlock?.highlight(numPeople: day!.timesFree[timesFreeIndex].users.count, totalPeople: numUsers)
+                        } else {
+                            timeBlock?.undoHighlight()
+                        }
+                    } else {
+                        timeBlock?.undoHighlight()
+                    }
+                } else {
+                    timeBlock?.undoHighlight()
+                }
+                
             }
         }
     }
@@ -103,15 +147,15 @@ final class AvailabilityBar: UIView {
                     
                     if !timeBlock!.isHighlighted() {
                         timeBlock!.highlight()
-                        day.addAvailability(indexToTime(index: i))
+                        userDay.addAvailability(indexToTime(index: i))
                     } else {
                         timeBlock!.undoHighlight()
-                        day.removeAvailability(indexToTime(index: i))
+                        userDay.removeAvailability(indexToTime(index: i))
                     }
                 }
             }
             
-            dayChangedCallback(day)
+            dayChangedCallback(userDay)
         }
     }
     
@@ -134,16 +178,16 @@ final class AvailabilityBar: UIView {
                         
                         if performHighlightAction {
                             timeBlock!.highlight()
-                            day.addAvailability(indexToTime(index: i))
+                            userDay.addAvailability(indexToTime(index: i))
                         } else {
                             timeBlock!.undoHighlight()
-                            day.removeAvailability(indexToTime(index: i))
+                            userDay.removeAvailability(indexToTime(index: i))
                         }
                     }
                 }
             }
             
-            dayChangedCallback(day)
+            dayChangedCallback(userDay)
         }
     }
 }

@@ -70,6 +70,7 @@ class MessagesViewController: MSMessagesAppViewController {
             let collectiveSchedule = CollectiveSchedule(message: conversation.selectedMessage) ?? CollectiveSchedule()
 
             if collectiveSchedule.allSchedules.count > 0  {
+                print(collectiveSchedule.allSchedules[0].schedule)
                 let yourAvailabilitiesController: YourAvailabilitiesViewController = instantiateController()
                 controller = yourAvailabilitiesController
                 yourAvailabilitiesController.collectiveSchedule = collectiveSchedule

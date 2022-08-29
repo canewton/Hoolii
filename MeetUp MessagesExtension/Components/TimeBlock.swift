@@ -26,17 +26,17 @@ final class TimeBlock: UIView {
     }
     
     func undoHighlight() {
-        if isActive {
-            backgroundColor = inactiveColor
-            isActive = false
-        }
+        backgroundColor = inactiveColor
+        isActive = false
     }
     
     func highlight() {
-        if !isActive {
-            backgroundColor = activeColor
-            isActive = true
-        }
+        backgroundColor = activeColor
+        isActive = true
+    }
+    
+    func highlight(numPeople: Int, totalPeople: Int) {
+        backgroundColor = activeColor.withAlphaComponent((CGFloat(numPeople))/(CGFloat(totalPeople)))
     }
     
     func isHighlighted() -> Bool {
