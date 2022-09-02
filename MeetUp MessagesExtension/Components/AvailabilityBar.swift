@@ -19,6 +19,8 @@ final class AvailabilityBar: UIView {
     
     var userDay: Day!
     var dayChangedCallback: ((Day) -> ())!
+    var showDetailCallback: ((Day) -> ())!
+    var hideDetailCallback: (() -> ())!
     
     func getDay() -> Day {
         return userDay
@@ -37,6 +39,7 @@ final class AvailabilityBar: UIView {
     }
     
     func displayUserDay() {
+        displayAllUsers = false
         var timesFreeIndex: Int = 0
         for i in 0..<verticalStack.arrangedSubviews.count {
             let block: UIView = verticalStack.arrangedSubviews[i]
@@ -65,6 +68,7 @@ final class AvailabilityBar: UIView {
     }
     
     func displayAllUsersDay(day: DayCollective?, numUsers: Int) {
+        displayAllUsers = true
         var timesFreeIndex: Int = 0
         for i in 0..<verticalStack.arrangedSubviews.count {
             let block: UIView = verticalStack.arrangedSubviews[i]
@@ -101,8 +105,13 @@ final class AvailabilityBar: UIView {
         super.init(coder: coder)
     }
     
-    func configure(callback: @escaping (Day)->()) {
+    func configureHighlightCallback(_ callback: @escaping (Day)->()) {
         self.dayChangedCallback = callback
+    }
+    
+    func configureDetailsCallback(show: @escaping (Day)->(), hide: @escaping ()->()) {
+        self.showDetailCallback = show
+        self.hideDetailCallback = hide
     }
     
     func nibSetup() {
@@ -138,7 +147,7 @@ final class AvailabilityBar: UIView {
     }
     
     @objc func handleTapGesture(gesture: UITapGestureRecognizer) {
-        if gesture.state == .ended {
+        if gesture.state == .ended && !displayAllUsers {
             let loc = gesture.location(in: self)
             for i in 0..<verticalStack.arrangedSubviews.count {
                 let block: UIView = verticalStack.arrangedSubviews[i]
@@ -161,6 +170,7 @@ final class AvailabilityBar: UIView {
     
     @objc func handlePanGesture(gesture: UIPanGestureRecognizer) {
         if gesture.state == .changed || gesture.state == .ended || gesture.state == .began {
+            var barConatinsGesture: Bool = false
             // get the location of the gesture
             let loc = gesture.location(in: self)
             // loop through each label to see if its frame contains the gesture point
@@ -170,24 +180,44 @@ final class AvailabilityBar: UIView {
                     let timeBlock = block as? TimeBlock
                     
                     if block.frame.contains(loc) {
-                        if gesture.state == .began && timeBlock!.isHighlighted(){
-                            performHighlightAction = false
-                        } else if gesture.state == .began && !timeBlock!.isHighlighted() {
-                            performHighlightAction = true
-                        }
-                        
-                        if performHighlightAction {
-                            timeBlock!.highlight()
-                            userDay.addAvailability(indexToTime(index: i))
+                        barConatinsGesture = true
+                        if displayAllUsers {
+                            toggleDisplayAvailabilityDetail(gesture: gesture, timeBlock: timeBlock!)
                         } else {
-                            timeBlock!.undoHighlight()
-                            userDay.removeAvailability(indexToTime(index: i))
+                            toggleBlockHighlight(gesture: gesture, timeBlock: timeBlock!, index: i)
+                            dayChangedCallback(userDay)
                         }
                     }
                 }
             }
             
-            dayChangedCallback(userDay)
+            if !barConatinsGesture {
+                hideDetailCallback()
+            }
+        }
+    }
+    
+    func toggleBlockHighlight(gesture: UIPanGestureRecognizer, timeBlock: TimeBlock, index: Int) {
+        if gesture.state == .began && timeBlock.isHighlighted(){
+            performHighlightAction = false
+        } else if gesture.state == .began && timeBlock.isHighlighted() {
+            performHighlightAction = true
+        }
+        
+        if performHighlightAction {
+            timeBlock.highlight()
+            userDay.addAvailability(indexToTime(index: index))
+        } else {
+            timeBlock.undoHighlight()
+            userDay.removeAvailability(indexToTime(index: index))
+        }
+    }
+    
+    func toggleDisplayAvailabilityDetail(gesture: UIPanGestureRecognizer, timeBlock: TimeBlock) {
+        if displayAllUsers && (gesture.state == .began || gesture.state == .changed) {
+            showDetailCallback(userDay)
+        } else if displayAllUsers && gesture.state == .ended {
+            hideDetailCallback()
         }
     }
 }

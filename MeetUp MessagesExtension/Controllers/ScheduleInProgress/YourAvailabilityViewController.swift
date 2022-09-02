@@ -19,7 +19,9 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     @IBOutlet weak var availabilityBarScrollView: UIScrollView!
     @IBOutlet weak var timeIndicatorScrollView: UIScrollView!
     @IBOutlet weak var filterAvailabilitiesSwitch: FilterAvailabilitiesSwitch!
+    weak var availabilityDetail: AvailabilityDetail!
     var isShowingPersonalView: Bool = true
+    var isShowingAvailabilityDetail: Bool = false
     var userSchedule: Schedule!
     
     var name: String = "Caden"
@@ -95,7 +97,6 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
             availabilityBar.translatesAutoresizingMaskIntoConstraints = false
             availabilityBar.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
             availabilityBar.displayAllUsersDay(day: allAvailabilities[i], numUsers: collectiveSchedule.allSchedules.count)
-            availabilityBar.configure(callback: showAvailiabilityDetail)
         }
     }
     
@@ -105,7 +106,6 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
             availabilityBar.translatesAutoresizingMaskIntoConstraints = false
             availabilityBar.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
             availabilityBar.displayUserDay()
-            availabilityBar.configure(callback: buildCollectiveSchedule)
         }
     }
     
@@ -118,7 +118,8 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
                 availabilityBar.translatesAutoresizingMaskIntoConstraints = false
                 availabilityBar.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
                 availabilityBar.setDay(day: userSchedule.datesFree[i])
-                availabilityBar.configure(callback: buildCollectiveSchedule)
+                availabilityBar.configureHighlightCallback(buildCollectiveSchedule)
+                availabilityBar.configureDetailsCallback(show: showAvailiabilityDetail, hide: hideAvailiabilityDetail)
                 availabilityBarHorizontalList.addArrangedSubview(availabilityBar)
             }
         }
@@ -129,7 +130,25 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     }
     
     func showAvailiabilityDetail(_ day: Day) {
-        
+        if !isShowingAvailabilityDetail {
+            createAvailabilityDetail()
+        }
+        isShowingAvailabilityDetail = true
+    }
+    
+    func hideAvailiabilityDetail() {
+        if isShowingAvailabilityDetail {
+            availabilityDetail.removeFromSuperview()
+            availabilityDetail = nil
+        }
+        isShowingAvailabilityDetail = false
+    }
+    
+    func createAvailabilityDetail() {
+        availabilityDetail = AvailabilityDetail.instanceFromNib()
+        availabilityBarScrollView.addSubview(availabilityDetail)
+        availabilityDetail.bottomAnchor.constraint(equalTo: availabilityBarScrollView.layoutMarginsGuide.bottomAnchor, constant: -10).isActive = true
+        availabilityDetail.rightAnchor.constraint(equalTo: availabilityBarScrollView.layoutMarginsGuide.rightAnchor, constant: -10).isActive = true
     }
     
     func configureFilterSwitch() {
@@ -189,8 +208,9 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     }
     
     func configureSendButton() {
-        let sendIcon: UIImage = ScaledIcon(name: "paper-plane-regular", width: 15, height: 15).image
+        let sendIcon: UIImage = ScaledIcon(name: "send", width: 14, height: 14).image
         sendButton.setImage(sendIcon, for: .normal)
+        sendButton.titleLabel?.font = .systemFont(ofSize: 14)
     }
 }
 
