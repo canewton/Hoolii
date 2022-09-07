@@ -80,8 +80,6 @@ class MessagesViewController: MSMessagesAppViewController {
             }
         }
         
-        ProfileButton.configure(viewController: controller)
-        
         addChild(controller)
         controller.view.frame = view.bounds
         controller.view.translatesAutoresizingMaskIntoConstraints = false

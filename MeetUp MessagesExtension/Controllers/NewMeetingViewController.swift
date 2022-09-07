@@ -39,6 +39,8 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ProfileButton.configure(viewController: self)
+        
         configureCalendar()
         configureNameField()
         configureArrowButtons()

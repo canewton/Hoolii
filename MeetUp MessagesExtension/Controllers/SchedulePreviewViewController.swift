@@ -15,6 +15,10 @@ class SchedulePreviewViewController: AppViewController, ViewControllerWithIdenti
     @IBOutlet weak var profileButton: ProfileButton!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        ProfileButton.configure(viewController: self)
+        
         profileButton.callback = expandView
     }
     

@@ -10,15 +10,10 @@ import UIKit
 class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIdentifier, UIScrollViewDelegate {
     @IBOutlet weak var sendButton: ThemedButton!
     @IBOutlet weak var bottomBar: UIView!
-    @IBOutlet weak var topBar: UIView!
-    @IBOutlet weak var datesHorizontalList: UIStackView!
-    @IBOutlet weak var availabilityBarHorizontalList: UIStackView!
-    @IBOutlet weak var timeIndicatorVerticalList: UIStackView!
-    @IBOutlet weak var datesScrollView: UIScrollView!
-    @IBOutlet weak var availabilityBarScrollView: UIScrollView!
-    @IBOutlet weak var timeIndicatorScrollView: UIScrollView!
     @IBOutlet weak var filterAvailabilitiesSwitch: FilterAvailabilitiesSwitch!
-    weak var availabilityDetail: AvailabilityDetail!
+    @IBOutlet weak var availabilityInputContainer: UIView!
+    var availabilityInput: FullAvailabilityInput!
+    var availabilityDetail: AvailabilityDetail!
     var isShowingPersonalView: Bool = true
     var isShowingAvailabilityDetail: Bool = false
     var userSchedule: Schedule!
@@ -37,12 +32,10 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        datesScrollView.delegate = self
-        availabilityBarScrollView.delegate = self
-        timeIndicatorScrollView.delegate = self
+        ProfileButton.configure(viewController: self)
         
-        firstName = StoredValues.get(key: "firstName")!
-        lastName = StoredValues.get(key: "lastName")!
+        firstName = StoredValues.get(key: StoredValuesConstants.firstName)!
+        lastName = StoredValues.get(key: StoredValuesConstants.lastName)!
         id = StoredValues.get(key: StoredValuesConstants.userID)!
         
         if collectiveSchedule.getScheduleWithhUser(User(id: id, firstName: firstName, lastName: lastName)) == nil {
@@ -51,13 +44,17 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
             userSchedule = collectiveSchedule.getScheduleWithhUser(User(id: id, firstName: firstName, lastName: lastName))!
         }
         
-        configureAvailabilityBars()
         configureFilterSwitch()
-        configureTimeIndicatorVerticalList()
-        configureDatesHorizontalList()
         configureSendButton()
-        configureTopBar()
         configureBottomBar()
+        
+        availabilityInput = FullAvailabilityInput.instanceFromNib(userSchedule: userSchedule, startTime: collectiveSchedule.startTime, endTime: collectiveSchedule.endTime, buildCollectiveScheduleCallback: buildCollectiveSchedule)
+        availabilityInputContainer.addSubview(availabilityInput)
+        availabilityInput.translatesAutoresizingMaskIntoConstraints = false
+        availabilityInput.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
+        availabilityInput.bottomAnchor.constraint(equalTo: availabilityInputContainer.bottomAnchor).isActive = true
+        availabilityInput.topAnchor.constraint(equalTo: availabilityInputContainer.topAnchor).isActive = true
+        
         
         collectiveSchedule.allSchedules.append(ScheduleSendable(datesFree: [Day(date: CalendarDate("09-13-2022").date, timesFree: [TimeRange(from: 11, to: 16)]), Day(date: CalendarDate("09-14-2022").date, timesFree: [TimeRange(from: 10, to: 13)]),Day(date: CalendarDate("09-15-2022").date, timesFree: [TimeRange(from: 12, to: 18)]),], user: User(id: "1", firstName: "Joanna", lastName: "Hu")))
         collectiveSchedule.allSchedules.append(ScheduleSendable(datesFree: [Day(date: CalendarDate("09-13-2022").date, timesFree: [TimeRange(from: 9, to: 14)]), Day(date: CalendarDate("09-14-2022").date, timesFree: [TimeRange(from: 14, to: 19)]),Day(date: CalendarDate("09-15-2022").date, timesFree: [TimeRange(from: 14, to: 20)]),], user: User(id: "2", firstName: "Jessica", lastName: "Mei")))
@@ -67,15 +64,6 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     @IBAction func OnSaveAndSend(_ sender: Any) {
         collectiveSchedule.setScheduleWithhUser(User(id: id, firstName: firstName, lastName: lastName), schedule: userSchedule)
         (delegate as? YourAvaialabilitiesViewControllerDelegate)?.addDataToMessage(collectiveSchedule: collectiveSchedule)
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        availabilityBarScrollView.contentOffset.x = datesScrollView.contentOffset.x
-        if scrollView == availabilityBarScrollView {
-            timeIndicatorScrollView.contentOffset.y = availabilityBarScrollView.contentOffset.y
-        } else if scrollView == timeIndicatorScrollView {
-            availabilityBarScrollView.contentOffset.y = timeIndicatorScrollView.contentOffset.y
-        }
     }
     
     func toggleFilterSwitch(_ filter: String) {
@@ -92,39 +80,23 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     
     private func displayGroupView() {
         let allAvailabilities: [DayCollective?] = getDaysAndTimesFree(collectiveSchedule.allSchedules)
-        
+
         print(allAvailabilities)
-        
+
         for i in 0..<allAvailabilities.count {
-            let availabilityBar: AvailabilityBar = availabilityBarHorizontalList.arrangedSubviews[i] as! AvailabilityBar
+            let availabilityBar: AvailabilityBar = availabilityInput.availabilityBarHorizontalList.arrangedSubviews[i] as! AvailabilityBar
             availabilityBar.translatesAutoresizingMaskIntoConstraints = false
             availabilityBar.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
             availabilityBar.displayAllUsersDay(day: allAvailabilities[i], numUsers: collectiveSchedule.allSchedules.count)
         }
     }
-    
+
     private func displayPersonalView() {
-        for i in 0..<availabilityBarHorizontalList.arrangedSubviews.count {
-            let availabilityBar: AvailabilityBar = availabilityBarHorizontalList.arrangedSubviews[i] as! AvailabilityBar
+        for i in 0..<availabilityInput.availabilityBarHorizontalList.arrangedSubviews.count {
+            let availabilityBar: AvailabilityBar = availabilityInput.availabilityBarHorizontalList.arrangedSubviews[i] as! AvailabilityBar
             availabilityBar.translatesAutoresizingMaskIntoConstraints = false
             availabilityBar.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
             availabilityBar.displayUserDay()
-        }
-    }
-    
-    private func configureAvailabilityBars() {
-        let startTime: Int = collectiveSchedule.startTime
-        let endTime: Int = collectiveSchedule.endTime
-        
-        for i in 0..<userSchedule.datesFree.count {
-            if let availabilityBar = AvailabilityBar.instanceFromNib(startime: startTime, endTime: endTime) {
-                availabilityBar.translatesAutoresizingMaskIntoConstraints = false
-                availabilityBar.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
-                availabilityBar.setDay(day: userSchedule.datesFree[i])
-                availabilityBar.configureHighlightCallback(buildCollectiveSchedule)
-                availabilityBar.configureDetailsCallback(show: showAvailiabilityDetail, hide: hideAvailiabilityDetail)
-                availabilityBarHorizontalList.addArrangedSubview(availabilityBar)
-            }
         }
     }
     
@@ -132,71 +104,8 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         userSchedule.updateDay(day)
     }
     
-    func showAvailiabilityDetail(_ day: Day) {
-        if !isShowingAvailabilityDetail {
-            createAvailabilityDetail()
-        }
-        isShowingAvailabilityDetail = true
-    }
-    
-    func hideAvailiabilityDetail() {
-        if isShowingAvailabilityDetail {
-            availabilityDetail.removeFromSuperview()
-            availabilityDetail = nil
-        }
-        isShowingAvailabilityDetail = false
-    }
-    
-    func createAvailabilityDetail() {
-        availabilityDetail = AvailabilityDetail.instanceFromNib()
-        availabilityBarScrollView.addSubview(availabilityDetail)
-        availabilityDetail.bottomAnchor.constraint(equalTo: availabilityBarScrollView.layoutMarginsGuide.bottomAnchor, constant: -10).isActive = true
-        availabilityDetail.rightAnchor.constraint(equalTo: availabilityBarScrollView.layoutMarginsGuide.rightAnchor, constant: -10).isActive = true
-    }
-    
     func configureFilterSwitch() {
         filterAvailabilitiesSwitch.configure(callback: toggleFilterSwitch)
-    }
-    
-    func configureTimeIndicatorVerticalList() {
-        let startTime: Int = collectiveSchedule.startTime
-        let endTime: Int = collectiveSchedule.endTime
-        for time in startTime...endTime {
-            if let timeIndicatorView = TimeIndicatorView.instanceFromNib() {
-                var timeString: String = ""
-                if time < 12 {
-                    timeString = "  \(time) AM"
-                } else if time == 12 {
-                    timeString = "  \(time) PM"
-                } else {
-                    timeString = "  \(time - 12) PM"
-                }
-                timeIndicatorView.time.text = timeString
-                timeIndicatorView.heightAnchor.constraint(equalToConstant: timeIndicatorViewHeight).isActive = true
-                timeIndicatorVerticalList.addArrangedSubview(timeIndicatorView)
-                timeIndicatorVerticalList.spacing = 60 - timeIndicatorViewHeight
-            }
-        }
-    }
-    
-    func configureDatesHorizontalList() {
-        for i in 0..<userSchedule.datesFree.count {
-            if let dateView = DateHeaderView.instanceFromNib() {
-                dateView.translatesAutoresizingMaskIntoConstraints = false
-                dateView.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
-                dateView.dateLabel.text = String(CalendarDate(userSchedule.datesFree[i].date).day)
-                dateView.weekdayLabel.text = CalendarDate(userSchedule.datesFree[i].date).weekdayString
-                datesHorizontalList.addArrangedSubview(dateView)
-            }
-        }
-    }
-    
-    func configureTopBar() {
-        topBar.layer.shadowColor = UIColor.black.cgColor
-        topBar.layer.shadowOpacity = 0.2
-        topBar.layer.shadowOffset = .zero
-        topBar.layer.shadowRadius = 2
-        topBar.layer.shadowOffset = CGSize(width: 0, height: 2)
     }
     
     func configureBottomBar() {

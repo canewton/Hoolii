@@ -37,6 +37,8 @@ class CreateProfileViewController: AppViewController {
         firstNameTextField.text = StoredValues.get(key: StoredValuesConstants.firstName)
         lastNameTextField.text = StoredValues.get(key: StoredValuesConstants.lastName)
         
+        setInitials()
+        
         configureProfileIcon()
         configureEditButton()
     }
@@ -57,12 +59,36 @@ class CreateProfileViewController: AppViewController {
         return result
     }
     
+    func setInitials() {
+        if firstNameTextField.text!.count > 0 && lastNameTextField.text!.count > 0 {
+            let firstName = firstNameTextField.text!.uppercased()
+            let lastName = lastNameTextField.text!.uppercased()
+            let firstNameIndex = firstName.index(firstName.startIndex, offsetBy: 1)
+            let lastNameIndex = lastName.index(lastName.startIndex, offsetBy: 1)
+            profileInitials.text = String(firstName.prefix(upTo: firstNameIndex)) + String(lastName.prefix(upTo: lastNameIndex))
+        } else if firstNameTextField.text!.count > 0 {
+            let firstName = firstNameTextField.text!.uppercased()
+            let index = firstName.index(firstName.startIndex, offsetBy: 1)
+            profileInitials.text = String(firstName.prefix(upTo: index))
+        } else if lastNameTextField.text!.count > 0 {
+            let lastName = lastNameTextField.text!.uppercased()
+            let index = lastName.index(lastName.startIndex, offsetBy: 1)
+            profileInitials.text = String(lastName.prefix(upTo: index))
+        } else {
+            profileInitials.text = ""
+        }
+    }
+    
     @objc func firstNameTextFieldDidChange(_ textField: UITextField) {
         StoredValues.set(key: StoredValuesConstants.firstName, value: textField.text!.trimmingCharacters(in: .whitespaces))
+        setInitials()
+        StoredValues.set(key: StoredValuesConstants.initials, value: profileInitials.text!)
     }
     
     @objc func lastNameTextFieldDidChange(_ textField: UITextField) {
         StoredValues.set(key: StoredValuesConstants.lastName, value: textField.text!.trimmingCharacters(in: .whitespaces))
+        setInitials()
+        StoredValues.set(key: StoredValuesConstants.initials, value: profileInitials.text!)
     }
     
     func configureProfileIcon() {

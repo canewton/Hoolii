@@ -24,6 +24,7 @@ class FilterAvailabilitiesSwitch: UIView {
         personalButton.addGestureRecognizer(personalTap)
         groupButton.addGestureRecognizer(groupTap)
         highlight.layer.cornerRadius = 5
+        highlight.backgroundColor = AppColors.main
     }
     
     func configure(callback: @escaping (String)->()) {

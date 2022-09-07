@@ -11,21 +11,22 @@ public class ProfileButton: UIView {
     var tap: UITapGestureRecognizer = UITapGestureRecognizer()
     var callback: (() -> Void)?
     static var viewController: AppViewController!
+    static var initials: UILabel!
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.widthAnchor.constraint(equalToConstant: 28).isActive = true
         self.heightAnchor.constraint(equalToConstant: 28).isActive = true
         
-        let initials = UILabel(frame: CGRect(x: 14, y: 14, width: 28, height: 28))
-        initials.font = .systemFont(ofSize: 11, weight: .bold)
-        initials.text = "CN"
-        initials.textColor = .white
-        initials.textAlignment = .center
-        self.addSubview(initials)
+        ProfileButton.initials = UILabel(frame: CGRect(x: 14, y: 14, width: 28, height: 28))
+        ProfileButton.initials.font = .systemFont(ofSize: 11, weight: .bold)
+        ProfileButton.initials.text = StoredValues.get(key: StoredValuesConstants.initials)
+        ProfileButton.initials.textColor = .white
+        ProfileButton.initials.textAlignment = .center
+        self.addSubview(ProfileButton.initials)
         
-        initials.center.x = 14
-        initials.center.y = 14
+        ProfileButton.initials.center.x = 14
+        ProfileButton.initials.center.y = 14
         
         tap = UITapGestureRecognizer(target: self, action: #selector(onPressed))
         self.addGestureRecognizer(tap)

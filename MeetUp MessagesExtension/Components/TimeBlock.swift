@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class TimeBlock: UIView {
-    let activeColor: UIColor = AppColors.main
+    let activeColor: UIColor = AppColors.availability
     let inactiveColor: UIColor = UIColor.clear
     var isActive: Bool = false
     let minHeight: CGFloat = 60
