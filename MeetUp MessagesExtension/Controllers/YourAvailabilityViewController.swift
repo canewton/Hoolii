@@ -11,7 +11,6 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     @IBOutlet weak var sendButton: ThemedButton!
     @IBOutlet weak var bottomBar: UIView!
     @IBOutlet weak var topBar: UIView!
-    @IBOutlet weak var profileButton: ProfileButton!
     @IBOutlet weak var datesHorizontalList: UIStackView!
     @IBOutlet weak var availabilityBarHorizontalList: UIStackView!
     @IBOutlet weak var timeIndicatorVerticalList: UIStackView!
@@ -24,8 +23,9 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     var isShowingAvailabilityDetail: Bool = false
     var userSchedule: Schedule!
     
-    var name: String = "Caden"
-    var id: String = "hi"
+    var firstName: String!
+    var lastName: String!
+    var id: String!
     var collectiveSchedule: CollectiveSchedule!
     let availabilityBarWidth: CGFloat = 120
     let timeIndicatorViewHeight: CGFloat = 15
@@ -41,28 +41,31 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         availabilityBarScrollView.delegate = self
         timeIndicatorScrollView.delegate = self
         
-        if collectiveSchedule.getScheduleWithhUser(User(id: id, name: name)) == nil {
-            userSchedule = collectiveSchedule.appendEmptySchedule(user: User(id: id, name: name))
+        firstName = StoredValues.get(key: "firstName")!
+        lastName = StoredValues.get(key: "lastName")!
+        id = StoredValues.get(key: StoredValuesConstants.userID)!
+        
+        if collectiveSchedule.getScheduleWithhUser(User(id: id, firstName: firstName, lastName: lastName)) == nil {
+            userSchedule = collectiveSchedule.appendEmptySchedule(user: User(id: id, firstName: firstName, lastName: lastName))
         } else {
-            userSchedule = collectiveSchedule.getScheduleWithhUser(User(id: id, name: name))!
+            userSchedule = collectiveSchedule.getScheduleWithhUser(User(id: id, firstName: firstName, lastName: lastName))!
         }
         
         configureAvailabilityBars()
         configureFilterSwitch()
         configureTimeIndicatorVerticalList()
         configureDatesHorizontalList()
-        configureProfileButton()
         configureSendButton()
         configureTopBar()
         configureBottomBar()
         
-        collectiveSchedule.allSchedules.append(ScheduleSendable(datesFree: [Day(date: CalendarDate("09-13-2022").date, timesFree: [TimeRange(from: 11, to: 16)]), Day(date: CalendarDate("09-14-2022").date, timesFree: [TimeRange(from: 10, to: 13)]),Day(date: CalendarDate("09-15-2022").date, timesFree: [TimeRange(from: 12, to: 18)]),], user: User(id: "1", name: "Joanna")))
-        collectiveSchedule.allSchedules.append(ScheduleSendable(datesFree: [Day(date: CalendarDate("09-13-2022").date, timesFree: [TimeRange(from: 9, to: 14)]), Day(date: CalendarDate("09-14-2022").date, timesFree: [TimeRange(from: 14, to: 19)]),Day(date: CalendarDate("09-15-2022").date, timesFree: [TimeRange(from: 14, to: 20)]),], user: User(id: "2", name: "Jessica")))
+        collectiveSchedule.allSchedules.append(ScheduleSendable(datesFree: [Day(date: CalendarDate("09-13-2022").date, timesFree: [TimeRange(from: 11, to: 16)]), Day(date: CalendarDate("09-14-2022").date, timesFree: [TimeRange(from: 10, to: 13)]),Day(date: CalendarDate("09-15-2022").date, timesFree: [TimeRange(from: 12, to: 18)]),], user: User(id: "1", firstName: "Joanna", lastName: "Hu")))
+        collectiveSchedule.allSchedules.append(ScheduleSendable(datesFree: [Day(date: CalendarDate("09-13-2022").date, timesFree: [TimeRange(from: 9, to: 14)]), Day(date: CalendarDate("09-14-2022").date, timesFree: [TimeRange(from: 14, to: 19)]),Day(date: CalendarDate("09-15-2022").date, timesFree: [TimeRange(from: 14, to: 20)]),], user: User(id: "2", firstName: "Jessica", lastName: "Mei")))
         
     }
     
     @IBAction func OnSaveAndSend(_ sender: Any) {
-        collectiveSchedule.setScheduleWithhUser(User(id: id, name: name), schedule: userSchedule)
+        collectiveSchedule.setScheduleWithhUser(User(id: id, firstName: firstName, lastName: lastName), schedule: userSchedule)
         (delegate as? YourAvaialabilitiesViewControllerDelegate)?.addDataToMessage(collectiveSchedule: collectiveSchedule)
     }
     
@@ -77,7 +80,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     
     func toggleFilterSwitch(_ filter: String) {
         if filter == "Group" {
-            collectiveSchedule.setScheduleWithhUser(User(id: id, name: name), schedule: userSchedule)
+            collectiveSchedule.setScheduleWithhUser(User(id: id, firstName: firstName, lastName: lastName), schedule: userSchedule)
             displayGroupView()
             isShowingPersonalView = false
             
@@ -186,10 +189,6 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
                 datesHorizontalList.addArrangedSubview(dateView)
             }
         }
-    }
-    
-    func configureProfileButton() {
-        profileButton.configure(viewController: self)
     }
     
     func configureTopBar() {

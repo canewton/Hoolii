@@ -42,7 +42,6 @@
 		9142F994285FFDD20070661F /* ScheduleSendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F993285FFDD20070661F /* ScheduleSendable.swift */; };
 		9142F996286002580070661F /* CollectiveSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F995286002580070661F /* CollectiveSchedule.swift */; };
 		9142F998286022460070661F /* SchedulePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F997286022460070661F /* SchedulePreviewViewController.swift */; };
-		9142F99C286024A00070661F /* ScheduleFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */; };
 		916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D270B288319E4003C96BD /* CreateProfileViewController.swift */; };
 		916D270E28836F3A003C96BD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D270D28836F3A003C96BD /* User.swift */; };
 		916D2711288CA97C003C96BD /* GetAvailabilityLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D2710288CA97B003C96BD /* GetAvailabilityLogic.swift */; };
@@ -51,6 +50,7 @@
 		91A76E5628B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A76E5528B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift */; };
 		91A76E5828BC8C1900F93DE2 /* AvailabilityDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91A76E5728BC8C1800F93DE2 /* AvailabilityDetail.xib */; };
 		91A76E5A28BC972400F93DE2 /* AvailabilityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A76E5928BC972400F93DE2 /* AvailabilityDetail.swift */; };
+		91A76E5E28C1C96C00F93DE2 /* ProfileAvailabilityPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A76E5D28C1C96C00F93DE2 /* ProfileAvailabilityPreview.swift */; };
 		91B2D42428957CA200D0AAD4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91B2D42328957CA200D0AAD4 /* GoogleService-Info.plist */; };
 		AA37ABBC7DB2CC2583CC4D26 /* libPods-MeetUp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F32C2BB35CC49C0C1097DDD6 /* libPods-MeetUp.a */; };
 /* End PBXBuildFile section */
@@ -118,7 +118,6 @@
 		9142F993285FFDD20070661F /* ScheduleSendable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSendable.swift; sourceTree = "<group>"; };
 		9142F995286002580070661F /* CollectiveSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectiveSchedule.swift; sourceTree = "<group>"; };
 		9142F997286022460070661F /* SchedulePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePreviewViewController.swift; sourceTree = "<group>"; };
-		9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFinishedViewController.swift; sourceTree = "<group>"; };
 		916D270B288319E4003C96BD /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		916D270D28836F3A003C96BD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		916D2710288CA97B003C96BD /* GetAvailabilityLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAvailabilityLogic.swift; sourceTree = "<group>"; };
@@ -127,6 +126,7 @@
 		91A76E5528B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterAvailabilitiesSwitch.swift; sourceTree = "<group>"; };
 		91A76E5728BC8C1800F93DE2 /* AvailabilityDetail.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvailabilityDetail.xib; sourceTree = "<group>"; };
 		91A76E5928BC972400F93DE2 /* AvailabilityDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityDetail.swift; sourceTree = "<group>"; };
+		91A76E5D28C1C96C00F93DE2 /* ProfileAvailabilityPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAvailabilityPreview.swift; sourceTree = "<group>"; };
 		91B2D42328957CA200D0AAD4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		91F40B6D286164C900B6912D /* MeetUp MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MeetUp MessagesExtension.entitlements"; sourceTree = "<group>"; };
 		B9DE7B812DA84A9AE432A6BD /* Pods-MeetUp MessagesExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetUp MessagesExtension.debug.xcconfig"; path = "Target Support Files/Pods-MeetUp MessagesExtension/Pods-MeetUp MessagesExtension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -184,6 +184,7 @@
 				91A76E5128B31B1C00F93DE2 /* TimeIndicatorView.swift */,
 				91A76E5528B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift */,
 				91A76E5928BC972400F93DE2 /* AvailabilityDetail.swift */,
+				91A76E5D28C1C96C00F93DE2 /* ProfileAvailabilityPreview.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -198,33 +199,6 @@
 				91A76E5728BC8C1800F93DE2 /* AvailabilityDetail.xib */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		9103E582289F499C00CA661B /* MainInterface */ = {
-			isa = PBXGroup;
-			children = (
-				9142F97D285FA20E0070661F /* MessagesViewController.swift */,
-				9142F997286022460070661F /* SchedulePreviewViewController.swift */,
-				9142F99B286024A00070661F /* ScheduleFinishedViewController.swift */,
-				916D270B288319E4003C96BD /* CreateProfileViewController.swift */,
-			);
-			path = MainInterface;
-			sourceTree = "<group>";
-		};
-		9103E583289F49B000CA661B /* ScheduleInProgress */ = {
-			isa = PBXGroup;
-			children = (
-				9103E586289F4F5900CA661B /* YourAvailabilityViewController.swift */,
-			);
-			path = ScheduleInProgress;
-			sourceTree = "<group>";
-		};
-		9103E588289F501600CA661B /* CreateMeeting */ = {
-			isa = PBXGroup;
-			children = (
-				9103E589289F50BC00CA661B /* NewMeetingViewController.swift */,
-			);
-			path = CreateMeeting;
 			sourceTree = "<group>";
 		};
 		9103E59128A72C2800CA661B /* Theme */ = {
@@ -313,9 +287,11 @@
 				913C119428B0AAFA00B5A66F /* AppViewController.swift */,
 				9125EEA028A89E8E005C5ED3 /* AdaptsToKeyboard.swift */,
 				9103E58D289F99F100CA661B /* ViewControllerWithIdentifier.swift */,
-				9103E588289F501600CA661B /* CreateMeeting */,
-				9103E582289F499C00CA661B /* MainInterface */,
-				9103E583289F49B000CA661B /* ScheduleInProgress */,
+				9103E586289F4F5900CA661B /* YourAvailabilityViewController.swift */,
+				9103E589289F50BC00CA661B /* NewMeetingViewController.swift */,
+				9142F97D285FA20E0070661F /* MessagesViewController.swift */,
+				9142F997286022460070661F /* SchedulePreviewViewController.swift */,
+				916D270B288319E4003C96BD /* CreateProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -494,7 +470,6 @@
 				916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */,
 				91A76E5628B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift in Sources */,
 				913EF7982868E83700D5DB08 /* QueryItemRepresentable.swift in Sources */,
-				9142F99C286024A00070661F /* ScheduleFinishedViewController.swift in Sources */,
 				9103E58A289F50BC00CA661B /* NewMeetingViewController.swift in Sources */,
 				913C119528B0AAFA00B5A66F /* AppViewController.swift in Sources */,
 				9103E5782896DA0400CA661B /* AvailabilityBar.swift in Sources */,
@@ -504,6 +479,7 @@
 				9103E587289F4F5900CA661B /* YourAvailabilityViewController.swift in Sources */,
 				9142F97E285FA20E0070661F /* MessagesViewController.swift in Sources */,
 				9103E57A2897550500CA661B /* TimeBlock.swift in Sources */,
+				91A76E5E28C1C96C00F93DE2 /* ProfileAvailabilityPreview.swift in Sources */,
 				9142F996286002580070661F /* CollectiveSchedule.swift in Sources */,
 				9103E59328A72C5A00CA661B /* AppColors.swift in Sources */,
 				913C119928B1DFD100B5A66F /* DateHeaderView.swift in Sources */,

@@ -61,7 +61,7 @@ class MessagesViewController: MSMessagesAppViewController {
     private func presentViewController(for conversation: MSConversation, with presenentationStyle: MSMessagesAppPresentationStyle) {
         removeAllChildViewControllers()
         
-        let controller: UIViewController
+        let controller: AppViewController
         if presentationStyle == .compact {
             let schedulePreviewController: SchedulePreviewViewController = instantiateController()
             controller = schedulePreviewController
@@ -79,6 +79,8 @@ class MessagesViewController: MSMessagesAppViewController {
                 controller = newMeetingController
             }
         }
+        
+        ProfileButton.configure(viewController: controller)
         
         addChild(controller)
         controller.view.frame = view.bounds

@@ -9,14 +9,15 @@ import UIKit
 
 struct StoredValuesConstants {
     static let userID: String = "userID"
-    static let username: String = "username"
+    static let firstName: String = "firstName"
+    static let lastName: String = "lastName"
 }
 
 struct StoredValues {
     static let defaults = UserDefaults.standard
     
     static func get(key: String) -> String? {
-        return defaults.string(forKey: "username")
+        return defaults.string(forKey: key)
     }
     
     static func set(key: String, value: String) {

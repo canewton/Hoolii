@@ -11,11 +11,13 @@ struct User: Codable, Equatable {
     
     // MARK: Properties
     var id: String
-    var name: String
+    var firstName: String
+    var lastName: String
     
-    init(id: String, name: String) {
+    init(id: String, firstName: String, lastName: String) {
         self.id = id
-        self.name = name
+        self.firstName = firstName
+        self.lastName = lastName
     }
     
     static func == (lhs: User, rhs: User) -> Bool {

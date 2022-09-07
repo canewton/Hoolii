@@ -12,8 +12,17 @@ class SchedulePreviewViewController: AppViewController, ViewControllerWithIdenti
     // MARK: Properties
     static let storyboardIdentifier = "SchedulePreviewViewController"
     weak var delegate: AnyObject?
+    @IBOutlet weak var profileButton: ProfileButton!
     
-    @IBAction func ExpandButton(_ sender: Any) {
+    override func viewDidLoad() {
+        profileButton.callback = expandView
+    }
+    
+    @IBAction func onPressendExpandButton(_ sender: Any) {
+        expandView()
+    }
+    
+    func expandView() {
         (delegate as? SchedulePreviewControllerDelegate)?.schedulePreviewViewControllerDidSelectExpand(self)
     }
 }
@@ -24,11 +33,6 @@ protocol SchedulePreviewControllerDelegate: AnyObject {
 
 extension MessagesViewController: SchedulePreviewControllerDelegate {
     func schedulePreviewViewControllerDidSelectExpand(_ controller: SchedulePreviewViewController) {
-//        if let url = URL(string: "http://localhost:8080/schedule"){
-//            let session = URLSession(configuration: .default)
-//            let task = session.dataTask(with: url, completionHandler: handle(data: response: error: ))
-//            task.resume()
-//        }
         requestPresentationStyle(.expanded)
     }
     
