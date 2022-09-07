@@ -11,6 +11,8 @@
 		9103CF2828C8E7CD00BBC349 /* WeeklyAvailabilityInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103CF2728C8E7CD00BBC349 /* WeeklyAvailabilityInputViewController.swift */; };
 		9103CF2A28C8EA7800BBC349 /* FullAvailabilityInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9103CF2928C8EA7800BBC349 /* FullAvailabilityInput.xib */; };
 		9103CF2C28C8EB5200BBC349 /* FullAvailabilityInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103CF2B28C8EB5200BBC349 /* FullAvailabilityInput.swift */; };
+		9103CF2E28C9197600BBC349 /* DayHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9103CF2D28C9197600BBC349 /* DayHeaderView.xib */; };
+		9103CF3028C919BD00BBC349 /* DayHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103CF2F28C919BD00BBC349 /* DayHeaderView.swift */; };
 		9103E5732896479100CA661B /* libFirebaseDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9103E5722896479100CA661B /* libFirebaseDatabase.a */; };
 		9103E575289647B700CA661B /* libFirebaseCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9103E574289647B700CA661B /* libFirebaseCore.a */; };
 		9103E5782896DA0400CA661B /* AvailabilityBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E5772896DA0400CA661B /* AvailabilityBar.swift */; };
@@ -88,6 +90,8 @@
 		9103CF2728C8E7CD00BBC349 /* WeeklyAvailabilityInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyAvailabilityInputViewController.swift; sourceTree = "<group>"; };
 		9103CF2928C8EA7800BBC349 /* FullAvailabilityInput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FullAvailabilityInput.xib; sourceTree = "<group>"; };
 		9103CF2B28C8EB5200BBC349 /* FullAvailabilityInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullAvailabilityInput.swift; sourceTree = "<group>"; };
+		9103CF2D28C9197600BBC349 /* DayHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DayHeaderView.xib; sourceTree = "<group>"; };
+		9103CF2F28C919BD00BBC349 /* DayHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayHeaderView.swift; sourceTree = "<group>"; };
 		9103E5722896479100CA661B /* libFirebaseDatabase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseDatabase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9103E574289647B700CA661B /* libFirebaseCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9103E5772896DA0400CA661B /* AvailabilityBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityBar.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 				913C118C28A9830600B5A66F /* BackButton.swift */,
 				913C118E28AA024A00B5A66F /* ProfileButton.swift */,
 				913C119828B1DFD100B5A66F /* DateHeaderView.swift */,
+				9103CF2F28C919BD00BBC349 /* DayHeaderView.swift */,
 				91A76E5128B31B1C00F93DE2 /* TimeIndicatorView.swift */,
 				91A76E5528B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift */,
 				91A76E5928BC972400F93DE2 /* AvailabilityDetail.swift */,
@@ -205,6 +210,7 @@
 				91A76E4F28B3183100F93DE2 /* TimeIndicatorView.xib */,
 				91A76E5728BC8C1800F93DE2 /* AvailabilityDetail.xib */,
 				9103CF2928C8EA7800BBC349 /* FullAvailabilityInput.xib */,
+				9103CF2D28C9197600BBC349 /* DayHeaderView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -404,6 +410,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9103CF2E28C9197600BBC349 /* DayHeaderView.xib in Resources */,
 				9103CF2A28C8EA7800BBC349 /* FullAvailabilityInput.xib in Resources */,
 				9142F983285FA20F0070661F /* Assets.xcassets in Resources */,
 				913C119728B1DE8100B5A66F /* DateHeaderView.xib in Resources */,
@@ -477,6 +484,7 @@
 				9103E57C289B897600CA661B /* Day.swift in Sources */,
 				9103E59028A028C600CA661B /* DateCell.swift in Sources */,
 				9125EEA128A89E8E005C5ED3 /* AdaptsToKeyboard.swift in Sources */,
+				9103CF3028C919BD00BBC349 /* DayHeaderView.swift in Sources */,
 				913C118D28A9830600B5A66F /* BackButton.swift in Sources */,
 				9142F998286022460070661F /* SchedulePreviewViewController.swift in Sources */,
 				916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */,

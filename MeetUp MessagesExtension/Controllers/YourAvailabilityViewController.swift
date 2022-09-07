@@ -48,7 +48,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         configureSendButton()
         configureBottomBar()
         
-        availabilityInput = FullAvailabilityInput.instanceFromNib(userSchedule: userSchedule, startTime: collectiveSchedule.startTime, endTime: collectiveSchedule.endTime, buildCollectiveScheduleCallback: buildCollectiveSchedule)
+        availabilityInput = FullAvailabilityInput.instanceFromNib(userSchedule: userSchedule, startTime: collectiveSchedule.startTime, endTime: collectiveSchedule.endTime, buildScheduleCallback: buildCollectiveSchedule)
         availabilityInputContainer.addSubview(availabilityInput)
         availabilityInput.translatesAutoresizingMaskIntoConstraints = false
         availabilityInput.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true

@@ -59,6 +59,31 @@ class CreateProfileViewController: AppViewController {
         return result
     }
     
+    @IBAction func OnEditWeeklyAvailability(_ sender: Any) {
+        let weeklyAvailabilityVC = self.storyboard?
+            .instantiateViewController(withIdentifier: "WeeklyAvailabilityInputViewController") as! WeeklyAvailabilityInputViewController
+        let jsonString: String? = StoredValues.get(key: StoredValuesConstants.userSchedule)
+        let id: String = StoredValues.get(key: StoredValuesConstants.userID)!
+        let firstName: String = StoredValues.get(key: StoredValuesConstants.firstName)!
+        let lastName: String = StoredValues.get(key: StoredValuesConstants.lastName)!
+        var userSchedule: ScheduleSendable = ScheduleSendable(datesFree: [
+            Day(dayOfTheWeek: 0, timesFree: []),
+            Day(dayOfTheWeek: 1, timesFree: []),
+            Day(dayOfTheWeek: 2, timesFree: []),
+            Day(dayOfTheWeek: 3, timesFree: []),
+            Day(dayOfTheWeek: 4, timesFree: []),
+            Day(dayOfTheWeek: 5, timesFree: []),
+            Day(dayOfTheWeek: 6, timesFree: []),
+        ], user: User(id: id, firstName: firstName, lastName: lastName))
+        if jsonString != nil {
+            print(jsonString!)
+            userSchedule = ScheduleSendable(jsonValue: jsonString!)
+        }
+        weeklyAvailabilityVC.userSchedule = userSchedule
+        
+        self.transitionToScreen(viewController: weeklyAvailabilityVC)
+    }
+    
     func setInitials() {
         if firstNameTextField.text!.count > 0 && lastNameTextField.text!.count > 0 {
             let firstName = firstNameTextField.text!.uppercased()

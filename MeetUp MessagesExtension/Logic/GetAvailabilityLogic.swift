@@ -23,7 +23,7 @@ extension YourAvailabilitiesViewController {
                 let timesFree = day.timesFree
                 
                 if index == unsortedTimeStampCollections.count {
-                    updateDatesCallback(day.date)
+                    updateDatesCallback(day.date!)
                     unsortedTimeStampCollections.append([])
                 }
                 

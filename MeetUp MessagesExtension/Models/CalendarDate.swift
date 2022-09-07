@@ -14,19 +14,19 @@ struct CalendarDate: Codable {
     let month: Int
     let year: Int
     let dateString: String
+    static let weekdaySymbols: [String] = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
     
     init(_ date: Date) {
         self.date = date
         
         let calendar = Calendar.current
         let components = calendar.dateComponents([.year, .month, .day, .weekday], from: date)
-        let weekdaySymbols: [String] = ["S", "M", "T", "W", "T", "F", "S"]
 
         year = components.year!
         month = components.month!
         day = components.day!
         let weekdayIndex: Int = components.weekday! - 1
-        weekdayString = weekdaySymbols[weekdayIndex]
+        weekdayString = CalendarDate.weekdaySymbols[weekdayIndex]
         dateString = "\(String(format: "%02d", month))-\(String(format: "%02d", day))-\(String(format: "%04d", year))"
     }
     

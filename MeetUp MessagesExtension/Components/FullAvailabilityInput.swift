@@ -43,12 +43,12 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         super.init(coder: coder)
     }
     
-    class func instanceFromNib(userSchedule: Schedule, startTime: Int, endTime: Int, buildCollectiveScheduleCallback: @escaping ((Day) -> Void)) -> FullAvailabilityInput? {
+    class func instanceFromNib(userSchedule: Schedule, startTime: Int, endTime: Int, buildScheduleCallback: @escaping ((Day) -> Void)) -> FullAvailabilityInput? {
         let fullAvailabilityInput: FullAvailabilityInput? = UINib(nibName: "FullAvailabilityInput", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? FullAvailabilityInput
         fullAvailabilityInput?.userSchedule = userSchedule
         fullAvailabilityInput?.startTime = startTime
         fullAvailabilityInput?.endTime = endTime
-        fullAvailabilityInput?.buildCollectiveScheduleCallback = buildCollectiveScheduleCallback
+        fullAvailabilityInput?.buildCollectiveScheduleCallback = buildScheduleCallback
         fullAvailabilityInput?.setUpComponents()
         return fullAvailabilityInput
     }
@@ -106,7 +106,9 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         for time in startTime...endTime {
             if let timeIndicatorView = TimeIndicatorView.instanceFromNib() {
                 var timeString: String = ""
-                if time < 12 {
+                if time == 0 || time == 24 {
+                    timeString = "12 AM"
+                } else if time < 12 {
                     timeString = "  \(time) AM"
                 } else if time == 12 {
                     timeString = "  \(time) PM"
@@ -123,13 +125,23 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     
     func configureDatesHorizontalList() {
         for i in 0..<userSchedule.datesFree.count {
-            if let dateView = DateHeaderView.instanceFromNib() {
-                dateView.translatesAutoresizingMaskIntoConstraints = false
-                dateView.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
-                dateView.dateLabel.text = String(CalendarDate(userSchedule.datesFree[i].date).day)
-                dateView.weekdayLabel.text = CalendarDate(userSchedule.datesFree[i].date).weekdayString
-                datesHorizontalList.addArrangedSubview(dateView)
+            if userSchedule.datesFree[i].date != nil {
+                if let dateView = DateHeaderView.instanceFromNib() {
+                    dateView.translatesAutoresizingMaskIntoConstraints = false
+                    dateView.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
+                    dateView.dateLabel.text = String(CalendarDate(userSchedule.datesFree[i].date!).day)
+                    dateView.weekdayLabel.text = CalendarDate(userSchedule.datesFree[i].date!).weekdayString
+                    datesHorizontalList.addArrangedSubview(dateView)
+                }
+            } else {
+                if let dayView = DayHeaderView.instanceFromNib() {
+                    dayView.translatesAutoresizingMaskIntoConstraints = false
+                    dayView.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
+                    dayView.weekdayLabel.text = CalendarDate.weekdaySymbols[userSchedule.datesFree[i].dayOfTheWeek!]
+                    datesHorizontalList.addArrangedSubview(dayView)
+                }
             }
+            
         }
     }
     

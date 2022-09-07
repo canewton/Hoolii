@@ -11,13 +11,20 @@ import UIKit
 struct Day: Codable {
     
     // MARK: Properties
-    var date: Date
+    var date: Date?
+    var dayOfTheWeek: Int?
     var timesFree: [TimeRange]
     
     init(date: Date, timesFree: [TimeRange]) {
         self.date = date
         self.timesFree = timesFree
     }
+    
+    init(dayOfTheWeek: Int, timesFree: [TimeRange]) {
+        self.dayOfTheWeek = dayOfTheWeek
+        self.timesFree = timesFree
+    }
+
     
     mutating func addAvailability(_ availability: Int) {
         if timesFree.isEmpty {
