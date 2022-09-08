@@ -107,7 +107,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
             if let timeIndicatorView = TimeIndicatorView.instanceFromNib() {
                 var timeString: String = ""
                 if time == 0 || time == 24 {
-                    timeString = "12 AM"
+                    timeString = "  12 AM"
                 } else if time < 12 {
                     timeString = "  \(time) AM"
                 } else if time == 12 {

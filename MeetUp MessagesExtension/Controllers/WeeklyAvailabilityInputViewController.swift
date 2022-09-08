@@ -12,6 +12,7 @@ class WeeklyAvailabilityInputViewController: AppViewController, ViewControllerWi
     @IBOutlet weak var bottomBar: UIView!
     var availabilityInput: FullAvailabilityInput!
     var userSchedule: ScheduleSendable!
+    var onSaveCallback: (() -> Void)?
     
     var delegate: AnyObject?
     static let storyboardIdentifier = "WeeklyAvailabilityInputViewController"
@@ -33,6 +34,9 @@ class WeeklyAvailabilityInputViewController: AppViewController, ViewControllerWi
     
     @IBAction func OnSave(_ sender: Any) {
         StoredValues.set(key: StoredValuesConstants.userSchedule, value: userSchedule.getJsonValue())
+        if onSaveCallback != nil {
+            onSaveCallback!()
+        }
         self.dismiss(animated: true, completion: nil)
     }
     

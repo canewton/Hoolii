@@ -17,6 +17,9 @@ class CreateProfileViewController: AppViewController {
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var profileAvailabilityPreviewContainer: UIView!
+    var profileAvailabilityPreview: ProfileAvailabilityPreview!
+    var userHasEmptySchedule: Bool = true
     
     let defaults = UserDefaults.standard
     
@@ -32,15 +35,12 @@ class CreateProfileViewController: AppViewController {
         usernameField.delegate = self
         backButton.configure(viewController: self)
         
-        firstNameTextField.addTarget(self, action: #selector(firstNameTextFieldDidChange(_:)), for: .editingChanged)
-        lastNameTextField.addTarget(self, action: #selector(lastNameTextFieldDidChange(_:)), for: .editingChanged)
-        firstNameTextField.text = StoredValues.get(key: StoredValuesConstants.firstName)
-        lastNameTextField.text = StoredValues.get(key: StoredValuesConstants.lastName)
-        
-        setInitials()
-        
+        configureAvailabilityPreview()
+        configureTextFields()
         configureProfileIcon()
         configureEditButton()
+        
+        setInitials()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -62,25 +62,8 @@ class CreateProfileViewController: AppViewController {
     @IBAction func OnEditWeeklyAvailability(_ sender: Any) {
         let weeklyAvailabilityVC = self.storyboard?
             .instantiateViewController(withIdentifier: "WeeklyAvailabilityInputViewController") as! WeeklyAvailabilityInputViewController
-        let jsonString: String? = StoredValues.get(key: StoredValuesConstants.userSchedule)
-        let id: String = StoredValues.get(key: StoredValuesConstants.userID)!
-        let firstName: String = StoredValues.get(key: StoredValuesConstants.firstName)!
-        let lastName: String = StoredValues.get(key: StoredValuesConstants.lastName)!
-        var userSchedule: ScheduleSendable = ScheduleSendable(datesFree: [
-            Day(dayOfTheWeek: 0, timesFree: []),
-            Day(dayOfTheWeek: 1, timesFree: []),
-            Day(dayOfTheWeek: 2, timesFree: []),
-            Day(dayOfTheWeek: 3, timesFree: []),
-            Day(dayOfTheWeek: 4, timesFree: []),
-            Day(dayOfTheWeek: 5, timesFree: []),
-            Day(dayOfTheWeek: 6, timesFree: []),
-        ], user: User(id: id, firstName: firstName, lastName: lastName))
-        if jsonString != nil {
-            print(jsonString!)
-            userSchedule = ScheduleSendable(jsonValue: jsonString!)
-        }
-        weeklyAvailabilityVC.userSchedule = userSchedule
-        
+        weeklyAvailabilityVC.userSchedule = getUserAvailability()
+        weeklyAvailabilityVC.onSaveCallback = updateAvailabilityPreview
         self.transitionToScreen(viewController: weeklyAvailabilityVC)
     }
     
@@ -114,6 +97,50 @@ class CreateProfileViewController: AppViewController {
         StoredValues.set(key: StoredValuesConstants.lastName, value: textField.text!.trimmingCharacters(in: .whitespaces))
         setInitials()
         StoredValues.set(key: StoredValuesConstants.initials, value: profileInitials.text!)
+    }
+    
+    func getUserAvailability() -> ScheduleSendable {
+        let jsonString: String? = StoredValues.get(key: StoredValuesConstants.userSchedule)
+        let id: String = StoredValues.get(key: StoredValuesConstants.userID)!
+        let firstName: String = StoredValues.get(key: StoredValuesConstants.firstName)!
+        let lastName: String = StoredValues.get(key: StoredValuesConstants.lastName)!
+        var userSchedule: ScheduleSendable = ScheduleSendable(datesFree: [
+            Day(dayOfTheWeek: 0, timesFree: []),
+            Day(dayOfTheWeek: 1, timesFree: []),
+            Day(dayOfTheWeek: 2, timesFree: []),
+            Day(dayOfTheWeek: 3, timesFree: []),
+            Day(dayOfTheWeek: 4, timesFree: []),
+            Day(dayOfTheWeek: 5, timesFree: []),
+            Day(dayOfTheWeek: 6, timesFree: []),
+        ], user: User(id: id, firstName: firstName, lastName: lastName))
+        if jsonString != nil {
+            userSchedule = ScheduleSendable(jsonValue: jsonString!)
+            userHasEmptySchedule = false
+        }
+        return userSchedule
+    }
+    
+    func updateAvailabilityPreview() {
+        profileAvailabilityPreview.removeFromSuperview()
+        configureAvailabilityPreview()
+    }
+    
+    func configureAvailabilityPreview() {
+        let userSchedule: Schedule = getUserAvailability().schedule
+        profileAvailabilityPreview = ProfileAvailabilityPreview.instanceFromNib(schedule: userSchedule, userHasEmptySchedule: userHasEmptySchedule, previewContainerHeight: profileAvailabilityPreviewContainer.frame.height)!
+        profileAvailabilityPreviewContainer.addSubview(profileAvailabilityPreview)
+        profileAvailabilityPreview.translatesAutoresizingMaskIntoConstraints = false
+        profileAvailabilityPreview.leftAnchor.constraint(equalTo: profileAvailabilityPreviewContainer.leftAnchor).isActive = true
+        profileAvailabilityPreview.rightAnchor.constraint(equalTo: profileAvailabilityPreviewContainer.rightAnchor).isActive = true
+        profileAvailabilityPreview.bottomAnchor.constraint(equalTo: profileAvailabilityPreviewContainer.bottomAnchor).isActive = true
+        profileAvailabilityPreview.topAnchor.constraint(equalTo: profileAvailabilityPreviewContainer.topAnchor).isActive = true
+    }
+    
+    func configureTextFields() {
+        firstNameTextField.addTarget(self, action: #selector(firstNameTextFieldDidChange(_:)), for: .editingChanged)
+        lastNameTextField.addTarget(self, action: #selector(lastNameTextFieldDidChange(_:)), for: .editingChanged)
+        firstNameTextField.text = StoredValues.get(key: StoredValuesConstants.firstName)
+        lastNameTextField.text = StoredValues.get(key: StoredValuesConstants.lastName)
     }
     
     func configureProfileIcon() {
