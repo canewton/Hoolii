@@ -30,7 +30,7 @@
             <connections>
                 <outlet property="time" destination="bMZ-OV-fHs" id="s6t-be-Bkj"/>
             </connections>
-            <point key="canvasLocation" x="-163.768115942029" y="71.986607142857139"/>
+            <point key="canvasLocation" x="-163.768115942029" y="71.651785714285708"/>
         </view>
     </objects>
 </document>

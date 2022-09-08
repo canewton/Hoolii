@@ -10,6 +10,7 @@ import Foundation
 struct CalendarDate: Codable {
     let date: Date
     let weekdayString: String
+    let weekday: Int
     let day: Int
     let month: Int
     let year: Int
@@ -25,6 +26,7 @@ struct CalendarDate: Codable {
         year = components.year!
         month = components.month!
         day = components.day!
+        weekday = components.weekday! - 1
         let weekdayIndex: Int = components.weekday! - 1
         weekdayString = CalendarDate.weekdaySymbols[weekdayIndex]
         dateString = "\(String(format: "%02d", month))-\(String(format: "%02d", day))-\(String(format: "%04d", year))"

@@ -15,8 +15,8 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     @IBOutlet weak var datesScrollView: UIScrollView!
     @IBOutlet weak var availabilityBarScrollView: UIScrollView!
     @IBOutlet weak var timeIndicatorScrollView: UIScrollView!
-    weak var availabilityDetail: AvailabilityDetail!
-    var isShowingPersonalView: Bool = true
+    var availabilityDetail: AvailabilityDetail!
+    var autofillButton: AutofillButton!
     var isShowingAvailabilityDetail: Bool = false
     var userSchedule: Schedule!
     var buildCollectiveScheduleCallback: ((Day) -> Void)!
@@ -37,6 +37,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         configureTimeIndicatorVerticalList()
         configureDatesHorizontalList()
         configureTopBar()
+        showAutoFillButton()
     }
     
     required init?(coder: NSCoder) {
@@ -78,6 +79,26 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         }
     }
     
+    func updateUserSchedule(schedule: Schedule) {
+        userSchedule = schedule
+        for _ in 0..<availabilityBarHorizontalList.subviews.count {
+            availabilityBarHorizontalList.subviews[0].removeFromSuperview()
+        }
+        configureAvailabilityBars()
+    }
+    
+    func autofillButtonCallback() {
+        let jsonString: String? = StoredValues.get(key: StoredValuesConstants.userSchedule)
+        if jsonString != nil {
+            let regularSchedule: ScheduleSendable = ScheduleSendable(jsonValue: jsonString!)
+            for i in 0..<userSchedule.datesFree.count {
+                let correspondingWeekday: Day = regularSchedule.schedule.datesFree[CalendarDate(userSchedule.datesFree[i].date!).weekday]
+                userSchedule.datesFree[i].timesFree = correspondingWeekday.timesFree
+                updateUserSchedule(schedule: userSchedule)
+            }
+        }
+    }
+    
     func showAvailiabilityDetail(_ day: Day) {
         if !isShowingAvailabilityDetail {
             createAvailabilityDetail()
@@ -92,12 +113,32 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         }
         isShowingAvailabilityDetail = false
     }
-    
+
     func createAvailabilityDetail() {
         availabilityDetail = AvailabilityDetail.instanceFromNib()
         availabilityBarScrollView.addSubview(availabilityDetail)
         availabilityDetail.bottomAnchor.constraint(equalTo: availabilityBarScrollView.layoutMarginsGuide.bottomAnchor, constant: -10).isActive = true
         availabilityDetail.rightAnchor.constraint(equalTo: availabilityBarScrollView.layoutMarginsGuide.rightAnchor, constant: -10).isActive = true
+    }
+    
+    func showAutoFillButton() {
+        if autofillButton == nil {
+            autofillButton = AutofillButton.instanceFromNib()
+            availabilityBarScrollView.addSubview(autofillButton)
+            autofillButton.translatesAutoresizingMaskIntoConstraints = false
+            autofillButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+            autofillButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+            autofillButton.bottomAnchor.constraint(equalTo: availabilityBarScrollView.layoutMarginsGuide.bottomAnchor, constant: -10).isActive = true
+            autofillButton.rightAnchor.constraint(equalTo: availabilityBarScrollView.layoutMarginsGuide.rightAnchor, constant: -10).isActive = true
+            autofillButton.callback = autofillButtonCallback
+        }
+    }
+    
+    func hideAutoFillButton() {
+        if autofillButton != nil {
+            autofillButton.removeFromSuperview()
+        }
+        autofillButton = nil
     }
     
     func configureTimeIndicatorVerticalList() {

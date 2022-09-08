@@ -14,6 +14,8 @@
 		9103CF2E28C9197600BBC349 /* DayHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9103CF2D28C9197600BBC349 /* DayHeaderView.xib */; };
 		9103CF3028C919BD00BBC349 /* DayHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103CF2F28C919BD00BBC349 /* DayHeaderView.swift */; };
 		9103CF3228C9699D00BBC349 /* ProfileAvailabilityPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9103CF3128C9699D00BBC349 /* ProfileAvailabilityPreview.xib */; };
+		9103CF3428C989C300BBC349 /* AutofillButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9103CF3328C989C300BBC349 /* AutofillButton.xib */; };
+		9103CF3628C989EA00BBC349 /* AutofillButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103CF3528C989EA00BBC349 /* AutofillButton.swift */; };
 		9103E5732896479100CA661B /* libFirebaseDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9103E5722896479100CA661B /* libFirebaseDatabase.a */; };
 		9103E575289647B700CA661B /* libFirebaseCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9103E574289647B700CA661B /* libFirebaseCore.a */; };
 		9103E5782896DA0400CA661B /* AvailabilityBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E5772896DA0400CA661B /* AvailabilityBar.swift */; };
@@ -94,6 +96,8 @@
 		9103CF2D28C9197600BBC349 /* DayHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DayHeaderView.xib; sourceTree = "<group>"; };
 		9103CF2F28C919BD00BBC349 /* DayHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayHeaderView.swift; sourceTree = "<group>"; };
 		9103CF3128C9699D00BBC349 /* ProfileAvailabilityPreview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileAvailabilityPreview.xib; sourceTree = "<group>"; };
+		9103CF3328C989C300BBC349 /* AutofillButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AutofillButton.xib; sourceTree = "<group>"; };
+		9103CF3528C989EA00BBC349 /* AutofillButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutofillButton.swift; sourceTree = "<group>"; };
 		9103E5722896479100CA661B /* libFirebaseDatabase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseDatabase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9103E574289647B700CA661B /* libFirebaseCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9103E5772896DA0400CA661B /* AvailabilityBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityBar.swift; sourceTree = "<group>"; };
@@ -199,6 +203,7 @@
 				91A76E5928BC972400F93DE2 /* AvailabilityDetail.swift */,
 				91A76E5D28C1C96C00F93DE2 /* ProfileAvailabilityPreview.swift */,
 				9103CF2B28C8EB5200BBC349 /* FullAvailabilityInput.swift */,
+				9103CF3528C989EA00BBC349 /* AutofillButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -214,6 +219,7 @@
 				9103CF2928C8EA7800BBC349 /* FullAvailabilityInput.xib */,
 				9103CF2D28C9197600BBC349 /* DayHeaderView.xib */,
 				9103CF3128C9699D00BBC349 /* ProfileAvailabilityPreview.xib */,
+				9103CF3328C989C300BBC349 /* AutofillButton.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -415,6 +421,7 @@
 			files = (
 				9103CF2E28C9197600BBC349 /* DayHeaderView.xib in Resources */,
 				9103CF2A28C8EA7800BBC349 /* FullAvailabilityInput.xib in Resources */,
+				9103CF3428C989C300BBC349 /* AutofillButton.xib in Resources */,
 				9142F983285FA20F0070661F /* Assets.xcassets in Resources */,
 				9103CF3228C9699D00BBC349 /* ProfileAvailabilityPreview.xib in Resources */,
 				913C119728B1DE8100B5A66F /* DateHeaderView.xib in Resources */,
@@ -507,6 +514,7 @@
 				9142F996286002580070661F /* CollectiveSchedule.swift in Sources */,
 				9103E59328A72C5A00CA661B /* AppColors.swift in Sources */,
 				913C119928B1DFD100B5A66F /* DateHeaderView.swift in Sources */,
+				9103CF3628C989EA00BBC349 /* AutofillButton.swift in Sources */,
 				913EF79A28693DBB00D5DB08 /* Schedule.swift in Sources */,
 				916D270E28836F3A003C96BD /* User.swift in Sources */,
 				913C119328B07EDD00B5A66F /* StoredValues.swift in Sources */,
