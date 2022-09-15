@@ -11,17 +11,11 @@ import UIKit
 struct Day: Codable {
     
     // MARK: Properties
-    var date: Date?
-    var dayOfTheWeek: Int?
+    var date: ScheduleDate
     var timesFree: [TimeRange]
     
-    init(date: Date, timesFree: [TimeRange]) {
+    init(date: ScheduleDate, timesFree: [TimeRange]) {
         self.date = date
-        self.timesFree = timesFree
-    }
-    
-    init(dayOfTheWeek: Int, timesFree: [TimeRange]) {
-        self.dayOfTheWeek = dayOfTheWeek
         self.timesFree = timesFree
     }
 
@@ -123,10 +117,10 @@ struct Day: Codable {
 struct DayCollective {
     
     // MARK: Properties
-    var date: Date
+    var date: ScheduleDate
     var timesFree: [TimeRangeCollective]
     
-    init(date: Date, timesFree: [TimeRangeCollective]) {
+    init(date: ScheduleDate, timesFree: [TimeRangeCollective]) {
         self.date = date
         self.timesFree = timesFree
     }

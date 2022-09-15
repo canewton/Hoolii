@@ -16,6 +16,7 @@
 		9103CF3228C9699D00BBC349 /* ProfileAvailabilityPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9103CF3128C9699D00BBC349 /* ProfileAvailabilityPreview.xib */; };
 		9103CF3428C989C300BBC349 /* AutofillButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9103CF3328C989C300BBC349 /* AutofillButton.xib */; };
 		9103CF3628C989EA00BBC349 /* AutofillButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103CF3528C989EA00BBC349 /* AutofillButton.swift */; };
+		9103CF3828D2F28800BBC349 /* ScheduleDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103CF3728D2F28700BBC349 /* ScheduleDate.swift */; };
 		9103E5732896479100CA661B /* libFirebaseDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9103E5722896479100CA661B /* libFirebaseDatabase.a */; };
 		9103E575289647B700CA661B /* libFirebaseCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9103E574289647B700CA661B /* libFirebaseCore.a */; };
 		9103E5782896DA0400CA661B /* AvailabilityBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E5772896DA0400CA661B /* AvailabilityBar.swift */; };
@@ -98,6 +99,7 @@
 		9103CF3128C9699D00BBC349 /* ProfileAvailabilityPreview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileAvailabilityPreview.xib; sourceTree = "<group>"; };
 		9103CF3328C989C300BBC349 /* AutofillButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AutofillButton.xib; sourceTree = "<group>"; };
 		9103CF3528C989EA00BBC349 /* AutofillButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutofillButton.swift; sourceTree = "<group>"; };
+		9103CF3728D2F28700BBC349 /* ScheduleDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDate.swift; sourceTree = "<group>"; };
 		9103E5722896479100CA661B /* libFirebaseDatabase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseDatabase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9103E574289647B700CA661B /* libFirebaseCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9103E5772896DA0400CA661B /* AvailabilityBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityBar.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				9103E57B289B897600CA661B /* Day.swift */,
 				9103E57D289B89B700CA661B /* TimeRange.swift */,
 				913C119028AB366C00B5A66F /* CalendarDate.swift */,
+				9103CF3728D2F28700BBC349 /* ScheduleDate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				916D270E28836F3A003C96BD /* User.swift in Sources */,
 				913C119328B07EDD00B5A66F /* StoredValues.swift in Sources */,
 				9103E57E289B89B700CA661B /* TimeRange.swift in Sources */,
+				9103CF3828D2F28800BBC349 /* ScheduleDate.swift in Sources */,
 				916D2711288CA97C003C96BD /* GetAvailabilityLogic.swift in Sources */,
 				913C119128AB366C00B5A66F /* CalendarDate.swift in Sources */,
 				9103E58E289F99F100CA661B /* ViewControllerWithIdentifier.swift in Sources */,

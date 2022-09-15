@@ -82,7 +82,7 @@ extension CollectiveSchedule {
     }
     
     mutating func appendEmptySchedule(user: User) -> Schedule {
-        let dayObjects: [Day] = dates.map{Day(date: $0, timesFree: [])}
+        let dayObjects: [Day] = dates.map{Day(date: ScheduleDate($0), timesFree: [])}
         let scheduleSendable = ScheduleSendable(datesFree: dayObjects, user: user)
         allSchedules.append(scheduleSendable)
         return scheduleSendable.schedule

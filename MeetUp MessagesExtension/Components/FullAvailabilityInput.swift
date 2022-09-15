@@ -92,7 +92,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         if jsonString != nil {
             let regularSchedule: ScheduleSendable = ScheduleSendable(jsonValue: jsonString!)
             for i in 0..<userSchedule.datesFree.count {
-                let correspondingWeekday: Day = regularSchedule.schedule.datesFree[CalendarDate(userSchedule.datesFree[i].date!).weekday]
+                let correspondingWeekday: Day = regularSchedule.schedule.datesFree[CalendarDate(userSchedule.datesFree[i].date.date!).weekday]
                 userSchedule.datesFree[i].timesFree = correspondingWeekday.timesFree
                 updateUserSchedule(schedule: userSchedule)
             }
@@ -166,19 +166,19 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     
     func configureDatesHorizontalList() {
         for i in 0..<userSchedule.datesFree.count {
-            if userSchedule.datesFree[i].date != nil {
+            if userSchedule.datesFree[i].date.isDate() {
                 if let dateView = DateHeaderView.instanceFromNib() {
                     dateView.translatesAutoresizingMaskIntoConstraints = false
                     dateView.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
-                    dateView.dateLabel.text = String(CalendarDate(userSchedule.datesFree[i].date!).day)
-                    dateView.weekdayLabel.text = CalendarDate(userSchedule.datesFree[i].date!).weekdayString
+                    dateView.dateLabel.text = String(CalendarDate(userSchedule.datesFree[i].date.date!).day)
+                    dateView.weekdayLabel.text = CalendarDate(userSchedule.datesFree[i].date.date!).weekdayString
                     datesHorizontalList.addArrangedSubview(dateView)
                 }
             } else {
                 if let dayView = DayHeaderView.instanceFromNib() {
                     dayView.translatesAutoresizingMaskIntoConstraints = false
                     dayView.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
-                    dayView.weekdayLabel.text = CalendarDate.weekdaySymbols[userSchedule.datesFree[i].dayOfTheWeek!]
+                    dayView.weekdayLabel.text = CalendarDate.weekdaySymbols[userSchedule.datesFree[i].date.weekDate!]
                     datesHorizontalList.addArrangedSubview(dayView)
                 }
             }

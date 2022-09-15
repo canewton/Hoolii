@@ -99,20 +99,24 @@ class CreateProfileViewController: AppViewController {
         StoredValues.set(key: StoredValuesConstants.initials, value: profileInitials.text!)
     }
     
-    func getUserAvailability() -> ScheduleSendable {
-        let jsonString: String? = StoredValues.get(key: StoredValuesConstants.userSchedule)
+    func getUser() -> User {
         let id: String = StoredValues.get(key: StoredValuesConstants.userID)!
         let firstName: String = StoredValues.get(key: StoredValuesConstants.firstName)!
         let lastName: String = StoredValues.get(key: StoredValuesConstants.lastName)!
+        return User(id: id, firstName: firstName, lastName: lastName)
+    }
+    
+    func getUserAvailability() -> ScheduleSendable {
+        let jsonString: String? = StoredValues.get(key: StoredValuesConstants.userSchedule)
         var userSchedule: ScheduleSendable = ScheduleSendable(datesFree: [
-            Day(dayOfTheWeek: 0, timesFree: []),
-            Day(dayOfTheWeek: 1, timesFree: []),
-            Day(dayOfTheWeek: 2, timesFree: []),
-            Day(dayOfTheWeek: 3, timesFree: []),
-            Day(dayOfTheWeek: 4, timesFree: []),
-            Day(dayOfTheWeek: 5, timesFree: []),
-            Day(dayOfTheWeek: 6, timesFree: []),
-        ], user: User(id: id, firstName: firstName, lastName: lastName))
+            Day(date: ScheduleDate(0), timesFree: []),
+            Day(date: ScheduleDate(1), timesFree: []),
+            Day(date: ScheduleDate(2), timesFree: []),
+            Day(date: ScheduleDate(3), timesFree: []),
+            Day(date: ScheduleDate(4), timesFree: []),
+            Day(date: ScheduleDate(5), timesFree: []),
+            Day(date: ScheduleDate(6), timesFree: []),
+        ], user: getUser())
         if jsonString != nil {
             userSchedule = ScheduleSendable(jsonValue: jsonString!)
             userHasEmptySchedule = false
@@ -126,8 +130,7 @@ class CreateProfileViewController: AppViewController {
     }
     
     func configureAvailabilityPreview() {
-        let userSchedule: Schedule = getUserAvailability().schedule
-        profileAvailabilityPreview = ProfileAvailabilityPreview.instanceFromNib(schedule: userSchedule, userHasEmptySchedule: userHasEmptySchedule, previewContainerHeight: profileAvailabilityPreviewContainer.frame.height)!
+        profileAvailabilityPreview = ProfileAvailabilityPreview.instanceFromNib(schedules: [getUserAvailability()], userHasEmptySchedule: userHasEmptySchedule, previewContainerHeight: profileAvailabilityPreviewContainer.frame.height)!
         profileAvailabilityPreviewContainer.addSubview(profileAvailabilityPreview)
         profileAvailabilityPreview.translatesAutoresizingMaskIntoConstraints = false
         profileAvailabilityPreview.leftAnchor.constraint(equalTo: profileAvailabilityPreviewContainer.leftAnchor).isActive = true

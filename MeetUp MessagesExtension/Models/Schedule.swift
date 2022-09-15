@@ -19,14 +19,14 @@ struct Schedule: Codable {
         self.user = user
     }
     
-    mutating func addDate(_ date: Date) {
+    mutating func addDate(_ date: ScheduleDate) {
         self.addDate(date, timesFree: [])
     }
     
-    mutating func addDate(_ date: Date, timesFree: [TimeRange]) {
+    mutating func addDate(_ date: ScheduleDate, timesFree: [TimeRange]) {
         var insertedDate: Bool = false
         for i in 0..<datesFree.count {
-            if datesFree[i].date != nil && date.timeIntervalSince1970 < datesFree[i].date!.timeIntervalSince1970 {
+            if datesFree[i].date < date {
                 datesFree.insert(Day(date: date, timesFree: timesFree), at: i)
                 insertedDate = true
                 break
@@ -37,7 +37,7 @@ struct Schedule: Codable {
         }
     }
     
-    mutating func removeDate(_ date: Date) {
+    mutating func removeDate(_ date: ScheduleDate) {
         for i in 0..<datesFree.count {
             if datesFree[i].date == date {
                 datesFree.remove(at: i)
@@ -48,10 +48,7 @@ struct Schedule: Codable {
     
     mutating func updateDay(_ day: Day) {
         for i in 0..<datesFree.count {
-            if day.date != nil && day.date! == datesFree[i].date! {
-                datesFree[i] = day
-                return
-            } else if day.dayOfTheWeek != nil && day.dayOfTheWeek! == datesFree[i].dayOfTheWeek! {
+            if day.date == datesFree[i].date{
                 datesFree[i] = day
                 return
             }

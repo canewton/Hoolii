@@ -31,4 +31,8 @@ struct StoredValues {
             self.set(key: key, value: value)
         }
     }
+    
+    static func deleteKey(key: String) {
+        defaults.removeObject(forKey: key)
+    }
 }
