@@ -10,6 +10,7 @@ import Messages
 import Firebase
 
 class MessagesViewController: MSMessagesAppViewController {
+    var createMeetingPreviewSchedule: CollectiveSchedule?
     
     override func viewDidLoad() {
 //        FirebaseApp.configure()
@@ -65,7 +66,13 @@ class MessagesViewController: MSMessagesAppViewController {
         let controller: AppViewController
         if presentationStyle == .compact {
             if collectiveSchedule.endTime == 0 {
+                print("compact")
                 let schedulePreviewController: CreateMeetingPreviewViewController = instantiateController()
+                
+//                if createMeetingPreviewSchedule != nil {
+//                    schedulePreviewController.collectiveSchedule = createMeetingPreviewSchedule!
+//                }
+                
                 controller = schedulePreviewController
             } else {
                 let yourAvailController: YourAvailabilitiesViewController = instantiateController()
@@ -73,13 +80,11 @@ class MessagesViewController: MSMessagesAppViewController {
             }
         } else {
             if collectiveSchedule.allSchedules.count > 0 {
-                print("hello")
                 print(collectiveSchedule.allSchedules[0].schedule)
                 let yourAvailabilitiesController: YourAvailabilitiesViewController = instantiateController()
                 controller = yourAvailabilitiesController
                 yourAvailabilitiesController.collectiveSchedule = collectiveSchedule
             } else {
-                print("hello2")
                 let newMeetingController: NewMeetingViewController = instantiateController()
                 controller = newMeetingController
             }

@@ -14,10 +14,7 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     static let storyboardIdentifier = "NewMeetingViewController"
     weak var delegate: AnyObject?
     var yourAvailabiliesViewController: YourAvailabilitiesViewController?
-    @IBOutlet weak var calendarView: JTAppleCalendarView!
-    @IBOutlet weak var monthLabel: UILabel!
-    @IBOutlet weak var arrowLeft: UIButton!
-    @IBOutlet weak var arrowRight: UIButton!
+    @IBOutlet weak var createMeetingCalendarContainer: UIView!
     @IBOutlet weak var fromDropDown: AppDropDown!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var mainViewBottomConstraint: NSLayoutConstraint!
@@ -41,9 +38,8 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         
         ProfileButton.configure(viewController: self)
         
-        configureCalendar()
+        configureMeetingCalendar()
         configureNameField()
-        configureArrowButtons()
         configureMainViewConstraints()
         fromDropDown.configure(options: ["hi", "bye"])
     }
@@ -56,19 +52,6 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         self.transitionToScreen(viewController: yourAvailabiliesViewController!)
     }
     
-    
-    @IBAction func OnLeftArrow(_ sender: Any) {
-        calendarView.scrollToSegment(.previous)
-    }
-    @IBAction func OnRightArrow(_ sender: Any) {
-        calendarView.scrollToSegment(.next)
-    }
-    
-    func configureCalendar() {
-        calendarView.allowsMultipleSelection = true
-        calendarView.isRangeSelectionUsed = true
-    }
-    
     func configureNameField() {
         newMeetingField.addTarget(self, action: #selector(newMeetingFieldDidChange(_:)), for: .editingChanged)
     }
@@ -78,106 +61,38 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         super.configure(bottomConstraint: mainViewBottomConstraint, topConstraint: mainViewTopContraint)
     }
     
-    func configureArrowButtons() {
-        arrowLeft.setImage(arrowLeftIcon.image, for: .normal)
-        arrowRight.setImage(arrowRightIcon.image, for: .normal)
+    func configureMeetingCalendar() {
+        let meetingCalendar: CreateMeetingCalendar = instantiateController()
+        createMeetingCalendarContainer.addSubview(meetingCalendar.view)
+        self.addChild(meetingCalendar)
+        meetingCalendar.view.translatesAutoresizingMaskIntoConstraints = false
+        meetingCalendar.view.leftAnchor.constraint(equalTo: createMeetingCalendarContainer.leftAnchor).isActive = true
+        meetingCalendar.view.rightAnchor.constraint(equalTo: createMeetingCalendarContainer.rightAnchor).isActive = true
+        meetingCalendar.view.bottomAnchor.constraint(equalTo: createMeetingCalendarContainer.bottomAnchor).isActive = true
+        meetingCalendar.view.topAnchor.constraint(equalTo: createMeetingCalendarContainer.topAnchor).isActive = true
     }
     
-    func configureCell(view: JTAppleCell?, cellState: CellState) {
-        guard let cell = view as? DateCell  else { return }
-        cell.dateLabel.text = cellState.text
-        cell.selectedViewLeft.backgroundColor = .clear
-        cell.selectedViewRight.backgroundColor = .clear
-        handleCellTextColor(cell: cell, cellState: cellState)
-        handleCellSelected(cell: cell, cellState: cellState)
+    func addDateCallback(_ collectiveSchedule: CollectiveSchedule) {
+        self.collectiveSchedule = collectiveSchedule
     }
     
     @objc func newMeetingFieldDidChange(_ textField: UITextField) {
         collectiveSchedule.meetingName = textField.text!
     }
-        
-    func handleCellTextColor(cell: DateCell, cellState: CellState) {
-        formatter.dateFormat = "yyyyMMdd"
-        let dateWithoutTime = formatter.date(from: formatter.string(from: Date()))!
-        
-        if cellState.dateBelongsTo == .thisMonth && cellState.date >= dateWithoutTime {
-          cell.dateLabel.textColor = UIColor.black
-       } else {
-          cell.dateLabel.textColor = UIColor.gray
-       }
-    }
     
-    func handleCellSelected(cell: DateCell, cellState: CellState) {
-        cell.selectedView.backgroundColor = cellState.isSelected ? AppColors.main : .clear
-        cell.selectedView.layer.cornerRadius = 15
-        switch cellState.selectedPosition() {
-            
-        case .left:
-            cell.selectedViewRight.backgroundColor = AppColors.main
-            cell.selectedViewLeft.backgroundColor = .clear
-        case .middle:
-            cell.selectedViewRight.backgroundColor = AppColors.main
-            cell.selectedViewLeft.backgroundColor = AppColors.main
-        case .right:
-            cell.selectedViewRight.backgroundColor = .clear
-            cell.selectedViewLeft.backgroundColor = AppColors.main
-        case .full:
-            cell.selectedViewRight.backgroundColor = .clear
-            cell.selectedViewLeft.backgroundColor = .clear
-        default: break
-            
-        }
+    func instantiateController() -> CreateMeetingCalendar {
+        guard let controller = storyboard?.instantiateViewController(withIdentifier: CreateMeetingCalendar.storyboardIdentifier)
+                as? CreateMeetingCalendar
+            else { fatalError("Unable to instantiate controller from the storyboard") }
+        
+        controller.delegate = self
+        controller.numRows = 6
+        controller.addDateCallback = addDateCallback
+        //controller.calendarView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        return controller
     }
 }
-
-extension NewMeetingViewController: JTAppleCalendarViewDataSource {
-    func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-        var dateComponent = DateComponents()
-        dateComponent.month = 12
-        let startDate = Date()
-        let endDate = Calendar.current.date(byAdding: dateComponent, to: startDate)!
-        return ConfigurationParameters(startDate: startDate, endDate: endDate)
-    }
-}
-
-extension NewMeetingViewController: JTAppleCalendarViewDelegate {
-    func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
-       let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "dateCell", for: indexPath) as! DateCell
-       self.calendar(calendar, willDisplay: cell, forItemAt: date, cellState: cellState, indexPath: indexPath)
-       return cell
-    }
-        
-    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
-        configureCell(view: cell, cellState: cellState)
-    }
-    
-    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        configureCell(view: cell, cellState: cellState)
-        collectiveSchedule.addDate(date)
-    }
-
-    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        configureCell(view: cell, cellState: cellState)
-        collectiveSchedule.removeDate(date)
-    }
-    
-    func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-        formatter.dateFormat = "MMMM"
-        monthLabel.text = formatter.string(from: visibleDates.monthDates.first!.date)
-    }
-    
-    func calendar(_ calendar: JTAppleCalendarView, shouldSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
-        formatter.dateFormat = "yyyyMMdd"
-        let dateWithoutTime = formatter.date(from: formatter.string(from: Date()))!
-        
-        if cellState.dateBelongsTo == .thisMonth && cellState.date >= dateWithoutTime {
-          return true
-        }
-        return false
-    }
-}
-
-
 
 protocol NewMeetingViewControllerDelegate: AnyObject {
     func transitonToYourAvailabilities(_ controller: NewMeetingViewController)

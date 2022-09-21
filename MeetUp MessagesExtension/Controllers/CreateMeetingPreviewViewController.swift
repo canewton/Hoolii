@@ -8,26 +8,61 @@
 import UIKit
 
 class CreateMeetingPreviewViewController: AppViewController, ViewControllerWithIdentifier {
-    
+    @IBOutlet weak var createMeetingCalendarContainer: UIView!
+    var collectiveSchedule: CollectiveSchedule = CollectiveSchedule()
     
     static let storyboardIdentifier = "CreateMeetingPreviewViewController"
     weak var delegate: AnyObject?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        ProfileButton.configure(viewController: self)
+        configureMeetingCalendar()
+    }
     
     @IBAction func onPressendExpandButton(_ sender: Any) {
         expandView()
     }
     
     func expandView() {
-        (delegate as? CreateMeetingPreviewViewControllerDelegate)?.createMeetingPreviewViewControllerDidSelectExpand(self)
+        (delegate as? CreateMeetingPreviewViewControllerDelegate)?.createMeetingPreviewViewControllerDidSelectExpand(controller: self, collectiveSchedule: collectiveSchedule)
+    }
+    
+    func configureMeetingCalendar() {
+        let meetingCalendar: CreateMeetingCalendar = instantiateController()
+        createMeetingCalendarContainer.addSubview(meetingCalendar.view)
+        self.addChild(meetingCalendar)
+        meetingCalendar.view.translatesAutoresizingMaskIntoConstraints = false
+        meetingCalendar.view.leftAnchor.constraint(equalTo: createMeetingCalendarContainer.leftAnchor).isActive = true
+        meetingCalendar.view.rightAnchor.constraint(equalTo: createMeetingCalendarContainer.rightAnchor).isActive = true
+        meetingCalendar.view.bottomAnchor.constraint(equalTo: createMeetingCalendarContainer.bottomAnchor).isActive = true
+        meetingCalendar.view.topAnchor.constraint(equalTo: createMeetingCalendarContainer.topAnchor).isActive = true
+    }
+    
+    func addDateCallback(_ collectiveSchedule: CollectiveSchedule) {
+        self.collectiveSchedule = collectiveSchedule
+    }
+    
+    func instantiateController() -> CreateMeetingCalendar {
+        guard let controller = storyboard?.instantiateViewController(withIdentifier: CreateMeetingCalendar.storyboardIdentifier)
+                as? CreateMeetingCalendar
+            else { fatalError("Unable to instantiate controller from the storyboard") }
+        
+        controller.delegate = self
+        controller.numRows = 1
+        controller.addDateCallback = addDateCallback
+        
+        return controller
     }
 }
 
 protocol CreateMeetingPreviewViewControllerDelegate: AnyObject {
-    func createMeetingPreviewViewControllerDidSelectExpand(_ controller: CreateMeetingPreviewViewController)
+    func createMeetingPreviewViewControllerDidSelectExpand(controller: CreateMeetingPreviewViewController, collectiveSchedule: CollectiveSchedule)
 }
 
 extension MessagesViewController: CreateMeetingPreviewViewControllerDelegate {
-    func createMeetingPreviewViewControllerDidSelectExpand(_ controller: CreateMeetingPreviewViewController) {
+    func createMeetingPreviewViewControllerDidSelectExpand(controller: CreateMeetingPreviewViewController, collectiveSchedule: CollectiveSchedule) {
+        createMeetingPreviewSchedule = collectiveSchedule
         requestPresentationStyle(.expanded)
     }
 }
