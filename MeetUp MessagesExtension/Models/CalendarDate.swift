@@ -16,6 +16,7 @@ struct CalendarDate: Codable {
     let year: Int
     let dateString: String
     static let weekdaySymbols: [String] = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
+    static let monthSymbols: [String] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     
     init(_ date: Date) {
         self.date = date
@@ -38,5 +39,9 @@ struct CalendarDate: Codable {
         let parsedDate = dateFormatter.date(from: dateString)!
         
         self.init(parsedDate)
+    }
+    
+    func getMonthSymbol() -> String{
+        return CalendarDate.monthSymbols[month - 1]
     }
 }

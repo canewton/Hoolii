@@ -35,12 +35,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9b-Mj-yUL" customClass="ThemedButton" customModule="MeetUp_MessagesExtension" customModuleProvider="target">
-                                <rect key="frame" x="110" y="219" width="140" height="31"/>
+                                <rect key="frame" x="95" y="219" width="170" height="31"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="140" id="Jfu-OW-bgu"/>
+                                    <constraint firstAttribute="width" constant="170" id="Jfu-OW-bgu"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="More Dates"/>
+                                <buttonConfiguration key="configuration" style="filled" title="View Availabilities"/>
                                 <connections>
                                     <action selector="onPressendExpandButton:" destination="uOv-OI-fts" eventType="touchUpInside" id="nmU-mW-OoT"/>
                                 </connections>
@@ -55,21 +55,30 @@
                                 <rect key="frame" x="304" y="30" width="28" height="28"/>
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MO0-7A-GMK">
+                                <rect key="frame" x="30" y="71" width="300" height="128"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9bo-7t-nXx"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="9bo-7t-nXx" firstAttribute="trailing" secondItem="MO0-7A-GMK" secondAttribute="trailing" constant="30" id="4hm-BI-Yza"/>
                             <constraint firstItem="9bo-7t-nXx" firstAttribute="bottom" secondItem="h9b-Mj-yUL" secondAttribute="bottom" constant="20" id="C90-7n-ceC"/>
                             <constraint firstItem="XXm-bV-pvr" firstAttribute="top" secondItem="kXJ-PS-H3o" secondAttribute="top" constant="30" id="GlP-86-20m"/>
+                            <constraint firstItem="MO0-7A-GMK" firstAttribute="top" secondItem="XXm-bV-pvr" secondAttribute="bottom" constant="20" id="U7I-dy-xu9"/>
                             <constraint firstItem="qFE-LQ-hIc" firstAttribute="top" secondItem="kXJ-PS-H3o" secondAttribute="top" constant="30" id="UKL-2D-m6b"/>
                             <constraint firstItem="9bo-7t-nXx" firstAttribute="trailing" secondItem="qFE-LQ-hIc" secondAttribute="trailing" constant="30" id="cnL-Ig-iVN"/>
                             <constraint firstItem="h9b-Mj-yUL" firstAttribute="centerX" secondItem="kXJ-PS-H3o" secondAttribute="centerX" id="mtM-n4-UBg"/>
                             <constraint firstItem="XXm-bV-pvr" firstAttribute="centerX" secondItem="kXJ-PS-H3o" secondAttribute="centerX" id="tDm-B8-gob"/>
+                            <constraint firstItem="h9b-Mj-yUL" firstAttribute="top" secondItem="MO0-7A-GMK" secondAttribute="bottom" constant="20" id="vlE-Xs-uQp"/>
+                            <constraint firstItem="MO0-7A-GMK" firstAttribute="leading" secondItem="9bo-7t-nXx" secondAttribute="leading" constant="30" id="yg0-hk-i5k"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="360" height="270"/>
                     <connections>
+                        <outlet property="availabilityPreviewContainer" destination="MO0-7A-GMK" id="Sht-7Z-yZ1"/>
                         <outlet property="profileButton" destination="qFE-LQ-hIc" id="jOe-eF-Dmt"/>
                     </connections>
                 </viewController>
@@ -185,10 +194,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="89T-rh-JY4">
-                                <rect key="frame" x="30" y="416.5" width="300" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="yxb-EF-3ic"/>
-                                </constraints>
+                                <rect key="frame" x="30" y="416.5" width="300" height="233.5"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WQd-dh-Tof"/>
@@ -202,6 +208,7 @@
                             <constraint firstItem="ge2-WX-SNk" firstAttribute="top" secondItem="hDp-vt-AT6" secondAttribute="bottom" constant="5" id="NKr-ps-8hm"/>
                             <constraint firstItem="WQd-dh-Tof" firstAttribute="trailing" secondItem="ge2-WX-SNk" secondAttribute="trailing" constant="30" id="Nbu-TQ-62Y"/>
                             <constraint firstItem="89T-rh-JY4" firstAttribute="top" secondItem="xT4-4D-LhE" secondAttribute="bottom" constant="20" id="Rp4-Xq-um8"/>
+                            <constraint firstItem="WQd-dh-Tof" firstAttribute="bottom" secondItem="89T-rh-JY4" secondAttribute="bottom" constant="100" id="d4V-DF-4BJ"/>
                             <constraint firstItem="ac7-f5-WZe" firstAttribute="leading" secondItem="WQd-dh-Tof" secondAttribute="leading" constant="20" id="dy6-Dh-vcp"/>
                             <constraint firstItem="hDp-vt-AT6" firstAttribute="top" secondItem="ac7-f5-WZe" secondAttribute="bottom" constant="30" id="e5K-lT-4E7"/>
                             <constraint firstItem="WQd-dh-Tof" firstAttribute="trailing" secondItem="xT4-4D-LhE" secondAttribute="trailing" constant="30" id="rNZ-DD-ClV"/>
@@ -818,6 +825,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SzH-N0-ZnR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="698.55072463768124" y="1254.9107142857142"/>
+        </scene>
+        <!--Create Meeting Preview View Controller-->
+        <scene sceneID="cc3-y0-ISr">
+            <objects>
+                <viewController storyboardIdentifier="CreateMeetingPreviewViewController" id="Y7O-6N-vzu" customClass="CreateMeetingPreviewViewController" customModule="MeetUp_MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mDx-mO-gd5">
+                        <rect key="frame" x="0.0" y="0.0" width="360" height="270"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JDi-zv-FaQ" customClass="ThemedButton" customModule="MeetUp_MessagesExtension" customModuleProvider="target">
+                                <rect key="frame" x="95" y="219" width="170" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="81Y-gx-t5c"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="More Dates"/>
+                                <connections>
+                                    <action selector="onPressendExpandButton:" destination="Y7O-6N-vzu" eventType="touchUpInside" id="G2j-L1-HsV"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start a Meeting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uiE-Cr-O9v">
+                                <rect key="frame" x="30" y="30" width="125" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="eJ9-V3-9NS"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eJ9-V3-9NS" firstAttribute="bottom" secondItem="JDi-zv-FaQ" secondAttribute="bottom" constant="20" id="9Km-04-NEu"/>
+                            <constraint firstItem="uiE-Cr-O9v" firstAttribute="leading" secondItem="eJ9-V3-9NS" secondAttribute="leading" constant="30" id="ATv-cz-cyv"/>
+                            <constraint firstItem="JDi-zv-FaQ" firstAttribute="centerX" secondItem="mDx-mO-gd5" secondAttribute="centerX" id="X51-gC-qU4"/>
+                            <constraint firstItem="uiE-Cr-O9v" firstAttribute="top" secondItem="mDx-mO-gd5" secondAttribute="top" constant="30" id="jxi-Qr-Hhe"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="360" height="270"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RED-kZ-ftd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="698.55072463768124" y="2258.7053571428569"/>
         </scene>
     </scenes>
     <resources>

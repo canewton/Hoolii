@@ -20,7 +20,7 @@ class WeeklyAvailabilityInputViewController: AppViewController, ViewControllerWi
     override func viewDidLoad() {
         configureBottomBar()
         
-        availabilityInput = FullAvailabilityInput.instanceFromNib(userSchedule: userSchedule.schedule, startTime: 0, endTime: 24, buildScheduleCallback: buildUserSchedule)
+        availabilityInput = FullAvailabilityInput.instanceFromNib(userSchedule: userSchedule.schedule, startTime: 0, endTime: 24, setCollectiveScheduleCallback: setCollectiveSchedule)
         availabilityInputContainer.addSubview(availabilityInput)
         availabilityInput.translatesAutoresizingMaskIntoConstraints = false
         availabilityInput.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
@@ -28,8 +28,8 @@ class WeeklyAvailabilityInputViewController: AppViewController, ViewControllerWi
         availabilityInput.topAnchor.constraint(equalTo: availabilityInputContainer.topAnchor).isActive = true
     }
     
-    func buildUserSchedule(_ day: Day) {
-        userSchedule.schedule.updateDay(day)
+    func setCollectiveSchedule(_ schedule: Schedule) {
+        userSchedule.schedule = schedule
     }
     
     @IBAction func OnSave(_ sender: Any) {

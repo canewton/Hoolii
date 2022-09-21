@@ -16,10 +16,10 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Did-Ks-6jI">
-                    <rect key="frame" x="78" y="65" width="363" height="562"/>
+                    <rect key="frame" x="80" y="65" width="361" height="562"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Aib-Eu-7Eb">
-                            <rect key="frame" x="0.0" y="0.0" width="363" height="562"/>
+                            <rect key="frame" x="0.0" y="0.0" width="361" height="562"/>
                         </stackView>
                     </subviews>
                     <constraints>
@@ -42,10 +42,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rb5-GL-3qf">
-                            <rect key="frame" x="77" y="0.0" width="364" height="65"/>
+                            <rect key="frame" x="80" y="0.0" width="361" height="65"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="s1p-pg-0pL">
-                                    <rect key="frame" x="0.0" y="0.0" width="364" height="65"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="361" height="65"/>
                                 </stackView>
                             </subviews>
                             <constraints>
@@ -65,17 +65,17 @@
                         <constraint firstAttribute="height" constant="65" id="3RG-Df-h3H"/>
                         <constraint firstAttribute="trailing" secondItem="Rb5-GL-3qf" secondAttribute="trailing" id="9lG-xD-rlw"/>
                         <constraint firstAttribute="bottom" secondItem="3UJ-0L-mNs" secondAttribute="bottom" constant="15" id="9qg-a6-XjB"/>
-                        <constraint firstItem="Rb5-GL-3qf" firstAttribute="leading" secondItem="3UJ-0L-mNs" secondAttribute="trailing" constant="10" id="UWE-2d-z6r"/>
+                        <constraint firstItem="Rb5-GL-3qf" firstAttribute="leading" secondItem="CnP-sR-gXW" secondAttribute="leading" constant="80" id="UWE-2d-z6r"/>
                         <constraint firstItem="3UJ-0L-mNs" firstAttribute="leading" secondItem="CnP-sR-gXW" secondAttribute="leading" constant="30" id="bux-yr-i6i"/>
                         <constraint firstAttribute="bottom" secondItem="Rb5-GL-3qf" secondAttribute="bottom" id="uvM-MK-FNb"/>
                         <constraint firstItem="Rb5-GL-3qf" firstAttribute="top" secondItem="CnP-sR-gXW" secondAttribute="top" id="wgb-3M-qOQ"/>
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNG-9J-dhb">
-                    <rect key="frame" x="0.0" y="65" width="78" height="562"/>
+                    <rect key="frame" x="0.0" y="65" width="80" height="562"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="6zt-gl-aRS">
-                            <rect key="frame" x="0.0" y="0.0" width="78" height="562"/>
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="562"/>
                         </stackView>
                     </subviews>
                     <constraints>
@@ -84,7 +84,7 @@
                         <constraint firstItem="6zt-gl-aRS" firstAttribute="trailing" secondItem="qNG-9J-dhb" secondAttribute="trailing" id="DNb-oZ-l3o"/>
                         <constraint firstItem="6zt-gl-aRS" firstAttribute="top" secondItem="qNG-9J-dhb" secondAttribute="top" id="X9D-nJ-JGw"/>
                         <constraint firstItem="6zt-gl-aRS" firstAttribute="centerY" secondItem="qNG-9J-dhb" secondAttribute="centerY" placeholder="YES" id="XJz-Hw-Yzi"/>
-                        <constraint firstAttribute="width" constant="78" id="gUH-Qx-KpI"/>
+                        <constraint firstAttribute="width" constant="80" id="gUH-Qx-KpI"/>
                         <constraint firstAttribute="bottom" secondItem="6zt-gl-aRS" secondAttribute="bottom" id="uVJ-5d-fcC"/>
                     </constraints>
                     <viewLayoutGuide key="contentLayoutGuide" id="uE6-lH-jYK"/>
@@ -112,6 +112,7 @@
                 <outlet property="availabilityBarScrollView" destination="Did-Ks-6jI" id="5Fl-Rb-FVY"/>
                 <outlet property="datesHorizontalList" destination="s1p-pg-0pL" id="9HP-rl-Zkb"/>
                 <outlet property="datesScrollView" destination="Rb5-GL-3qf" id="CU1-EJ-vZu"/>
+                <outlet property="monthLabel" destination="3UJ-0L-mNs" id="329-GV-Jgl"/>
                 <outlet property="timeIndicatorScrollView" destination="qNG-9J-dhb" id="2do-gP-UDv"/>
                 <outlet property="timeIndicatorVerticalList" destination="6zt-gl-aRS" id="Irt-VX-CVY"/>
                 <outlet property="topBar" destination="CnP-sR-gXW" id="TrP-vu-0wQ"/>

@@ -15,11 +15,12 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     @IBOutlet weak var datesScrollView: UIScrollView!
     @IBOutlet weak var availabilityBarScrollView: UIScrollView!
     @IBOutlet weak var timeIndicatorScrollView: UIScrollView!
+    @IBOutlet weak var monthLabel: UILabel!
     var availabilityDetail: AvailabilityDetail!
     var autofillButton: AutofillButton!
     var isShowingAvailabilityDetail: Bool = false
     var userSchedule: Schedule!
-    var buildCollectiveScheduleCallback: ((Day) -> Void)!
+    var setCollectiveScheduleCallback: ((Schedule) -> Void)!
     
     let availabilityBarWidth: CGFloat = 120
     let timeIndicatorViewHeight: CGFloat = 15
@@ -38,18 +39,20 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         configureDatesHorizontalList()
         configureTopBar()
         showAutoFillButton()
+        
+        monthLabel.text = CalendarDate(userSchedule.datesFree[0].date.date!).getMonthSymbol()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    class func instanceFromNib(userSchedule: Schedule, startTime: Int, endTime: Int, buildScheduleCallback: @escaping ((Day) -> Void)) -> FullAvailabilityInput? {
+    class func instanceFromNib(userSchedule: Schedule, startTime: Int, endTime: Int, setCollectiveScheduleCallback: @escaping ((Schedule) -> Void)) -> FullAvailabilityInput? {
         let fullAvailabilityInput: FullAvailabilityInput? = UINib(nibName: "FullAvailabilityInput", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? FullAvailabilityInput
         fullAvailabilityInput?.userSchedule = userSchedule
         fullAvailabilityInput?.startTime = startTime
         fullAvailabilityInput?.endTime = endTime
-        fullAvailabilityInput?.buildCollectiveScheduleCallback = buildScheduleCallback
+        fullAvailabilityInput?.setCollectiveScheduleCallback = setCollectiveScheduleCallback
         fullAvailabilityInput?.setUpComponents()
         return fullAvailabilityInput
     }
@@ -63,6 +66,11 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         }
     }
     
+    func buildCollectiveSchedule(_ day: Day) {
+        userSchedule.updateDay(day)
+        setCollectiveScheduleCallback(userSchedule)
+    }
+    
     private func configureAvailabilityBars() {
         let startTime: Int = startTime
         let endTime: Int = endTime
@@ -72,7 +80,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
                 availabilityBar.translatesAutoresizingMaskIntoConstraints = false
                 availabilityBar.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
                 availabilityBar.setDay(day: userSchedule.datesFree[i])
-                availabilityBar.configureHighlightCallback(buildCollectiveScheduleCallback)
+                availabilityBar.configureHighlightCallback(buildCollectiveSchedule)
                 availabilityBar.configureDetailsCallback(show: showAvailiabilityDetail, hide: hideAvailiabilityDetail)
                 availabilityBarHorizontalList.addArrangedSubview(availabilityBar)
             }
@@ -95,6 +103,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
                 let correspondingWeekday: Day = regularSchedule.schedule.datesFree[CalendarDate(userSchedule.datesFree[i].date.date!).weekday]
                 userSchedule.datesFree[i].timesFree = correspondingWeekday.timesFree
                 updateUserSchedule(schedule: userSchedule)
+                setCollectiveScheduleCallback(userSchedule)
             }
         }
     }

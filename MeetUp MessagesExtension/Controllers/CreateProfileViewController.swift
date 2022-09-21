@@ -130,7 +130,7 @@ class CreateProfileViewController: AppViewController {
     }
     
     func configureAvailabilityPreview() {
-        profileAvailabilityPreview = ProfileAvailabilityPreview.instanceFromNib(schedules: [getUserAvailability()], userHasEmptySchedule: userHasEmptySchedule, previewContainerHeight: profileAvailabilityPreviewContainer.frame.height)!
+        profileAvailabilityPreview = ProfileAvailabilityPreview.instanceFromNib(schedules: [getUserAvailability()], emptySchedule: userHasEmptySchedule)!
         profileAvailabilityPreviewContainer.addSubview(profileAvailabilityPreview)
         profileAvailabilityPreview.translatesAutoresizingMaskIntoConstraints = false
         profileAvailabilityPreview.leftAnchor.constraint(equalTo: profileAvailabilityPreviewContainer.leftAnchor).isActive = true

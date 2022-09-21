@@ -63,7 +63,7 @@ extension CollectiveSchedule {
         }
     }
     
-    func getScheduleWithhUser(_ user: User) -> Schedule? {
+    func getScheduleWithUser(_ user: User) -> Schedule? {
         for i in 0..<allSchedules.count {
             if user == allSchedules[i].schedule.user {
                 return allSchedules[i].schedule
@@ -73,7 +73,7 @@ extension CollectiveSchedule {
         return nil
     }
     
-    func setScheduleWithhUser(_ user: User, schedule: Schedule) {
+    func setScheduleWithUser(_ user: User, schedule: Schedule) {
         for i in 0..<allSchedules.count {
             if user == allSchedules[i].schedule.user {
                 allSchedules[i].schedule = schedule

@@ -36,10 +36,14 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         lastName = StoredValues.get(key: StoredValuesConstants.lastName)!
         id = StoredValues.get(key: StoredValuesConstants.userID)!
         
-        if collectiveSchedule.getScheduleWithhUser(User(id: id, firstName: firstName, lastName: lastName)) == nil {
+        if collectiveSchedule == nil {
+            return
+        }
+        
+        if collectiveSchedule.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName)) == nil {
             userSchedule = collectiveSchedule.appendEmptySchedule(user: User(id: id, firstName: firstName, lastName: lastName))
         } else {
-            userSchedule = collectiveSchedule.getScheduleWithhUser(User(id: id, firstName: firstName, lastName: lastName))!
+            userSchedule = collectiveSchedule.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName))!
         }
         
         configureFilterSwitch()
@@ -47,19 +51,20 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         configureBottomBar()
         configureAvailabilityInput()
         
-        collectiveSchedule.allSchedules.append(ScheduleSendable(datesFree: [Day(date: ScheduleDate(CalendarDate("09-27-2022").date), timesFree: [TimeRange(from: 11, to: 16)]), Day(date: ScheduleDate(CalendarDate("09-28-2022").date), timesFree: [TimeRange(from: 10, to: 13)]),Day(date: ScheduleDate(CalendarDate("09-29-2022").date), timesFree: [TimeRange(from: 12, to: 18)]),], user: User(id: "1", firstName: "Joanna", lastName: "Hu")))
-        collectiveSchedule.allSchedules.append(ScheduleSendable(datesFree: [Day(date: ScheduleDate(CalendarDate("09-27-2022").date), timesFree: [TimeRange(from: 9, to: 14)]), Day(date: ScheduleDate(CalendarDate("09-28-2022").date), timesFree: [TimeRange(from: 14, to: 19)]),Day(date: ScheduleDate(CalendarDate("09-29-2022").date), timesFree: [TimeRange(from: 14, to: 20)]),], user: User(id: "2", firstName: "Jessica", lastName: "Mei")))
-        
+        if collectiveSchedule.allSchedules.count < 2 {
+            collectiveSchedule.allSchedules.append(ScheduleSendable(datesFree: [Day(date: ScheduleDate(CalendarDate("09-27-2022").date), timesFree: [TimeRange(from: 11, to: 16)]), Day(date: ScheduleDate(CalendarDate("09-28-2022").date), timesFree: [TimeRange(from: 10, to: 13)]),Day(date: ScheduleDate(CalendarDate("09-29-2022").date), timesFree: [TimeRange(from: 12, to: 18)]),], user: User(id: "1", firstName: "Joanna", lastName: "Hu")))
+            collectiveSchedule.allSchedules.append(ScheduleSendable(datesFree: [Day(date: ScheduleDate(CalendarDate("09-27-2022").date), timesFree: [TimeRange(from: 9, to: 14)]), Day(date: ScheduleDate(CalendarDate("09-28-2022").date), timesFree: [TimeRange(from: 14, to: 19)]),Day(date: ScheduleDate(CalendarDate("09-29-2022").date), timesFree: [TimeRange(from: 14, to: 20)]),], user: User(id: "2", firstName: "Jessica", lastName: "Mei")))
+        }
     }
     
     @IBAction func OnSaveAndSend(_ sender: Any) {
-        collectiveSchedule.setScheduleWithhUser(User(id: id, firstName: firstName, lastName: lastName), schedule: userSchedule)
+        collectiveSchedule.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName), schedule: userSchedule)
         (delegate as? YourAvaialabilitiesViewControllerDelegate)?.addDataToMessage(collectiveSchedule: collectiveSchedule)
     }
     
     func toggleFilterSwitch(_ filter: String) {
         if filter == "Group" {
-            collectiveSchedule.setScheduleWithhUser(User(id: id, firstName: firstName, lastName: lastName), schedule: userSchedule)
+            collectiveSchedule.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName), schedule: userSchedule)
             availabilityInput.hideAutoFillButton()
             displayGroupView()
             isShowingPersonalView = false
@@ -91,12 +96,12 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         }
     }
     
-    func buildCollectiveSchedule(_ day: Day) {
-        userSchedule.updateDay(day)
+    func setCollectiveSchedule(_ schedule: Schedule) {
+        userSchedule = schedule
     }
     
     func configureAvailabilityInput() {
-        availabilityInput = FullAvailabilityInput.instanceFromNib(userSchedule: userSchedule, startTime: collectiveSchedule.startTime, endTime: collectiveSchedule.endTime, buildScheduleCallback: buildCollectiveSchedule)
+        availabilityInput = FullAvailabilityInput.instanceFromNib(userSchedule: userSchedule, startTime: collectiveSchedule.startTime, endTime: collectiveSchedule.endTime, setCollectiveScheduleCallback: setCollectiveSchedule)
         availabilityInputContainer.addSubview(availabilityInput)
         availabilityInput.translatesAutoresizingMaskIntoConstraints = false
         availabilityInput.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true

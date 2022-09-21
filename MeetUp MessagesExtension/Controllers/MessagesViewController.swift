@@ -59,22 +59,27 @@ class MessagesViewController: MSMessagesAppViewController {
     
     // MARK: Determine active view controller
     private func presentViewController(for conversation: MSConversation, with presenentationStyle: MSMessagesAppPresentationStyle) {
-        removeAllChildViewControllers()
-        
+        // Parse a `Schedule` from the conversation's `selectedMessage` or create a new `Schedule`.
+        let collectiveSchedule = CollectiveSchedule(message: conversation.selectedMessage) ?? CollectiveSchedule()
+                
         let controller: AppViewController
         if presentationStyle == .compact {
-            let schedulePreviewController: SchedulePreviewViewController = instantiateController()
-            controller = schedulePreviewController
+            if collectiveSchedule.endTime == 0 {
+                let schedulePreviewController: CreateMeetingPreviewViewController = instantiateController()
+                controller = schedulePreviewController
+            } else {
+                let yourAvailController: YourAvailabilitiesViewController = instantiateController()
+                controller = yourAvailController
+            }
         } else {
-             // Parse a `Schedule` from the conversation's `selectedMessage` or create a new `Schedule`.
-            let collectiveSchedule = CollectiveSchedule(message: conversation.selectedMessage) ?? CollectiveSchedule()
-
-            if collectiveSchedule.allSchedules.count > 0  {
+            if collectiveSchedule.allSchedules.count > 0 {
+                print("hello")
                 print(collectiveSchedule.allSchedules[0].schedule)
                 let yourAvailabilitiesController: YourAvailabilitiesViewController = instantiateController()
                 controller = yourAvailabilitiesController
                 yourAvailabilitiesController.collectiveSchedule = collectiveSchedule
             } else {
+                print("hello2")
                 let newMeetingController: NewMeetingViewController = instantiateController()
                 controller = newMeetingController
             }
@@ -121,7 +126,7 @@ class MessagesViewController: MSMessagesAppViewController {
     func instantiateController<T: ViewControllerWithIdentifier>() -> T {
         guard var controller = storyboard?.instantiateViewController(withIdentifier: T.storyboardIdentifier)
                 as? T
-            else { fatalError("Unable to instantiate an IceCreamsViewController from the storyboard") }
+            else { fatalError("Unable to instantiate controller from the storyboard") }
         
         controller.delegate = self
         

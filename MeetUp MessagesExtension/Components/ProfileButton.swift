@@ -38,6 +38,7 @@ public class ProfileButton: UIView {
     }
     
     @objc func onPressed() {
+        print("pressed")
         let profileVC = ProfileButton.viewController.storyboard?
             .instantiateViewController(withIdentifier: "CreateProfileViewController") as! CreateProfileViewController
         ProfileButton.viewController.transitionToScreen(viewController: profileVC)
