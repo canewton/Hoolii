@@ -19,19 +19,12 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var mainViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var mainViewTopContraint: NSLayoutConstraint!
-    let arrowLeftIcon: ScaledIcon = ScaledIcon(name: "chevron-left-solid", width: 15, height: 15)
-    let arrowRightIcon: ScaledIcon = ScaledIcon(name: "chevron-right-solid", width: 15, height: 15)
-    @IBOutlet weak var sliderLabel: UILabel!
-    @IBOutlet weak var slider: UISlider!
+    let arrowLeftIcon: ScaledIcon = ScaledIcon(name: "chevron-left-solid", width: 15, height: 15, color: .black)
+    let arrowRightIcon: ScaledIcon = ScaledIcon(name: "chevron-right-solid", width: 15, height: 15, color: .black)
     @IBOutlet weak var newMeetingField: UITextField!
     
     let formatter = DateFormatter()
     var collectiveSchedule: CollectiveSchedule = CollectiveSchedule()
-    
-    @IBAction func sliderChange(_ sender: Any) {
-        slider.setValue(slider.value.rounded(.down), animated: false)
-        sliderLabel.text = slider.value.description
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +42,7 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         collectiveSchedule.startTime = 9
         collectiveSchedule.endTime = 21
         yourAvailabiliesViewController?.collectiveSchedule = collectiveSchedule
+        yourAvailabiliesViewController?.isCreatingMeeting = true
         self.transitionToScreen(viewController: yourAvailabiliesViewController!)
     }
     

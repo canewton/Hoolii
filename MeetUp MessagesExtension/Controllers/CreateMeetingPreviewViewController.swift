@@ -9,6 +9,7 @@ import UIKit
 
 class CreateMeetingPreviewViewController: AppViewController, ViewControllerWithIdentifier {
     @IBOutlet weak var createMeetingCalendarContainer: UIView!
+    @IBOutlet weak var profileButton: ProfileButton!
     var collectiveSchedule: CollectiveSchedule = CollectiveSchedule()
     
     static let storyboardIdentifier = "CreateMeetingPreviewViewController"
@@ -18,6 +19,8 @@ class CreateMeetingPreviewViewController: AppViewController, ViewControllerWithI
         super.viewDidLoad()
         ProfileButton.configure(viewController: self)
         configureMeetingCalendar()
+        
+        profileButton.callback = expandView
     }
     
     @IBAction func onPressendExpandButton(_ sender: Any) {
@@ -62,7 +65,6 @@ protocol CreateMeetingPreviewViewControllerDelegate: AnyObject {
 
 extension MessagesViewController: CreateMeetingPreviewViewControllerDelegate {
     func createMeetingPreviewViewControllerDidSelectExpand(controller: CreateMeetingPreviewViewController, collectiveSchedule: CollectiveSchedule) {
-        createMeetingPreviewSchedule = collectiveSchedule
         requestPresentationStyle(.expanded)
     }
 }

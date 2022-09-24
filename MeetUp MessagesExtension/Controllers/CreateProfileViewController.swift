@@ -151,7 +151,7 @@ class CreateProfileViewController: AppViewController {
     }
     
     func configureEditButton() {
-        let editIcon: UIImage = ScaledIcon(name: "edit", width: 14, height: 14).image
+        let editIcon: UIImage = ScaledIcon(name: "edit", width: 14, height: 14, color: .black).image
         editButton.setImage(editIcon, for: .normal)
     }
 }

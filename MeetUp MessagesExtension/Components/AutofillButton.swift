@@ -12,7 +12,7 @@ class AutofillButton: UIView {
     var callback: (() -> Void)?
     
     override func awakeFromNib() {
-        plusIcon.image = ScaledIcon(name: "plus-solid", width: 12, height: 12).image
+        plusIcon.image = ScaledIcon(name: "plus-solid", width: 12, height: 12, color: .black).image
         backgroundColor = AppColors.main
         layer.cornerRadius = 20
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(gesture:)))

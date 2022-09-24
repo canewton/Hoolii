@@ -12,7 +12,7 @@ struct ScaledIcon {
     var imageInput: UIImage
     let targetSize: CGSize
     var image: UIImage = UIImage()
-    init(name: String, width: CGFloat, height: CGFloat) {
+    init(name: String, width: CGFloat, height: CGFloat, color: UIColor) {
         imageInput = UIImage(named: name)!
         targetSize = CGSize(width: width, height: height)
         
@@ -30,6 +30,7 @@ struct ScaledIcon {
         image = renderer.image { _ in
             imageInput.draw(in: CGRect(origin: .zero, size: scaledImageSize))
         }
+        image = image.withTintColor(color)
     }
     
     public func getImage() -> UIImage {

@@ -12,8 +12,12 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     @IBOutlet weak var bottomBar: UIView!
     @IBOutlet weak var filterAvailabilitiesSwitch: FilterAvailabilitiesSwitch!
     @IBOutlet weak var availabilityInputContainer: UIView!
+    @IBOutlet weak var editMeetingIcon: UIImageView!
+    @IBOutlet weak var editMeetingButton: UIView!
+    @IBOutlet weak var topBarHeightConstraint: NSLayoutConstraint!
     var availabilityInput: FullAvailabilityInput!
     var isShowingPersonalView: Bool = true
+    var isCreatingMeeting = false
     var userSchedule: Schedule!
     
     var firstName: String!
@@ -46,6 +50,12 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
             userSchedule = collectiveSchedule.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName))!
         }
         
+        if !isCreatingMeeting {
+            editMeetingButton.removeFromSuperview()
+            topBarHeightConstraint.constant = 55
+        }
+        
+        configureEditButton()
         configureFilterSwitch()
         configureSendButton()
         configureBottomBar()
@@ -60,6 +70,10 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     @IBAction func OnSaveAndSend(_ sender: Any) {
         collectiveSchedule.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName), schedule: userSchedule)
         (delegate as? YourAvaialabilitiesViewControllerDelegate)?.addDataToMessage(collectiveSchedule: collectiveSchedule)
+    }
+    
+    @objc func onEditMeeting(gesture: UITapGestureRecognizer) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func toggleFilterSwitch(_ filter: String) {
@@ -121,9 +135,19 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     }
     
     func configureSendButton() {
-        let sendIcon: UIImage = ScaledIcon(name: "send", width: 14, height: 14).image
+        let sendIcon: UIImage = ScaledIcon(name: "send", width: 14, height: 14, color: .black).image
         sendButton.setImage(sendIcon, for: .normal)
         sendButton.titleLabel?.font = .systemFont(ofSize: 14)
+    }
+    
+    func configureEditButton() {
+        let editIcon: UIImage = ScaledIcon(name: "edit", width: 12, height: 12, color: .secondaryLabel).image
+        editMeetingIcon.image = editIcon
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(onEditMeeting(gesture:)))
+        tap.numberOfTapsRequired = 1
+        tap.numberOfTouchesRequired = 1
+        editMeetingButton.addGestureRecognizer(tap)
     }
 }
 
