@@ -15,13 +15,14 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     weak var delegate: AnyObject?
     var yourAvailabiliesViewController: YourAvailabilitiesViewController?
     @IBOutlet weak var createMeetingCalendarContainer: UIView!
-    @IBOutlet weak var fromDropDown: AppDropDown!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var mainViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var mainViewTopContraint: NSLayoutConstraint!
     let arrowLeftIcon: ScaledIcon = ScaledIcon(name: "chevron-left-solid", width: 15, height: 15, color: .black)
     let arrowRightIcon: ScaledIcon = ScaledIcon(name: "chevron-right-solid", width: 15, height: 15, color: .black)
     @IBOutlet weak var newMeetingField: UITextField!
+    @IBOutlet weak var fromDatePicker: UIDatePicker!
+    @IBOutlet weak var toDatePicker: UIDatePicker!
     
     let formatter = DateFormatter()
     var collectiveSchedule: CollectiveSchedule = CollectiveSchedule()
@@ -31,10 +32,10 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         
         ProfileButton.configure(viewController: self)
         
+        configureDatePickers()
         configureMeetingCalendar()
         configureNameField()
         configureMainViewConstraints()
-        fromDropDown.configure(options: ["hi", "bye"])
     }
     
     @IBAction func OnSetTimeframe(_ sender: Any) {
@@ -44,6 +45,11 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         yourAvailabiliesViewController?.collectiveSchedule = collectiveSchedule
         yourAvailabiliesViewController?.isCreatingMeeting = true
         self.transitionToScreen(viewController: yourAvailabiliesViewController!)
+    }
+    
+    func configureDatePickers() {
+        fromDatePicker.tintColor = AppColors.main
+        toDatePicker.tintColor = AppColors.main
     }
     
     func configureNameField() {

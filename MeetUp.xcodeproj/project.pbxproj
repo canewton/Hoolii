@@ -10,6 +10,7 @@
 		786FA81693DFDB12B129D124 /* libPods-MeetUp MessagesExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14EC7703F3F50A9EAC6D1947 /* libPods-MeetUp MessagesExtension.a */; };
 		9100ED7D28DAF97200DA4F43 /* CreateMeetingCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9100ED7C28DAF97200DA4F43 /* CreateMeetingCalendar.swift */; };
 		9100ED7F28DB0E1700DA4F43 /* CreateMeetingCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9100ED7E28DB0E1700DA4F43 /* CreateMeetingCalendar.storyboard */; };
+		9100ED8528E01C9D00DA4F43 /* HourMinuteTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9100ED8428E01C9D00DA4F43 /* HourMinuteTime.swift */; };
 		9103CF2828C8E7CD00BBC349 /* WeeklyAvailabilityInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103CF2728C8E7CD00BBC349 /* WeeklyAvailabilityInputViewController.swift */; };
 		9103CF2A28C8EA7800BBC349 /* FullAvailabilityInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9103CF2928C8EA7800BBC349 /* FullAvailabilityInput.xib */; };
 		9103CF2C28C8EB5200BBC349 /* FullAvailabilityInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103CF2B28C8EB5200BBC349 /* FullAvailabilityInput.swift */; };
@@ -30,7 +31,6 @@
 		9103E58E289F99F100CA661B /* ViewControllerWithIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E58D289F99F100CA661B /* ViewControllerWithIdentifier.swift */; };
 		9103E59028A028C600CA661B /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E58F28A028C600CA661B /* DateCell.swift */; };
 		9103E59328A72C5A00CA661B /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E59228A72C5A00CA661B /* AppColors.swift */; };
-		9103E59528A73A7C00CA661B /* AppDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E59428A73A7C00CA661B /* AppDropDown.swift */; };
 		9103E59728A84A9900CA661B /* ThemedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E59628A84A9900CA661B /* ThemedButton.swift */; };
 		9125EEA128A89E8E005C5ED3 /* AdaptsToKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9125EEA028A89E8E005C5ED3 /* AdaptsToKeyboard.swift */; };
 		913C118B28A9787E00B5A66F /* ScaledIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C118A28A9787E00B5A66F /* ScaledIcon.swift */; };
@@ -96,6 +96,7 @@
 		5F58E1F15807BCDD82783B75 /* Pods-MeetUp MessagesExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetUp MessagesExtension.release.xcconfig"; path = "Target Support Files/Pods-MeetUp MessagesExtension/Pods-MeetUp MessagesExtension.release.xcconfig"; sourceTree = "<group>"; };
 		9100ED7C28DAF97200DA4F43 /* CreateMeetingCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMeetingCalendar.swift; sourceTree = "<group>"; };
 		9100ED7E28DB0E1700DA4F43 /* CreateMeetingCalendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateMeetingCalendar.storyboard; sourceTree = "<group>"; };
+		9100ED8428E01C9D00DA4F43 /* HourMinuteTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourMinuteTime.swift; sourceTree = "<group>"; };
 		9103CF2728C8E7CD00BBC349 /* WeeklyAvailabilityInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyAvailabilityInputViewController.swift; sourceTree = "<group>"; };
 		9103CF2928C8EA7800BBC349 /* FullAvailabilityInput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FullAvailabilityInput.xib; sourceTree = "<group>"; };
 		9103CF2B28C8EB5200BBC349 /* FullAvailabilityInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullAvailabilityInput.swift; sourceTree = "<group>"; };
@@ -116,7 +117,6 @@
 		9103E58D289F99F100CA661B /* ViewControllerWithIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerWithIdentifier.swift; sourceTree = "<group>"; };
 		9103E58F28A028C600CA661B /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		9103E59228A72C5A00CA661B /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
-		9103E59428A73A7C00CA661B /* AppDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDropDown.swift; sourceTree = "<group>"; };
 		9103E59628A84A9900CA661B /* ThemedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedButton.swift; sourceTree = "<group>"; };
 		9125EEA028A89E8E005C5ED3 /* AdaptsToKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptsToKeyboard.swift; sourceTree = "<group>"; };
 		913C118A28A9787E00B5A66F /* ScaledIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledIcon.swift; sourceTree = "<group>"; };
@@ -199,7 +199,6 @@
 				9103E5772896DA0400CA661B /* AvailabilityBar.swift */,
 				9103E5792897550500CA661B /* TimeBlock.swift */,
 				9103E58F28A028C600CA661B /* DateCell.swift */,
-				9103E59428A73A7C00CA661B /* AppDropDown.swift */,
 				9103E59628A84A9900CA661B /* ThemedButton.swift */,
 				913C118A28A9787E00B5A66F /* ScaledIcon.swift */,
 				913C118C28A9830600B5A66F /* BackButton.swift */,
@@ -311,6 +310,7 @@
 				9103E57D289B89B700CA661B /* TimeRange.swift */,
 				913C119028AB366C00B5A66F /* CalendarDate.swift */,
 				9103CF3728D2F28700BBC349 /* ScheduleDate.swift */,
+				9100ED8428E01C9D00DA4F43 /* HourMinuteTime.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -520,9 +520,9 @@
 				913C119528B0AAFA00B5A66F /* AppViewController.swift in Sources */,
 				9103E5782896DA0400CA661B /* AvailabilityBar.swift in Sources */,
 				9142F994285FFDD20070661F /* ScheduleSendable.swift in Sources */,
-				9103E59528A73A7C00CA661B /* AppDropDown.swift in Sources */,
 				9103E59728A84A9900CA661B /* ThemedButton.swift in Sources */,
 				9103E587289F4F5900CA661B /* YourAvailabilityViewController.swift in Sources */,
+				9100ED8528E01C9D00DA4F43 /* HourMinuteTime.swift in Sources */,
 				9142F97E285FA20E0070661F /* MessagesViewController.swift in Sources */,
 				9103E57A2897550500CA661B /* TimeBlock.swift in Sources */,
 				91A76E5E28C1C96C00F93DE2 /* ProfileAvailabilityPreview.swift in Sources */,

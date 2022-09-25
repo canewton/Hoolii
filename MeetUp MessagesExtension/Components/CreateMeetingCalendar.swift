@@ -63,10 +63,7 @@ class CreateMeetingCalendar: UIViewController, ViewControllerWithIdentifier {
     }
     
     func handleCellTextColor(cell: DateCell, cellState: CellState) {
-        formatter.dateFormat = "yyyyMMdd"
-        let dateWithoutTime = formatter.date(from: formatter.string(from: Date()))!
-        
-        if cellState.dateBelongsTo == .thisMonth && cellState.date >= dateWithoutTime && numRows != 1 {
+        if cellState.dateBelongsTo == .thisMonth && numRows != 1 {
           cell.dateLabel.textColor = UIColor.black
        } else {
           cell.dateLabel.textColor = UIColor.gray
@@ -76,7 +73,6 @@ class CreateMeetingCalendar: UIViewController, ViewControllerWithIdentifier {
     func handleCellSelected(cell: DateCell, cellState: CellState) {
         cell.selectedView.backgroundColor = cellState.isSelected ? AppColors.main : .clear
         cell.selectedView.layer.cornerRadius = 15
-        print(cellState.selectedPosition())
         switch cellState.selectedPosition() {
             case .left:
                 cell.selectedViewRight.backgroundColor = AppColors.main
@@ -138,10 +134,7 @@ extension CreateMeetingCalendar: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, shouldSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) -> Bool {
-        formatter.dateFormat = "yyyyMMdd"
-        let dateWithoutTime = formatter.date(from: formatter.string(from: Date()))!
-        
-        if cellState.dateBelongsTo == .thisMonth && cellState.date >= dateWithoutTime && numRows != 1 {
+        if cellState.dateBelongsTo == .thisMonth && numRows != 1 {
           return true
         }
         return false
