@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		786FA81693DFDB12B129D124 /* libPods-MeetUp MessagesExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14EC7703F3F50A9EAC6D1947 /* libPods-MeetUp MessagesExtension.a */; };
 		9100ED7D28DAF97200DA4F43 /* CreateMeetingCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9100ED7C28DAF97200DA4F43 /* CreateMeetingCalendar.swift */; };
 		9100ED7F28DB0E1700DA4F43 /* CreateMeetingCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9100ED7E28DB0E1700DA4F43 /* CreateMeetingCalendar.storyboard */; };
 		9100ED8528E01C9D00DA4F43 /* HourMinuteTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9100ED8428E01C9D00DA4F43 /* HourMinuteTime.swift */; };
@@ -45,7 +44,7 @@
 		913EF7982868E83700D5DB08 /* QueryItemRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913EF7972868E83700D5DB08 /* QueryItemRepresentable.swift */; };
 		913EF79A28693DBB00D5DB08 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913EF79928693DBB00D5DB08 /* Schedule.swift */; };
 		9142F970285FA20E0070661F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9142F96F285FA20E0070661F /* Assets.xcassets */; };
-		9142F976285FA20E0070661F /* MeetUp MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9142F975285FA20E0070661F /* MeetUp MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9142F976285FA20E0070661F /* Hoolii MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9142F975285FA20E0070661F /* Hoolii MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9142F97B285FA20E0070661F /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9142F97A285FA20E0070661F /* Messages.framework */; };
 		9142F97E285FA20E0070661F /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F97D285FA20E0070661F /* MessagesViewController.swift */; };
 		9142F981285FA20E0070661F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9142F97F285FA20E0070661F /* MainInterface.storyboard */; };
@@ -64,7 +63,8 @@
 		91A76E5A28BC972400F93DE2 /* AvailabilityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A76E5928BC972400F93DE2 /* AvailabilityDetail.swift */; };
 		91A76E5E28C1C96C00F93DE2 /* ProfileAvailabilityPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A76E5D28C1C96C00F93DE2 /* ProfileAvailabilityPreview.swift */; };
 		91B2D42428957CA200D0AAD4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91B2D42328957CA200D0AAD4 /* GoogleService-Info.plist */; };
-		AA37ABBC7DB2CC2583CC4D26 /* libPods-MeetUp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F32C2BB35CC49C0C1097DDD6 /* libPods-MeetUp.a */; };
+		E1BE96C0972C8ADFD212FDD4 /* libPods-Hoolii.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2059F873623DEA6DE6C9C3A3 /* libPods-Hoolii.a */; };
+		FC0AC900BAF8436FCCEFF0BF /* libPods-Hoolii MessagesExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB9FB6186E1010E8D04B74A1 /* libPods-Hoolii MessagesExtension.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +84,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				9142F976285FA20E0070661F /* MeetUp MessagesExtension.appex in Embed App Extensions */,
+				9142F976285FA20E0070661F /* Hoolii MessagesExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,8 +92,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		14EC7703F3F50A9EAC6D1947 /* libPods-MeetUp MessagesExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeetUp MessagesExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5F58E1F15807BCDD82783B75 /* Pods-MeetUp MessagesExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetUp MessagesExtension.release.xcconfig"; path = "Target Support Files/Pods-MeetUp MessagesExtension/Pods-MeetUp MessagesExtension.release.xcconfig"; sourceTree = "<group>"; };
+		2059F873623DEA6DE6C9C3A3 /* libPods-Hoolii.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hoolii.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43CD53A2C79DF1E2CACBC2B9 /* Pods-Hoolii MessagesExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hoolii MessagesExtension.release.xcconfig"; path = "Target Support Files/Pods-Hoolii MessagesExtension/Pods-Hoolii MessagesExtension.release.xcconfig"; sourceTree = "<group>"; };
+		6186FBB547B0CC2FA8646E18 /* Pods-Hoolii.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hoolii.release.xcconfig"; path = "Target Support Files/Pods-Hoolii/Pods-Hoolii.release.xcconfig"; sourceTree = "<group>"; };
+		64BE8558663AC40F9266F4E1 /* Pods-Hoolii.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hoolii.debug.xcconfig"; path = "Target Support Files/Pods-Hoolii/Pods-Hoolii.debug.xcconfig"; sourceTree = "<group>"; };
+		687D8B39CA7BF0E3240E0268 /* Pods-Hoolii MessagesExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hoolii MessagesExtension.debug.xcconfig"; path = "Target Support Files/Pods-Hoolii MessagesExtension/Pods-Hoolii MessagesExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		9100ED7C28DAF97200DA4F43 /* CreateMeetingCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMeetingCalendar.swift; sourceTree = "<group>"; };
 		9100ED7E28DB0E1700DA4F43 /* CreateMeetingCalendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateMeetingCalendar.storyboard; sourceTree = "<group>"; };
 		9100ED8428E01C9D00DA4F43 /* HourMinuteTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourMinuteTime.swift; sourceTree = "<group>"; };
@@ -130,9 +133,9 @@
 		913C119A28B208C600B5A66F /* AvailabilityBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvailabilityBar.xib; sourceTree = "<group>"; };
 		913EF7972868E83700D5DB08 /* QueryItemRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryItemRepresentable.swift; sourceTree = "<group>"; };
 		913EF79928693DBB00D5DB08 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
-		9142F96C285FA20A0070661F /* MeetUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9142F96C285FA20A0070661F /* Hoolii.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hoolii.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9142F96F285FA20E0070661F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9142F975285FA20E0070661F /* MeetUp MessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MeetUp MessagesExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9142F975285FA20E0070661F /* Hoolii MessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Hoolii MessagesExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9142F97A285FA20E0070661F /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		9142F97D285FA20E0070661F /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		9142F980285FA20E0070661F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -153,10 +156,7 @@
 		91A76E5D28C1C96C00F93DE2 /* ProfileAvailabilityPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAvailabilityPreview.swift; sourceTree = "<group>"; };
 		91B2D42328957CA200D0AAD4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		91F40B6D286164C900B6912D /* MeetUp MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MeetUp MessagesExtension.entitlements"; sourceTree = "<group>"; };
-		B9DE7B812DA84A9AE432A6BD /* Pods-MeetUp MessagesExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetUp MessagesExtension.debug.xcconfig"; path = "Target Support Files/Pods-MeetUp MessagesExtension/Pods-MeetUp MessagesExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		CF78CF69EC5F985F2B84AE03 /* Pods-MeetUp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetUp.debug.xcconfig"; path = "Target Support Files/Pods-MeetUp/Pods-MeetUp.debug.xcconfig"; sourceTree = "<group>"; };
-		E0EDCCBABD6CE4CFF67E62FE /* Pods-MeetUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetUp.release.xcconfig"; path = "Target Support Files/Pods-MeetUp/Pods-MeetUp.release.xcconfig"; sourceTree = "<group>"; };
-		F32C2BB35CC49C0C1097DDD6 /* libPods-MeetUp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeetUp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB9FB6186E1010E8D04B74A1 /* libPods-Hoolii MessagesExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hoolii MessagesExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,7 +167,7 @@
 				9103E5732896479100CA661B /* libFirebaseDatabase.a in Frameworks */,
 				9103E575289647B700CA661B /* libFirebaseCore.a in Frameworks */,
 				9142F97B285FA20E0070661F /* Messages.framework in Frameworks */,
-				786FA81693DFDB12B129D124 /* libPods-MeetUp MessagesExtension.a in Frameworks */,
+				FC0AC900BAF8436FCCEFF0BF /* libPods-Hoolii MessagesExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,7 +175,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA37ABBC7DB2CC2583CC4D26 /* libPods-MeetUp.a in Frameworks */,
+				E1BE96C0972C8ADFD212FDD4 /* libPods-Hoolii.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,10 +185,10 @@
 		7E89828A4D7EC462BAF1387F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CF78CF69EC5F985F2B84AE03 /* Pods-MeetUp.debug.xcconfig */,
-				E0EDCCBABD6CE4CFF67E62FE /* Pods-MeetUp.release.xcconfig */,
-				B9DE7B812DA84A9AE432A6BD /* Pods-MeetUp MessagesExtension.debug.xcconfig */,
-				5F58E1F15807BCDD82783B75 /* Pods-MeetUp MessagesExtension.release.xcconfig */,
+				64BE8558663AC40F9266F4E1 /* Pods-Hoolii.debug.xcconfig */,
+				6186FBB547B0CC2FA8646E18 /* Pods-Hoolii.release.xcconfig */,
+				687D8B39CA7BF0E3240E0268 /* Pods-Hoolii MessagesExtension.debug.xcconfig */,
+				43CD53A2C79DF1E2CACBC2B9 /* Pods-Hoolii MessagesExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -244,8 +244,8 @@
 		9142F965285FA20A0070661F = {
 			isa = PBXGroup;
 			children = (
-				9142F96E285FA20A0070661F /* MeetUp */,
-				9142F97C285FA20E0070661F /* MeetUp MessagesExtension */,
+				9142F96E285FA20A0070661F /* Hoolii */,
+				9142F97C285FA20E0070661F /* Hoolii MessagesExtension */,
 				9142F979285FA20E0070661F /* Frameworks */,
 				9142F96D285FA20A0070661F /* Products */,
 				7E89828A4D7EC462BAF1387F /* Pods */,
@@ -255,18 +255,18 @@
 		9142F96D285FA20A0070661F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9142F96C285FA20A0070661F /* MeetUp.app */,
-				9142F975285FA20E0070661F /* MeetUp MessagesExtension.appex */,
+				9142F96C285FA20A0070661F /* Hoolii.app */,
+				9142F975285FA20E0070661F /* Hoolii MessagesExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9142F96E285FA20A0070661F /* MeetUp */ = {
+		9142F96E285FA20A0070661F /* Hoolii */ = {
 			isa = PBXGroup;
 			children = (
 				9142F96F285FA20E0070661F /* Assets.xcassets */,
 			);
-			path = MeetUp;
+			path = Hoolii;
 			sourceTree = "<group>";
 		};
 		9142F979285FA20E0070661F /* Frameworks */ = {
@@ -275,13 +275,13 @@
 				9103E574289647B700CA661B /* libFirebaseCore.a */,
 				9103E5722896479100CA661B /* libFirebaseDatabase.a */,
 				9142F97A285FA20E0070661F /* Messages.framework */,
-				F32C2BB35CC49C0C1097DDD6 /* libPods-MeetUp.a */,
-				14EC7703F3F50A9EAC6D1947 /* libPods-MeetUp MessagesExtension.a */,
+				2059F873623DEA6DE6C9C3A3 /* libPods-Hoolii.a */,
+				FB9FB6186E1010E8D04B74A1 /* libPods-Hoolii MessagesExtension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9142F97C285FA20E0070661F /* MeetUp MessagesExtension */ = {
+		9142F97C285FA20E0070661F /* Hoolii MessagesExtension */ = {
 			isa = PBXGroup;
 			children = (
 				9103E5762896D9DE00CA661B /* Components */,
@@ -295,7 +295,7 @@
 				9142F984285FA20F0070661F /* Info.plist */,
 				91B2D42328957CA200D0AAD4 /* GoogleService-Info.plist */,
 			);
-			path = "MeetUp MessagesExtension";
+			path = "Hoolii MessagesExtension";
 			sourceTree = "<group>";
 		};
 		9142F992285FFDAE0070661F /* Models */ = {
@@ -344,11 +344,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9142F96B285FA20A0070661F /* MeetUp */ = {
+		9142F96B285FA20A0070661F /* Hoolii */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9142F98B285FA20F0070661F /* Build configuration list for PBXNativeTarget "MeetUp" */;
+			buildConfigurationList = 9142F98B285FA20F0070661F /* Build configuration list for PBXNativeTarget "Hoolii" */;
 			buildPhases = (
-				CF4F18ADA46501E84FBDCFA1 /* [CP] Check Pods Manifest.lock */,
+				D90CCD36A8C306E67F17F5E7 /* [CP] Check Pods Manifest.lock */,
 				9142F96A285FA20A0070661F /* Resources */,
 				9142F98A285FA20F0070661F /* Embed App Extensions */,
 				D2403BDC881F331FE918FE77 /* Frameworks */,
@@ -358,16 +358,16 @@
 			dependencies = (
 				9142F978285FA20E0070661F /* PBXTargetDependency */,
 			);
-			name = MeetUp;
+			name = Hoolii;
 			productName = MeetUp;
-			productReference = 9142F96C285FA20A0070661F /* MeetUp.app */;
+			productReference = 9142F96C285FA20A0070661F /* Hoolii.app */;
 			productType = "com.apple.product-type.application.messages";
 		};
-		9142F974285FA20E0070661F /* MeetUp MessagesExtension */ = {
+		9142F974285FA20E0070661F /* Hoolii MessagesExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9142F987285FA20F0070661F /* Build configuration list for PBXNativeTarget "MeetUp MessagesExtension" */;
+			buildConfigurationList = 9142F987285FA20F0070661F /* Build configuration list for PBXNativeTarget "Hoolii MessagesExtension" */;
 			buildPhases = (
-				607784590A3F57CA541FC6A5 /* [CP] Check Pods Manifest.lock */,
+				DB582470C9A5843765EE2735 /* [CP] Check Pods Manifest.lock */,
 				9142F971285FA20E0070661F /* Sources */,
 				9142F972285FA20E0070661F /* Frameworks */,
 				9142F973285FA20E0070661F /* Resources */,
@@ -376,9 +376,9 @@
 			);
 			dependencies = (
 			);
-			name = "MeetUp MessagesExtension";
+			name = "Hoolii MessagesExtension";
 			productName = "MeetUp MessagesExtension";
-			productReference = 9142F975285FA20E0070661F /* MeetUp MessagesExtension.appex */;
+			productReference = 9142F975285FA20E0070661F /* Hoolii MessagesExtension.appex */;
 			productType = "com.apple.product-type.app-extension.messages";
 		};
 /* End PBXNativeTarget section */
@@ -399,7 +399,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9142F969285FA20A0070661F /* Build configuration list for PBXProject "MeetUp" */;
+			buildConfigurationList = 9142F969285FA20A0070661F /* Build configuration list for PBXProject "Hoolii" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -412,8 +412,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9142F96B285FA20A0070661F /* MeetUp */,
-				9142F974285FA20E0070661F /* MeetUp MessagesExtension */,
+				9142F96B285FA20A0070661F /* Hoolii */,
+				9142F974285FA20E0070661F /* Hoolii MessagesExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -449,7 +449,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		607784590A3F57CA541FC6A5 /* [CP] Check Pods Manifest.lock */ = {
+		D90CCD36A8C306E67F17F5E7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -464,14 +464,14 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MeetUp MessagesExtension-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Hoolii-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CF4F18ADA46501E84FBDCFA1 /* [CP] Check Pods Manifest.lock */ = {
+		DB582470C9A5843765EE2735 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -486,7 +486,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MeetUp-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Hoolii MessagesExtension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -547,7 +547,7 @@
 /* Begin PBXTargetDependency section */
 		9142F978285FA20E0070661F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9142F974285FA20E0070661F /* MeetUp MessagesExtension */;
+			target = 9142F974285FA20E0070661F /* Hoolii MessagesExtension */;
 			targetProxy = 9142F977285FA20E0070661F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -682,16 +682,16 @@
 		};
 		9142F988285FA20F0070661F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B9DE7B812DA84A9AE432A6BD /* Pods-MeetUp MessagesExtension.debug.xcconfig */;
+			baseConfigurationReference = 687D8B39CA7BF0E3240E0268 /* Pods-Hoolii MessagesExtension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				CODE_SIGN_ENTITLEMENTS = "MeetUp MessagesExtension/MeetUp MessagesExtension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Hoolii MessagesExtension/Hoolii MessagesExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XSTA74W85B;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "MeetUp MessagesExtension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = MeetUp;
+				INFOPLIST_FILE = "Hoolii MessagesExtension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Hoolii;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -700,7 +700,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.MeetUp.MessagesExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.Hoolii.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -711,16 +711,16 @@
 		};
 		9142F989285FA20F0070661F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F58E1F15807BCDD82783B75 /* Pods-MeetUp MessagesExtension.release.xcconfig */;
+			baseConfigurationReference = 43CD53A2C79DF1E2CACBC2B9 /* Pods-Hoolii MessagesExtension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				CODE_SIGN_ENTITLEMENTS = "MeetUp MessagesExtension/MeetUp MessagesExtension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Hoolii MessagesExtension/Hoolii MessagesExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XSTA74W85B;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "MeetUp MessagesExtension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = MeetUp;
+				INFOPLIST_FILE = "Hoolii MessagesExtension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Hoolii;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -729,7 +729,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.MeetUp.MessagesExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.Hoolii.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -740,7 +740,7 @@
 		};
 		9142F98C285FA20F0070661F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF78CF69EC5F985F2B84AE03 /* Pods-MeetUp.debug.xcconfig */;
+			baseConfigurationReference = 64BE8558663AC40F9266F4E1 /* Pods-Hoolii.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -752,7 +752,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.MeetUp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.Hoolii;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -762,7 +762,7 @@
 		};
 		9142F98D285FA20F0070661F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E0EDCCBABD6CE4CFF67E62FE /* Pods-MeetUp.release.xcconfig */;
+			baseConfigurationReference = 6186FBB547B0CC2FA8646E18 /* Pods-Hoolii.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -774,7 +774,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.MeetUp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.Hoolii;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -785,7 +785,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9142F969285FA20A0070661F /* Build configuration list for PBXProject "MeetUp" */ = {
+		9142F969285FA20A0070661F /* Build configuration list for PBXProject "Hoolii" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9142F985285FA20F0070661F /* Debug */,
@@ -794,7 +794,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9142F987285FA20F0070661F /* Build configuration list for PBXNativeTarget "MeetUp MessagesExtension" */ = {
+		9142F987285FA20F0070661F /* Build configuration list for PBXNativeTarget "Hoolii MessagesExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9142F988285FA20F0070661F /* Debug */,
@@ -803,7 +803,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9142F98B285FA20F0070661F /* Build configuration list for PBXNativeTarget "MeetUp" */ = {
+		9142F98B285FA20F0070661F /* Build configuration list for PBXNativeTarget "Hoolii" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9142F98C285FA20F0070661F /* Debug */,
