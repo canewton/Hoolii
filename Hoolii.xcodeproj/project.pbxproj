@@ -139,7 +139,7 @@
 		9142F97A285FA20E0070661F /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		9142F97D285FA20E0070661F /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		9142F980285FA20E0070661F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		9142F982285FA20F0070661F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9142F982285FA20F0070661F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Hoolii MessagesExtension/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		9142F984285FA20F0070661F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9142F993285FFDD20070661F /* ScheduleSendable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSendable.swift; sourceTree = "<group>"; };
 		9142F995286002580070661F /* CollectiveSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectiveSchedule.swift; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 		91A76E5928BC972400F93DE2 /* AvailabilityDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityDetail.swift; sourceTree = "<group>"; };
 		91A76E5D28C1C96C00F93DE2 /* ProfileAvailabilityPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAvailabilityPreview.swift; sourceTree = "<group>"; };
 		91B2D42328957CA200D0AAD4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		91F40B6D286164C900B6912D /* MeetUp MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MeetUp MessagesExtension.entitlements"; sourceTree = "<group>"; };
+		91F40B6D286164C900B6912D /* Hoolii MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hoolii MessagesExtension.entitlements"; sourceTree = "<group>"; };
 		FB9FB6186E1010E8D04B74A1 /* libPods-Hoolii MessagesExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hoolii MessagesExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -287,7 +287,7 @@
 				9103E5762896D9DE00CA661B /* Components */,
 				916D270F288CA93D003C96BD /* Logic */,
 				916D270A2883190E003C96BD /* Controllers */,
-				91F40B6D286164C900B6912D /* MeetUp MessagesExtension.entitlements */,
+				91F40B6D286164C900B6912D /* Hoolii MessagesExtension.entitlements */,
 				9142F992285FFDAE0070661F /* Models */,
 				9103E59128A72C2800CA661B /* Theme */,
 				9103E57F289F459700CA661B /* Views */,

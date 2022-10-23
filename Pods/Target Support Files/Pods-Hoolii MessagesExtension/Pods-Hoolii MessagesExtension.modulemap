@@ -1,0 +1,6 @@
+module Pods_Hoolii_MessagesExtension {
+  umbrella header "Pods-Hoolii MessagesExtension-umbrella.h"
+
+  export *
+  module * { export * }
+}
