@@ -110,6 +110,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         }
     }
     
+    // the availability detail must be created every time it is displayed
     func showAvailiabilityDetail(_ day: Day) {
         if !isShowingAvailabilityDetail {
             createAvailabilityDetail()
@@ -117,6 +118,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         isShowingAvailabilityDetail = true
     }
     
+    // the availability detail must be destroyed every time it is closed
     func hideAvailiabilityDetail() {
         if isShowingAvailabilityDetail {
             availabilityDetail.removeFromSuperview()
@@ -152,6 +154,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         autofillButton = nil
     }
     
+    // display a list of times to the side of availability bars
     func configureTimeIndicatorVerticalList() {
         let startTime: Int = startTime
         let endTime: Int = endTime
@@ -175,6 +178,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         }
     }
     
+    // display dates on the top of each availability bar
     func configureDatesHorizontalList() {
         for i in 0..<userSchedule.datesFree.count {
             if userSchedule.datesFree[i].date.isDate() {

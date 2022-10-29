@@ -28,6 +28,7 @@ class CreateProfileViewController: AppViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // set initial values of the profile if a profile has not yet been created
         StoredValues.setIfEmpty(key: StoredValuesConstants.firstName, value: "")
         StoredValues.setIfEmpty(key: StoredValuesConstants.lastName, value: "")
         StoredValues.setIfEmpty(key: StoredValuesConstants.userID, value: makeID(length: 20))
@@ -47,6 +48,7 @@ class CreateProfileViewController: AppViewController {
         usernameField.resignFirstResponder()
     }
     
+    // make a random id with the specified length
     func makeID(length: Int) -> String {
         var result = ""
         let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
@@ -106,6 +108,8 @@ class CreateProfileViewController: AppViewController {
         return User(id: id, firstName: firstName, lastName: lastName)
     }
     
+    // if there is the weekly availability has not been set, return an empty scedule
+    // otherwise, decode the json string that has been stored locally and return its contents
     func getUserAvailability() -> ScheduleSendable {
         let jsonString: String? = StoredValues.get(key: StoredValuesConstants.userSchedule)
         var userSchedule: ScheduleSendable = ScheduleSendable(datesFree: [

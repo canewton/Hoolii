@@ -48,6 +48,9 @@ class ScheduleDate: Codable {
         return false
     }
     
+    // determine if the schedule date is a week date or actual date
+    // a week date is for the user's weekly availability where their availability is associated with a day of the week instead of a specific date
+    // a date is a specific date that availabilities are associated with
     func isDate() -> Bool {
         return date != nil
     }

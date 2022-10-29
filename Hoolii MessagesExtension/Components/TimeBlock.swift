@@ -43,6 +43,7 @@ final class TimeBlock: UIView {
         return isActive
     }
     
+    // logic to add borders only to certain sides of the time block
     @discardableResult
     func addBorders(edges: UIRectEdge,
                     color: UIColor,

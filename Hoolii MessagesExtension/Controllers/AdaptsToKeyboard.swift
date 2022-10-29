@@ -7,6 +7,8 @@
 
 import UIKit
 
+// make a class that components inherit from to move the screen up when a text box is selected so that
+// the keyboard doesn't cover the textbox
 class AdaptsToKeyboard: AppViewController {
     var bottomConstraint: NSLayoutConstraint?
     var topConstraint: NSLayoutConstraint?

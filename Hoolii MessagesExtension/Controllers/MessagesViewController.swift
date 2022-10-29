@@ -85,6 +85,7 @@ class MessagesViewController: MSMessagesAppViewController {
             }
         }
         
+        // when adding the view controller, make it fill up all available space
         addChild(controller)
         controller.view.frame = view.bounds
         controller.view.translatesAutoresizingMaskIntoConstraints = false
@@ -104,6 +105,7 @@ class MessagesViewController: MSMessagesAppViewController {
     // Tells the view controller that the extension is about to transition to a new presentation style
     override func willTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
         super.willTransition(to: presentationStyle)
+        // when a new view controller is transitioned to, remove the view controller that is currently on the screen
         removeAllChildViewControllers()
     }
     

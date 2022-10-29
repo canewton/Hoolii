@@ -7,6 +7,7 @@
 
 import UIKit
 
+// make a class that view controllers inherit from to get the transition to screen function
 class AppViewController: UIViewController {
     func transitionToScreen(viewController: UIViewController) {
         let secondVC = viewController

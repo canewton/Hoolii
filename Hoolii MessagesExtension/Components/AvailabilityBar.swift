@@ -38,6 +38,7 @@ final class AvailabilityBar: UIView {
         }
     }
     
+    // color in time blocks in the availability bar to correspond to the timesFree property of userDay
     func displayUserDay() {
         displayAllUsers = false
         var timesFreeIndex: Int = 0
@@ -47,9 +48,12 @@ final class AvailabilityBar: UIView {
                 let timeBlock = block as? TimeBlock
                 let time = indexToTime(index: i)
                 
+                // if there are no days the user is available, make all of the time blocks blanck
                 if userDay.timesFree.count == 0 {
                     timeBlock?.undoHighlight()
                 } else {
+                    // determine if this time block resides within the times that the user is free
+                    // color in the block if this is the case
                     if userDay.timesFree[timesFreeIndex].from <= time && userDay.timesFree[timesFreeIndex].to > time {
                         timeBlock?.highlight()
                     } else if userDay.timesFree[timesFreeIndex].to <= time && timesFreeIndex + 1 < userDay.timesFree.count {
@@ -67,6 +71,7 @@ final class AvailabilityBar: UIView {
         }
     }
     
+    // color in the time blocks in the availability bar to correspond to the availibility of everyone who responded
     func displayAllUsersDay(day: DayCollective?, numUsers: Int) {
         displayAllUsers = true
         var timesFreeIndex: Int = 0
@@ -97,6 +102,7 @@ final class AvailabilityBar: UIView {
         }
     }
     
+    // convert the 0...n index to an integer that represents time
     private func indexToTime(index: Int) -> Int {
         return index/hourDivisions + startTime
     }
@@ -114,10 +120,12 @@ final class AvailabilityBar: UIView {
         self.hideDetailCallback = hide
     }
     
+    // before the component gets displayed to the UI, configure some properties
     func nibSetup() {
         verticalStack.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         let numberOfBlocks: Int = (hourDivisions * (endTime - startTime))
         
+        // add lines between the blocks
         for i in 0..<numberOfBlocks {
             let block: TimeBlock = TimeBlock()
             if i == numberOfBlocks - 1 {
@@ -146,6 +154,7 @@ final class AvailabilityBar: UIView {
         return availabilityBar
     }
     
+    // detect which time block got pressed and handle the tap accordingly
     @objc func handleTapGesture(gesture: UITapGestureRecognizer) {
         if gesture.state == .ended && !displayAllUsers {
             let loc = gesture.location(in: self)
@@ -168,6 +177,7 @@ final class AvailabilityBar: UIView {
         }
     }
     
+    // detect which time block got swiped over and hand the gester accordingly
     @objc func handlePanGesture(gesture: UIPanGestureRecognizer) {
         if gesture.state == .changed || gesture.state == .ended || gesture.state == .began {
             var barConatinsGesture: Bool = false
@@ -197,6 +207,8 @@ final class AvailabilityBar: UIView {
         }
     }
     
+    // only toggle a block's highlight for the first time it get's swiped over in the same gesture
+    // if a block gets swiped over twice, it doesn't toggle highlight the second time
     func toggleBlockHighlight(gesture: UIPanGestureRecognizer, timeBlock: TimeBlock, index: Int) {
         if gesture.state == .began && timeBlock.isHighlighted(){
             performHighlightAction = false
@@ -213,6 +225,7 @@ final class AvailabilityBar: UIView {
         }
     }
     
+    // show the availability detail for a certain time block when displaying the group availability
     func toggleDisplayAvailabilityDetail(gesture: UIPanGestureRecognizer, timeBlock: TimeBlock) {
         if displayAllUsers && (gesture.state == .began || gesture.state == .changed) {
             showDetailCallback(userDay)

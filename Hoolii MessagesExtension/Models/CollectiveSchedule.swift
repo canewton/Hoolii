@@ -20,8 +20,7 @@ struct CollectiveSchedule {
 /// Extends `CollectiveSchedule` to be able to be represented by and created with an array of `NSURLQueryItems`s
 extension CollectiveSchedule {
     
-    // MARK: Computed properties
-    
+    // prepare the schedule to be sent in a message
     var queryItems: [URLQueryItem] {
         var items = [URLQueryItem]()
         let datesAsStrings: [String] = dates.map{CalendarDate($0).dateString}
@@ -40,8 +39,7 @@ extension CollectiveSchedule {
         return items
     }
     
-    // MARK: Initialization
-    
+    // decode a message into a CollectiveSchedule object
     init?(queryItems: [URLQueryItem]) {
         for queryItem in queryItems {
             if queryItem.name == "allSchedules" {

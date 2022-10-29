@@ -70,6 +70,7 @@ class CreateMeetingCalendar: UIViewController, ViewControllerWithIdentifier {
        }
     }
     
+    // make the cell link up with another cell when there are two or more cells selected that are adjacent to each other
     func handleCellSelected(cell: DateCell, cellState: CellState) {
         cell.selectedView.backgroundColor = cellState.isSelected ? AppColors.main : .clear
         cell.selectedView.layer.cornerRadius = 15

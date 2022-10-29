@@ -12,6 +12,8 @@ struct ScaledIcon {
     var imageInput: UIImage
     let targetSize: CGSize
     var image: UIImage = UIImage()
+    
+    // scale an svg file and add color to it according to the parameters passed in
     init(name: String, width: CGFloat, height: CGFloat, color: UIColor) {
         imageInput = UIImage(named: name)!
         targetSize = CGSize(width: width, height: height)

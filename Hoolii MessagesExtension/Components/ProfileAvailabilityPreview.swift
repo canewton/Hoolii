@@ -20,6 +20,7 @@ class ProfileAvailabilityPreview: UIView {
         super.init(coder: coder)
     }
     
+    // get the percentage that a time range fills in comparison to the overall time range
     func getMultiplier(above: Int, below: Int) -> CGFloat {
         return CGFloat(below - above)/(CGFloat(overallTimeRange.to - overallTimeRange.from))
     }
@@ -28,6 +29,7 @@ class ProfileAvailabilityPreview: UIView {
         overallTimeRange = getTimeRange()
         allAvailabilities = AvailabilityLogic.getDaysAndTimesFree(schedules)
         if userHasEmptySchedule {
+            // create a list of empty containers
             for _ in 0..<7 {
                 let containerView = UIView()
                 containerView.backgroundColor = AppColors.lightGrey
@@ -35,6 +37,7 @@ class ProfileAvailabilityPreview: UIView {
                 availabilityHorizontalList.addArrangedSubview(containerView)
             }
         } else {
+            // create a list of containers that may have content in it that represents a user's availability
             for i in 0..<allAvailabilities.count {
                 let containerView = UIView()
                 containerView.backgroundColor = AppColors.lightGrey
@@ -49,9 +52,12 @@ class ProfileAvailabilityPreview: UIView {
                         containerView.addSubview(availabilityView)
                         containerView.addSubview(availabilityOffsetView)
                         availabilityView.backgroundColor = AppColors.availability
+                        
+                        // define custom constraints for the content within a container
                         availabilityView.translatesAutoresizingMaskIntoConstraints = false
                         availabilityView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: getMultiplier(above: timeRange.from, below: timeRange.to)).isActive = true
                         
+                        // define custom constraints for invisible views whos only purpose is to offset the availability view
                         availabilityOffsetView.translatesAutoresizingMaskIntoConstraints = false
                         availabilityOffsetView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: getMultiplier(above: overallTimeRange.from, below: timeRange.from)).isActive = true
                         availabilityOffsetView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0).isActive = true
@@ -61,6 +67,7 @@ class ProfileAvailabilityPreview: UIView {
                         availabilityView.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
                         availabilityView.layer.cornerRadius = 3
                         
+                        // display the start and end time for the content within a container
                         let fromLabel: UILabel = UILabel()
                         fromLabel.text = getTime(timeRange.from)
                         fromLabel.font = .systemFont(ofSize: 8)
@@ -85,6 +92,7 @@ class ProfileAvailabilityPreview: UIView {
             }
         }
         
+        // determine how to scale the content with the containers to fit the container
         func getTimeRange() -> TimeRange {
             var minTime: Int = 24
             var maxTime: Int = 0

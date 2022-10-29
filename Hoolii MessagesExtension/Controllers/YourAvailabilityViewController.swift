@@ -61,6 +61,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         configureBottomBar()
         configureAvailabilityInput()
         
+        // dummy data that represents responses to the message
         if collectiveSchedule.allSchedules.count < 2 {
             collectiveSchedule.allSchedules.append(ScheduleSendable(datesFree: [Day(date: ScheduleDate(CalendarDate("09-27-2022").date), timesFree: [TimeRange(from: 11, to: 16)]), Day(date: ScheduleDate(CalendarDate("09-28-2022").date), timesFree: [TimeRange(from: 10, to: 13)]),Day(date: ScheduleDate(CalendarDate("09-29-2022").date), timesFree: [TimeRange(from: 12, to: 18)]),], user: User(id: "1", firstName: "Joanna", lastName: "Hu")))
             collectiveSchedule.allSchedules.append(ScheduleSendable(datesFree: [Day(date: ScheduleDate(CalendarDate("09-27-2022").date), timesFree: [TimeRange(from: 9, to: 14)]), Day(date: ScheduleDate(CalendarDate("09-28-2022").date), timesFree: [TimeRange(from: 14, to: 19)]),Day(date: ScheduleDate(CalendarDate("09-29-2022").date), timesFree: [TimeRange(from: 14, to: 20)]),], user: User(id: "2", firstName: "Jessica", lastName: "Mei")))

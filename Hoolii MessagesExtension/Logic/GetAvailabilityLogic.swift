@@ -8,6 +8,7 @@
 import Foundation
 
 class AvailabilityLogic {
+    // separate schedules out into timestamps that defines the user it refers to and if it is the begining of their availability
     private static func convertSchedulesToTimeStamps(_ allSchedules: [ScheduleSendable], _ updateDatesCallback: (ScheduleDate) -> ()) -> [[[TimeStamp]]] {
         var unsortedTimeStampCollections: [[[TimeStamp]]] = []
         
@@ -44,6 +45,7 @@ class AvailabilityLogic {
         return unsortedTimeStampCollections;
     }
     
+    // take all the timestamps and sort them by recency
     private static func sortTimeStamps(_ unsortedTimeStampCollections: [[[TimeStamp]]]) -> [[TimeStamp]] {
         var sortedTimeStampCollections: [[TimeStamp]] = []
         
@@ -91,6 +93,8 @@ class AvailabilityLogic {
         return nil
     }
     
+    // convert the timestamps into time range collective
+    // then, use TimeRangeCollective to create DayCollective
     private static func getAvailabilityFromTimestamps(_ sortedTimeStampCollections: [[TimeStamp]], _ dates: [ScheduleDate]) -> [DayCollective?] {
         var allAvailability: [DayCollective?] = []
         

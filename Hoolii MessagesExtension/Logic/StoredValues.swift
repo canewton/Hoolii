@@ -7,6 +7,7 @@
 
 import UIKit
 
+// all of the storage keys
 struct StoredValuesConstants {
     static let userID: String = "userID"
     static let firstName: String = "firstName"
@@ -26,6 +27,7 @@ struct StoredValues {
         defaults.set(value, forKey: key)
     }
     
+    // set the value of the key if there is currently no value for the key passed in
     static func setIfEmpty(key: String, value: String) {
         if (self.get(key: key) == nil) {
             self.set(key: key, value: value)
