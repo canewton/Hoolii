@@ -8,6 +8,7 @@
 import UIKit
 import JTAppleCalendar
 
+// Cell in the calendar
 class DateCell: JTAppleCell {
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var selectedView: UIView!

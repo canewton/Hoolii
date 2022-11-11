@@ -14,7 +14,7 @@ class MessagesViewController: MSMessagesAppViewController {
     override func viewDidLoad() {
 //        FirebaseApp.configure()
 //        let uid = "test"
-        print("Database:")
+//        print("Database:")
 //        let db = Database.database()
 //        print(db)
 //
@@ -109,7 +109,7 @@ class MessagesViewController: MSMessagesAppViewController {
         removeAllChildViewControllers()
     }
     
-    // Tells the view controller that the extenson has transitioned to a new presentation style
+    // Tells the view controller that the extenson has transitioned to a new presentation style -> compact or exmpanded
     override func didTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
         super.didTransition(to: presentationStyle)
         guard let conversation = activeConversation else { fatalError("Expected an active converstation") }

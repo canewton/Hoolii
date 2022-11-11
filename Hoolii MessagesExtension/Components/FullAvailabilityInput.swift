@@ -7,6 +7,7 @@
 
 import UIKit
 
+// a collection of all of the availability bars
 class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     @IBOutlet weak var topBar: UIView!
     @IBOutlet weak var datesHorizontalList: UIStackView!
@@ -49,6 +50,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         super.init(coder: coder)
     }
     
+    // display all of the availability bars based on a schedule
     class func instanceFromNib(userSchedule: Schedule, startTime: Int, endTime: Int, setCollectiveScheduleCallback: @escaping ((Schedule) -> Void)) -> FullAvailabilityInput? {
         let fullAvailabilityInput: FullAvailabilityInput? = UINib(nibName: "FullAvailabilityInput", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? FullAvailabilityInput
         fullAvailabilityInput?.userSchedule = userSchedule
@@ -59,6 +61,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         return fullAvailabilityInput
     }
     
+    // when the left space that show the times that time blocks represent is scrolled through, the availability bars should be scrolled through at the same rate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         availabilityBarScrollView.contentOffset.x = datesScrollView.contentOffset.x
         if scrollView == availabilityBarScrollView {
@@ -70,9 +73,13 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     
     func buildCollectiveSchedule(_ day: Day) {
         userSchedule.updateDay(day)
+        
+        // the parent screen needs to set the userSchedule data based on information provided in this component
+        // the callback allows for this
         setCollectiveScheduleCallback(userSchedule)
     }
     
+    // when each availability bar is interacted with, set callbacks so that data is changed from these interactions
     private func configureAvailabilityBars() {
         let startTime: Int = startTime
         let endTime: Int = endTime
@@ -89,6 +96,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         }
     }
     
+    // when there is a new schedule passed in, remove all of the availability bars from this view and reinstantiate all of the availability bars
     func updateUserSchedule(schedule: Schedule) {
         userSchedule = schedule
         for _ in 0..<availabilityBarHorizontalList.subviews.count {
@@ -97,6 +105,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         configureAvailabilityBars()
     }
     
+    // autofill all of the availability bars with data from the weekly availability housed in the profile screen
     func autofillButtonCallback() {
         let jsonString: String? = StoredValues.get(key: StoredValuesConstants.userSchedule)
         if jsonString != nil {
@@ -127,6 +136,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         isShowingAvailabilityDetail = false
     }
 
+    // instantiate the availability detail in the bottom right corner
     func createAvailabilityDetail() {
         availabilityDetail = AvailabilityDetail.instanceFromNib()
         availabilityBarScrollView.addSubview(availabilityDetail)
@@ -134,6 +144,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         availabilityDetail.rightAnchor.constraint(equalTo: availabilityBarScrollView.layoutMarginsGuide.rightAnchor, constant: -10).isActive = true
     }
     
+    // instantiate the autofill button in the bottom right corner
     func showAutoFillButton() {
         if autofillButton == nil {
             autofillButton = AutofillButton.instanceFromNib()
@@ -147,6 +158,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         }
     }
     
+    // delete the autofill button
     func hideAutoFillButton() {
         if autofillButton != nil {
             autofillButton.removeFromSuperview()
@@ -181,6 +193,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     // display dates on the top of each availability bar
     func configureDatesHorizontalList() {
         for i in 0..<userSchedule.datesFree.count {
+            // the availability bars are displaying dates for user view a group view
             if userSchedule.datesFree[i].date.isDate() {
                 if let dateView = DateHeaderView.instanceFromNib() {
                     dateView.translatesAutoresizingMaskIntoConstraints = false
@@ -189,6 +202,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
                     dateView.weekdayLabel.text = CalendarDate(userSchedule.datesFree[i].date.date!).weekdayString
                     datesHorizontalList.addArrangedSubview(dateView)
                 }
+            // the availability bars are displaying weekdays for setting the profile weekly availability
             } else {
                 if let dayView = DayHeaderView.instanceFromNib() {
                     dayView.translatesAutoresizingMaskIntoConstraints = false
@@ -201,6 +215,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         }
     }
     
+    // style the top bar
     func configureTopBar() {
         topBar.layer.shadowColor = UIColor.black.cgColor
         topBar.layer.shadowOpacity = 0.2

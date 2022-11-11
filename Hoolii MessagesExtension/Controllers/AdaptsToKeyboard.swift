@@ -47,7 +47,6 @@ class AdaptsToKeyboard: AppViewController {
             return
         }
 
-        // Get notification values.
         animationCurveOptions = UIView.AnimationOptions(rawValue: animationCurveNumber.uintValue << 16)
         animationDuration = animationDurationNumber.doubleValue
 
@@ -58,7 +57,8 @@ class AdaptsToKeyboard: AppViewController {
         
         view.addGestureRecognizer(tap)
 
-        // Animate bottom constraint.
+        // Animate bottom constraint when text box is selected
+        // This is so that the keyboard does not cover the text box
         UIView.animate(
             withDuration: animationDuration,
             delay: 0,
@@ -72,6 +72,7 @@ class AdaptsToKeyboard: AppViewController {
         )
     }
     
+    // Animate the bottom constraint so that the look of the app is the way it was before
     @objc func dismissKeyboard() {
         view.endEditing(true)
         

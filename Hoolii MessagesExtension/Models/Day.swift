@@ -19,7 +19,7 @@ struct Day: Codable {
         self.timesFree = timesFree
     }
 
-    
+    // add an availability time range to the day
     mutating func addAvailability(_ availability: Int) {
         if timesFree.isEmpty {
             timesFree.append(TimeRange(from: availability, to: availability + 1))

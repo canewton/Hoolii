@@ -18,6 +18,7 @@ class FilterAvailabilitiesSwitch: UIView {
         layer.cornerRadius = 5
     }
     
+    // define the functions that get called when the 'personal' button is tapped and when the 'group' button is tapped
     override func awakeFromNib() {
         let personalTap = UITapGestureRecognizer(target: self, action: #selector(handlePersonalButtonTapGesture(gesture:)))
         let groupTap = UITapGestureRecognizer(target: self, action: #selector(handleGroupButtonTapGesture(gesture:)))
@@ -31,6 +32,7 @@ class FilterAvailabilitiesSwitch: UIView {
         self.callback = callback
     }
     
+    // animate the slider and call the callback with the corresponding parameter so that the parent view can change the layout of the screen
     @objc func handlePersonalButtonTapGesture(gesture: UITapGestureRecognizer) {
         if gesture.state == .ended {
             callback("Personal")

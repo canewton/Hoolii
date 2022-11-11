@@ -7,6 +7,7 @@
 
 import UIKit
 
+// when the user is going to create a meeting, the collapsed view is this screen
 class CreateMeetingPreviewViewController: AppViewController, ViewControllerWithIdentifier {
     @IBOutlet weak var createMeetingCalendarContainer: UIView!
     @IBOutlet weak var profileButton: ProfileButton!

@@ -7,6 +7,8 @@
 
 import Foundation
 
+// Get date information with this class
+// Often used to get the month, day, and year of a Date object
 struct CalendarDate: Codable {
     let date: Date
     let weekdayString: String

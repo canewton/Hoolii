@@ -30,11 +30,13 @@ final class TimeBlock: UIView {
         isActive = false
     }
     
+    // highlight the time block for the user view
     func highlight() {
         backgroundColor = activeColor
         isActive = true
     }
     
+    // highlight the time block for the group view
     func highlight(numPeople: Int, totalPeople: Int) {
         backgroundColor = activeColor.withAlphaComponent((CGFloat(numPeople))/(CGFloat(totalPeople)))
     }

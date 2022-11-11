@@ -51,6 +51,7 @@ protocol SchedulePreviewControllerDelegate: AnyObject {
 }
 
 extension MessagesViewController: SchedulePreviewControllerDelegate {
+    // allow the compact preview controller to be expanded
     func schedulePreviewViewControllerDidSelectExpand(_ controller: SchedulePreviewViewController) {
         requestPresentationStyle(.expanded)
     }

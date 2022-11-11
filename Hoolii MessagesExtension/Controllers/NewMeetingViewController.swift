@@ -38,6 +38,7 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         configureMainViewConstraints()
     }
     
+    // set the possible meeting time frame of a meetup
     @IBAction func OnSetTimeframe(_ sender: Any) {
         (delegate as? NewMeetingViewControllerDelegate)?.transitonToYourAvailabilities(self)
         collectiveSchedule.startTime = 9
@@ -88,7 +89,6 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         controller.delegate = self
         controller.numRows = 6
         controller.addDateCallback = addDateCallback
-        //controller.calendarView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         return controller
     }
@@ -99,6 +99,7 @@ protocol NewMeetingViewControllerDelegate: AnyObject {
 }
 
 extension MessagesViewController: NewMeetingViewControllerDelegate {
+    // allow this controller to transition to the YourAvailabilities screen
     func transitonToYourAvailabilities(_ controller: NewMeetingViewController) {
         let yourAvailabilitiesController: YourAvailabilitiesViewController = instantiateController()
         controller.yourAvailabiliesViewController = yourAvailabilitiesController

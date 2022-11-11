@@ -13,6 +13,7 @@ public class ProfileButton: UIView {
     static var viewController: AppViewController!
     static var initials: UILabel!
     
+    // define the dimentions and styling of the profile button
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.widthAnchor.constraint(equalToConstant: 28).isActive = true
@@ -37,6 +38,7 @@ public class ProfileButton: UIView {
         self.viewController = viewController
     }
     
+    // transition to the profile screen when this button is pressed
     @objc func onPressed() {
         print("pressed")
         let profileVC = ProfileButton.viewController.storyboard?

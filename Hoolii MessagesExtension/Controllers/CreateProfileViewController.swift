@@ -61,6 +61,8 @@ class CreateProfileViewController: AppViewController {
         return result
     }
     
+    // populate the edit weekly availability screen with the user's weekly availability data
+    // navigate to the weekly availability screen
     @IBAction func OnEditWeeklyAvailability(_ sender: Any) {
         let weeklyAvailabilityVC = self.storyboard?
             .instantiateViewController(withIdentifier: "WeeklyAvailabilityInputViewController") as! WeeklyAvailabilityInputViewController
@@ -69,6 +71,7 @@ class CreateProfileViewController: AppViewController {
         self.transitionToScreen(viewController: weeklyAvailabilityVC)
     }
     
+    // Determine how the initials will look like
     func setInitials() {
         if firstNameTextField.text!.count > 0 && lastNameTextField.text!.count > 0 {
             let firstName = firstNameTextField.text!.uppercased()
@@ -101,6 +104,7 @@ class CreateProfileViewController: AppViewController {
         StoredValues.set(key: StoredValuesConstants.initials, value: profileInitials.text!)
     }
     
+    // get the user stored in local storage
     func getUser() -> User {
         let id: String = StoredValues.get(key: StoredValuesConstants.userID)!
         let firstName: String = StoredValues.get(key: StoredValuesConstants.firstName)!

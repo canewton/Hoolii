@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// Back button that works for all screens in the app
 public class BackButton: UIButton {
     var viewController: UIViewController?
     

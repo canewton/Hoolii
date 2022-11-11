@@ -8,6 +8,7 @@
 import UIKit
 import JTAppleCalendar
 
+// calendar used for creating meetups
 class CreateMeetingCalendar: UIViewController, ViewControllerWithIdentifier {
     static let storyboardIdentifier = "CreateMeetingCalendar"
     weak var delegate: AnyObject?
@@ -25,6 +26,7 @@ class CreateMeetingCalendar: UIViewController, ViewControllerWithIdentifier {
     var addDateCallback: ((_ collectiveSchedule: CollectiveSchedule) -> Void)!
     var numRows: Int = 6
     
+    // Set styling, images, and colors
     override func viewDidLoad() {
         configureCalendar()
         
@@ -93,6 +95,7 @@ class CreateMeetingCalendar: UIViewController, ViewControllerWithIdentifier {
 }
 
 extension CreateMeetingCalendar: JTAppleCalendarViewDataSource {
+    // define the min and max months displayed in the calendar
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         var dateComponent = DateComponents()
         dateComponent.month = 12

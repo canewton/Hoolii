@@ -7,6 +7,7 @@
 
 import UIKit
 
+// define the autofill button style and link it to a callback function
 class AutofillButton: UIView {
     @IBOutlet weak var plusIcon: UIImageView!
     var callback: (() -> Void)?

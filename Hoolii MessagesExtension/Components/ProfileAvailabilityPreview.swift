@@ -7,6 +7,7 @@
 
 import UIKit
 
+// the preview block for the weekly avaialabilities presented in the Profile Screen
 class ProfileAvailabilityPreview: UIView {
     @IBOutlet weak var availabilityHorizontalList: UIStackView!
     var schedules: [ScheduleSendable]!
@@ -67,7 +68,7 @@ class ProfileAvailabilityPreview: UIView {
                         availabilityView.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
                         availabilityView.layer.cornerRadius = 3
                         
-                        // display the start and end time for the content within a container
+                        // display the start for the content within a container
                         let fromLabel: UILabel = UILabel()
                         fromLabel.text = getTime(timeRange.from)
                         fromLabel.font = .systemFont(ofSize: 8)
@@ -77,6 +78,7 @@ class ProfileAvailabilityPreview: UIView {
                         fromLabel.rightAnchor.constraint(equalTo: availabilityView.rightAnchor).isActive = true
                         fromLabel.topAnchor.constraint(equalTo: availabilityView.topAnchor, constant: 2).isActive = true
                         
+                        // display the end time if the availability block is big enough
                         if timeRange.to - timeRange.from >= 2 {
                             let toLabel: UILabel = UILabel()
                             toLabel.text = getTime(timeRange.to)
@@ -127,6 +129,7 @@ class ProfileAvailabilityPreview: UIView {
         }
     }
     
+    // instantiate the view using schedules that are passed in as a parameter
     class func instanceFromNib(schedules: [ScheduleSendable], emptySchedule: Bool) -> ProfileAvailabilityPreview? {
         let profileAvailabilityPreview: ProfileAvailabilityPreview? = UINib(nibName: "ProfileAvailabilityPreview", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? ProfileAvailabilityPreview
         profileAvailabilityPreview?.schedules = schedules

@@ -7,6 +7,7 @@
 
 import UIKit
 
+// info block on who is available at a certain time for the group view
 class AvailabilityDetail: UIView {
     @IBOutlet weak var timeRangeText: UILabel!
     @IBOutlet weak var closeButton: UIImageView!

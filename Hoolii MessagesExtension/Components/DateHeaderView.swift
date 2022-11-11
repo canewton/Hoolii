@@ -11,6 +11,7 @@ class DateHeaderView: UIView {
     @IBOutlet weak var weekdayLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
+    // instantiate the date header that are presented above availability bars for user and group vies
     class func instanceFromNib() -> DateHeaderView? {
         return UINib(nibName: "DateHeaderView", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? DateHeaderView
     }

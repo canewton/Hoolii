@@ -50,6 +50,8 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
             userSchedule = collectiveSchedule.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName))!
         }
         
+        // determine if this person was the one who created the meeting
+        // they have a chance to edit the meeting if they were the one who created it
         if !isCreatingMeeting {
             editMeetingButton.removeFromSuperview()
             topBarHeightConstraint.constant = 55
@@ -77,6 +79,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         self.dismiss(animated: true, completion: nil)
     }
     
+    // Determine if the group view or the user view should be displayed
     func toggleFilterSwitch(_ filter: String) {
         if filter == "Group" {
             collectiveSchedule.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName), schedule: userSchedule)
@@ -91,6 +94,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         }
     }
     
+    // use the group data to display the group view
     private func displayGroupView() {
         let allAvailabilities: [DayCollective?] = AvailabilityLogic.getDaysAndTimesFree(collectiveSchedule.allSchedules)
 
@@ -102,6 +106,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         }
     }
 
+    // use the user data to display the personal view
     private func displayPersonalView() {
         for i in 0..<availabilityInput.availabilityBarHorizontalList.arrangedSubviews.count {
             let availabilityBar: AvailabilityBar = availabilityInput.availabilityBarHorizontalList.arrangedSubviews[i] as! AvailabilityBar
@@ -115,6 +120,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         userSchedule = schedule
     }
     
+    // set constraints for the availability input
     func configureAvailabilityInput() {
         availabilityInput = FullAvailabilityInput.instanceFromNib(userSchedule: userSchedule, startTime: collectiveSchedule.startTime, endTime: collectiveSchedule.endTime, setCollectiveScheduleCallback: setCollectiveSchedule)
         availabilityInputContainer.addSubview(availabilityInput)
@@ -128,6 +134,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         filterAvailabilitiesSwitch.configure(callback: toggleFilterSwitch)
     }
     
+    // set styling for the bottom bar
     func configureBottomBar() {
         bottomBar.layer.shadowColor = UIColor.black.cgColor
         bottomBar.layer.shadowOpacity = 0.6

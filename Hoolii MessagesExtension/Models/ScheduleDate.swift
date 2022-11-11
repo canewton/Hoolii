@@ -7,6 +7,9 @@
 
 import Foundation
 
+// Schedule dates are a combination of actual dates and weekdays
+// Weekdays are used for creating weekly availabilities in the profile screen
+// Dates are used for scheduling meetups
 class ScheduleDate: Codable {
     let date: Date?
     let weekDate: Int?

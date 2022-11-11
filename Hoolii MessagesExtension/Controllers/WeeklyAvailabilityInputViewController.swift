@@ -17,6 +17,7 @@ class WeeklyAvailabilityInputViewController: AppViewController, ViewControllerWi
     var delegate: AnyObject?
     static let storyboardIdentifier = "WeeklyAvailabilityInputViewController"
     
+    // configue the availability input component that will be used to recieve weekly availability data from user interaction
     override func viewDidLoad() {
         configureBottomBar()
         

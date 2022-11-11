@@ -22,17 +22,21 @@ final class AvailabilityBar: UIView {
     var showDetailCallback: ((Day) -> ())!
     var hideDetailCallback: (() -> ())!
     
+    // get the day that the availability bar represents
     func getDay() -> Day {
         return userDay
     }
     
+    // set the day that the availability bar represents
     func setDay(day: Day) {
         self.userDay = day
         
+        // if the day has an empty times free array, return
         if day.timesFree.count == 0 {
             return
         }
         
+        // display the availabilities using the timesFree array
         if !displayAllUsers {
             displayUserDay()
         }
@@ -146,6 +150,7 @@ final class AvailabilityBar: UIView {
         self.addGestureRecognizer(tap)
     }
     
+    // instantiate the availability bar view using start times and end times passed in
     class func instanceFromNib(startime: Int, endTime: Int) -> AvailabilityBar? {
         let availabilityBar = UINib(nibName: "AvailabilityBar", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? AvailabilityBar
         availabilityBar?.startTime = startime
