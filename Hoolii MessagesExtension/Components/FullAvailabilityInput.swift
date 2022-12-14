@@ -23,10 +23,11 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     var userSchedule: Schedule!
     var setCollectiveScheduleCallback: ((Schedule) -> Void)!
     
-    let availabilityBarWidth: CGFloat = 120
-    let timeIndicatorViewHeight: CGFloat = 15
-    var startTime: Int!
-    var endTime: Int!
+    let availabilityBarWidth: CGFloat = 120 // width of the interactive column that determines
+    let timeIndicatorViewHeight: CGFloat = 15 // height of the segments inside the bar
+    let timeInterval: Int = 60
+    var startTime: HourMinuteTime!
+    var endTime: HourMinuteTime!
     
     override func awakeFromNib() {
         datesScrollView.delegate = self
@@ -51,7 +52,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     }
     
     // display all of the availability bars based on a schedule
-    class func instanceFromNib(userSchedule: Schedule, startTime: Int, endTime: Int, setCollectiveScheduleCallback: @escaping ((Schedule) -> Void)) -> FullAvailabilityInput? {
+    class func instanceFromNib(userSchedule: Schedule, startTime: HourMinuteTime, endTime: HourMinuteTime, setCollectiveScheduleCallback: @escaping ((Schedule) -> Void)) -> FullAvailabilityInput? {
         let fullAvailabilityInput: FullAvailabilityInput? = UINib(nibName: "FullAvailabilityInput", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? FullAvailabilityInput
         fullAvailabilityInput?.userSchedule = userSchedule
         fullAvailabilityInput?.startTime = startTime
@@ -81,8 +82,8 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     
     // when each availability bar is interacted with, set callbacks so that data is changed from these interactions
     private func configureAvailabilityBars() {
-        let startTime: Int = startTime
-        let endTime: Int = endTime
+        let startTime: HourMinuteTime = startTime
+        let endTime: HourMinuteTime = endTime
         
         for i in 0..<userSchedule.datesFree.count {
             if let availabilityBar = AvailabilityBar.instanceFromNib(startime: startTime, endTime: endTime) {
@@ -168,21 +169,13 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     
     // display a list of times to the side of availability bars
     func configureTimeIndicatorVerticalList() {
-        let startTime: Int = startTime
-        let endTime: Int = endTime
-        for time in startTime...endTime {
+        let startTime: HourMinuteTime = startTime
+        let endTime: HourMinuteTime = endTime
+        //for time in startTime...endTime {
+        for i in 0..<Int((endTime - startTime).toFloat()/(CGFloat(timeInterval)/60.0) + 1) {
+            let time: HourMinuteTime = startTime + timeInterval * i
             if let timeIndicatorView = TimeIndicatorView.instanceFromNib() {
-                var timeString: String = ""
-                if time == 0 || time == 24 {
-                    timeString = "  12 AM"
-                } else if time < 12 {
-                    timeString = "  \(time) AM"
-                } else if time == 12 {
-                    timeString = "  \(time) PM"
-                } else {
-                    timeString = "  \(time - 12) PM"
-                }
-                timeIndicatorView.time.text = timeString
+                timeIndicatorView.time.text = time.toString()
                 timeIndicatorView.heightAnchor.constraint(equalToConstant: timeIndicatorViewHeight).isActive = true
                 timeIndicatorVerticalList.addArrangedSubview(timeIndicatorView)
                 timeIndicatorVerticalList.spacing = 60 - timeIndicatorViewHeight

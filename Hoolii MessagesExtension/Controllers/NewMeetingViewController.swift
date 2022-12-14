@@ -41,8 +41,8 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     // set the possible meeting time frame of a meetup
     @IBAction func OnSetTimeframe(_ sender: Any) {
         (delegate as? NewMeetingViewControllerDelegate)?.transitonToYourAvailabilities(self)
-        collectiveSchedule.startTime = 9
-        collectiveSchedule.endTime = 21
+        collectiveSchedule.startTime = HourMinuteTime(hour: 9, minute: 0)
+        collectiveSchedule.endTime = HourMinuteTime(hour: 21, minute: 0)
         yourAvailabiliesViewController?.collectiveSchedule = collectiveSchedule
         yourAvailabiliesViewController?.isCreatingMeeting = true
         self.transitionToScreen(viewController: yourAvailabiliesViewController!)

@@ -12,6 +12,7 @@ import Firebase
 class MessagesViewController: MSMessagesAppViewController {
     
     override func viewDidLoad() {
+        print("loaded")
 //        FirebaseApp.configure()
 //        let uid = "test"
 //        print("Database:")
@@ -64,7 +65,7 @@ class MessagesViewController: MSMessagesAppViewController {
                 
         let controller: AppViewController
         if presentationStyle == .compact {
-            if collectiveSchedule.endTime == 0 {
+            if collectiveSchedule.endTime == HourMinuteTime(hour: 0, minute: 0) {
                 print("compact")
                 let schedulePreviewController: CreateMeetingPreviewViewController = instantiateController()
                 

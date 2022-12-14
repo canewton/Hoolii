@@ -12,11 +12,10 @@ struct TimeRange: Codable {
     
     // MARK: Properties
     
-    // represented in hours from 12am
-    var from: Int
-    var to: Int
+    var from: HourMinuteTime
+    var to: HourMinuteTime
     
-    init(from: Int, to: Int) {
+    init(from: HourMinuteTime, to: HourMinuteTime) {
         self.from = from
         self.to = to
     }
@@ -25,11 +24,11 @@ struct TimeRange: Codable {
 struct TimeRangeCollective {
     
     // MARK: Properties
-    var from: Int
-    var to: Int
+    var from: HourMinuteTime
+    var to: HourMinuteTime
     var users: [User]
     
-    init(from: Int, to: Int, users: [User]) {
+    init(from: HourMinuteTime, to: HourMinuteTime, users: [User]) {
         self.from = from
         self.to = to
         self.users = users

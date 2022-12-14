@@ -22,8 +22,8 @@ class ProfileAvailabilityPreview: UIView {
     }
     
     // get the percentage that a time range fills in comparison to the overall time range
-    func getMultiplier(above: Int, below: Int) -> CGFloat {
-        return CGFloat(below - above)/(CGFloat(overallTimeRange.to - overallTimeRange.from))
+    func getMultiplier(above: HourMinuteTime, below: HourMinuteTime) -> CGFloat {
+        return (below - above).toFloat()/(overallTimeRange.to - overallTimeRange.from).toFloat()
     }
     
     func setUp() {
@@ -44,6 +44,8 @@ class ProfileAvailabilityPreview: UIView {
                 containerView.backgroundColor = AppColors.lightGrey
                 containerView.layer.cornerRadius = 3
                 availabilityHorizontalList.addArrangedSubview(containerView)
+                
+                //print(allAvailabilities[i]?.timesFree)
                 
                 if allAvailabilities[i] != nil {
                     for j in 0..<allAvailabilities[i]!.timesFree.count {
@@ -70,7 +72,7 @@ class ProfileAvailabilityPreview: UIView {
                         
                         // display the start for the content within a container
                         let fromLabel: UILabel = UILabel()
-                        fromLabel.text = getTime(timeRange.from)
+                        fromLabel.text = timeRange.from.toString()
                         fromLabel.font = .systemFont(ofSize: 8)
                         availabilityView.addSubview(fromLabel)
                         fromLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -79,9 +81,9 @@ class ProfileAvailabilityPreview: UIView {
                         fromLabel.topAnchor.constraint(equalTo: availabilityView.topAnchor, constant: 2).isActive = true
                         
                         // display the end time if the availability block is big enough
-                        if timeRange.to - timeRange.from >= 2 {
+                        if (timeRange.to - timeRange.from).toFloat() > 1 {
                             let toLabel: UILabel = UILabel()
-                            toLabel.text = getTime(timeRange.to)
+                            toLabel.text = timeRange.to.toString()
                             toLabel.font = .systemFont(ofSize: 8)
                             availabilityView.addSubview(toLabel)
                             toLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -96,8 +98,8 @@ class ProfileAvailabilityPreview: UIView {
         
         // determine how to scale the content with the containers to fit the container
         func getTimeRange() -> TimeRange {
-            var minTime: Int = 24
-            var maxTime: Int = 0
+            var minTime: HourMinuteTime = HourMinuteTime(hour: 23, minute: 59)
+            var maxTime: HourMinuteTime = HourMinuteTime(hour: 0, minute: 0)
             for scheduleIndex in 0..<schedules.count {
                 for i in 0..<schedules[scheduleIndex].schedule.datesFree.count {
                     let schedule = schedules[scheduleIndex].schedule
@@ -112,20 +114,6 @@ class ProfileAvailabilityPreview: UIView {
                 }
             }
             return TimeRange(from: minTime, to: maxTime)
-        }
-        
-        func getTime(_ timeInput: Int) -> String {
-            var timeString: String = ""
-            if timeInput == 0 || timeInput == 24 {
-                timeString = "12 AM"
-            } else if timeInput < 12 {
-                timeString = "\(timeInput) AM"
-            } else if timeInput == 12 {
-                timeString = "\(timeInput) PM"
-            } else {
-                timeString = "\(timeInput - 12) PM"
-            }
-            return timeString
         }
     }
     

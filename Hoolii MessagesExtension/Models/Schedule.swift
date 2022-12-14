@@ -59,11 +59,11 @@ struct Schedule: Codable {
 struct TimeStamp {
     
     // MARK: Properties
-    var time: Int
+    var time: HourMinuteTime
     var user: User
     var isBeginning: Bool
     
-    init(time: Int, user: User, isBeginning: Bool) {
+    init(time: HourMinuteTime, user: User, isBeginning: Bool) {
         self.time = time
         self.user = user
         self.isBeginning = isBeginning

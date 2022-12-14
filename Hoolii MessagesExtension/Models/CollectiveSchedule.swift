@@ -13,8 +13,8 @@ struct CollectiveSchedule {
     var dates: [Date] = []
     var expirationDate: Date = Date()
     var meetingName: String = ""
-    var startTime: Int = 0
-    var endTime: Int = 0
+    var startTime: HourMinuteTime = HourMinuteTime(hour: 0, minute: 0)
+    var endTime: HourMinuteTime = HourMinuteTime(hour: 0, minute: 0)
 }
 
 /// Extends `CollectiveSchedule` to be able to be represented by and created with an array of `NSURLQueryItems`s
@@ -28,13 +28,17 @@ extension CollectiveSchedule {
         let datesEncodedString = String(data: datessEncoded, encoding: .utf8)!
         let allSchedulesEncoded = try! JSONEncoder().encode(allSchedules)
         let allSchedulesEncodedString = String(data: allSchedulesEncoded, encoding: .utf8)!
+        let startTimeEncoded = try! JSONEncoder().encode(startTime)
+        let startTimeEncodedString = String(data: startTimeEncoded, encoding: .utf8)!
+        let endTimeEncoded = try! JSONEncoder().encode(endTime)
+        let endTimeEncodedString = String(data: endTimeEncoded, encoding: .utf8)!
         
         items.append(URLQueryItem(name: "allSchedules", value: allSchedulesEncodedString))
         items.append(URLQueryItem(name: "dates", value: datesEncodedString))
         items.append(URLQueryItem(name: "expirationDate", value: CalendarDate(expirationDate).dateString))
         items.append(URLQueryItem(name: "meetingName", value: meetingName))
-        items.append(URLQueryItem(name: "startTime", value: String(startTime)))
-        items.append(URLQueryItem(name: "endTime", value: String(endTime)))
+        items.append(URLQueryItem(name: "startTime", value: startTimeEncodedString))
+        items.append(URLQueryItem(name: "endTime", value: endTimeEncodedString))
         
         return items
     }
@@ -50,9 +54,11 @@ extension CollectiveSchedule {
             } else if queryItem.name == "meetingName" {
                 meetingName = queryItem.value!
             } else if queryItem.name == "endTime" {
-                endTime = Int(queryItem.value!)!
+                let dataFromJsonString = queryItem.value!.data(using: .utf8)!
+                endTime = try! JSONDecoder().decode(HourMinuteTime.self, from: dataFromJsonString)
             } else if queryItem.name == "startTime" {
-                startTime = Int(queryItem.value!)!
+                let dataFromJsonString = queryItem.value!.data(using: .utf8)!
+                startTime = try! JSONDecoder().decode(HourMinuteTime.self, from: dataFromJsonString)
             } else if queryItem.name == "dates" {
                 let dataFromJsonString = queryItem.value!.data(using: .utf8)!
                 let datesAsStrings = try! JSONDecoder().decode([String].self, from: dataFromJsonString)

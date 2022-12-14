@@ -7,19 +7,75 @@
 
 import Foundation
 
-class HourMinuteTime {
+class HourMinuteTime: Codable {
     let hour: Int
     let minute: Int
-    let date: Date
     init(hour: Int, minute: Int) {
-        self.hour = hour
-        self.minute = minute
-        date = Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: Date())!
+        self.hour = hour % 24
+        self.minute = minute % 60
     }
     
-    init(date: Date) {
-        self.date = date
-        hour = Calendar.current.component(.hour, from: date)
-        minute = Calendar.current.component(.minute, from: date)
+    func toString() -> String {
+        var timeString: String = ""
+        if hour == 0 || hour == 24 {
+            timeString = "  12 AM"
+        } else if hour < 12 {
+            timeString = "  \(hour) AM"
+        } else if hour == 12 {
+            timeString = "  \(hour) PM"
+        } else {
+            timeString = "  \(hour - 12) PM"
+        }
+        return timeString
+    }
+    
+    public static func +(a: HourMinuteTime, b: Int) -> HourMinuteTime {
+        return HourMinuteTime(hour: ((a.minute + b)/60 + a.hour) % 24, minute: (a.minute + b) % 60)
+    }
+    
+    public static func -(a: HourMinuteTime, b: Int) -> HourMinuteTime {
+        if a.minute - b < 0 {
+            return HourMinuteTime(hour: (a.hour - 1 + (a.minute - b)/60) % 24, minute: 60 + ((a.minute - b)%60))
+        }
+        return HourMinuteTime(hour: a.hour % 24, minute: (a.minute - b) % 60)
+    }
+    
+    public static func +(a: HourMinuteTime, b: HourMinuteTime) -> HourMinuteTime {
+        return HourMinuteTime(hour: ((b.minute + a.minute)/60 + a.hour + b.hour) % 24, minute: (a.minute + b.minute) % 60)
+    }
+    
+    public static func -(a: HourMinuteTime, b: HourMinuteTime) -> HourMinuteTime {
+        if a.minute - b.minute < 0 {
+            return HourMinuteTime(hour: (a.hour - b.hour - 1 + (a.minute - b.minute)/60) % 24, minute: 60 + ((a.minute - b.minute)%60))
+        }
+        return HourMinuteTime(hour: (a.hour - b.hour) % 24, minute: (a.minute - b.minute) % 60)
+    }
+    
+    public static func ==(a: HourMinuteTime, b: HourMinuteTime) -> Bool {
+        return a.hour == b.hour && a.minute == b.minute
+    }
+    
+    public static func !=(a: HourMinuteTime, b: HourMinuteTime) -> Bool {
+        return !(a.hour == b.hour && a.minute == b.minute)
+    }
+    
+    public static func >(a: HourMinuteTime, b: HourMinuteTime) -> Bool {
+        return a.hour > b.hour || (a.hour == b.hour && a.minute > b.minute)
+    }
+    
+    public static func >=(a: HourMinuteTime, b: HourMinuteTime) -> Bool {
+        return a.hour >= b.hour || (a.hour == b.hour && a.minute >= b.minute)
+    }
+    
+    public static func <(a: HourMinuteTime, b: HourMinuteTime) -> Bool {
+        return a.hour < b.hour || (a.hour == b.hour && a.minute < b.minute)
+    }
+    
+    public static func <=(a: HourMinuteTime, b: HourMinuteTime) -> Bool {
+        return a.hour <= b.hour || (a.hour == b.hour && a.minute <= b.minute)
+    }
+    
+    func toFloat() -> CGFloat{
+        return CGFloat(hour) + CGFloat(minute)/60.0
     }
 }

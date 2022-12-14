@@ -13,9 +13,9 @@ final class AvailabilityBar: UIView {
     var performHighlightAction: Bool = true
     var displayAllUsers: Bool = false
     
-    let hourDivisions: Int = 1
-    var startTime: Int = 0
-    var endTime: Int = 0
+    let timeInterval: Int = 60
+    var startTime: HourMinuteTime = HourMinuteTime(hour: 0, minute: 0)
+    var endTime: HourMinuteTime = HourMinuteTime(hour: 0, minute: 0)
     
     var userDay: Day!
     var dayChangedCallback: ((Day) -> ())!
@@ -107,8 +107,8 @@ final class AvailabilityBar: UIView {
     }
     
     // convert the 0...n index to an integer that represents time
-    private func indexToTime(index: Int) -> Int {
-        return index/hourDivisions + startTime
+    private func indexToTime(index: Int) -> HourMinuteTime {
+        return startTime + index * timeInterval
     }
     
     required init?(coder: NSCoder) {
@@ -127,7 +127,7 @@ final class AvailabilityBar: UIView {
     // before the component gets displayed to the UI, configure some properties
     func nibSetup() {
         verticalStack.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        let numberOfBlocks: Int = (hourDivisions * (endTime - startTime))
+        let numberOfBlocks: Int = (Int((endTime - startTime).toFloat())/(timeInterval/60))
         
         // add lines between the blocks
         for i in 0..<numberOfBlocks {
@@ -151,7 +151,7 @@ final class AvailabilityBar: UIView {
     }
     
     // instantiate the availability bar view using start times and end times passed in
-    class func instanceFromNib(startime: Int, endTime: Int) -> AvailabilityBar? {
+    class func instanceFromNib(startime: HourMinuteTime, endTime: HourMinuteTime) -> AvailabilityBar? {
         let availabilityBar = UINib(nibName: "AvailabilityBar", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? AvailabilityBar
         availabilityBar?.startTime = startime
         availabilityBar?.endTime = endTime

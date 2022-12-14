@@ -24,8 +24,8 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     var lastName: String!
     var id: String!
     var collectiveSchedule: CollectiveSchedule!
-    let availabilityBarWidth: CGFloat = 120
-    let timeIndicatorViewHeight: CGFloat = 15
+    let availabilityBarWidth: CGFloat = 120 // width of the interactive column that determines availability
+    let timeIndicatorViewHeight: CGFloat = 15 // might need to delete
     
     // MARK: Properties
     static let storyboardIdentifier = "YourAvailabilitiesViewController"
@@ -44,6 +44,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
             return
         }
         
+        // create new schedule for user if user has not filled it out yet
         if collectiveSchedule.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName)) == nil {
             userSchedule = collectiveSchedule.appendEmptySchedule(user: User(id: id, firstName: firstName, lastName: lastName))
         } else {
@@ -65,8 +66,8 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         
         // dummy data that represents responses to the message
         if collectiveSchedule.allSchedules.count < 2 {
-            collectiveSchedule.allSchedules.append(ScheduleSendable(datesFree: [Day(date: ScheduleDate(CalendarDate("09-27-2022").date), timesFree: [TimeRange(from: 11, to: 16)]), Day(date: ScheduleDate(CalendarDate("09-28-2022").date), timesFree: [TimeRange(from: 10, to: 13)]),Day(date: ScheduleDate(CalendarDate("09-29-2022").date), timesFree: [TimeRange(from: 12, to: 18)]),], user: User(id: "1", firstName: "Joanna", lastName: "Hu")))
-            collectiveSchedule.allSchedules.append(ScheduleSendable(datesFree: [Day(date: ScheduleDate(CalendarDate("09-27-2022").date), timesFree: [TimeRange(from: 9, to: 14)]), Day(date: ScheduleDate(CalendarDate("09-28-2022").date), timesFree: [TimeRange(from: 14, to: 19)]),Day(date: ScheduleDate(CalendarDate("09-29-2022").date), timesFree: [TimeRange(from: 14, to: 20)]),], user: User(id: "2", firstName: "Jessica", lastName: "Mei")))
+            collectiveSchedule.allSchedules.append(ScheduleSendable(datesFree: [Day(date: ScheduleDate(CalendarDate("12-27-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 11, minute: 0), to: HourMinuteTime(hour: 16, minute: 0))]), Day(date: ScheduleDate(CalendarDate("12-28-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 10, minute: 0), to: HourMinuteTime(hour: 13, minute: 0))]),Day(date: ScheduleDate(CalendarDate("12-29-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 12, minute: 0), to: HourMinuteTime(hour: 18, minute: 0))]),], user: User(id: "1", firstName: "Joanna", lastName: "Hu")))
+            collectiveSchedule.allSchedules.append(ScheduleSendable(datesFree: [Day(date: ScheduleDate(CalendarDate("12-27-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 9, minute: 0), to: HourMinuteTime(hour: 14, minute: 0))]), Day(date: ScheduleDate(CalendarDate("12-28-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 14, minute: 0), to: HourMinuteTime(hour: 19, minute: 0))]),Day(date: ScheduleDate(CalendarDate("12-29-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 14, minute: 0), to: HourMinuteTime(hour: 20, minute: 0))]),], user: User(id: "2", firstName: "Jessica", lastName: "Mei")))
         }
     }
     
