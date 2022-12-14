@@ -11,9 +11,6 @@ import UIKit
 class ScheduleSendable: Codable {
     
     var schedule: Schedule;
-    static var queryItemKey: String {
-        return "schedule"
-    }
     
     init(datesFree: [Day], user: User) {
         self.schedule = Schedule(datesFree: datesFree, user: user)

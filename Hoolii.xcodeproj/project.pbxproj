@@ -41,7 +41,6 @@
 		913C119728B1DE8100B5A66F /* DateHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913C119628B1DE8100B5A66F /* DateHeaderView.xib */; };
 		913C119928B1DFD100B5A66F /* DateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C119828B1DFD100B5A66F /* DateHeaderView.swift */; };
 		913C119B28B208C700B5A66F /* AvailabilityBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913C119A28B208C600B5A66F /* AvailabilityBar.xib */; };
-		913EF7982868E83700D5DB08 /* QueryItemRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913EF7972868E83700D5DB08 /* QueryItemRepresentable.swift */; };
 		913EF79A28693DBB00D5DB08 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913EF79928693DBB00D5DB08 /* Schedule.swift */; };
 		9142F970285FA20E0070661F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9142F96F285FA20E0070661F /* Assets.xcassets */; };
 		9142F976285FA20E0070661F /* Hoolii MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9142F975285FA20E0070661F /* Hoolii MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -131,7 +130,6 @@
 		913C119628B1DE8100B5A66F /* DateHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateHeaderView.xib; sourceTree = "<group>"; };
 		913C119828B1DFD100B5A66F /* DateHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHeaderView.swift; sourceTree = "<group>"; };
 		913C119A28B208C600B5A66F /* AvailabilityBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvailabilityBar.xib; sourceTree = "<group>"; };
-		913EF7972868E83700D5DB08 /* QueryItemRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryItemRepresentable.swift; sourceTree = "<group>"; };
 		913EF79928693DBB00D5DB08 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		9142F96C285FA20A0070661F /* Hoolii.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hoolii.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9142F96F285FA20E0070661F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -303,7 +301,6 @@
 			children = (
 				9142F993285FFDD20070661F /* ScheduleSendable.swift */,
 				9142F995286002580070661F /* CollectiveSchedule.swift */,
-				913EF7972868E83700D5DB08 /* QueryItemRepresentable.swift */,
 				913EF79928693DBB00D5DB08 /* Schedule.swift */,
 				916D270D28836F3A003C96BD /* User.swift */,
 				9103E57B289B897600CA661B /* Day.swift */,
@@ -515,7 +512,6 @@
 				918C88CF28D3C8C40052850E /* CreateMeetingPreviewViewController.swift in Sources */,
 				916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */,
 				91A76E5628B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift in Sources */,
-				913EF7982868E83700D5DB08 /* QueryItemRepresentable.swift in Sources */,
 				9103E58A289F50BC00CA661B /* NewMeetingViewController.swift in Sources */,
 				913C119528B0AAFA00B5A66F /* AppViewController.swift in Sources */,
 				9103E5782896DA0400CA661B /* AvailabilityBar.swift in Sources */,

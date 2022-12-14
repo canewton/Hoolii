@@ -26,6 +26,8 @@ class MessagesViewController: MSMessagesAppViewController {
     // MARK: - Conversation Handling
     fileprivate func composeMessage(_ collectiveSchedule: CollectiveSchedule, _ caption: String, _ session: MSSession? = nil) -> MSMessage {
         
+        print(collectiveSchedule)
+        
         // URLComponents are a structure that parses URLs into and constructs URLs from their constituent parts
         var components = URLComponents()
         components.queryItems = collectiveSchedule.queryItems
