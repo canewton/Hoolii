@@ -11,7 +11,7 @@ class WeeklyAvailabilityInputViewController: AppViewController, ViewControllerWi
     @IBOutlet weak var availabilityInputContainer: UIView!
     @IBOutlet weak var bottomBar: UIView!
     var availabilityInput: FullAvailabilityInput!
-    var userSchedule: ScheduleSendable!
+    var userSchedule: Schedule!
     var onSaveCallback: (() -> Void)?
     
     var delegate: AnyObject?
@@ -21,7 +21,7 @@ class WeeklyAvailabilityInputViewController: AppViewController, ViewControllerWi
     override func viewDidLoad() {
         configureBottomBar()
         
-        availabilityInput = FullAvailabilityInput.instanceFromNib(userSchedule: userSchedule.schedule, startTime: HourMinuteTime(hour: 0, minute: 0), endTime: HourMinuteTime(hour: 23, minute: 59), setCollectiveScheduleCallback: setCollectiveSchedule)
+        availabilityInput = FullAvailabilityInput.instanceFromNib(userSchedule: userSchedule, startTime: HourMinuteTime(hour: 0, minute: 0), endTime: HourMinuteTime(hour: 23, minute: 59), setCollectiveScheduleCallback: setCollectiveSchedule)
         availabilityInputContainer.addSubview(availabilityInput)
         availabilityInput.translatesAutoresizingMaskIntoConstraints = false
         availabilityInput.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
@@ -30,7 +30,7 @@ class WeeklyAvailabilityInputViewController: AppViewController, ViewControllerWi
     }
     
     func setCollectiveSchedule(_ schedule: Schedule) {
-        userSchedule.schedule = schedule
+        userSchedule = schedule
     }
     
     @IBAction func OnSave(_ sender: Any) {

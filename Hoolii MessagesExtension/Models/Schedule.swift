@@ -19,6 +19,16 @@ struct Schedule: Codable {
         self.user = user
     }
     
+    init(jsonValue: String) {
+        let dataFromJsonString = jsonValue.data(using: .utf8)!
+        self = try! JSONDecoder().decode(Schedule.self, from: dataFromJsonString)
+    }
+    
+    func getJsonValue() -> String {
+        let encodedData = try! JSONEncoder().encode(self)
+        return String(data: encodedData, encoding: .utf8)!
+    }
+    
     mutating func addDate(_ date: ScheduleDate) {
         self.addDate(date, timesFree: [])
     }

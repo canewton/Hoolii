@@ -10,7 +10,7 @@ import UIKit
 // the preview block for the weekly avaialabilities presented in the Profile Screen
 class ProfileAvailabilityPreview: UIView {
     @IBOutlet weak var availabilityHorizontalList: UIStackView!
-    var schedules: [ScheduleSendable]!
+    var schedules: [Schedule]!
     var userHasEmptySchedule: Bool!
     var numUsers: Int = 3
     var overallTimeRange: TimeRange!
@@ -44,8 +44,6 @@ class ProfileAvailabilityPreview: UIView {
                 containerView.backgroundColor = AppColors.lightGrey
                 containerView.layer.cornerRadius = 3
                 availabilityHorizontalList.addArrangedSubview(containerView)
-                
-                //print(allAvailabilities[i]?.timesFree)
                 
                 if allAvailabilities[i] != nil {
                     for j in 0..<allAvailabilities[i]!.timesFree.count {
@@ -101,8 +99,8 @@ class ProfileAvailabilityPreview: UIView {
             var minTime: HourMinuteTime = HourMinuteTime(hour: 23, minute: 59)
             var maxTime: HourMinuteTime = HourMinuteTime(hour: 0, minute: 0)
             for scheduleIndex in 0..<schedules.count {
-                for i in 0..<schedules[scheduleIndex].schedule.datesFree.count {
-                    let schedule = schedules[scheduleIndex].schedule
+                for i in 0..<schedules[scheduleIndex].datesFree.count {
+                    let schedule = schedules[scheduleIndex]
                     for j in 0..<schedule.datesFree[i].timesFree.count {
                         if schedule.datesFree[i].timesFree[j].from < minTime {
                             minTime = schedule.datesFree[i].timesFree[j].from
@@ -118,7 +116,7 @@ class ProfileAvailabilityPreview: UIView {
     }
     
     // instantiate the view using schedules that are passed in as a parameter
-    class func instanceFromNib(schedules: [ScheduleSendable], emptySchedule: Bool) -> ProfileAvailabilityPreview? {
+    class func instanceFromNib(schedules: [Schedule], emptySchedule: Bool) -> ProfileAvailabilityPreview? {
         let profileAvailabilityPreview: ProfileAvailabilityPreview? = UINib(nibName: "ProfileAvailabilityPreview", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? ProfileAvailabilityPreview
         profileAvailabilityPreview?.schedules = schedules
         profileAvailabilityPreview?.userHasEmptySchedule = emptySchedule

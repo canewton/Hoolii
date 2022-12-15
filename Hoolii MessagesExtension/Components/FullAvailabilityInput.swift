@@ -110,9 +110,9 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     func autofillButtonCallback() {
         let jsonString: String? = StoredValues.get(key: StoredValuesConstants.userSchedule)
         if jsonString != nil {
-            let regularSchedule: ScheduleSendable = ScheduleSendable(jsonValue: jsonString!)
+            let regularSchedule: Schedule = Schedule(jsonValue: jsonString!)
             for i in 0..<userSchedule.datesFree.count {
-                let correspondingWeekday: Day = regularSchedule.schedule.datesFree[CalendarDate(userSchedule.datesFree[i].date.date!).weekday]
+                let correspondingWeekday: Day = regularSchedule.datesFree[CalendarDate(userSchedule.datesFree[i].date.date!).weekday]
                 userSchedule.datesFree[i].timesFree = correspondingWeekday.timesFree
                 updateUserSchedule(schedule: userSchedule)
                 setCollectiveScheduleCallback(userSchedule)

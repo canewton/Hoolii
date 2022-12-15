@@ -114,9 +114,9 @@ class CreateProfileViewController: AppViewController {
     
     // if there is the weekly availability has not been set, return an empty scedule
     // otherwise, decode the json string that has been stored locally and return its contents
-    func getUserAvailability() -> ScheduleSendable {
+    func getUserAvailability() -> Schedule {
         let jsonString: String? = StoredValues.get(key: StoredValuesConstants.userSchedule)
-        var userSchedule: ScheduleSendable = ScheduleSendable(datesFree: [
+        var userSchedule: Schedule = Schedule(datesFree: [
             Day(date: ScheduleDate(0), timesFree: []),
             Day(date: ScheduleDate(1), timesFree: []),
             Day(date: ScheduleDate(2), timesFree: []),
@@ -126,7 +126,7 @@ class CreateProfileViewController: AppViewController {
             Day(date: ScheduleDate(6), timesFree: []),
         ], user: getUser())
         if jsonString != nil {
-            userSchedule = ScheduleSendable(jsonValue: jsonString!)
+            userSchedule = Schedule(jsonValue: jsonString!)
             userHasEmptySchedule = false
         }
         return userSchedule

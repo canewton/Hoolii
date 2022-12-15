@@ -26,8 +26,6 @@ class MessagesViewController: MSMessagesAppViewController {
     // MARK: - Conversation Handling
     fileprivate func composeMessage(_ collectiveSchedule: CollectiveSchedule, _ caption: String, _ session: MSSession? = nil) -> MSMessage {
         
-        print(collectiveSchedule)
-        
         // URLComponents are a structure that parses URLs into and constructs URLs from their constituent parts
         var components = URLComponents()
         components.queryItems = collectiveSchedule.queryItems
@@ -68,7 +66,6 @@ class MessagesViewController: MSMessagesAppViewController {
         let controller: AppViewController
         if presentationStyle == .compact {
             if collectiveSchedule.endTime == HourMinuteTime(hour: 0, minute: 0) {
-                print("compact")
                 let schedulePreviewController: CreateMeetingPreviewViewController = instantiateController()
                 
                 controller = schedulePreviewController
@@ -78,7 +75,6 @@ class MessagesViewController: MSMessagesAppViewController {
             }
         } else {
             if collectiveSchedule.allSchedules.count > 0 {
-                print(collectiveSchedule.allSchedules[0].schedule)
                 let yourAvailabilitiesController: YourAvailabilitiesViewController = instantiateController()
                 controller = yourAvailabilitiesController
                 yourAvailabilitiesController.collectiveSchedule = collectiveSchedule

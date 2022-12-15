@@ -9,12 +9,12 @@ import Foundation
 
 class AvailabilityLogic {
     // separate schedules out into timestamps that defines the user it refers to and if it is the begining of their availability
-    private static func convertSchedulesToTimeStamps(_ allSchedules: [ScheduleSendable], _ updateDatesCallback: (ScheduleDate) -> ()) -> [[[TimeStamp]]] {
+    private static func convertSchedulesToTimeStamps(_ allSchedules: [Schedule], _ updateDatesCallback: (ScheduleDate) -> ()) -> [[[TimeStamp]]] {
         var unsortedTimeStampCollections: [[[TimeStamp]]] = []
         
         for schedule in allSchedules {
-            let user: User = schedule.schedule.user
-            let datesFree: [Day] = schedule.schedule.datesFree
+            let user: User = schedule.user
+            let datesFree: [Day] = schedule.datesFree
             
             var index: Int = 0
             
@@ -130,7 +130,7 @@ class AvailabilityLogic {
         return allAvailability
     }
     
-    static func getDaysAndTimesFree(_ allSchedules: [ScheduleSendable]) -> [DayCollective?] {
+    static func getDaysAndTimesFree(_ allSchedules: [Schedule]) -> [DayCollective?] {
         var dates: [ScheduleDate] = []
         
         let unsortedTimeStampCollections: [[[TimeStamp]]] = convertSchedulesToTimeStamps(allSchedules) { (date) -> () in

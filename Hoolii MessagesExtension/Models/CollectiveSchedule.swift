@@ -9,7 +9,7 @@ import Foundation
 import Messages
 
 struct CollectiveSchedule {
-    var allSchedules: [ScheduleSendable] = []
+    var allSchedules: [Schedule] = []
     var dates: [Date] = []
     var expirationDate: Date = Date()
     var meetingName: String = ""
@@ -48,7 +48,7 @@ extension CollectiveSchedule {
         for queryItem in queryItems {
             if queryItem.name == "allSchedules" {
                 let dataFromJsonString = queryItem.value!.data(using: .utf8)!
-                allSchedules = try! JSONDecoder().decode([ScheduleSendable].self, from: dataFromJsonString)
+                allSchedules = try! JSONDecoder().decode([Schedule].self, from: dataFromJsonString)
             } else if queryItem.name == "expirationDate" {
                 expirationDate = CalendarDate(queryItem.value!).date
             } else if queryItem.name == "meetingName" {
@@ -69,18 +69,18 @@ extension CollectiveSchedule {
     
     func getScheduleWithUser(_ user: User) -> Schedule? {
         for i in 0..<allSchedules.count {
-            if user == allSchedules[i].schedule.user {
-                return allSchedules[i].schedule
+            if user == allSchedules[i].user {
+                return allSchedules[i]
             }
         }
         
         return nil
     }
     
-    func setScheduleWithUser(_ user: User, schedule: Schedule) {
+    mutating func setScheduleWithUser(_ user: User, schedule: Schedule) {
         for i in 0..<allSchedules.count {
-            if user == allSchedules[i].schedule.user {
-                allSchedules[i].schedule = schedule
+            if user == allSchedules[i].user {
+                allSchedules[i] = schedule
             }
         }
     }
@@ -88,9 +88,9 @@ extension CollectiveSchedule {
     // add an empty user schedule
     mutating func appendEmptySchedule(user: User) -> Schedule {
         let dayObjects: [Day] = dates.map{Day(date: ScheduleDate($0), timesFree: [])}
-        let scheduleSendable = ScheduleSendable(datesFree: dayObjects, user: user)
-        allSchedules.append(scheduleSendable)
-        return scheduleSendable.schedule
+        let schedule = Schedule(datesFree: dayObjects, user: user)
+        allSchedules.append(schedule)
+        return schedule
     }
     
     mutating func addDate(_ date: Date) {
