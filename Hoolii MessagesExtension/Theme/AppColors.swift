@@ -17,6 +17,9 @@ struct AppColors {
     // used for borders
     static let offBlack: UIColor = UIColor.init(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
     
-    // used to fill containers
+    // used to fill availability bars
     static let lightGrey: UIColor = UIColor.init(red: 243/255, green: 243/255, blue: 243/255, alpha: 1)
+    
+    // used for availability bar lines
+    static let barLines: UIColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.1)
 }

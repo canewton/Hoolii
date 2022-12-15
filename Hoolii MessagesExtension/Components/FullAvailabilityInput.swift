@@ -25,7 +25,6 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     
     let availabilityBarWidth: CGFloat = 120 // width of the interactive column that determines
     let timeIndicatorViewHeight: CGFloat = 15 // height of the segments inside the bar
-    let timeInterval: Int = 60
     var startTime: HourMinuteTime!
     var endTime: HourMinuteTime!
     
@@ -172,13 +171,13 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         let startTime: HourMinuteTime = startTime
         let endTime: HourMinuteTime = endTime
         //for time in startTime...endTime {
-        for i in 0..<Int((endTime - startTime).toFloat()/(CGFloat(timeInterval)/60.0) + 1) {
-            let time: HourMinuteTime = startTime + timeInterval * i
+        for i in 0..<Int((endTime - startTime).toFloat() + 1) {
+            let time: HourMinuteTime = startTime + AvailabilityConstants.timeInterval * (i * 2)
             if let timeIndicatorView = TimeIndicatorView.instanceFromNib() {
                 timeIndicatorView.time.text = time.toString()
                 timeIndicatorView.heightAnchor.constraint(equalToConstant: timeIndicatorViewHeight).isActive = true
                 timeIndicatorVerticalList.addArrangedSubview(timeIndicatorView)
-                timeIndicatorVerticalList.spacing = 60 - timeIndicatorViewHeight
+                timeIndicatorVerticalList.spacing = CGFloat(AvailabilityConstants.blockHeight) * 2 - timeIndicatorViewHeight
             }
         }
     }

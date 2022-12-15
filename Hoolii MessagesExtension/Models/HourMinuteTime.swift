@@ -64,7 +64,7 @@ class HourMinuteTime: Codable {
     }
     
     public static func >=(a: HourMinuteTime, b: HourMinuteTime) -> Bool {
-        return a.hour >= b.hour || (a.hour == b.hour && a.minute >= b.minute)
+        return a.hour > b.hour || (a.hour == b.hour && a.minute >= b.minute)
     }
     
     public static func <(a: HourMinuteTime, b: HourMinuteTime) -> Bool {
@@ -72,7 +72,7 @@ class HourMinuteTime: Codable {
     }
     
     public static func <=(a: HourMinuteTime, b: HourMinuteTime) -> Bool {
-        return a.hour <= b.hour || (a.hour == b.hour && a.minute <= b.minute)
+        return a.hour < b.hour || (a.hour == b.hour && a.minute <= b.minute)
     }
     
     func toFloat() -> CGFloat{

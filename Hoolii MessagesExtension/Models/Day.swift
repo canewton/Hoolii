@@ -13,7 +13,6 @@ struct Day: Codable {
     // MARK: Properties
     var date: ScheduleDate
     var timesFree: [TimeRange]
-    var timeInterval: Int = 60
     
     init(date: ScheduleDate, timesFree: [TimeRange]) {
         self.date = date
@@ -23,7 +22,7 @@ struct Day: Codable {
     // add an availability time range to the day
     mutating func addAvailability(_ availability: HourMinuteTime) {
         if timesFree.isEmpty {
-            timesFree.append(TimeRange(from: availability, to: availability + timeInterval))
+            timesFree.append(TimeRange(from: availability, to: availability + AvailabilityConstants.timeInterval))
         }
         
         checkInsertTop(availability: availability)
@@ -40,7 +39,7 @@ struct Day: Codable {
                 && !mergedWithBottomBlock
                 && availability < timesFree[i].to
                 && availability > timesFree[i + 1].from) {
-                timesFree.insert(TimeRange(from: availability, to: availability + timeInterval), at: i)
+                timesFree.insert(TimeRange(from: availability, to: availability + AvailabilityConstants.timeInterval), at: i)
             }
         }
         checkInsertBottom(availability: availability)
@@ -54,23 +53,23 @@ struct Day: Codable {
                 break
             }
             
-            if (availability > timesFree[i].from && availability + timeInterval < timesFree[i].to) {
+            if (availability > timesFree[i].from && availability + AvailabilityConstants.timeInterval < timesFree[i].to) {
                 let beginning: HourMinuteTime = timesFree[i].from
                 let end: HourMinuteTime = timesFree[i].to
                 timesFree.remove(at: i)
                 timesFree.insert(TimeRange(from: beginning, to: availability), at: i)
-                timesFree.insert(TimeRange(from: availability + timeInterval, to: end), at: i + 1)
-            } else if (availability == timesFree[i].from && availability + timeInterval < timesFree[i].to) {
-                let beginning: HourMinuteTime = availability + timeInterval
+                timesFree.insert(TimeRange(from: availability + AvailabilityConstants.timeInterval, to: end), at: i + 1)
+            } else if (availability == timesFree[i].from && availability + AvailabilityConstants.timeInterval < timesFree[i].to) {
+                let beginning: HourMinuteTime = availability + AvailabilityConstants.timeInterval
                 let end: HourMinuteTime = timesFree[i].to
                 timesFree.remove(at: i)
                 timesFree.insert(TimeRange(from: beginning, to: end), at: i)
-            } else if (availability > timesFree[i].from && availability + timeInterval == timesFree[i].to) {
+            } else if (availability > timesFree[i].from && availability + AvailabilityConstants.timeInterval == timesFree[i].to) {
                 let beginning: HourMinuteTime = timesFree[i].from
                 let end: HourMinuteTime = availability
                 timesFree.remove(at: i)
                 timesFree.insert(TimeRange(from: beginning, to: end), at: i)
-            } else if (availability == timesFree[i].from && availability + timeInterval == timesFree[i].to) {
+            } else if (availability == timesFree[i].from && availability + AvailabilityConstants.timeInterval == timesFree[i].to) {
                 timesFree.remove(at: i)
             }
         }
@@ -81,7 +80,7 @@ struct Day: Codable {
         if availability == timesFree[blockIndex].to {
             let begining: HourMinuteTime = timesFree[blockIndex].from
             timesFree.remove(at: blockIndex)
-            timesFree.insert(TimeRange(from: begining, to: availability + timeInterval), at: blockIndex)
+            timesFree.insert(TimeRange(from: begining, to: availability + AvailabilityConstants.timeInterval), at: blockIndex)
             return true
         }
         return false
@@ -95,7 +94,7 @@ struct Day: Codable {
             timesFree.remove(at: blockIndex)
             timesFree.remove(at: blockIndex - 1)
             timesFree.insert(TimeRange(from: begining, to: end), at: blockIndex - 1)
-        } else if availability + timeInterval == timesFree[blockIndex].from {
+        } else if availability + AvailabilityConstants.timeInterval == timesFree[blockIndex].from {
             let end: HourMinuteTime = timesFree[blockIndex].to
             timesFree.remove(at: blockIndex)
             timesFree.insert(TimeRange(from: availability, to: end), at: blockIndex)
@@ -108,7 +107,7 @@ struct Day: Codable {
     private mutating func checkInsertTop(availability: HourMinuteTime) {
         let mergedWithBottomBlock = checkMergeWithBottomBlock(availability: availability, blockIndex: 0)
         if !mergedWithBottomBlock && availability < timesFree[0].from {
-            timesFree.insert(TimeRange(from: availability, to: availability + timeInterval), at: 0)
+            timesFree.insert(TimeRange(from: availability, to: availability + AvailabilityConstants.timeInterval), at: 0)
         }
     }
     
@@ -116,7 +115,7 @@ struct Day: Codable {
     private mutating func checkInsertBottom(availability: HourMinuteTime) {
         let mergedWithTopBlock: Bool = checkMergeWithTopBlock(availability: availability, blockIndex: timesFree.count - 1)
         if !mergedWithTopBlock && availability > timesFree[timesFree.count - 1].to {
-            timesFree.append(TimeRange(from: availability, to: availability + timeInterval))
+            timesFree.append(TimeRange(from: availability, to: availability + AvailabilityConstants.timeInterval))
         }
     }
 }

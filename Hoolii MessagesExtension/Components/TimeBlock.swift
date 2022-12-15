@@ -12,13 +12,12 @@ final class TimeBlock: UIView {
     let activeColor: UIColor = AppColors.availability
     let inactiveColor: UIColor = UIColor.clear
     var isActive: Bool = false
-    let minHeight: CGFloat = 60
+    let minHeight: CGFloat = 30
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = inactiveColor
-        heightAnchor.constraint(equalToConstant: minHeight).isActive = true
-        addBorders(edges: .top, color: AppColors.offBlack)
+        heightAnchor.constraint(equalToConstant: CGFloat(AvailabilityConstants.blockHeight)).isActive = true
     }
     
     required init?(coder: NSCoder) {

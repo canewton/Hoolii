@@ -13,7 +13,6 @@ final class AvailabilityBar: UIView {
     var performHighlightAction: Bool = true
     var displayAllUsers: Bool = false
     
-    let timeInterval: Int = 60
     var startTime: HourMinuteTime = HourMinuteTime(hour: 0, minute: 0)
     var endTime: HourMinuteTime = HourMinuteTime(hour: 0, minute: 0)
     
@@ -108,7 +107,7 @@ final class AvailabilityBar: UIView {
     
     // convert the 0...n index to an integer that represents time
     private func indexToTime(index: Int) -> HourMinuteTime {
-        return startTime + index * timeInterval
+        return startTime + index * AvailabilityConstants.timeInterval
     }
     
     required init?(coder: NSCoder) {
@@ -127,13 +126,17 @@ final class AvailabilityBar: UIView {
     // before the component gets displayed to the UI, configure some properties
     func nibSetup() {
         verticalStack.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        let numberOfBlocks: Int = (Int((endTime - startTime).toFloat())/(timeInterval/60))
+        let numberOfBlocks: Int = Int((endTime - startTime).toFloat()/(CGFloat(AvailabilityConstants.timeInterval)/60.0))
         
         // add lines between the blocks
         for i in 0..<numberOfBlocks {
             let block: TimeBlock = TimeBlock()
             if i == numberOfBlocks - 1 {
                 block.addBorders(edges: .bottom, color: AppColors.offBlack)
+            } else if i % 2 == 0 {
+                block.addBorders(edges: .top, color: AppColors.offBlack)
+            } else {
+                block.addBorders(edges: .top, color: AppColors.barLines, thickness: 0.5)
             }
             verticalStack.addArrangedSubview(block)
         }
