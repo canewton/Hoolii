@@ -32,10 +32,10 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         
         ProfileButton.configure(viewController: self)
         
-        configureDatePickers()
         configureMeetingCalendar()
         configureNameField()
         configureMainViewConstraints()
+        configureDatePickers()
     }
     
     // set the possible meeting time frame of a meetup
@@ -49,6 +49,8 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     func configureDatePickers() {
         fromTimePicker.tintColor = AppColors.main
         toTimePicker.tintColor = AppColors.main
+        collectiveSchedule.startTime = HourMinuteTime(date: fromTimePicker.date)
+        collectiveSchedule.endTime = HourMinuteTime(date: toTimePicker.date)
     }
     
     func configureNameField() {
@@ -93,6 +95,8 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     
     func addDateCallback(_ collectiveSchedule: CollectiveSchedule) {
         self.collectiveSchedule = collectiveSchedule
+        self.collectiveSchedule.startTime = HourMinuteTime(date: fromTimePicker.date)
+        self.collectiveSchedule.endTime = HourMinuteTime(date: toTimePicker.date)
     }
     
     @objc func newMeetingFieldDidChange(_ textField: UITextField) {

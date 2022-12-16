@@ -113,9 +113,9 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
             for i in 0..<userSchedule.datesFree.count {
                 let correspondingWeekday: Day = regularSchedule.datesFree[CalendarDate(userSchedule.datesFree[i].date.date!).weekday]
                 userSchedule.datesFree[i].timesFree = correspondingWeekday.timesFree
-                updateUserSchedule(schedule: userSchedule)
-                setCollectiveScheduleCallback(userSchedule)
             }
+            updateUserSchedule(schedule: userSchedule)
+            setCollectiveScheduleCallback(userSchedule)
         }
     }
     

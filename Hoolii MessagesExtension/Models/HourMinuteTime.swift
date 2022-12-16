@@ -58,7 +58,9 @@ class HourMinuteTime: Codable {
     
     public static func -(a: HourMinuteTime, b: HourMinuteTime) -> HourMinuteTime {
         if a.minute - b.minute < 0 {
-            return HourMinuteTime(hour: (a.hour - b.hour - 1 + (a.minute - b.minute)/60) % 24, minute: 60 + ((a.minute - b.minute)%60))
+            let hourOutput: Int = a.hour - b.hour + ((a.minute * -1) - b.minute)/60
+            let minuteOutput: Int = 60 + ((a.minute - b.minute)%60)
+            return HourMinuteTime(hour: hourOutput % 24, minute: minuteOutput)
         }
         return HourMinuteTime(hour: (a.hour - b.hour) % 24, minute: (a.minute - b.minute) % 60)
     }

@@ -45,6 +45,8 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
             return
         }
         
+        print(collectiveSchedule.startTime.hour)
+        print(collectiveSchedule.endTime.hour)
         configureMeetingName()
         
         // create new schedule for user if user has not filled it out yet
