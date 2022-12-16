@@ -43,7 +43,11 @@ struct CalendarDate: Codable {
         self.init(parsedDate)
     }
     
-    func getMonthSymbol() -> String{
+    func getMonthSymbol() -> String {
         return CalendarDate.monthSymbols[month - 1]
+    }
+    
+    public static func ==(a: CalendarDate, b: CalendarDate) -> Bool {
+        return a.month == b.month && a.day == b.day && a.year == b.year
     }
 }

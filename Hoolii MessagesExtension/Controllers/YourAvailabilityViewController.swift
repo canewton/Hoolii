@@ -15,6 +15,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     @IBOutlet weak var editMeetingIcon: UIImageView!
     @IBOutlet weak var editMeetingButton: UIView!
     @IBOutlet weak var topBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var meetingTitle: UILabel!
     var availabilityInput: FullAvailabilityInput!
     var isShowingPersonalView: Bool = true
     var isCreatingMeeting = false
@@ -43,6 +44,8 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         if collectiveSchedule == nil {
             return
         }
+        
+        configureMeetingName()
         
         // create new schedule for user if user has not filled it out yet
         if collectiveSchedule.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName)) == nil {
@@ -78,6 +81,28 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     
     @objc func onEditMeeting(gesture: UITapGestureRecognizer) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    // Determine the name of the meeting
+    func configureMeetingName() {
+        var name: String = collectiveSchedule.meetingName
+        if name == "" {
+            
+            let date: CalendarDate = CalendarDate(collectiveSchedule.dates[0])
+            
+            if collectiveSchedule.dates.count == 1 {
+                if date == CalendarDate(Date()) {
+                    name += "Meeting for today"
+                } else {
+                    name += "Meeting for \(date.getMonthSymbol()) \(date.day)"
+                }
+            } else {
+                name += "Meeting(s) starting \(date.getMonthSymbol()) \(date.day)"
+            }
+        }
+        
+        meetingTitle.text = name
+        collectiveSchedule.meetingName = name
     }
     
     // Determine if the group view or the user view should be displayed

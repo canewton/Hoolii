@@ -302,6 +302,9 @@
                                                 <date key="date" timeIntervalSinceReferenceDate="685771200.19750595">
                                                     <!--2022-09-25 04:00:00 +0000-->
                                                 </date>
+                                                <connections>
+                                                    <action selector="onToTimeChanged:" destination="aQX-sg-Rru" eventType="valueChanged" id="T6h-38-Not"/>
+                                                </connections>
                                             </datePicker>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wfE-Ct-c2q">
                                                 <rect key="frame" x="130" y="0.0" width="40" height="50"/>
@@ -326,6 +329,9 @@
                                                 <date key="date" timeIntervalSinceReferenceDate="685728000.19750595">
                                                     <!--2022-09-24 16:00:00 +0000-->
                                                 </date>
+                                                <connections>
+                                                    <action selector="onFromTimeChanged:" destination="aQX-sg-Rru" eventType="valueChanged" id="cUa-y3-e8n"/>
+                                                </connections>
                                             </datePicker>
                                         </subviews>
                                         <constraints>
@@ -377,12 +383,12 @@
                     <size key="freeformSize" width="360" height="750"/>
                     <connections>
                         <outlet property="createMeetingCalendarContainer" destination="z0B-IN-HoU" id="iyq-R4-SGV"/>
-                        <outlet property="fromDatePicker" destination="1zF-ft-Pog" id="kob-Uq-C9P"/>
+                        <outlet property="fromTimePicker" destination="1zF-ft-Pog" id="4Yq-Bu-GA3"/>
                         <outlet property="mainView" destination="ULV-3i-y4k" id="7Uc-XZ-6N3"/>
                         <outlet property="mainViewBottomConstraint" destination="ecC-NZ-84I" id="fVe-r0-lnU"/>
                         <outlet property="mainViewTopContraint" destination="ckz-Uw-CWD" id="Omz-gH-b91"/>
                         <outlet property="newMeetingField" destination="2gL-SM-Hx5" id="yH6-oS-HVm"/>
-                        <outlet property="toDatePicker" destination="o3Y-xr-A0B" id="BP7-hi-1aF"/>
+                        <outlet property="toTimePicker" destination="o3Y-xr-A0B" id="wFV-DE-rd6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0P6-9H-CoU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -564,6 +570,7 @@
                         <outlet property="editMeetingButton" destination="Ts4-pd-heY" id="TNA-FO-IBz"/>
                         <outlet property="editMeetingIcon" destination="2wM-Le-ts1" id="kf8-MU-RXz"/>
                         <outlet property="filterAvailabilitiesSwitch" destination="l8Y-O7-v2w" id="AH0-Cs-kO9"/>
+                        <outlet property="meetingTitle" destination="Hwm-Ot-hLB" id="qYJ-Vz-IdA"/>
                         <outlet property="sendButton" destination="Bbi-IE-P3T" id="cMN-jU-kQe"/>
                         <outlet property="topBarHeightConstraint" destination="y8t-Rf-mD9" id="g4A-mA-OeJ"/>
                     </connections>
@@ -984,6 +991,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M9O-AU-ncD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="641" y="678"/>
+        </scene>
+        <!--Avatar Creator View Controller-->
+        <scene sceneID="J3t-sM-h6E">
+            <objects>
+                <viewController storyboardIdentifier="WeeklyAvailabilityInputViewController" modalPresentationStyle="fullScreen" id="t6O-mJ-wqx" customClass="AvatarCreatorViewController" customModule="Hoolii_MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WEN-cC-eAG">
+                        <rect key="frame" x="0.0" y="0.0" width="360" height="750"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="eh4-fR-69B"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="360" height="750"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wgy-Yp-Ygp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="699" y="1848"/>
         </scene>
     </scenes>
     <resources>

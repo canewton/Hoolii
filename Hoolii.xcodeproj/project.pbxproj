@@ -55,6 +55,7 @@
 		916D2711288CA97C003C96BD /* GetAvailabilityLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D2710288CA97B003C96BD /* GetAvailabilityLogic.swift */; };
 		918C88CF28D3C8C40052850E /* CreateMeetingPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918C88CE28D3C8C40052850E /* CreateMeetingPreviewViewController.swift */; };
 		91A4E813294BDB7C00AB7E11 /* AvailabilityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4E812294BDB7C00AB7E11 /* AvailabilityConstants.swift */; };
+		91A4E815294C075200AB7E11 /* AvatarCreatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4E814294C075200AB7E11 /* AvatarCreatorViewController.swift */; };
 		91A76E5028B3183100F93DE2 /* TimeIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91A76E4F28B3183100F93DE2 /* TimeIndicatorView.xib */; };
 		91A76E5228B31B1C00F93DE2 /* TimeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A76E5128B31B1C00F93DE2 /* TimeIndicatorView.swift */; };
 		91A76E5628B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A76E5528B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift */; };
@@ -146,6 +147,7 @@
 		916D2710288CA97B003C96BD /* GetAvailabilityLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAvailabilityLogic.swift; sourceTree = "<group>"; };
 		918C88CE28D3C8C40052850E /* CreateMeetingPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMeetingPreviewViewController.swift; sourceTree = "<group>"; };
 		91A4E812294BDB7C00AB7E11 /* AvailabilityConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityConstants.swift; sourceTree = "<group>"; };
+		91A4E814294C075200AB7E11 /* AvatarCreatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCreatorViewController.swift; sourceTree = "<group>"; };
 		91A76E4F28B3183100F93DE2 /* TimeIndicatorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeIndicatorView.xib; sourceTree = "<group>"; };
 		91A76E5128B31B1C00F93DE2 /* TimeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIndicatorView.swift; sourceTree = "<group>"; };
 		91A76E5528B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterAvailabilitiesSwitch.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				916D270B288319E4003C96BD /* CreateProfileViewController.swift */,
 				9103CF2728C8E7CD00BBC349 /* WeeklyAvailabilityInputViewController.swift */,
 				918C88CE28D3C8C40052850E /* CreateMeetingPreviewViewController.swift */,
+				91A4E814294C075200AB7E11 /* AvatarCreatorViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				9103E587289F4F5900CA661B /* YourAvailabilityViewController.swift in Sources */,
 				9100ED8528E01C9D00DA4F43 /* HourMinuteTime.swift in Sources */,
 				9142F97E285FA20E0070661F /* MessagesViewController.swift in Sources */,
+				91A4E815294C075200AB7E11 /* AvatarCreatorViewController.swift in Sources */,
 				9103E57A2897550500CA661B /* TimeBlock.swift in Sources */,
 				91A76E5E28C1C96C00F93DE2 /* ProfileAvailabilityPreview.swift in Sources */,
 				9142F996286002580070661F /* CollectiveSchedule.swift in Sources */,

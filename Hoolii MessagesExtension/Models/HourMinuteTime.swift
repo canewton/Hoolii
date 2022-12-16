@@ -15,9 +15,15 @@ class HourMinuteTime: Codable {
         self.minute = minute % 60
     }
     
+    init(date: Date) {
+        let calendar = Calendar.current
+        self.hour = calendar.component(.hour, from: date)
+        self.minute = calendar.component(.minute, from: date)
+    }
+    
     func toString() -> String {
         var timeString: String = ""
-        if hour == 0 || hour == 24 {
+        if hour == 0 {
             timeString = "  12 AM"
         } else if hour < 12 {
             timeString = "  \(hour) AM"

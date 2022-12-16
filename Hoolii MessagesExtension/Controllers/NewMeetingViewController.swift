@@ -21,8 +21,8 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     let arrowLeftIcon: ScaledIcon = ScaledIcon(name: "chevron-left-solid", width: 15, height: 15, color: .black)
     let arrowRightIcon: ScaledIcon = ScaledIcon(name: "chevron-right-solid", width: 15, height: 15, color: .black)
     @IBOutlet weak var newMeetingField: UITextField!
-    @IBOutlet weak var fromDatePicker: UIDatePicker!
-    @IBOutlet weak var toDatePicker: UIDatePicker!
+    @IBOutlet weak var fromTimePicker: UIDatePicker!
+    @IBOutlet weak var toTimePicker: UIDatePicker!
     
     let formatter = DateFormatter()
     var collectiveSchedule: CollectiveSchedule = CollectiveSchedule()
@@ -41,16 +41,14 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     // set the possible meeting time frame of a meetup
     @IBAction func OnSetTimeframe(_ sender: Any) {
         (delegate as? NewMeetingViewControllerDelegate)?.transitonToYourAvailabilities(self)
-        collectiveSchedule.startTime = HourMinuteTime(hour: 9, minute: 0)
-        collectiveSchedule.endTime = HourMinuteTime(hour: 21, minute: 0)
         yourAvailabiliesViewController?.collectiveSchedule = collectiveSchedule
         yourAvailabiliesViewController?.isCreatingMeeting = true
         self.transitionToScreen(viewController: yourAvailabiliesViewController!)
     }
     
     func configureDatePickers() {
-        fromDatePicker.tintColor = AppColors.main
-        toDatePicker.tintColor = AppColors.main
+        fromTimePicker.tintColor = AppColors.main
+        toTimePicker.tintColor = AppColors.main
     }
     
     func configureNameField() {
@@ -71,6 +69,14 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         meetingCalendar.view.rightAnchor.constraint(equalTo: createMeetingCalendarContainer.rightAnchor).isActive = true
         meetingCalendar.view.bottomAnchor.constraint(equalTo: createMeetingCalendarContainer.bottomAnchor).isActive = true
         meetingCalendar.view.topAnchor.constraint(equalTo: createMeetingCalendarContainer.topAnchor).isActive = true
+    }
+    
+    @IBAction func onFromTimeChanged(_ sender: Any) {
+        collectiveSchedule.startTime = HourMinuteTime(date: fromTimePicker.date)
+    }
+    
+    @IBAction func onToTimeChanged(_ sender: Any) {
+        collectiveSchedule.endTime = HourMinuteTime(date: toTimePicker.date)
     }
     
     func addDateCallback(_ collectiveSchedule: CollectiveSchedule) {
