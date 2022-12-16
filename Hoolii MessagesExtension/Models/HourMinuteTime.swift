@@ -35,13 +35,19 @@ class HourMinuteTime: Codable {
         return timeString
     }
     
+    func toDate() -> Date {
+        let calendar = Calendar.current
+        let dateComponents = DateComponents(hour: hour, minute: minute)
+        return calendar.date(from: dateComponents)!
+    }
+    
     public static func +(a: HourMinuteTime, b: Int) -> HourMinuteTime {
         return HourMinuteTime(hour: ((a.minute + b)/60 + a.hour) % 24, minute: (a.minute + b) % 60)
     }
     
     public static func -(a: HourMinuteTime, b: Int) -> HourMinuteTime {
         if a.minute - b < 0 {
-            return HourMinuteTime(hour: (a.hour - 1 + (a.minute - b)/60) % 24, minute: 60 + ((a.minute - b)%60))
+            return HourMinuteTime(hour: (a.hour + ((a.minute * -1) - b)/60) % 24, minute: 60 + ((a.minute - b)%60))
         }
         return HourMinuteTime(hour: a.hour % 24, minute: (a.minute - b) % 60)
     }

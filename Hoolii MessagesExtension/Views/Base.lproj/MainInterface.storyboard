@@ -995,7 +995,7 @@
         <!--Avatar Creator View Controller-->
         <scene sceneID="J3t-sM-h6E">
             <objects>
-                <viewController storyboardIdentifier="WeeklyAvailabilityInputViewController" modalPresentationStyle="fullScreen" id="t6O-mJ-wqx" customClass="AvatarCreatorViewController" customModule="Hoolii_MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AvatarCreatorViewController" modalPresentationStyle="fullScreen" id="t6O-mJ-wqx" customClass="AvatarCreatorViewController" customModule="Hoolii_MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WEN-cC-eAG">
                         <rect key="frame" x="0.0" y="0.0" width="360" height="750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -72,11 +72,23 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     }
     
     @IBAction func onFromTimeChanged(_ sender: Any) {
-        collectiveSchedule.startTime = HourMinuteTime(date: fromTimePicker.date)
+        var fromTime: HourMinuteTime = HourMinuteTime(date: fromTimePicker.date)
+        let toTime: HourMinuteTime = HourMinuteTime(date: toTimePicker.date)
+        if fromTime >= toTime - 60 {
+            fromTime = toTime - 60
+        }
+        collectiveSchedule.startTime = fromTime
+        fromTimePicker.date = fromTime.toDate()
     }
     
     @IBAction func onToTimeChanged(_ sender: Any) {
-        collectiveSchedule.endTime = HourMinuteTime(date: toTimePicker.date)
+        var toTime: HourMinuteTime = HourMinuteTime(date: toTimePicker.date)
+        let fromTime: HourMinuteTime = HourMinuteTime(date: fromTimePicker.date)
+        if fromTime >= toTime - 60 {
+            toTime = fromTime + 60
+        }
+        collectiveSchedule.endTime = toTime
+        toTimePicker.date = toTime.toDate()
     }
     
     func addDateCallback(_ collectiveSchedule: CollectiveSchedule) {
