@@ -12,6 +12,7 @@ import UIKit
 class CreateProfileViewController: AppViewController {
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var backButton: BackButton!
+    @IBOutlet weak var AvatarCreatorButton: UIButton!
     @IBOutlet weak var profileIcon: UIView!
     @IBOutlet weak var profileInitials: UILabel!
     @IBOutlet weak var editButton: UIButton!
@@ -25,6 +26,9 @@ class CreateProfileViewController: AppViewController {
     
     static let storyboardIdentifier = "CreateProfileViewController"
     
+    @IBAction func avatarButtonPressed(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "goToAvatar", sender: self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

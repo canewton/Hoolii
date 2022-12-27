@@ -9,4 +9,167 @@ import UIKit
 
 class AvatarCreatorViewController: AppViewController {
     
+    let chinArray = ["Chin 1.svg", "Chin 2.svg", "Chin 3.svg", "Chin 4 Beard.svg", "Chin 5 Beard.svg", "Chin 6 Beard.svg", "Chin 7 Beard.svg", "Chin 8 Beard.svg", "Chin 9 Beard.svg", "Chin 10 Beard.svg"]
+   
+    let earArray = ["transparent", "Ears 2.svg", "Ears 3.svg", "Ears 4.svg", "Ears 5.svg"]
+    
+    let browArray = ["Eyebrows 1.svg", "Eyebrows 2.svg", "Eyebrows 3.svg", "Eyebrows 4.svg", "Eyebrows 5.svg"]
+    
+    let lensArray = ["transparent","Eyes Glasses 2 lense.svg","Eyes Glasses 3 lense.svg", "Eyes Glasses 4 lense.svg", "Eyes Glasses 5 lense.svg"]
+    let frameArray = ["transparent","Eyes Glasses 2.svg","Eyes Glasses 3.svg", "Eyes Glasses 4.svg", "Eyes Glasses 5.svg"]
+    
+    let maleFrontArray = ["Male hair 1", "Male hair 2", "Male hair 3", "Male hair 4", "Male hair 5", "Male hair 6", "Male hair 7 front", "Male hair 8", "Male hair 9 front", "Male hair 10 front", "Male hair 11 front", "Male hair 12", "Male hair 13", "Male hair 14", "Male hair 15", "Male hair 16"]
+    let maleBackArray = ["transparent","transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "Male hair 9 back", "Male hair 10 back", "Male hair 11 back", "transparent", "transparent", "transparent", "transparent", "transparent"]
+    let maleSideArray = ["transparent","transparent", "transparent", "transparent", "transparent", "transparent", "Male hair 7 side", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"]
+    let maleHairtieArray = ["transparent","transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "Male hair 9 hairtie", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"]
+    
+    let femFrontArray = ["Female hair 1 front","Female hair 2 front", "Female hair 3 front", "Female hair 4 front", "Female hair 5 front", "Female hair 6 front", "transparent", "Female hair 8 front", "Female hair 9 front", "Female hair 10", "Female hair 11", "Female hair 12 front", "Female hair 13", "Female hair 14 front", "Female hair 15"]
+    let femBackArray = ["Female hair 1 back", "Female hair 2 back", "Female hair 3 back", "Female hair 4 back", "Female hair 5 back", "Female hair 6 back", "Female hair 7", "Female hair 8 back", "Female hair 9 back", "transparent", "transparent", "Female hair 12 back", "transparent", "Female hair 14 back", "transparent"]
+    let femSideArray = ["transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "Female hair 9 front highlight", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"]
+    let femHairtieArray = ["transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "Female hair 9 front hairtie", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"]
+    
+    
+    
+    
+    let mouthArray = ["Mouth 1.png","Mouth 2.png", "Mouth 3.png", "Mouth 4.png", "Mouth 5.png"]
+    
+    let noseArray = ["Nose 1.png","Nose 2.png", "Nose 3.png", "Nose 4.png", "Nose 5.png"]
+    
+    @IBOutlet weak var backHairImgView: UIImageView!
+    @IBOutlet weak var headImgView: UIImageView!
+    @IBOutlet weak var earImgView: UIImageView!
+    @IBOutlet weak var chinImgView: UIImageView!
+    @IBOutlet weak var beardImgView: UIImageView!
+    @IBOutlet weak var noseImgView: UIImageView!
+    @IBOutlet weak var mouthImgView: UIImageView!
+    @IBOutlet weak var eyeImgView: UIImageView!
+    @IBOutlet weak var glassFrameImgVIew: UIImageView!
+    @IBOutlet weak var glassLensImgView: UIImageView!
+    @IBOutlet weak var eyebrowImgView: UIImageView!
+    @IBOutlet weak var sideHairImgView: UIImageView!
+    @IBOutlet weak var frontHairImgView: UIImageView!
+    @IBOutlet weak var hairTieImgView: UIImageView!
+    @IBOutlet weak var elemSlctrSgmnt: UISegmentedControl!
+    @IBOutlet weak var elemValLabel: UILabel!
+    @IBOutlet weak var elemChoiceSlider: UISlider!
+   
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        elemChoiceSlider.value = 0
+        let sliderMax = Float((chinArray.count - 1))
+        elemChoiceSlider.maximumValue = sliderMax
+        
+    }
+    
+    
+    @IBAction func BackButtonPressed(_ sender: UIButton) {
+        self.dismiss(animated: true)
+    }
+    
+    
+    @IBAction func elemSelected(_ sender: UISegmentedControl) {
+        let index = sender.selectedSegmentIndex
+        if (index == 0) {
+            print("Chin")
+            elemChoiceSlider.value = 0
+            let sliderMax = Float((chinArray.count - 1))
+            elemChoiceSlider.maximumValue = sliderMax
+        }
+        if (index == 1) {
+            print("Ears")
+            elemChoiceSlider.value = 0
+            let sliderMax = Float((earArray.count - 1))
+            elemChoiceSlider.maximumValue = sliderMax
+        }
+        if (index == 2) {
+            print("Eyes")
+            elemChoiceSlider.value = 0
+            let sliderMax = Float((frameArray.count - 1))
+            elemChoiceSlider.maximumValue = sliderMax
+        }
+        if (index == 3) {
+            print("Brows")
+            elemChoiceSlider.value = 0
+            let sliderMax = Float((browArray.count - 1))
+            elemChoiceSlider.maximumValue = sliderMax
+        }
+        if (index == 4) {
+            print("Mouth")
+            elemChoiceSlider.value = 0
+            let sliderMax = Float((mouthArray.count-1))
+            elemChoiceSlider.maximumValue = sliderMax
+            
+        }
+        if (index == 5) {
+            print("Nose")
+            elemChoiceSlider.value = 0
+            let sliderMax = Float((noseArray.count - 1))
+            elemChoiceSlider.maximumValue = sliderMax
+            
+        }
+        if (index == 6) {
+            print("M. Hair")
+            elemChoiceSlider.value = 0
+            let sliderMax = Float((maleFrontArray.count - 1))
+            elemChoiceSlider.maximumValue = sliderMax
+        }
+        if (index == 7) {
+            print("F. Hair")
+            elemChoiceSlider.value = 0
+            let sliderMax = Float((femFrontArray.count - 1))
+            elemChoiceSlider.maximumValue = sliderMax
+        }
+    }
+    
+    
+    @IBAction func elemSliderMoved(_ sender: UISlider) {
+        let elem = String(format: "%.0f", sender.value)
+        let elemInt = Int(elem) ?? 0
+        elemValLabel.text = "Option: \(elemInt + 1)"
+        let index = elemSlctrSgmnt.selectedSegmentIndex
+        
+        switch index {
+        case 0:
+            chinImgView.image = UIImage(imageLiteralResourceName: chinArray[elemInt])
+            if(elemInt >= 3){
+                chinImgView.image = UIImage(imageLiteralResourceName: chinArray[1])
+                beardImgView.image = UIImage(imageLiteralResourceName: chinArray[elemInt])
+                mouthImgView.image = UIImage(imageLiteralResourceName: mouthArray[0])
+            } else {
+                beardImgView.image = UIImage(imageLiteralResourceName: "transparent")
+            }
+        case 1:
+            earImgView.image = UIImage(imageLiteralResourceName: earArray[elemInt])
+        case 2:
+            glassLensImgView.image = UIImage(imageLiteralResourceName: lensArray[elemInt])
+            glassFrameImgVIew.image = UIImage(imageLiteralResourceName: frameArray[elemInt] )
+        case 3:
+            eyebrowImgView.image = UIImage(imageLiteralResourceName: browArray[elemInt])
+        case 4:
+            mouthImgView.image = UIImage(imageLiteralResourceName: mouthArray[elemInt])
+        case 5:
+            noseImgView.image = UIImage(imageLiteralResourceName: noseArray[elemInt])
+        case 6:
+            backHairImgView.image = UIImage(imageLiteralResourceName: maleBackArray[elemInt])
+            sideHairImgView.image = UIImage(imageLiteralResourceName: maleSideArray[elemInt])
+            hairTieImgView.image = UIImage(imageLiteralResourceName: maleHairtieArray[elemInt])
+            frontHairImgView.image = UIImage(imageLiteralResourceName: maleFrontArray[elemInt])
+        case 7:
+            backHairImgView.image = UIImage(imageLiteralResourceName: femBackArray[elemInt])
+            sideHairImgView.image = UIImage(imageLiteralResourceName: femSideArray[elemInt])
+            hairTieImgView.image = UIImage(imageLiteralResourceName: femHairtieArray[elemInt])
+            frontHairImgView.image = UIImage(imageLiteralResourceName: femFrontArray[elemInt])
+        default:
+            break
+        }
+        print(elemInt)
+    }
+    
+    
+
+    
+
+    
+    
 }
