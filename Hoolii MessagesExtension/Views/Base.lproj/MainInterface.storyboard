@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -99,6 +99,15 @@
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title=" Back"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ta7-tI-7e4">
+                                <rect key="frame" x="257" y="63" width="72" height="35"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Avatar"/>
+                                <connections>
+                                    <action selector="avatarButtonPressed:" destination="RBV-bn-Gz5" eventType="touchUpInside" id="6uA-lc-2AV"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDp-vt-AT6">
                                 <rect key="frame" x="30" y="127.5" width="56.5" height="21.5"/>
@@ -211,8 +220,11 @@
                             <constraint firstItem="ge2-WX-SNk" firstAttribute="top" secondItem="hDp-vt-AT6" secondAttribute="bottom" constant="5" id="NKr-ps-8hm"/>
                             <constraint firstItem="WQd-dh-Tof" firstAttribute="trailing" secondItem="ge2-WX-SNk" secondAttribute="trailing" constant="30" id="Nbu-TQ-62Y"/>
                             <constraint firstItem="89T-rh-JY4" firstAttribute="top" secondItem="xT4-4D-LhE" secondAttribute="bottom" constant="20" id="Rp4-Xq-um8"/>
+                            <constraint firstItem="ta7-tI-7e4" firstAttribute="top" secondItem="WQd-dh-Tof" secondAttribute="top" constant="15" id="clO-eN-hpP"/>
+                            <constraint firstItem="ge2-WX-SNk" firstAttribute="top" secondItem="ta7-tI-7e4" secondAttribute="bottom" constant="56" id="dvb-2f-893"/>
                             <constraint firstItem="ac7-f5-WZe" firstAttribute="leading" secondItem="WQd-dh-Tof" secondAttribute="leading" constant="20" id="dy6-Dh-vcp"/>
                             <constraint firstItem="hDp-vt-AT6" firstAttribute="top" secondItem="ac7-f5-WZe" secondAttribute="bottom" constant="30" id="e5K-lT-4E7"/>
+                            <constraint firstItem="WQd-dh-Tof" firstAttribute="trailing" secondItem="ta7-tI-7e4" secondAttribute="trailing" constant="31" id="leX-vH-Ve5"/>
                             <constraint firstItem="WQd-dh-Tof" firstAttribute="trailing" secondItem="xT4-4D-LhE" secondAttribute="trailing" constant="30" id="rNZ-DD-ClV"/>
                             <constraint firstItem="ac7-f5-WZe" firstAttribute="top" secondItem="WQd-dh-Tof" secondAttribute="top" constant="15" id="xmV-8b-zTG"/>
                             <constraint firstItem="hDp-vt-AT6" firstAttribute="leading" secondItem="WQd-dh-Tof" secondAttribute="leading" constant="30" id="yYt-ko-YEP"/>
@@ -222,6 +234,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="360" height="750"/>
                     <connections>
+                        <outlet property="AvatarCreatorButton" destination="ta7-tI-7e4" id="gt7-49-mXO"/>
                         <outlet property="backButton" destination="ac7-f5-WZe" id="qwO-FK-CkU"/>
                         <outlet property="editButton" destination="RvE-bK-PPB" id="cS9-A5-Qqc"/>
                         <outlet property="firstNameTextField" destination="WWB-FT-Fsh" id="Kve-vS-fe9"/>
@@ -230,6 +243,7 @@
                         <outlet property="profileIcon" destination="lTR-2z-kk0" id="mIK-xA-QqV"/>
                         <outlet property="profileInitials" destination="QIs-mW-qnw" id="Hyu-hK-K7g"/>
                         <outlet property="usernameField" destination="WWB-FT-Fsh" id="tlv-6H-d0q"/>
+                        <segue destination="t6O-mJ-wqx" kind="presentation" identifier="goToAvatar" id="dPN-KK-Wud"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HEl-JM-vDE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -999,18 +1013,152 @@
                     <view key="view" contentMode="scaleToFill" id="WEN-cC-eAG">
                         <rect key="frame" x="0.0" y="0.0" width="360" height="750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="transparent" translatesAutoresizingMaskIntoConstraints="NO" id="4bu-eH-US6" userLabel="BackHairImage">
+                                <rect key="frame" x="0.0" y="69" width="255" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Ear 1 + Head" translatesAutoresizingMaskIntoConstraints="NO" id="DNu-7O-Yy0" userLabel="HeadImage">
+                                <rect key="frame" x="0.0" y="69" width="255" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="transparent" translatesAutoresizingMaskIntoConstraints="NO" id="z9S-6Q-li7" userLabel="EarImage">
+                                <rect key="frame" x="0.0" y="69" width="255" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Chin 1" translatesAutoresizingMaskIntoConstraints="NO" id="kjS-Lp-jq0" userLabel="ChinImage">
+                                <rect key="frame" x="0.0" y="69" width="255" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="transparent" translatesAutoresizingMaskIntoConstraints="NO" id="g0y-hs-aZB" userLabel="BeardImage">
+                                <rect key="frame" x="0.0" y="69" width="255" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Nose 1" translatesAutoresizingMaskIntoConstraints="NO" id="os9-fv-fJX" userLabel="NoseImage">
+                                <rect key="frame" x="0.0" y="69" width="255" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Mouth 1" translatesAutoresizingMaskIntoConstraints="NO" id="n5I-QK-t6q" userLabel="MouthImage">
+                                <rect key="frame" x="0.0" y="69" width="255" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Eyes 1" translatesAutoresizingMaskIntoConstraints="NO" id="kh9-uE-NBh" userLabel="EyeImage">
+                                <rect key="frame" x="0.0" y="69" width="255" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="transparent" translatesAutoresizingMaskIntoConstraints="NO" id="uy1-6k-f1x" userLabel="GlassesLensImage">
+                                <rect key="frame" x="0.0" y="69" width="255" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Eyebrows 1" translatesAutoresizingMaskIntoConstraints="NO" id="Eat-xg-Fku" userLabel="EyeBrowImage">
+                                <rect key="frame" x="0.0" y="69" width="255" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Male hair 1" translatesAutoresizingMaskIntoConstraints="NO" id="CJP-xj-vDp" userLabel="FrontHairImage">
+                                <rect key="frame" x="0.0" y="69" width="255" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="transparent" translatesAutoresizingMaskIntoConstraints="NO" id="Sii-aK-tGD" userLabel="SideHairImage">
+                                <rect key="frame" x="0.0" y="69" width="255" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Option No. " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuK-sE-iKz" userLabel="ElementValueLabel">
+                                <rect key="frame" x="247" y="471" width="87" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose Option" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="noC-Uk-sjJ" userLabel="ElementLabel">
+                                <rect key="frame" x="23" y="434" width="114" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="g5r-lS-7pM" userLabel="ElementChoiceSlider">
+                                <rect key="frame" x="23" y="463" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="elemSliderMoved:" destination="t6O-mJ-wqx" eventType="valueChanged" id="X8D-dO-mG9"/>
+                                </connections>
+                            </slider>
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="transparent" translatesAutoresizingMaskIntoConstraints="NO" id="OAU-p6-T32" userLabel="HairTieImage">
+                                <rect key="frame" x="0.0" y="69" width="255" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="transparent" translatesAutoresizingMaskIntoConstraints="NO" id="ftD-bg-n9B" userLabel="GlassesFrameImage">
+                                <rect key="frame" x="0.0" y="69" width="255" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="biv-kg-mvA" userLabel="BackButton">
+                                <rect key="frame" x="284" y="69" width="62" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Back">
+                                    <color key="baseBackgroundColor" red="0.37796253938630919" green="0.66498450003814424" blue="0.58152239621960333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="BackButtonPressed:" destination="t6O-mJ-wqx" eventType="touchUpInside" id="mqE-Zj-qY0"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2EN-ho-lSh">
+                                <rect key="frame" x="0.0" y="376" width="360" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Chin"/>
+                                    <segment title="Ears"/>
+                                    <segment title="Eyes"/>
+                                    <segment title="Brows"/>
+                                    <segment title="Mouth"/>
+                                    <segment title="Nose"/>
+                                    <segment title="M. Hair"/>
+                                    <segment title="F. Hair"/>
+                                </segments>
+                                <connections>
+                                    <action selector="elemSelected:" destination="t6O-mJ-wqx" eventType="valueChanged" id="fXu-uP-mpm"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="eh4-fR-69B"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.51690662278897581" green="0.90209790209790208" blue="0.67549705196764021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="360" height="750"/>
+                    <connections>
+                        <outlet property="backHairImgView" destination="4bu-eH-US6" id="hzg-9G-EgT"/>
+                        <outlet property="beardImgView" destination="g0y-hs-aZB" id="zb7-DD-IQM"/>
+                        <outlet property="chinImgView" destination="kjS-Lp-jq0" id="fiX-H5-wcD"/>
+                        <outlet property="earImgView" destination="z9S-6Q-li7" id="RhJ-tq-GWM"/>
+                        <outlet property="elemChoiceSlider" destination="g5r-lS-7pM" id="Ke2-xn-5OT"/>
+                        <outlet property="elemSlctrSgmnt" destination="2EN-ho-lSh" id="Oes-Ms-HHW"/>
+                        <outlet property="elemValLabel" destination="iuK-sE-iKz" id="D5W-2c-3wy"/>
+                        <outlet property="eyeImgView" destination="kh9-uE-NBh" id="Hqa-4R-wLQ"/>
+                        <outlet property="eyebrowImgView" destination="Eat-xg-Fku" id="GpC-8i-fw9"/>
+                        <outlet property="frontHairImgView" destination="CJP-xj-vDp" id="V25-18-uDt"/>
+                        <outlet property="glassFrameImgVIew" destination="ftD-bg-n9B" id="TqP-FH-HeF"/>
+                        <outlet property="glassLensImgView" destination="uy1-6k-f1x" id="8em-ae-UAp"/>
+                        <outlet property="hairTieImgView" destination="OAU-p6-T32" id="QMu-SY-XVp"/>
+                        <outlet property="headImgView" destination="DNu-7O-Yy0" id="DKh-rY-cs3"/>
+                        <outlet property="mouthImgView" destination="n5I-QK-t6q" id="CXy-a6-NqW"/>
+                        <outlet property="noseImgView" destination="os9-fv-fJX" id="vR6-UL-szV"/>
+                        <outlet property="sideHairImgView" destination="CJP-xj-vDp" id="XD4-2s-F8u"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wgy-Yp-Ygp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="699" y="1848"/>
+            <point key="canvasLocation" x="698.55072463768124" y="1847.5446428571427"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Chin 1" width="800" height="800"/>
+        <image name="Ear 1 + Head" width="800" height="800"/>
+        <image name="Eyebrows 1" width="800" height="800"/>
+        <image name="Eyes 1" width="800" height="800"/>
+        <image name="Male hair 1" width="800" height="800"/>
+        <image name="Mouth 1" width="3334" height="3334"/>
+        <image name="Nose 1" width="3334" height="3334"/>
+        <image name="transparent" width="1600" height="900"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
