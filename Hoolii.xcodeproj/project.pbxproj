@@ -19,8 +19,6 @@
 		9103CF3428C989C300BBC349 /* AutofillButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9103CF3328C989C300BBC349 /* AutofillButton.xib */; };
 		9103CF3628C989EA00BBC349 /* AutofillButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103CF3528C989EA00BBC349 /* AutofillButton.swift */; };
 		9103CF3828D2F28800BBC349 /* ScheduleDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103CF3728D2F28700BBC349 /* ScheduleDate.swift */; };
-		9103E5732896479100CA661B /* libFirebaseDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9103E5722896479100CA661B /* libFirebaseDatabase.a */; };
-		9103E575289647B700CA661B /* libFirebaseCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9103E574289647B700CA661B /* libFirebaseCore.a */; };
 		9103E5782896DA0400CA661B /* AvailabilityBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E5772896DA0400CA661B /* AvailabilityBar.swift */; };
 		9103E57A2897550500CA661B /* TimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E5792897550500CA661B /* TimeBlock.swift */; };
 		9103E57C289B897600CA661B /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E57B289B897600CA661B /* Day.swift */; };
@@ -164,8 +162,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9103E5732896479100CA661B /* libFirebaseDatabase.a in Frameworks */,
-				9103E575289647B700CA661B /* libFirebaseCore.a in Frameworks */,
 				9142F97B285FA20E0070661F /* Messages.framework in Frameworks */,
 				FC0AC900BAF8436FCCEFF0BF /* libPods-Hoolii MessagesExtension.a in Frameworks */,
 			);
@@ -700,7 +696,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.Hoolii.MessagesExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.HooliiApp.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -729,7 +725,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.Hoolii.MessagesExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.HooliiApp.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -752,7 +748,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.Hoolii;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.HooliiApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -774,7 +770,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.Hoolii;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.HooliiApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

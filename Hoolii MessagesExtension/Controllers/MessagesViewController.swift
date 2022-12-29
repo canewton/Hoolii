@@ -7,20 +7,11 @@
 
 import UIKit
 import Messages
-import Firebase
 
 class MessagesViewController: MSMessagesAppViewController {
     
     override func viewDidLoad() {
         print("loaded")
-//        FirebaseApp.configure()
-//        let uid = "test"
-//        print("Database:")
-//        let db = Database.database()
-//        print(db)
-//
-//        let databasePath: DatabaseReference! = Database.database().reference().child("users/\(uid)/thoughts")
-//        databasePath.childByAutoId().setValue("{ 'hi': 'hi' }")
     }
     
     // MARK: - Conversation Handling

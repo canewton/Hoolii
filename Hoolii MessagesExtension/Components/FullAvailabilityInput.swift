@@ -28,6 +28,9 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     var startTime: HourMinuteTime!
     var endTime: HourMinuteTime!
     
+    var availabilityDetailLeftConstraint: NSLayoutConstraint!
+    var availabilityDetailTopConstraint: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         datesScrollView.delegate = self
         availabilityBarScrollView.delegate = self
@@ -120,11 +123,28 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     }
     
     // the availability detail must be created every time it is displayed
-    func showAvailiabilityDetail(_ day: Day) {
-        if !isShowingAvailabilityDetail {
-            createAvailabilityDetail()
+    func showAvailiabilityDetail(_ day: DayCollective, _ time: HourMinuteTime) {
+        var timeRangeToDisplay: TimeRangeCollective = TimeRangeCollective(from: startTime, to: day.timesFree[0].from, users: [])
+        if time >= day.timesFree[day.timesFree.count - 1].to {
+            timeRangeToDisplay = TimeRangeCollective(from: day.timesFree[day.timesFree.count - 1].to, to: endTime, users: [])
         }
-        isShowingAvailabilityDetail = true
+        for i in 0..<day.timesFree.count {
+            if day.timesFree[i].isWithinRange(time: time) {
+                timeRangeToDisplay = day.timesFree[i]
+                break
+            }
+        }
+        
+        if !isShowingAvailabilityDetail {
+            createAvailabilityDetail(day: day, timeRange: timeRangeToDisplay)
+            isShowingAvailabilityDetail = true
+        } else {
+            availabilityDetail.configureTimeRange(startTime: timeRangeToDisplay.from, endTime: timeRangeToDisplay.to)
+            availabilityDetail.configureUsers(users: timeRangeToDisplay.users)
+        }
+        
+        availabilityDetailTopConstraint = availabilityDetail.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 80)
+        availabilityDetailLeftConstraint = availabilityDetail.leftAnchor.constraint(equalTo: self.layoutMarginsGuide.leftAnchor, constant: 10)
     }
     
     // the availability detail must be destroyed every time it is closed
@@ -132,16 +152,36 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         if isShowingAvailabilityDetail {
             availabilityDetail.removeFromSuperview()
             availabilityDetail = nil
+            isShowingAvailabilityDetail = false
         }
-        isShowingAvailabilityDetail = false
+    }
+    
+    func expandAvailabilityDetail() {
+        availabilityDetailLeftConstraint.isActive = true
+        availabilityDetailTopConstraint.isActive = true
+        
+        UIView.animate(withDuration: 0.3, animations: {
+           self.layoutIfNeeded()
+        })
+    }
+    
+    func collapseAvailabilityDetail() {
+        availabilityDetailLeftConstraint.isActive = false
+        availabilityDetailTopConstraint.isActive = false
+        
+        UIView.animate(withDuration: 0.3, animations: {
+           self.layoutIfNeeded()
+        })
     }
 
     // instantiate the availability detail in the bottom right corner
-    func createAvailabilityDetail() {
-        availabilityDetail = AvailabilityDetail.instanceFromNib()
-        availabilityBarScrollView.addSubview(availabilityDetail)
-        availabilityDetail.bottomAnchor.constraint(equalTo: availabilityBarScrollView.layoutMarginsGuide.bottomAnchor, constant: -10).isActive = true
-        availabilityDetail.rightAnchor.constraint(equalTo: availabilityBarScrollView.layoutMarginsGuide.rightAnchor, constant: -10).isActive = true
+    func createAvailabilityDetail(day: DayCollective, timeRange: TimeRangeCollective) {
+        availabilityDetail = AvailabilityDetail.instanceFromNib(closeDetail: hideAvailiabilityDetail, expandDetail: expandAvailabilityDetail, collapseDetail: collapseAvailabilityDetail)
+        availabilityDetail.configureTimeRange(startTime: timeRange.from, endTime: timeRange.to)
+        availabilityDetail.configureUsers(users: timeRange.users)
+        self.addSubview(availabilityDetail)
+        availabilityDetail.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: -10).isActive = true
+        availabilityDetail.rightAnchor.constraint(equalTo: self.layoutMarginsGuide.rightAnchor, constant: -10).isActive = true
     }
     
     // instantiate the autofill button in the bottom right corner

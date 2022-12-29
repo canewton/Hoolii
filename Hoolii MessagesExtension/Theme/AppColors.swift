@@ -22,4 +22,8 @@ struct AppColors {
     
     // used for availability bar lines
     static let barLines: UIColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.1)
+    
+    
+    // The following are progile background colors
+    static let redBackground: UIColor = UIColor.init(red: 255/255, green: 169/255, blue: 165/255, alpha: 1)
 }

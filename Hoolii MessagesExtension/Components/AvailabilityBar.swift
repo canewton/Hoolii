@@ -17,14 +17,10 @@ final class AvailabilityBar: UIView {
     var endTime: HourMinuteTime = HourMinuteTime(hour: 0, minute: 0)
     
     var userDay: Day!
+    var collectiveDay: DayCollective?
     var dayChangedCallback: ((Day) -> ())!
-    var showDetailCallback: ((Day) -> ())!
+    var showDetailCallback: ((DayCollective, HourMinuteTime) -> ())!
     var hideDetailCallback: (() -> ())!
-    
-    // get the day that the availability bar represents
-    func getDay() -> Day {
-        return userDay
-    }
     
     // set the day that the availability bar represents
     func setDay(day: Day) {
@@ -77,6 +73,7 @@ final class AvailabilityBar: UIView {
     // color in the time blocks in the availability bar to correspond to the availibility of everyone who responded
     func displayAllUsersDay(day: DayCollective?, numUsers: Int) {
         displayAllUsers = true
+        collectiveDay = day
         var timesFreeIndex: Int = 0
         for i in 0..<verticalStack.arrangedSubviews.count {
             let block: UIView = verticalStack.arrangedSubviews[i]
@@ -118,7 +115,7 @@ final class AvailabilityBar: UIView {
         self.dayChangedCallback = callback
     }
     
-    func configureDetailsCallback(show: @escaping (Day)->(), hide: @escaping ()->()) {
+    func configureDetailsCallback(show: @escaping (DayCollective, HourMinuteTime)->(), hide: @escaping ()->()) {
         self.showDetailCallback = show
         self.hideDetailCallback = hide
     }
@@ -164,19 +161,23 @@ final class AvailabilityBar: UIView {
     
     // detect which time block got pressed and handle the tap accordingly
     @objc func handleTapGesture(gesture: UITapGestureRecognizer) {
-        if gesture.state == .ended && !displayAllUsers {
+        if gesture.state == .ended {
             let loc = gesture.location(in: self)
             for i in 0..<verticalStack.arrangedSubviews.count {
                 let block: UIView = verticalStack.arrangedSubviews[i]
                 if block.frame.contains(loc) && block is TimeBlock {
                     let timeBlock = block as? TimeBlock
                     
-                    if !timeBlock!.isHighlighted() {
-                        timeBlock!.highlight()
-                        userDay.addAvailability(indexToTime(index: i))
+                    if displayAllUsers {
+                        displayAvailabilityDetailTap(gesture: gesture, time: indexToTime(index: i))
                     } else {
-                        timeBlock!.undoHighlight()
-                        userDay.removeAvailability(indexToTime(index: i))
+                        if !timeBlock!.isHighlighted() {
+                            timeBlock!.highlight()
+                            userDay.addAvailability(indexToTime(index: i))
+                        } else {
+                            timeBlock!.undoHighlight()
+                            userDay.removeAvailability(indexToTime(index: i))
+                        }
                     }
                 }
             }
@@ -200,7 +201,7 @@ final class AvailabilityBar: UIView {
                     if block.frame.contains(loc) {
                         barConatinsGesture = true
                         if displayAllUsers {
-                            toggleDisplayAvailabilityDetail(gesture: gesture, timeBlock: timeBlock!)
+                            displayAvailabilityDetailPan(gesture: gesture, time: indexToTime(index: i))
                         } else {
                             toggleBlockHighlight(gesture: gesture, timeBlock: timeBlock!, index: i)
                             dayChangedCallback(userDay)
@@ -234,11 +235,15 @@ final class AvailabilityBar: UIView {
     }
     
     // show the availability detail for a certain time block when displaying the group availability
-    func toggleDisplayAvailabilityDetail(gesture: UIPanGestureRecognizer, timeBlock: TimeBlock) {
+    func displayAvailabilityDetailTap(gesture: UITapGestureRecognizer, time: HourMinuteTime) {
+        if displayAllUsers {
+            showDetailCallback(collectiveDay!, time)
+        }
+    }
+    
+    func displayAvailabilityDetailPan(gesture: UIPanGestureRecognizer, time: HourMinuteTime) {
         if displayAllUsers && (gesture.state == .began || gesture.state == .changed) {
-            showDetailCallback(userDay)
-        } else if displayAllUsers && gesture.state == .ended {
-            hideDetailCallback()
+            showDetailCallback(collectiveDay!, time)
         }
     }
 }
