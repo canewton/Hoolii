@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "48F8227C-B18A-45AA-B2C2-E661B6007B69"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1CAF5A55-1993-46DE-80DC-0DC8A2D5CE06"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hoolii MessagesExtension/Controllers/AvatarCreatorViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "elemSelected(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E9426DC3-8751-4592-B6D7-0C193FF3344F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hoolii MessagesExtension/Controllers/AvatarCreatorViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "AvatarCreatorViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "E9426DC3-8751-4592-B6D7-0C193FF3344F - d0a55c954d99b757"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hoolii_MessagesExtension.AvatarCreatorViewController.eyebrowImgView.getter : Swift.Optional&lt;__C.UIImageView&gt;"
+                  moduleName = "Hoolii MessagesExtension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user229623/Desktop/Development/SchedulingApp/SchedulingApp/Hoolii%20MessagesExtension/Controllers/AvatarCreatorViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "E9426DC3-8751-4592-B6D7-0C193FF3344F - 4c031041531feaa3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hoolii_MessagesExtension.AvatarCreatorViewController.eyebrowImgView.setter : Swift.Optional&lt;__C.UIImageView&gt;"
+                  moduleName = "Hoolii MessagesExtension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user229623/Desktop/Development/SchedulingApp/SchedulingApp/Hoolii%20MessagesExtension/Controllers/AvatarCreatorViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  uuid = "E9426DC3-8751-4592-B6D7-0C193FF3344F - 2c5d54136dbcb0a7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hoolii_MessagesExtension.AvatarCreatorViewController.eyebrowImgView.modify : Swift.Optional&lt;__C.UIImageView&gt;"
+                  moduleName = "Hoolii MessagesExtension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user229623/Desktop/Development/SchedulingApp/SchedulingApp/Hoolii%20MessagesExtension/Controllers/AvatarCreatorViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "E9426DC3-8751-4592-B6D7-0C193FF3344F - bcf36cc471adeb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hoolii_MessagesExtension.AvatarCreatorViewController.eyebrowImgView.modify : Swift.Optional&lt;__C.UIImageView&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Hoolii MessagesExtension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user229623/Desktop/Development/SchedulingApp/SchedulingApp/Hoolii%20MessagesExtension/Controllers/AvatarCreatorViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "E9426DC3-8751-4592-B6D7-0C193FF3344F - 3f5833bd92128bce"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hoolii_MessagesExtension.AvatarCreatorViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Hoolii_MessagesExtension.AvatarCreatorViewController"
+                  moduleName = "Hoolii MessagesExtension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user229623/Desktop/Development/SchedulingApp/SchedulingApp/Hoolii%20MessagesExtension/Controllers/AvatarCreatorViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "3348">
+               </Location>
+               <Location
+                  uuid = "E9426DC3-8751-4592-B6D7-0C193FF3344F - 7ded5ec89b65c182"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hoolii_MessagesExtension.AvatarCreatorViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Hoolii_MessagesExtension.AvatarCreatorViewController&gt;"
+                  moduleName = "Hoolii MessagesExtension"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user229623/Desktop/Development/SchedulingApp/SchedulingApp/Hoolii%20MessagesExtension/Controllers/AvatarCreatorViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "3324">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
