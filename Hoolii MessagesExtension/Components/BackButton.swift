@@ -14,7 +14,7 @@ public class BackButton: UIButton {
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
-        let backButtonIcon: UIImage = ScaledIcon(name: "chevron-left-solid", width: 18, height: 18, color: .black).image
+        let backButtonIcon: UIImage = ScaledIcon(name: "chevron-left-solid", width: 18, height: 18, color: .label).image
         
         self.addTarget(self, action: #selector(buttonPushed), for: .touchUpInside)
         self.setImage(backButtonIcon, for: .normal)

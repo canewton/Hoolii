@@ -18,8 +18,8 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var mainViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var mainViewTopContraint: NSLayoutConstraint!
-    let arrowLeftIcon: ScaledIcon = ScaledIcon(name: "chevron-left-solid", width: 15, height: 15, color: .black)
-    let arrowRightIcon: ScaledIcon = ScaledIcon(name: "chevron-right-solid", width: 15, height: 15, color: .black)
+    let arrowLeftIcon: ScaledIcon = ScaledIcon(name: "chevron-left-solid", width: 15, height: 15, color: .label)
+    let arrowRightIcon: ScaledIcon = ScaledIcon(name: "chevron-right-solid", width: 15, height: 15, color: .label)
     @IBOutlet weak var newMeetingField: UITextField!
     @IBOutlet weak var fromTimePicker: UIDatePicker!
     @IBOutlet weak var toTimePicker: UIDatePicker!

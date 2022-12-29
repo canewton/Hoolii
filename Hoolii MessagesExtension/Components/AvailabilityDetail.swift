@@ -38,7 +38,7 @@ class AvailabilityDetail: UIView {
         header.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         header.layer.cornerRadius = 15
         
-        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowColor = AppColors.shadowColor.cgColor
         layer.shadowOpacity = 0.4
         layer.shadowOffset = .zero
         layer.shadowRadius = 2
@@ -83,7 +83,7 @@ class AvailabilityDetail: UIView {
         userContainer.widthAnchor.constraint(equalToConstant: 30).isActive = true
         userContainer.heightAnchor.constraint(equalToConstant: 30).isActive = true
         userContainer.layer.cornerRadius = 15
-        userContainer.layer.shadowColor = UIColor.black.cgColor
+        userContainer.layer.shadowColor = AppColors.shadowColor.cgColor
         userContainer.layer.shadowOpacity = 0.3
         userContainer.layer.shadowOffset = .zero
         userContainer.layer.shadowRadius = 1

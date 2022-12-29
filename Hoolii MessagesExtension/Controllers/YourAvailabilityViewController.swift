@@ -162,14 +162,14 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     
     // set styling for the bottom bar
     func configureBottomBar() {
-        bottomBar.layer.shadowColor = UIColor.black.cgColor
+        bottomBar.layer.shadowColor = AppColors.shadowColor.cgColor
         bottomBar.layer.shadowOpacity = 0.6
         bottomBar.layer.shadowOffset = .zero
         bottomBar.layer.shadowRadius = 10
     }
     
     func configureSendButton() {
-        let sendIcon: UIImage = ScaledIcon(name: "send", width: 14, height: 14, color: .black).image
+        let sendIcon: UIImage = ScaledIcon(name: "send", width: 14, height: 14, color: .label).image
         sendButton.setImage(sendIcon, for: .normal)
         sendButton.titleLabel?.font = .systemFont(ofSize: 14)
     }

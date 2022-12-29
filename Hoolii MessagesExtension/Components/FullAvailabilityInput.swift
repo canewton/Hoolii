@@ -249,7 +249,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     
     // style the top bar
     func configureTopBar() {
-        topBar.layer.shadowColor = UIColor.black.cgColor
+        topBar.layer.shadowColor = AppColors.shadowColor.cgColor
         topBar.layer.shadowOpacity = 0.2
         topBar.layer.shadowOffset = .zero
         topBar.layer.shadowRadius = 2
