@@ -9,7 +9,7 @@ import Foundation
 
 import UIKit
 
-class CreateProfileViewController: AppViewController {
+class CreateProfileViewController: AppViewController, ViewControllerWithIdentifier {
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var backButton: BackButton!
     @IBOutlet weak var AvatarCreatorButton: UIButton!
@@ -19,18 +19,25 @@ class CreateProfileViewController: AppViewController {
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var profileAvailabilityPreviewContainer: UIView!
+    @IBOutlet weak var createProfileButton: ThemedButton!
     var profileAvailabilityPreview: ProfileAvailabilityPreview!
+    var newMeetingViewController: NewMeetingViewController!
     var userHasEmptySchedule: Bool = true
     
     let defaults = UserDefaults.standard
     
     static let storyboardIdentifier = "CreateProfileViewController"
+    var delegate: AnyObject?
     
     @IBAction func avatarButtonPressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "goToAvatar", sender: self)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if !StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
+            createProfileButton.removeFromSuperview()
+        }
         
         // set initial values of the profile if a profile has not yet been created
         StoredValues.setIfEmpty(key: StoredValuesConstants.firstName, value: "")
@@ -166,12 +173,29 @@ class CreateProfileViewController: AppViewController {
         let editIcon: UIImage = ScaledIcon(name: "edit", width: 14, height: 14, color: .label).image
         editButton.setImage(editIcon, for: .normal)
     }
+    
+    @IBAction func onCreateProfile(_ sender: Any) {
+        StoredValues.setIfEmpty(key: StoredValuesConstants.hasBeenOnboarded, value: "yes")
+        (delegate as? CreateProfileViewControllerDelegate)?.transitonToNewMeeting(self)
+        self.transitionToScreen(viewController: newMeetingViewController)
+    }
 }
 
 extension CreateProfileViewController: UITextFieldDelegate {
-
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+protocol CreateProfileViewControllerDelegate: AnyObject {
+    func transitonToNewMeeting(_ controller: CreateProfileViewController)
+}
+
+extension MessagesViewController: CreateProfileViewControllerDelegate {
+    // allow this controller to transition to the YourAvailabilities screen
+    func transitonToNewMeeting(_ controller: CreateProfileViewController) {
+        let newMeetingVC: NewMeetingViewController = instantiateController()
+        controller.newMeetingViewController = newMeetingVC
     }
 }

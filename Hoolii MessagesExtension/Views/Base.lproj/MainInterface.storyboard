@@ -208,10 +208,25 @@
                                     <constraint firstAttribute="height" constant="230" id="Nk3-cs-55H"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z2z-cz-lRU" customClass="ThemedButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
+                                <rect key="frame" x="105" y="690" width="150" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ZeQ-n1-FWL"/>
+                                    <constraint firstAttribute="width" constant="150" id="ajf-zj-bYA"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Create Profile">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="onCreateProfile:" destination="RBV-bn-Gz5" eventType="touchUpInside" id="ufT-nw-Fyt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WQd-dh-Tof"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Z2z-cz-lRU" firstAttribute="centerX" secondItem="YQG-WD-Jq4" secondAttribute="centerX" id="3tp-bY-7pQ"/>
                             <constraint firstItem="89T-rh-JY4" firstAttribute="leading" secondItem="WQd-dh-Tof" secondAttribute="leading" constant="30" id="916-lc-Pfn"/>
                             <constraint firstItem="xT4-4D-LhE" firstAttribute="top" secondItem="ge2-WX-SNk" secondAttribute="bottom" constant="50" id="FK0-rA-qFR"/>
                             <constraint firstItem="WQd-dh-Tof" firstAttribute="trailing" secondItem="89T-rh-JY4" secondAttribute="trailing" constant="30" id="IoF-7h-Diq"/>
@@ -220,6 +235,7 @@
                             <constraint firstItem="ge2-WX-SNk" firstAttribute="top" secondItem="hDp-vt-AT6" secondAttribute="bottom" constant="5" id="NKr-ps-8hm"/>
                             <constraint firstItem="WQd-dh-Tof" firstAttribute="trailing" secondItem="ge2-WX-SNk" secondAttribute="trailing" constant="30" id="Nbu-TQ-62Y"/>
                             <constraint firstItem="89T-rh-JY4" firstAttribute="top" secondItem="xT4-4D-LhE" secondAttribute="bottom" constant="20" id="Rp4-Xq-um8"/>
+                            <constraint firstItem="WQd-dh-Tof" firstAttribute="bottom" secondItem="Z2z-cz-lRU" secondAttribute="bottom" constant="30" id="Xu9-Po-R4D"/>
                             <constraint firstItem="ta7-tI-7e4" firstAttribute="top" secondItem="WQd-dh-Tof" secondAttribute="top" constant="15" id="clO-eN-hpP"/>
                             <constraint firstItem="ge2-WX-SNk" firstAttribute="top" secondItem="ta7-tI-7e4" secondAttribute="bottom" constant="56" id="dvb-2f-893"/>
                             <constraint firstItem="ac7-f5-WZe" firstAttribute="leading" secondItem="WQd-dh-Tof" secondAttribute="leading" constant="20" id="dy6-Dh-vcp"/>
@@ -236,6 +252,7 @@
                     <connections>
                         <outlet property="AvatarCreatorButton" destination="ta7-tI-7e4" id="gt7-49-mXO"/>
                         <outlet property="backButton" destination="ac7-f5-WZe" id="qwO-FK-CkU"/>
+                        <outlet property="createProfileButton" destination="Z2z-cz-lRU" id="uh5-uQ-TR6"/>
                         <outlet property="editButton" destination="RvE-bK-PPB" id="cS9-A5-Qqc"/>
                         <outlet property="firstNameTextField" destination="WWB-FT-Fsh" id="Kve-vS-fe9"/>
                         <outlet property="lastNameTextField" destination="7Dh-kE-h2w" id="Env-PE-NNF"/>
@@ -1004,7 +1021,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M9O-AU-ncD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="641" y="678"/>
+            <point key="canvasLocation" x="680" y="676"/>
         </scene>
         <!--Avatar Creator View Controller-->
         <scene sceneID="J3t-sM-h6E">
@@ -1149,6 +1166,157 @@
             </objects>
             <point key="canvasLocation" x="698.55072463768124" y="1847.5446428571427"/>
         </scene>
+        <!--Onboarding View Controller-->
+        <scene sceneID="wXE-en-Gfw">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingViewController" id="T8O-th-Aj1" customClass="OnboardingViewController" customModule="Hoolii_MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rnv-Xt-RS6">
+                        <rect key="frame" x="0.0" y="0.0" width="360" height="750"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQu-JA-z1e">
+                                <rect key="frame" x="35" y="675" width="65" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="64a-YZ-9kn"/>
+                                    <constraint firstAttribute="height" constant="35" id="qus-7x-7tC"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Back"/>
+                                <connections>
+                                    <action selector="onPressBack:" destination="T8O-th-Aj1" eventType="touchUpInside" id="OHn-r4-Mm0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vjd-qE-9j0">
+                                <rect key="frame" x="260" y="675" width="65" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="5tm-gf-xdw"/>
+                                    <constraint firstAttribute="width" constant="65" id="jFn-GM-HUO"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Next"/>
+                                <connections>
+                                    <action selector="onPressNext:" destination="T8O-th-Aj1" eventType="touchUpInside" id="bui-j2-L5C"/>
+                                </connections>
+                            </button>
+                            <scrollView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8RV-gw-Pz8">
+                                <rect key="frame" x="0.0" y="48" width="360" height="535"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="0T7-U4-fyh"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="B2E-tv-Zd5"/>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="HAV-qj-Dd5">
+                                <rect key="frame" x="120" y="620" width="120" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="GhE-Cy-RFP"/>
+                                    <constraint firstAttribute="height" constant="30" id="PQ9-QM-FDa"/>
+                                </constraints>
+                                <color key="pageIndicatorTintColor" systemColor="systemGray4Color"/>
+                                <color key="currentPageIndicatorTintColor" systemColor="linkColor"/>
+                            </pageControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="QH9-6I-S7j"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="HAV-qj-Dd5" firstAttribute="top" secondItem="8RV-gw-Pz8" secondAttribute="bottom" constant="30" id="3i5-fZ-mN2"/>
+                            <constraint firstItem="8RV-gw-Pz8" firstAttribute="top" secondItem="QH9-6I-S7j" secondAttribute="top" id="CB4-G2-hoS"/>
+                            <constraint firstItem="QH9-6I-S7j" firstAttribute="bottom" secondItem="vjd-qE-9j0" secondAttribute="bottom" constant="40" id="Lpd-gp-c3w"/>
+                            <constraint firstItem="8RV-gw-Pz8" firstAttribute="trailing" secondItem="QH9-6I-S7j" secondAttribute="trailing" id="MbP-hj-8bC"/>
+                            <constraint firstItem="8RV-gw-Pz8" firstAttribute="leading" secondItem="QH9-6I-S7j" secondAttribute="leading" id="OSB-yk-Zc7"/>
+                            <constraint firstItem="YQu-JA-z1e" firstAttribute="leading" secondItem="QH9-6I-S7j" secondAttribute="leading" constant="35" id="RaC-hx-8Ox"/>
+                            <constraint firstItem="QH9-6I-S7j" firstAttribute="bottom" secondItem="YQu-JA-z1e" secondAttribute="bottom" constant="40" id="aSz-pl-7mv"/>
+                            <constraint firstItem="QH9-6I-S7j" firstAttribute="trailing" secondItem="vjd-qE-9j0" secondAttribute="trailing" constant="35" id="rSW-pp-GdB"/>
+                            <constraint firstItem="QH9-6I-S7j" firstAttribute="bottom" secondItem="HAV-qj-Dd5" secondAttribute="bottom" constant="100" id="tc7-08-Lfm"/>
+                            <constraint firstItem="HAV-qj-Dd5" firstAttribute="centerX" secondItem="rnv-Xt-RS6" secondAttribute="centerX" id="v6M-fx-u5S"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="360" height="750"/>
+                    <connections>
+                        <outlet property="backButton" destination="YQu-JA-z1e" id="Tkl-fv-YOU"/>
+                        <outlet property="nextButton" destination="vjd-qE-9j0" id="kN6-q0-PTp"/>
+                        <outlet property="nextButtonWidth" destination="jFn-GM-HUO" id="csH-ho-hWS"/>
+                        <outlet property="pageControl" destination="HAV-qj-Dd5" id="acb-1b-BCR"/>
+                        <outlet property="scrollView" destination="8RV-gw-Pz8" id="Efi-nc-SF0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UCd-DB-Tei" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="698.55072463768124" y="99.776785714285708"/>
+        </scene>
+        <!--Onboarding Collapsed View Controller-->
+        <scene sceneID="tx9-Pk-bPH">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingCollapsedViewController" id="Mka-DO-x8H" customClass="OnboardingCollapsedViewController" customModule="Hoolii_MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="znE-5M-VaK">
+                        <rect key="frame" x="0.0" y="0.0" width="360" height="270"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hey," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5q6-co-9Xx">
+                                <rect key="frame" x="40" y="73" width="60" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="XBQ-Gg-6us"/>
+                                    <constraint firstAttribute="width" constant="60" id="dXQ-8Q-s1q"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="let's have a hoolii!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cP7-Yq-miQ">
+                                <rect key="frame" x="40" y="104" width="160" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="WUG-oe-DoX"/>
+                                    <constraint firstAttribute="height" constant="80" id="bPD-uz-JKM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cal-background" translatesAutoresizingMaskIntoConstraints="NO" id="vDe-OV-fOW">
+                                <rect key="frame" x="206" y="68" width="134" height="124"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cal-alert-happy" translatesAutoresizingMaskIntoConstraints="NO" id="IS8-Jm-SY1">
+                                <rect key="frame" x="170" y="93" width="140" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="sSH-EH-Is4"/>
+                                    <constraint firstAttribute="width" constant="140" id="vV9-ah-VEy"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEB-OL-Auc" customClass="ThemedButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
+                                <rect key="frame" x="100" y="210" width="160" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="DHq-Xl-uLI"/>
+                                    <constraint firstAttribute="width" constant="160" id="dLf-TT-4Gn"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Let's start!"/>
+                                <connections>
+                                    <action selector="onPressStart:" destination="Mka-DO-x8H" eventType="touchUpInside" id="ngh-s4-lG7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="U70-Zf-aa3"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5q6-co-9Xx" firstAttribute="leading" secondItem="U70-Zf-aa3" secondAttribute="leading" constant="40" id="5Gk-BJ-tRl"/>
+                            <constraint firstItem="U70-Zf-aa3" firstAttribute="trailing" secondItem="vDe-OV-fOW" secondAttribute="trailing" constant="20" id="BOQ-zi-r4o"/>
+                            <constraint firstItem="cP7-Yq-miQ" firstAttribute="leading" secondItem="U70-Zf-aa3" secondAttribute="leading" constant="40" id="JXO-J9-oCg"/>
+                            <constraint firstItem="U70-Zf-aa3" firstAttribute="bottom" secondItem="bEB-OL-Auc" secondAttribute="bottom" constant="20" id="NCo-iy-jT0"/>
+                            <constraint firstItem="vDe-OV-fOW" firstAttribute="top" secondItem="U70-Zf-aa3" secondAttribute="top" constant="20" id="S53-Sr-SRv"/>
+                            <constraint firstItem="5q6-co-9Xx" firstAttribute="top" secondItem="U70-Zf-aa3" secondAttribute="top" constant="25" id="TzL-gb-2TI"/>
+                            <constraint firstItem="bEB-OL-Auc" firstAttribute="centerX" secondItem="znE-5M-VaK" secondAttribute="centerX" id="fmN-QI-8S6"/>
+                            <constraint firstItem="U70-Zf-aa3" firstAttribute="trailing" secondItem="IS8-Jm-SY1" secondAttribute="trailing" constant="50" id="iSK-Hm-MOD"/>
+                            <constraint firstItem="IS8-Jm-SY1" firstAttribute="top" secondItem="U70-Zf-aa3" secondAttribute="top" constant="45" id="lN1-q6-cNf"/>
+                            <constraint firstItem="cP7-Yq-miQ" firstAttribute="top" secondItem="5q6-co-9Xx" secondAttribute="bottom" constant="3" id="xUr-7A-tjm"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="360" height="270"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K2M-lZ-1aX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1330.4347826086957" y="99.776785714285708"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Chin 1" width="800" height="800"/>
@@ -1158,15 +1326,23 @@
         <image name="Male hair 1" width="800" height="800"/>
         <image name="Mouth 1" width="3334" height="3334"/>
         <image name="Nose 1" width="3334" height="3334"/>
+        <image name="cal-alert-happy" width="152" height="135"/>
+        <image name="cal-background" width="134" height="124"/>
         <image name="transparent" width="1600" height="900"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemMintColor">
             <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

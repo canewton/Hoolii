@@ -65,13 +65,7 @@ class AvailabilityDetail: UIView {
     }
     
     func configureTimeRange(startTime: HourMinuteTime, endTime: HourMinuteTime) {
-        let startTimeHour = "\(startTime.hour % 12 == 0 ? 12 : startTime.hour % 12)"
-        let startTimeMinute = String(format: "%02d", startTime.minute)
-        let startTimeMeridiam = startTime.hour / 12 == 0 ? "AM" : "PM"
-        let endTimeHour = "\(endTime.hour % 12 == 0 ? 12 : endTime.hour % 12)"
-        let endTimeMinute = String(format: "%02d", endTime.minute)
-        let endTimeMeridiam = endTime.hour / 12 == 0 ? "AM" : "PM"
-        timeRangeText.text = "\(startTimeHour):\(startTimeMinute) \(startTimeMeridiam) - \(endTimeHour):\(endTimeMinute) \(endTimeMeridiam)"
+        timeRangeText.text = "\(startTime.toStringHourMinute()) - \(endTime.toStringHourMinute())"
     }
     
     func createUserIcon(user: User) -> UIView {

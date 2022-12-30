@@ -56,16 +56,21 @@ class MessagesViewController: MSMessagesAppViewController {
                 
         let controller: AppViewController
         if presentationStyle == .compact {
-            if collectiveSchedule.endTime == HourMinuteTime(hour: 0, minute: 0) {
+            if StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
+                let onboardingCollapsedController: OnboardingCollapsedViewController = instantiateController()
+                controller = onboardingCollapsedController
+            } else if collectiveSchedule.endTime == HourMinuteTime(hour: 0, minute: 0) {
                 let schedulePreviewController: CreateMeetingPreviewViewController = instantiateController()
-                
                 controller = schedulePreviewController
             } else {
                 let yourAvailController: YourAvailabilitiesViewController = instantiateController()
                 controller = yourAvailController
             }
         } else {
-            if collectiveSchedule.allSchedules.count > 0 {
+            if StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
+                let onboardingController: OnboardingViewController = instantiateController()
+                controller = onboardingController
+            } else if collectiveSchedule.allSchedules.count > 0 {
                 let yourAvailabilitiesController: YourAvailabilitiesViewController = instantiateController()
                 controller = yourAvailabilitiesController
                 yourAvailabilitiesController.collectiveSchedule = collectiveSchedule
