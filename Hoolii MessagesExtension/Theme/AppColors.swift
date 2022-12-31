@@ -18,7 +18,9 @@ struct AppColors {
     static let offBlack: UIColor = UIColor.label.withAlphaComponent(0.8)
     
     // used to fill availability bars
-    static let lightGrey: UIColor = UIColor.label.withAlphaComponent(0.075)
+    static let lightGrey: UIColor = UIColor.label.withAlphaComponent(0.07)
+    
+    static let backgroundBar: UIColor = UIColor.label.withAlphaComponent(0.03)
     
     // used for availability bar lines
     static let barLines: UIColor = UIColor.label.withAlphaComponent(0.1)

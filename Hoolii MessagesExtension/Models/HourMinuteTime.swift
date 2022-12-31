@@ -11,7 +11,7 @@ class HourMinuteTime: Codable {
     let hour: Int
     let minute: Int
     init(hour: Int, minute: Int) {
-        self.hour = hour % 24
+        self.hour = hour
         self.minute = minute % 60
     }
     
@@ -23,7 +23,7 @@ class HourMinuteTime: Codable {
     
     func toString() -> String {
         var timeString: String = ""
-        if hour == 0 {
+        if hour % 24 == 0 {
             timeString = "  12 AM"
         } else if hour < 12 {
             timeString = "  \(hour) AM"

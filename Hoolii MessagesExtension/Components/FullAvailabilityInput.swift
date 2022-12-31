@@ -17,6 +17,8 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     @IBOutlet weak var availabilityBarScrollView: UIScrollView!
     @IBOutlet weak var timeIndicatorScrollView: UIScrollView!
     @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var backgroundScrollView: UIScrollView!
+    @IBOutlet weak var backgroundStackView: UIStackView!
     var availabilityDetail: AvailabilityDetail!
     var autofillButton: AutofillButton!
     var isShowingAvailabilityDetail: Bool = false
@@ -67,6 +69,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     // when the left space that show the times that time blocks represent is scrolled through, the availability bars should be scrolled through at the same rate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         availabilityBarScrollView.contentOffset.x = datesScrollView.contentOffset.x
+        backgroundScrollView.contentOffset.x = datesScrollView.contentOffset.x
         if scrollView == availabilityBarScrollView {
             timeIndicatorScrollView.contentOffset.y = availabilityBarScrollView.contentOffset.y
         } else if scrollView == timeIndicatorScrollView {
@@ -96,6 +99,11 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
                 availabilityBar.configureDetailsCallback(show: showAvailiabilityDetail, hide: hideAvailiabilityDetail)
                 availabilityBarHorizontalList.addArrangedSubview(availabilityBar)
             }
+            let backgroundBar: UIView = UIView()
+            backgroundStackView.addArrangedSubview(backgroundBar)
+            backgroundBar.heightAnchor.constraint(equalToConstant: self.bounds.height * 2).isActive = true
+            backgroundBar.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
+            backgroundBar.backgroundColor = AppColors.backgroundBar
         }
     }
     

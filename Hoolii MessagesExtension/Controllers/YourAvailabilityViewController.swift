@@ -124,9 +124,9 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
             
             if collectiveSchedule.dates.count == 1 {
                 if date == CalendarDate(Date()) {
-                    name += "Meeting for today"
+                    name += "Today's meeting"
                 } else {
-                    name += "Meeting for \(date.getMonthSymbol()) \(date.day)"
+                    name += "\(date.getMonthName()) \(date.day) meeting"
                 }
             } else {
                 name += "Meeting(s) starting \(date.getMonthSymbol()) \(date.day)"
