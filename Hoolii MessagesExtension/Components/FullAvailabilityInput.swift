@@ -115,7 +115,6 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
             let regularSchedule: Schedule = Schedule(jsonValue: jsonString!)
             
             if checkIfWeeklyAvailEmpty(schedule: regularSchedule) {
-                print("no weekly")
                 alertForBlankWeeklyAvailability()
             } else {
                 setAvailabilitiesFromWeeklyAvailability(schedule: regularSchedule)

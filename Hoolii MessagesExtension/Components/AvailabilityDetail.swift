@@ -125,7 +125,6 @@ class AvailabilityDetail: UIView {
                 let userIconAndNameContainer: UIView = UIView()
                 let userFullName: UILabel = UILabel(frame: CGRect(x: 45, y: 0, width: 300, height: 30))
                 userFullName.text = "\(users[i].firstName) \(users[i].lastName)"
-                print("\(users[i].firstName) \(users[i].lastName)")
                 
                 userIconAndNameContainer.addSubview(userContainer)
                 userIconAndNameContainer.addSubview(userFullName)
@@ -157,11 +156,13 @@ class AvailabilityDetail: UIView {
             widthConstraint.isActive = false
             expandAvailabilityDetail()
             isCollapsed = false
+            sizeButton.image = UIImage(systemName: "arrow.down.right.and.arrow.up.left")
         } else {
             heightConstraint.isActive = true
             widthConstraint.isActive = true
             collapseAvailabilityDetail()
             isCollapsed = true
+            sizeButton.image = UIImage(systemName: "arrow.up.left.and.arrow.down.right")
         }
         configureUsers(users: userList)
     }

@@ -68,10 +68,10 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         configureAvailabilityInput()
         
         // dummy data that represents responses to the message
-        if collectiveSchedule.allSchedules.count < 2 {
-            collectiveSchedule.allSchedules.append(Schedule(datesFree: [Day(date: ScheduleDate(CalendarDate("12-27-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 11, minute: 0), to: HourMinuteTime(hour: 16, minute: 0))]), Day(date: ScheduleDate(CalendarDate("12-28-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 10, minute: 0), to: HourMinuteTime(hour: 13, minute: 0))]),Day(date: ScheduleDate(CalendarDate("12-29-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 12, minute: 0), to: HourMinuteTime(hour: 18, minute: 0))]),], user: User(id: "1", firstName: "Joanna", lastName: "Hu")))
-            collectiveSchedule.allSchedules.append(Schedule(datesFree: [Day(date: ScheduleDate(CalendarDate("12-27-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 9, minute: 30), to: HourMinuteTime(hour: 14, minute: 0))]), Day(date: ScheduleDate(CalendarDate("12-28-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 14, minute: 0), to: HourMinuteTime(hour: 19, minute: 0))]),Day(date: ScheduleDate(CalendarDate("12-29-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 14, minute: 0), to: HourMinuteTime(hour: 20, minute: 0))]),], user: User(id: "2", firstName: "Jessica", lastName: "Mei")))
-        }
+//        if collectiveSchedule.allSchedules.count < 2 {
+//            collectiveSchedule.allSchedules.append(Schedule(datesFree: [Day(date: ScheduleDate(CalendarDate("12-27-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 11, minute: 0), to: HourMinuteTime(hour: 16, minute: 0))]), Day(date: ScheduleDate(CalendarDate("12-28-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 10, minute: 0), to: HourMinuteTime(hour: 13, minute: 0))]),Day(date: ScheduleDate(CalendarDate("12-29-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 12, minute: 0), to: HourMinuteTime(hour: 18, minute: 0))]),], user: User(id: "1", firstName: "Joanna", lastName: "Hu")))
+//            collectiveSchedule.allSchedules.append(Schedule(datesFree: [Day(date: ScheduleDate(CalendarDate("12-27-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 9, minute: 30), to: HourMinuteTime(hour: 14, minute: 0))]), Day(date: ScheduleDate(CalendarDate("12-28-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 14, minute: 0), to: HourMinuteTime(hour: 19, minute: 0))]),Day(date: ScheduleDate(CalendarDate("12-29-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 14, minute: 0), to: HourMinuteTime(hour: 20, minute: 0))]),], user: User(id: "2", firstName: "Jessica", lastName: "Mei")))
+//        }
     }
     
     func userHasEmptySchedule() -> Bool {

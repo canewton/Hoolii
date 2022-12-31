@@ -223,7 +223,7 @@ final class AvailabilityBar: UIView {
     func toggleBlockHighlight(gesture: UIPanGestureRecognizer, timeBlock: TimeBlock, index: Int) {
         if gesture.state == .began && timeBlock.isHighlighted(){
             performHighlightAction = false
-        } else if gesture.state == .began && timeBlock.isHighlighted() {
+        } else if gesture.state == .began && !timeBlock.isHighlighted() {
             performHighlightAction = true
         }
         
