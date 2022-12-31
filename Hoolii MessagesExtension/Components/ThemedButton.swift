@@ -12,6 +12,6 @@ public class ThemedButton: UIButton {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.tintColor = AppColors.main
-        self.setTitleColor(.black, for: .normal)
+        self.setTitleColor(.label, for: .normal)
     }
 }

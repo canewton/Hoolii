@@ -9,7 +9,6 @@ end
 target 'Hoolii MessagesExtension' do
 
   # Pods for MeetUp MessagesExtension
-  pod ‘Firebase/Database’
   pod 'JTAppleCalendar'
 
 end

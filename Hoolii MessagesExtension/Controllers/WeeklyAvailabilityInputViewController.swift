@@ -21,7 +21,7 @@ class WeeklyAvailabilityInputViewController: AppViewController, ViewControllerWi
     override func viewDidLoad() {
         configureBottomBar()
         
-        availabilityInput = FullAvailabilityInput.instanceFromNib(userSchedule: userSchedule, startTime: HourMinuteTime(hour: 0, minute: 0), endTime: HourMinuteTime(hour: 23, minute: 59), setCollectiveScheduleCallback: setCollectiveSchedule)
+        availabilityInput = FullAvailabilityInput.instanceFromNib(userSchedule: userSchedule, startTime: HourMinuteTime(hour: 0, minute: 0), endTime: HourMinuteTime(hour: 24, minute: 0), setCollectiveScheduleCallback: setCollectiveSchedule)
         availabilityInputContainer.addSubview(availabilityInput)
         availabilityInput.translatesAutoresizingMaskIntoConstraints = false
         availabilityInput.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
@@ -42,7 +42,7 @@ class WeeklyAvailabilityInputViewController: AppViewController, ViewControllerWi
     }
     
     func configureBottomBar() {
-        bottomBar.layer.shadowColor = UIColor.black.cgColor
+        bottomBar.layer.shadowColor = AppColors.shadowColor.cgColor
         bottomBar.layer.shadowOpacity = 0.6
         bottomBar.layer.shadowOffset = .zero
         bottomBar.layer.shadowRadius = 10
