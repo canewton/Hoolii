@@ -10,7 +10,7 @@ import UIKit
 class AvatarCreatorViewController: AppViewController {
     
     let chinArray = ["Chin 1.svg", "Chin 2.svg", "Chin 3.svg", "Chin 4 Beard.svg", "Chin 5 Beard.svg", "Chin 6 Beard.svg", "Chin 7 Beard.svg", "Chin 8 Beard.svg", "Chin 9 Beard.svg", "Chin 10 Beard.svg"]
-   
+    
     let earArray = ["transparent", "Ears 2.svg", "Ears 3.svg", "Ears 4.svg", "Ears 5.svg"]
     
     let browArray = ["Eyebrows 1.svg", "Eyebrows 2.svg", "Eyebrows 3.svg", "Eyebrows 4.svg", "Eyebrows 5.svg"]
@@ -28,12 +28,39 @@ class AvatarCreatorViewController: AppViewController {
     let femSideArray = ["transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "Female hair 9 front highlight", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"]
     let femHairtieArray = ["transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "Female hair 9 front hairtie", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"]
     
-    
-    
-    
     let mouthArray = ["Mouth 1.png","Mouth 2.png", "Mouth 3.png", "Mouth 4.png", "Mouth 5.png"]
     
     let noseArray = ["Nose 1.png","Nose 2.png", "Nose 3.png", "Nose 4.png", "Nose 5.png"]
+    
+    let skintoneArray = [
+        UIColor(red: 63/255.0, green: 39/255.0, blue: 27/255.0, alpha: 1.0),
+        
+        UIColor(red: 103/255.0, green: 70/255.0, blue: 51/255.0, alpha: 1.0),
+        
+        UIColor(red: 121/255.0, green: 78/255.0, blue: 69/255.0, alpha: 1.0),
+        
+        UIColor(red: 122/255.0, green: 82/255.0, blue: 56/255.0, alpha: 1.0),
+        
+        UIColor(red: 131/255.0, green: 90/255.0, blue: 68/255.0, alpha: 1.0),
+        
+        UIColor(red: 214/255.0, green: 160/255.0, blue: 122/255.0, alpha: 1.0),
+        
+        UIColor(red: 214/255.0, green: 163/255.0, blue: 132/255.0, alpha: 1.0),
+        
+        UIColor(red: 240/255.0, green: 194/255.0, blue: 168/255.0, alpha: 1.0),
+        
+        UIColor(red: 230/255.0, green: 186/255.0, blue: 157/255.0, alpha: 1.0),
+        
+        UIColor(red: 245/255.0, green: 211/255.0, blue: 183/255.0, alpha: 1.0),
+        
+        UIColor(red: 247/255.0, green: 217/255.0, blue: 189/255.0, alpha: 1.0),
+        
+        UIColor(red: 253/255.0, green: 225/255.0, blue: 204/255.0, alpha: 1.0),
+    ]
+    
+    static var hairColor = UIColor.black
+    static var skinTone = UIColor.gray
+    
     
     @IBOutlet weak var backHairImgView: UIImageView!
     @IBOutlet weak var headImgView: UIImageView!
@@ -52,14 +79,14 @@ class AvatarCreatorViewController: AppViewController {
     @IBOutlet weak var elemSlctrSgmnt: UISegmentedControl!
     @IBOutlet weak var elemValLabel: UILabel!
     @IBOutlet weak var elemChoiceSlider: UISlider!
-   
+    static var itemIndex = 0;
     
     override func viewDidLoad() {
+        // Function loaded: set all initial colors for elements
         super.viewDidLoad()
-        elemChoiceSlider.value = 0
         let sliderMax = Float((chinArray.count - 1))
         elemChoiceSlider.maximumValue = sliderMax
-        
+        initColors()
     }
     
     
@@ -123,10 +150,73 @@ class AvatarCreatorViewController: AppViewController {
     }
     
     
+// USER TOUCHED SKIN/HAIR COLOR BUTTONS
+    @IBAction func colorBut1Pressed(_ sender: UIButton) {
+        let index = elemSlctrSgmnt.selectedSegmentIndex
+        changeColor(elemIndex: index, newColor: skintoneArray[0])
+    }
+    
+    @IBAction func colorBut2Pressed(_ sender: UIButton) {
+        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        changeColor(elemIndex: index, newColor: skintoneArray[1])
+    }
+    
+    @IBAction func colorBut3Pressed(_ sender: UIButton) {    let index  = elemSlctrSgmnt.selectedSegmentIndex
+        changeColor(elemIndex: index, newColor: skintoneArray[2])
+    }
+    
+   
+    @IBAction func colorBut4Pressed(_ sender: UIButton) {
+        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        changeColor(elemIndex: index, newColor: skintoneArray[3])
+    }
+    
+    @IBAction func colorBut5Pressed(_ sender: UIButton) {
+        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        changeColor(elemIndex: index, newColor: skintoneArray[4])
+    }
+    
+    
+    @IBAction func colorBut6Pressed(_ sender: UIButton) {
+        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        changeColor(elemIndex: index, newColor: skintoneArray[5])
+    }
+    
+    @IBAction func colorBut7Pressed(_ sender: UIButton) {
+        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        changeColor(elemIndex: index, newColor: skintoneArray[6])
+    }
+    
+    @IBAction func colorBut8Pressed(_ sender: UIButton) {
+        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        changeColor(elemIndex: index, newColor: skintoneArray[7])
+    }
+    
+    @IBAction func colorBut9Pressed(_ sender: UIButton) {
+        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        changeColor(elemIndex: index, newColor: skintoneArray[8])
+    }
+    
+    @IBAction func colorBut10Pressed(_ sender: UIButton) {
+        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        changeColor(elemIndex: index, newColor: skintoneArray[9])
+    }
+    
+    @IBAction func colorButton11Pressed(_ sender: UIButton) {
+        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        changeColor(elemIndex: index, newColor: skintoneArray[10])
+    }
+    
+    @IBAction func colorButton12Pressed(_ sender: UIButton) {
+        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        changeColor(elemIndex: index, newColor: skintoneArray[11])
+    }
+    
+    
     @IBAction func elemSliderMoved(_ sender: UISlider) {
         let elem = String(format: "%.0f", sender.value)
         let elemInt = Int(elem) ?? 0
-        elemValLabel.text = "Option: \(elemInt + 1)"
+        
         let index = elemSlctrSgmnt.selectedSegmentIndex
         
         switch index {
@@ -167,9 +257,36 @@ class AvatarCreatorViewController: AppViewController {
     }
     
     
-
     
-
+    
+    func changeColor(elemIndex: Int, newColor: UIColor) {
+        if (elemIndex < 6) {
+            // in this case, user is modifying facial features
+            headImgView.tintColor = newColor
+            chinImgView.tintColor = newColor
+            AvatarCreatorViewController.skinTone = newColor
+        } else {
+            // user is changing hair color
+            backHairImgView.tintColor = newColor
+            frontHairImgView.tintColor = newColor
+            // check for beard to recolor
+            if(beardImgView.image != UIImage(imageLiteralResourceName: "transparent")) {
+                beardImgView.tintColor = newColor
+            }
+            AvatarCreatorViewController.hairColor = newColor
+        }
+        
+    }
+    
+    func initColors(){
+        // Initialize facial details w/ default vals
+        changeColor(elemIndex: 0, newColor: skintoneArray[1])
+        // Initialize hair with default color
+        changeColor(elemIndex: 7, newColor: UIColor.black)
+    }
+    
+    
+    
     
     
 }
