@@ -1,25 +1,23 @@
 {
   "images" : [
     {
-      "filename" : "icon-messages-settings-29x29@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "icon-messages-settings-29x29@3x.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
-      "filename" : "icon-messages-app-iPhone-60x45@2x.png",
+      "filename" : "hoolii_dark_green_bg3.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x45"
     },
     {
-      "filename" : "icon-messages-app-iPhone-60x45@3x.png",
+      "filename" : "hoolii_dark_green_bg4.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x45"
@@ -30,11 +28,13 @@
       "size" : "29x29"
     },
     {
+      "filename" : "hoolii_dark_green_bg6.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "67x50"
     },
     {
+      "filename" : "hoolii_dark_green_bg7.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "74x55"
@@ -45,35 +45,31 @@
       "size" : "1024x1024"
     },
     {
-      "filename" : "icon-messages-app-27x20@2x.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "2x",
       "size" : "27x20"
     },
     {
-      "filename" : "icon-messages-app-27x20@3x.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "3x",
       "size" : "27x20"
     },
     {
-      "filename" : "icon-messages-transcript-32x24@2x.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "2x",
       "size" : "32x24"
     },
     {
-      "filename" : "icon-messages-transcript-32x24@3x.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "3x",
       "size" : "32x24"
     },
     {
-      "filename" : "icon-messages-app-store-1024x768.png",
+      "filename" : "hoolii_dark_green_bg 1.png",
       "idiom" : "ios-marketing",
       "platform" : "ios",
       "scale" : "1x",

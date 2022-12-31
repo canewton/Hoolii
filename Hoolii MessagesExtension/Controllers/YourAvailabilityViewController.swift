@@ -223,7 +223,7 @@ protocol YourAvaialabilitiesViewControllerDelegate: AnyObject {
 
 extension MessagesViewController: YourAvaialabilitiesViewControllerDelegate {
     func addDataToMessage(collectiveSchedule: CollectiveSchedule) {
-        SendMessage(collectiveSchedule, "When should we meet up?")
+        SendMessage(collectiveSchedule, collectiveSchedule.meetingName)
         dismiss()
     }
 }

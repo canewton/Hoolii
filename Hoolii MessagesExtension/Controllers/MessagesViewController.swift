@@ -23,7 +23,7 @@ class MessagesViewController: MSMessagesAppViewController {
         
         let layout = MSMessageTemplateLayout()
         layout.caption = caption
-        layout.image = UIImage(named: "placeholder.png")
+        layout.image = UIImage(named: "message-graphic.png")
         
         let message = MSMessage(session: session ?? MSSession())
         message.url = components.url!

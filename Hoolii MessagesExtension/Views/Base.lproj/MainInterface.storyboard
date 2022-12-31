@@ -1274,7 +1274,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cal-background" translatesAutoresizingMaskIntoConstraints="NO" id="vDe-OV-fOW">
-                                <rect key="frame" x="206" y="68" width="134" height="124"/>
+                                <rect key="frame" x="273" y="68" width="67" height="62"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cal-alert-happy" translatesAutoresizingMaskIntoConstraints="NO" id="IS8-Jm-SY1">
                                 <rect key="frame" x="170" y="93" width="140" height="130"/>
@@ -1327,8 +1327,8 @@
         <image name="Male hair 1" width="800" height="800"/>
         <image name="Mouth 1" width="3334" height="3334"/>
         <image name="Nose 1" width="3334" height="3334"/>
-        <image name="cal-alert-happy" width="152" height="135"/>
-        <image name="cal-background" width="134" height="124"/>
+        <image name="cal-alert-happy" width="76" height="67.5"/>
+        <image name="cal-background" width="67" height="62"/>
         <image name="transparent" width="1600" height="900"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
