@@ -113,13 +113,56 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         let jsonString: String? = StoredValues.get(key: StoredValuesConstants.userSchedule)
         if jsonString != nil {
             let regularSchedule: Schedule = Schedule(jsonValue: jsonString!)
-            for i in 0..<userSchedule.datesFree.count {
-                let correspondingWeekday: Day = regularSchedule.datesFree[CalendarDate(userSchedule.datesFree[i].date.date!).weekday]
-                userSchedule.datesFree[i].timesFree = correspondingWeekday.timesFree
+            
+            if checkIfWeeklyAvailEmpty(schedule: regularSchedule) {
+                print("no weekly")
+                alertForBlankWeeklyAvailability()
+            } else {
+                setAvailabilitiesFromWeeklyAvailability(schedule: regularSchedule)
             }
-            updateUserSchedule(schedule: userSchedule)
-            setCollectiveScheduleCallback(userSchedule)
+        } else {
+            alertForBlankWeeklyAvailability()
         }
+    }
+    
+    func setAvailabilitiesFromWeeklyAvailability(schedule: Schedule) {
+        for i in 0..<userSchedule.datesFree.count {
+            let correspondingWeekday: Day = schedule.datesFree[CalendarDate(userSchedule.datesFree[i].date.date!).weekday]
+            userSchedule.datesFree[i].timesFree = correspondingWeekday.timesFree
+        }
+        updateUserSchedule(schedule: userSchedule)
+        setCollectiveScheduleCallback(userSchedule)
+    }
+    
+    func checkIfWeeklyAvailEmpty(schedule: Schedule) -> Bool {
+        var isEmpty = true
+        for i in 0..<schedule.datesFree.count {
+            if !schedule.datesFree[i].timesFree.isEmpty {
+                isEmpty = false
+                break
+            }
+        }
+        return isEmpty
+    }
+    
+    func alertForBlankWeeklyAvailability() {
+        let whatsYourAvailability = UIAlertController(title: "\n\n\n\n\n\nWhat's your availibility?", message: "You haven't set up your weekly availability in your Profile yet.", preferredStyle: .alert)
+        let doItLater = UIAlertAction(title: "I'll do it later", style: .cancel, handler: nil)
+        let setAvailability = UIAlertAction(title: "Set Availability", style: .default, handler: { (action) -> Void in
+            let profileVC = self.findViewController()?.storyboard?
+                .instantiateViewController(withIdentifier: "CreateProfileViewController") as! CreateProfileViewController
+            (self.findViewController() as? YourAvailabilitiesViewController)?.transitionToScreen(viewController: profileVC)
+        })
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 15, width: 130, height: 130))
+        imageView.center.x = whatsYourAvailability.view.bounds.width/3
+        imageView.image = UIImage(named: "cal-stick.png")
+        whatsYourAvailability.view.addSubview(imageView)
+        
+        whatsYourAvailability.addAction(doItLater)
+        whatsYourAvailability.addAction(setAvailability)
+        
+        findViewController()?.present(whatsYourAvailability, animated: true, completion: nil)
     }
     
     // the availability detail must be created every time it is displayed
@@ -254,5 +297,17 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         topBar.layer.shadowOffset = .zero
         topBar.layer.shadowRadius = 2
         topBar.layer.shadowOffset = CGSize(width: 0, height: 2)
+    }
+}
+
+extension UIView {
+    func findViewController() -> UIViewController? {
+        if let nextResponder = self.next as? UIViewController {
+            return nextResponder
+        } else if let nextResponder = self.next as? UIView {
+            return nextResponder.findViewController()
+        } else {
+            return nil
+        }
     }
 }

@@ -74,7 +74,39 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         }
     }
     
+    func userHasEmptySchedule() -> Bool {
+        var hasEmptySchedule: Bool = true
+        for i in 0..<userSchedule.datesFree.count {
+            if userSchedule.datesFree[i].timesFree.count > 0 {
+                hasEmptySchedule = false
+            }
+        }
+        return hasEmptySchedule
+    }
+    
     @IBAction func OnSaveAndSend(_ sender: Any) {
+        if userHasEmptySchedule() {
+            let notFilledOutMessage = UIAlertController(title: "\n\n\n\n\n\nWait! Your availability is empty.", message: "You are sending a blank schedule with no availabilities for your hangout.", preferredStyle: .alert)
+            let keepEditing = UIAlertAction(title: "Keep editing", style: .cancel, handler: nil)
+            let sendAway = UIAlertAction(title: "Send away", style: .default, handler: { (action) -> Void in
+                self.sendMessage()
+            })
+            
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 170, height: 170))
+            imageView.center.x = notFilledOutMessage.view.bounds.width/3
+            imageView.image = UIImage(named: "cal-alert.png")
+            notFilledOutMessage.view.addSubview(imageView)
+            
+            notFilledOutMessage.addAction(keepEditing)
+            notFilledOutMessage.addAction(sendAway)
+            
+            self.present(notFilledOutMessage, animated: true, completion: nil)
+        } else {
+            sendMessage()
+        }
+    }
+    
+    func sendMessage() {
         collectiveSchedule.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName), schedule: userSchedule)
         (delegate as? YourAvaialabilitiesViewControllerDelegate)?.addDataToMessage(collectiveSchedule: collectiveSchedule)
     }

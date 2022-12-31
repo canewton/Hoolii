@@ -23,6 +23,7 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     @IBOutlet weak var newMeetingField: UITextField!
     @IBOutlet weak var fromTimePicker: UIDatePicker!
     @IBOutlet weak var toTimePicker: UIDatePicker!
+    @IBOutlet weak var setTimeframeButton: ThemedButton!
     
     let formatter = DateFormatter()
     var collectiveSchedule: CollectiveSchedule = CollectiveSchedule()
@@ -36,6 +37,7 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         configureNameField()
         configureMainViewConstraints()
         configureDatePickers()
+        setTimeframeButton.isEnabled = false
     }
     
     // set the possible meeting time frame of a meetup
@@ -97,6 +99,12 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         self.collectiveSchedule = collectiveSchedule
         self.collectiveSchedule.startTime = HourMinuteTime(date: fromTimePicker.date)
         self.collectiveSchedule.endTime = HourMinuteTime(date: toTimePicker.date)
+        
+        if collectiveSchedule.dates.count > 0 {
+            setTimeframeButton.isEnabled = true
+        } else {
+            setTimeframeButton.isEnabled = false
+        }
     }
     
     @objc func newMeetingFieldDidChange(_ textField: UITextField) {

@@ -419,6 +419,7 @@
                         <outlet property="mainViewBottomConstraint" destination="ecC-NZ-84I" id="fVe-r0-lnU"/>
                         <outlet property="mainViewTopContraint" destination="ckz-Uw-CWD" id="Omz-gH-b91"/>
                         <outlet property="newMeetingField" destination="2gL-SM-Hx5" id="yH6-oS-HVm"/>
+                        <outlet property="setTimeframeButton" destination="wwX-C3-yif" id="ezn-Yr-0ym"/>
                         <outlet property="toTimePicker" destination="o3Y-xr-A0B" id="wFV-DE-rd6"/>
                     </connections>
                 </viewController>
