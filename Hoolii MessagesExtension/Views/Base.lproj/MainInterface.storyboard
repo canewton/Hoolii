@@ -1407,6 +1407,207 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="paM-qC-hS9"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="HtJ-lJ-UzP"/>
                             </scrollView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Rt-rI-0Fu" userLabel="ElementScroll">
+                                <rect key="frame" x="9" y="579" width="351" height="161"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ej2-vf-FyN" userLabel="ElementStack">
+                                        <rect key="frame" x="0.0" y="0.0" width="2048" height="128"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhN-zW-0R2" userLabel="ElemButton1">
+                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="Q7y-qj-Rta"/>
+                                                    <constraint firstAttribute="width" constant="128" id="bii-qh-kLY"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=" ">
+                                                    <backgroundConfiguration key="background" image="Chin 1"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GiC-BF-3VB" userLabel="ElemButton2">
+                                                <rect key="frame" x="128" y="0.0" width="128" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="128" id="L5z-4K-dyl"/>
+                                                    <constraint firstAttribute="height" constant="128" id="zmI-f8-q1O"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=" ">
+                                                    <backgroundConfiguration key="background" image="Chin 2"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZg-qq-cvV" userLabel="ElemButton3">
+                                                <rect key="frame" x="256" y="0.0" width="128" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="xcy-Uw-w7Y"/>
+                                                    <constraint firstAttribute="width" constant="128" id="yQo-BY-Gn7"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=" ">
+                                                    <backgroundConfiguration key="background" image="Chin 3"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BRU-7r-KWA" userLabel="ElemButton4">
+                                                <rect key="frame" x="384" y="0.0" width="128" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="Bdk-zY-Wfo"/>
+                                                    <constraint firstAttribute="width" constant="128" id="l0m-MI-a57"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=" ">
+                                                    <backgroundConfiguration key="background" image="Chin 4 Beard"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdD-vr-zKu" userLabel="ElemButton5">
+                                                <rect key="frame" x="512" y="0.0" width="128" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="128" id="WRi-eE-jPG"/>
+                                                    <constraint firstAttribute="height" constant="128" id="rJs-QP-FgE"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=" ">
+                                                    <backgroundConfiguration key="background" image="Chin 5 Beard"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAN-Gh-CQj" userLabel="ElemButton6">
+                                                <rect key="frame" x="640" y="0.0" width="128" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="6uX-g7-kPy"/>
+                                                    <constraint firstAttribute="width" constant="128" id="nfv-eu-1UN"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=" ">
+                                                    <backgroundConfiguration key="background" image="Chin 6 Beard"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRw-js-Xqb" userLabel="ElemButton7">
+                                                <rect key="frame" x="768" y="0.0" width="128" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="OiQ-MC-QOT"/>
+                                                    <constraint firstAttribute="width" constant="128" id="vEl-mD-vwH"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=" ">
+                                                    <backgroundConfiguration key="background" image="Chin 7 Beard"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="147-G9-1zG" userLabel="ElemButton8">
+                                                <rect key="frame" x="896" y="0.0" width="128" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="6OT-hj-iYA"/>
+                                                    <constraint firstAttribute="width" constant="128" id="veg-O8-GFa"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=" ">
+                                                    <backgroundConfiguration key="background" image="Chin 8 Beard"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhz-16-o3L" userLabel="ElemButton9">
+                                                <rect key="frame" x="1024" y="0.0" width="128" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="128" id="dr7-6a-o1I"/>
+                                                    <constraint firstAttribute="height" constant="128" id="k7K-pv-NrN"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=" ">
+                                                    <backgroundConfiguration key="background" image="Chin 9 Beard"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oXX-0B-1ak" userLabel="ElemButton10">
+                                                <rect key="frame" x="1152" y="0.0" width="128" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="3Gx-yK-X65"/>
+                                                    <constraint firstAttribute="width" constant="128" id="FYP-Gv-f5J"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=" ">
+                                                    <backgroundConfiguration key="background" image="Chin 10 Beard"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYP-4S-PkJ" userLabel="ElemButton11">
+                                                <rect key="frame" x="1280" y="0.0" width="128" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="128" id="H4c-T5-SGu"/>
+                                                    <constraint firstAttribute="height" constant="128" id="amZ-F5-BbQ"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=" ">
+                                                    <backgroundConfiguration key="background"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdJ-YM-Rsq" userLabel="ElemButton12">
+                                                <rect key="frame" x="1408" y="0.0" width="128" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="94P-w4-OmE"/>
+                                                    <constraint firstAttribute="width" constant="128" id="a2p-qS-bVn"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=" ">
+                                                    <backgroundConfiguration key="background"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgS-Kp-pXn" userLabel="ElemButton13">
+                                                <rect key="frame" x="1536" y="0.0" width="128" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="8sg-cz-gvh"/>
+                                                    <constraint firstAttribute="width" constant="128" id="ylL-nW-orb"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=" ">
+                                                    <backgroundConfiguration key="background"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXG-gC-nWH" userLabel="ElemButton14">
+                                                <rect key="frame" x="1664" y="0.0" width="128" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="Cfm-rf-mh5"/>
+                                                    <constraint firstAttribute="width" constant="128" id="p3B-Or-8j5"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=" ">
+                                                    <backgroundConfiguration key="background"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUb-Tf-MYg" userLabel="ElemButton15">
+                                                <rect key="frame" x="1792" y="0.0" width="128" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="4cd-Um-Oke"/>
+                                                    <constraint firstAttribute="width" constant="128" id="8MN-LM-GoD"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=" ">
+                                                    <backgroundConfiguration key="background"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A0j-wQ-yAU" userLabel="ElemButton16">
+                                                <rect key="frame" x="1920" y="0.0" width="128" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="128" id="2y5-dK-ZYB"/>
+                                                    <constraint firstAttribute="height" constant="128" id="CRf-5q-vbr"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title=" ">
+                                                    <backgroundConfiguration key="background"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Ej2-vf-FyN" firstAttribute="top" secondItem="fen-Xh-Dn7" secondAttribute="top" id="4RH-Wz-lgU"/>
+                                    <constraint firstItem="Ej2-vf-FyN" firstAttribute="leading" secondItem="fen-Xh-Dn7" secondAttribute="leading" id="4lN-6v-hUK"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ej2-vf-FyN" secondAttribute="trailing" constant="-1697" id="RiO-yc-u7b"/>
+                                    <constraint firstItem="fen-Xh-Dn7" firstAttribute="bottom" secondItem="Ej2-vf-FyN" secondAttribute="bottom" id="Ywb-0y-06C"/>
+                                    <constraint firstItem="Ej2-vf-FyN" firstAttribute="height" secondItem="0Rt-rI-0Fu" secondAttribute="height" constant="-33" id="sac-bJ-zgV"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="igd-0Y-94S"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="fen-Xh-Dn7"/>
+                            </scrollView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="g5r-lS-7pM" userLabel="ElementChoiceSlider">
+                                <rect key="frame" x="228" y="54" width="118" height="82"/>
+                                <connections>
+                                    <action selector="elemSliderMoved:" destination="t6O-mJ-wqx" eventType="valueChanged" id="X8D-dO-mG9"/>
+                                </connections>
+                            </slider>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTG-Ur-73j" userLabel="SegmentScroll">
                                 <rect key="frame" x="0.0" y="468" width="359" height="51"/>
                                 <subviews>
@@ -1437,26 +1638,26 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="yhl-gk-p4u"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="LKX-kb-kNm"/>
                             </scrollView>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="g5r-lS-7pM" userLabel="ElementChoiceSlider">
-                                <rect key="frame" x="18" y="527" width="118" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="elemSliderMoved:" destination="t6O-mJ-wqx" eventType="valueChanged" id="X8D-dO-mG9"/>
-                                </connections>
-                            </slider>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eh4-fR-69B"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="eh4-fR-69B" firstAttribute="trailing" secondItem="g5r-lS-7pM" secondAttribute="trailing" constant="15" id="1kD-pW-pXj"/>
                             <constraint firstItem="VTG-Ur-73j" firstAttribute="trailing" secondItem="eh4-fR-69B" secondAttribute="trailing" id="24f-8k-ETa"/>
                             <constraint firstItem="eh4-fR-69B" firstAttribute="bottom" secondItem="VTG-Ur-73j" secondAttribute="bottom" constant="219" id="4Wt-Te-12E"/>
+                            <constraint firstItem="0Rt-rI-0Fu" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" constant="9" id="5iL-AW-ChY"/>
+                            <constraint firstAttribute="trailing" secondItem="0Rt-rI-0Fu" secondAttribute="trailing" id="6Kn-Pd-pF2"/>
+                            <constraint firstItem="g5r-lS-7pM" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" constant="230" id="Hb8-jh-t9a"/>
+                            <constraint firstItem="eh4-fR-69B" firstAttribute="bottom" secondItem="g5r-lS-7pM" secondAttribute="bottom" constant="603" id="HhK-NB-BPg"/>
                             <constraint firstItem="eh4-fR-69B" firstAttribute="trailing" secondItem="9Tn-VI-vtA" secondAttribute="trailing" id="Kdm-f5-p91"/>
                             <constraint firstItem="VTG-Ur-73j" firstAttribute="trailing" secondItem="eh4-fR-69B" secondAttribute="trailing" id="LZs-3E-OoR"/>
                             <constraint firstItem="9Tn-VI-vtA" firstAttribute="top" secondItem="ccM-5I-7XT" secondAttribute="bottom" constant="18" id="Omw-3v-B5f"/>
                             <constraint firstItem="ccM-5I-7XT" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" constant="52" id="WL8-6X-0oz"/>
                             <constraint firstItem="biv-kg-mvA" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" constant="20" id="Zcd-W7-wwD"/>
                             <constraint firstItem="eh4-fR-69B" firstAttribute="bottom" secondItem="VTG-Ur-73j" secondAttribute="bottom" constant="219" id="aHs-wd-a1n"/>
+                            <constraint firstItem="g5r-lS-7pM" firstAttribute="top" secondItem="eh4-fR-69B" secondAttribute="top" constant="6" id="aya-ud-Arb"/>
                             <constraint firstItem="biv-kg-mvA" firstAttribute="top" secondItem="eh4-fR-69B" secondAttribute="top" constant="4" id="bbK-RA-o8u"/>
+                            <constraint firstAttribute="bottom" secondItem="0Rt-rI-0Fu" secondAttribute="bottom" constant="10" id="fYI-Cg-r8t"/>
                             <constraint firstItem="eh4-fR-69B" firstAttribute="bottom" secondItem="9Tn-VI-vtA" secondAttribute="bottom" constant="290" id="gHk-Kn-1gx"/>
                             <constraint firstItem="9Tn-VI-vtA" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" id="jcd-OM-bf8"/>
                             <constraint firstItem="VTG-Ur-73j" firstAttribute="top" secondItem="9Tn-VI-vtA" secondAttribute="bottom" constant="20" id="kZl-Lq-TEQ"/>
@@ -1495,6 +1696,15 @@
     </scenes>
     <resources>
         <image name="Chin 1" width="800" height="800"/>
+        <image name="Chin 10 Beard" width="800" height="800"/>
+        <image name="Chin 2" width="800" height="800"/>
+        <image name="Chin 3" width="800" height="800"/>
+        <image name="Chin 4 Beard" width="800" height="800"/>
+        <image name="Chin 5 Beard" width="800" height="800"/>
+        <image name="Chin 6 Beard" width="800" height="800"/>
+        <image name="Chin 7 Beard" width="800" height="800"/>
+        <image name="Chin 8 Beard" width="800" height="800"/>
+        <image name="Chin 9 Beard" width="800" height="800"/>
         <image name="Ear 1 + Head" width="800" height="800"/>
         <image name="Eyebrows 1" width="800" height="800"/>
         <image name="Eyes 1" width="800" height="800"/>
