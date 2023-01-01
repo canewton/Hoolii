@@ -153,23 +153,19 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     }
     
     func alertForBlankWeeklyAvailability() {
-        let whatsYourAvailability = UIAlertController(title: "\n\n\n\n\n\nWhat's your availibility?", message: "You haven't set up your weekly availability in your Profile yet.", preferredStyle: .alert)
-        let doItLater = UIAlertAction(title: "I'll do it later", style: .cancel, handler: nil)
-        let setAvailability = UIAlertAction(title: "Set Availability", style: .default, handler: { (action) -> Void in
-            let profileVC = self.findViewController()?.storyboard?
-                .instantiateViewController(withIdentifier: "CreateProfileViewController") as! CreateProfileViewController
-            (self.findViewController() as? YourAvailabilitiesViewController)?.transitionToScreen(viewController: profileVC)
-        })
-        
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 15, width: 130, height: 130))
-        imageView.center.x = whatsYourAvailability.view.bounds.width/3
-        imageView.image = UIImage(named: "cal-stick.png")
-        whatsYourAvailability.view.addSubview(imageView)
-        
-        whatsYourAvailability.addAction(doItLater)
-        whatsYourAvailability.addAction(setAvailability)
-        
-        findViewController()?.present(whatsYourAvailability, animated: true, completion: nil)
+        if let alert = AppAlert.instanceFromNib(image: UIImage(named: "cal-stick.png"), cancelText: "I'll do it later", acceptText: "Set Availability", title: "What's your availibility?", description: "You haven't set up your weekly availability in your Profile yet.") {
+            let darkenedScreen: DarkenedScreen = DarkenedScreen(viewController: findViewController()!)
+            alert.acceptCallback = {() -> Void in
+                darkenedScreen.dismiss(animated: true)
+                let profileVC = self.findViewController()?.storyboard?
+                    .instantiateViewController(withIdentifier: "CreateProfileViewController") as! CreateProfileViewController
+                (self.findViewController() as? YourAvailabilitiesViewController)?.transitionToScreen(viewController: profileVC)
+            }
+            alert.cancelCallback = {() -> Void in darkenedScreen.dismiss(animated: true)}
+            darkenedScreen.addAlert(alert: alert)
+            
+            findViewController()?.present(darkenedScreen, animated: true, completion: nil)
+        }
     }
     
     // the availability detail must be created every time it is displayed

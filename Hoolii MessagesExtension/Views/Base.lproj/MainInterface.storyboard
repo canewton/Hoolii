@@ -702,8 +702,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JDi-zv-FaQ" customClass="ThemedButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
                                 <rect key="frame" x="95" y="220" width="170" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="170" id="81Y-gx-t5c"/>
-                                    <constraint firstAttribute="height" constant="30" id="dEW-7L-bO9"/>
+                                    <constraint firstAttribute="height" constant="30" id="SyX-Ti-cS8"/>
+                                    <constraint firstAttribute="width" constant="170" id="cvZ-j9-Ck6"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="More Dates"/>
@@ -717,7 +717,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l13-yk-QH1">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l13-yk-QH1">
                                 <rect key="frame" x="30" y="60.5" width="300" height="144.5"/>
                             </view>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o2V-RO-uB1" customClass="ProfileButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
@@ -729,15 +729,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="o2V-RO-uB1" firstAttribute="top" secondItem="mDx-mO-gd5" secondAttribute="top" constant="25" id="0Rv-eG-GnH"/>
-                            <constraint firstItem="eJ9-V3-9NS" firstAttribute="bottom" secondItem="JDi-zv-FaQ" secondAttribute="bottom" constant="20" id="9Km-04-NEu"/>
+                            <constraint firstItem="eJ9-V3-9NS" firstAttribute="bottom" secondItem="JDi-zv-FaQ" secondAttribute="bottom" constant="20" id="0uE-Ct-zRB"/>
                             <constraint firstItem="uiE-Cr-O9v" firstAttribute="leading" secondItem="eJ9-V3-9NS" secondAttribute="leading" constant="30" id="ATv-cz-cyv"/>
                             <constraint firstItem="eJ9-V3-9NS" firstAttribute="trailing" secondItem="l13-yk-QH1" secondAttribute="trailing" constant="30" id="Ap4-Qf-Afa"/>
                             <constraint firstItem="l13-yk-QH1" firstAttribute="leading" secondItem="eJ9-V3-9NS" secondAttribute="leading" constant="30" id="BvF-i1-Zfk"/>
-                            <constraint firstItem="l13-yk-QH1" firstAttribute="top" secondItem="uiE-Cr-O9v" secondAttribute="bottom" constant="10" id="Llp-c2-nCZ"/>
-                            <constraint firstItem="JDi-zv-FaQ" firstAttribute="centerX" secondItem="mDx-mO-gd5" secondAttribute="centerX" id="X51-gC-qU4"/>
+                            <constraint firstItem="JDi-zv-FaQ" firstAttribute="top" secondItem="l13-yk-QH1" secondAttribute="bottom" constant="15" id="HsX-Zq-sgY"/>
+                            <constraint firstItem="JDi-zv-FaQ" firstAttribute="centerX" secondItem="mDx-mO-gd5" secondAttribute="centerX" id="IRw-Pa-leh"/>
                             <constraint firstItem="uiE-Cr-O9v" firstAttribute="top" secondItem="mDx-mO-gd5" secondAttribute="top" constant="30" id="jxi-Qr-Hhe"/>
                             <constraint firstItem="eJ9-V3-9NS" firstAttribute="trailing" secondItem="o2V-RO-uB1" secondAttribute="trailing" constant="30" id="qf0-bH-0uk"/>
-                            <constraint firstItem="JDi-zv-FaQ" firstAttribute="top" secondItem="l13-yk-QH1" secondAttribute="bottom" constant="15" id="udR-qd-JMX"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -1621,13 +1620,13 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="fen-Xh-Dn7"/>
                             </scrollView>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="g5r-lS-7pM" userLabel="ElementChoiceSlider">
-                                <rect key="frame" x="228" y="54" width="118" height="82"/>
+                                <rect key="frame" x="228" y="54" width="118" height="31"/>
                                 <connections>
                                     <action selector="elemSliderMoved:" destination="t6O-mJ-wqx" eventType="valueChanged" id="X8D-dO-mG9"/>
                                 </connections>
                             </slider>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTG-Ur-73j" userLabel="SegmentScroll">
-                                <rect key="frame" x="0.0" y="468" width="359" height="51"/>
+                                <rect key="frame" x="0.0" y="468" width="359" height="0.0"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2EN-ho-lSh">
                                         <rect key="frame" x="0.0" y="0.0" width="433" height="32"/>
@@ -1884,8 +1883,6 @@
         <image name="Male hair 1" width="800" height="800"/>
         <image name="Mouth 1" width="3334" height="3334"/>
         <image name="Nose 1" width="3334" height="3334"/>
-        <image name="cal-alert-happy" width="76" height="67.5"/>
-        <image name="cal-background" width="67" height="62"/>
         <image name="Skintone1" width="32" height="32"/>
         <image name="Skintone10" width="32" height="32"/>
         <image name="Skintone11" width="32" height="32"/>
@@ -1898,6 +1895,8 @@
         <image name="Skintone7" width="32" height="32"/>
         <image name="Skintone8" width="32" height="32"/>
         <image name="Skintone9" width="32" height="32"/>
+        <image name="cal-alert-happy" width="76" height="67.5"/>
+        <image name="cal-background" width="67" height="62"/>
         <image name="circle-2" width="255" height="255"/>
         <image name="transparent" width="1600" height="900"/>
         <systemColor name="labelColor">

@@ -66,11 +66,9 @@
 		966F0E55686F0A7725DB06CAE46DE4D2 /* Pods-Hoolii MessagesExtension-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Hoolii MessagesExtension-umbrella.h"; sourceTree = "<group>"; };
 		981CB8B07ECDF66D3B1A6F99D386F221 /* JTAppleCalendarDelegateProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JTAppleCalendarDelegateProtocol.swift; path = Sources/JTAppleCalendarDelegateProtocol.swift; sourceTree = "<group>"; };
 		988EB0DD2A67DCB7A2F4034FB64588DF /* JTAppleCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JTAppleCell.swift; path = Sources/JTAppleCell.swift; sourceTree = "<group>"; };
-
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A0C8E428D980D3C9293A3C2BF740F0CD /* JTAppleCalendar */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = JTAppleCalendar; path = libJTAppleCalendar.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4DA5D95809FB9F2E046136410350743 /* Pods-Hoolii */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-Hoolii"; path = "libPods-Hoolii.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-
 		BF3907372831374122BF8CC8CF753695 /* JTAppleCalendar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JTAppleCalendar.debug.xcconfig; sourceTree = "<group>"; };
 		DE18F457B4E60FF900C9F42BF18573FC /* JTAppleCalendar-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JTAppleCalendar-umbrella.h"; sourceTree = "<group>"; };
 		E211CEECDD6B454BBA62E84845E174A6 /* JTAppleCalendar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JTAppleCalendar.release.xcconfig; sourceTree = "<group>"; };
@@ -141,9 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				A0C8E428D980D3C9293A3C2BF740F0CD /* JTAppleCalendar */,
-
 				A4DA5D95809FB9F2E046136410350743 /* Pods-Hoolii */,
-
 				8EF28ABCA7245CFA55DDC02710FFA64B /* Pods-Hoolii MessagesExtension */,
 			);
 			name = Products;
@@ -170,9 +166,7 @@
 				EE8CD4710FA9B27B61497F3A1936C200 /* UserInteractionFunctions.swift */,
 				0FE4573625D2D9B7B7027C5880C86FB8 /* Support Files */,
 			);
-
 			name = JTAppleCalendar;
-
 			path = JTAppleCalendar;
 			sourceTree = "<group>";
 		};
@@ -303,9 +297,7 @@
 			);
 			name = "Pods-Hoolii";
 			productName = "Pods-Hoolii";
-
 			productReference = A4DA5D95809FB9F2E046136410350743 /* Pods-Hoolii */;
-
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */

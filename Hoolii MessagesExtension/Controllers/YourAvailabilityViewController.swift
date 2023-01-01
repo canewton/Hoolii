@@ -86,21 +86,17 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     
     @IBAction func OnSaveAndSend(_ sender: Any) {
         if userHasEmptySchedule() {
-            let notFilledOutMessage = UIAlertController(title: "\n\n\n\n\n\nWait! Your availability is empty.", message: "You are sending a blank schedule with no availabilities for your hangout.", preferredStyle: .alert)
-            let keepEditing = UIAlertAction(title: "Keep editing", style: .cancel, handler: nil)
-            let sendAway = UIAlertAction(title: "Send away", style: .default, handler: { (action) -> Void in
-                self.sendMessage()
-            })
-            
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 170, height: 170))
-            imageView.center.x = notFilledOutMessage.view.bounds.width/3
-            imageView.image = UIImage(named: "cal-alert.png")
-            notFilledOutMessage.view.addSubview(imageView)
-            
-            notFilledOutMessage.addAction(keepEditing)
-            notFilledOutMessage.addAction(sendAway)
-            
-            self.present(notFilledOutMessage, animated: true, completion: nil)
+            if let alert = AppAlert.instanceFromNib(image: UIImage(named: "cal-alert.png"), cancelText: "Keep editing", acceptText: "Send away", title: "Wait! Your availability is empty.", description: "You are sending a blank schedule with no availabilities for your hangout.") {
+                let darkenedScreen: DarkenedScreen = DarkenedScreen(viewController: self)
+                alert.acceptCallback = {() -> Void in
+                    darkenedScreen.dismiss(animated: true)
+                    self.sendMessage()
+                }
+                alert.cancelCallback = {() -> Void in darkenedScreen.dismiss(animated: true)}
+                darkenedScreen.addAlert(alert: alert)
+                
+                self.present(darkenedScreen, animated: true, completion: nil)
+            }
         } else {
             sendMessage()
         }

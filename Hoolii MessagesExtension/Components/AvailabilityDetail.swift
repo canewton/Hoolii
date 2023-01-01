@@ -70,12 +70,12 @@ class AvailabilityDetail: UIView {
     
     func createUserIcon(user: User) -> UIView {
         let userContainer: UIView = UIView()
-        let initials: UILabel = UILabel(frame: CGRect(x: 14, y: 14, width: 28, height: 28))
+        let initials: UILabel = UILabel(frame: CGRect(x: 14, y: 14, width: ProfileButton.width, height: ProfileButton.height))
         initials.text = user.getInitials()
         
         userContainer.translatesAutoresizingMaskIntoConstraints = false
-        userContainer.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        userContainer.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        userContainer.widthAnchor.constraint(equalToConstant: CGFloat(ProfileButton.width)).isActive = true
+        userContainer.heightAnchor.constraint(equalToConstant: CGFloat(ProfileButton.height)).isActive = true
         userContainer.layer.cornerRadius = 15
         userContainer.layer.shadowColor = AppColors.shadowColor.cgColor
         userContainer.layer.shadowOpacity = 0.3
