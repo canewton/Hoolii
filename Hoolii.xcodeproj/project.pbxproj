@@ -69,6 +69,7 @@
 		91E71ACB296181320020ABC8 /* AppAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E71ACA296181320020ABC8 /* AppAlert.xib */; };
 		91E71ACD296188BB0020ABC8 /* AppAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E71ACC296188BB0020ABC8 /* AppAlert.swift */; };
 		91E71ACF29618FCE0020ABC8 /* DarkenedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E71ACE29618FCE0020ABC8 /* DarkenedScreen.swift */; };
+		91E71AD129623D6B0020ABC8 /* HorizontalOrientationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E71AD029623D6B0020ABC8 /* HorizontalOrientationViewController.swift */; };
 		E1BE96C0972C8ADFD212FDD4 /* libPods-Hoolii.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2059F873623DEA6DE6C9C3A3 /* libPods-Hoolii.a */; };
 		FC0AC900BAF8436FCCEFF0BF /* libPods-Hoolii MessagesExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB9FB6186E1010E8D04B74A1 /* libPods-Hoolii MessagesExtension.a */; };
 /* End PBXBuildFile section */
@@ -169,6 +170,7 @@
 		91E71ACA296181320020ABC8 /* AppAlert.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppAlert.xib; sourceTree = "<group>"; };
 		91E71ACC296188BB0020ABC8 /* AppAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAlert.swift; sourceTree = "<group>"; };
 		91E71ACE29618FCE0020ABC8 /* DarkenedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkenedScreen.swift; sourceTree = "<group>"; };
+		91E71AD029623D6B0020ABC8 /* HorizontalOrientationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalOrientationViewController.swift; sourceTree = "<group>"; };
 		91F40B6D286164C900B6912D /* Hoolii MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hoolii MessagesExtension.entitlements"; sourceTree = "<group>"; };
 		FB9FB6186E1010E8D04B74A1 /* libPods-Hoolii MessagesExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hoolii MessagesExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -347,6 +349,7 @@
 				91A4E814294C075200AB7E11 /* AvatarCreatorViewController.swift */,
 				91A4E834295EFC0B00AB7E11 /* OnboardingViewController.swift */,
 				91E71AC8295F73C10020ABC8 /* OnboardingCollapsedViewController.swift */,
+				91E71AD029623D6B0020ABC8 /* HorizontalOrientationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				9103E58A289F50BC00CA661B /* NewMeetingViewController.swift in Sources */,
 				913C119528B0AAFA00B5A66F /* AppViewController.swift in Sources */,
 				9103E5782896DA0400CA661B /* AvailabilityBar.swift in Sources */,
+				91E71AD129623D6B0020ABC8 /* HorizontalOrientationViewController.swift in Sources */,
 				9103E59728A84A9900CA661B /* ThemedButton.swift in Sources */,
 				9103E587289F4F5900CA661B /* YourAvailabilityViewController.swift in Sources */,
 				9100ED8528E01C9D00DA4F43 /* HourMinuteTime.swift in Sources */,

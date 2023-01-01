@@ -1865,6 +1865,35 @@
             </objects>
             <point key="canvasLocation" x="1330.4347826086957" y="99.776785714285708"/>
         </scene>
+        <!--Horizontal Orientation View Controller-->
+        <scene sceneID="kCU-dg-TrM">
+            <objects>
+                <viewController storyboardIdentifier="HorizontalOrientationViewController" id="aqi-df-eXS" customClass="HorizontalOrientationViewController" customModule="Hoolii_MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cCL-8C-clI">
+                        <rect key="frame" x="0.0" y="0.0" width="750" height="360"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn your phone vertically" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHg-ZS-i7Z">
+                                <rect key="frame" x="266" y="168.5" width="218.5" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="aYc-ME-NFT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MHg-ZS-i7Z" firstAttribute="centerY" secondItem="cCL-8C-clI" secondAttribute="centerY" id="dgI-kP-ZOh"/>
+                            <constraint firstItem="MHg-ZS-i7Z" firstAttribute="centerX" secondItem="cCL-8C-clI" secondAttribute="centerX" id="hCd-HB-dS4"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="750" height="360"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nd2-gp-rjN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="346" y="-397"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Chin 1" width="800" height="800"/>

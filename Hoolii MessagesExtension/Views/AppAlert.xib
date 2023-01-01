@@ -99,6 +99,7 @@
             <connections>
                 <outlet property="alertDescription" destination="HKj-ae-2Ck" id="QPM-kg-Gx3"/>
                 <outlet property="alertTitle" destination="O79-Ni-mjm" id="sGz-BE-vOH"/>
+                <outlet property="buttonsContainer" destination="W3j-Dg-lBP" id="6xB-9u-w5I"/>
                 <outlet property="imageView" destination="dSm-LW-0BO" id="vtU-9M-LU6"/>
                 <outlet property="leftButton" destination="sCe-UM-sb8" id="7iP-VR-gdf"/>
                 <outlet property="leftButtonText" destination="dVd-ke-tyR" id="bVt-EF-4JD"/>

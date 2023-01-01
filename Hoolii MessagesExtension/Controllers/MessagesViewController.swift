@@ -104,6 +104,32 @@ class MessagesViewController: MSMessagesAppViewController {
         removeAllChildViewControllers()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        if(size.width > self.view.frame.size.width){
+            // screen is horizontal
+            self.dismiss(animated: false, completion: nil)
+            let horizontalOrientationController: HorizontalOrientationViewController = instantiateController()
+            addChild(horizontalOrientationController)
+            view.addSubview(horizontalOrientationController.view)
+            horizontalOrientationController.view.translatesAutoresizingMaskIntoConstraints = false
+            horizontalOrientationController.view.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+            horizontalOrientationController.view.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+            horizontalOrientationController.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+            horizontalOrientationController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        } else {
+            // screen is vertical
+            for child in children {
+                if let controller = child as? HorizontalOrientationViewController {
+                    controller.willMove(toParent: nil)
+                    controller.view.removeFromSuperview()
+                    controller.removeFromParent()
+                }
+            }
+        }
+    }
+    
     // Tells the view controller that the extenson has transitioned to a new presentation style -> compact or exmpanded
     override func didTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
         super.didTransition(to: presentationStyle)

@@ -15,6 +15,7 @@ final class AppAlert: UIView {
     @IBOutlet weak var rightButtonText: UILabel!
     @IBOutlet weak var alertTitle: UILabel!
     @IBOutlet weak var alertDescription: UILabel!
+    @IBOutlet weak var buttonsContainer: UIStackView!
     var cancelCallback: (() -> Void)!
     var acceptCallback: (() -> Void)!
     
@@ -29,8 +30,9 @@ final class AppAlert: UIView {
         appAlert?.layer.cornerRadius = 15
         appAlert?.leftButton.backgroundColor = .clear
         appAlert?.rightButton.backgroundColor = .clear
-        appAlert?.leftButton.addBorders(edges: [.right, .top], color: AppColors.lightGrey)
-        appAlert?.rightButton.addBorders(edges: [.left, .top], color: AppColors.lightGrey)
+        appAlert?.leftButton.addBorders(edges: [.right], color: AppColors.lightGrey, thickness: 0.5)
+        appAlert?.rightButton.addBorders(edges: [.left], color: AppColors.lightGrey, thickness: 0.5)
+        appAlert?.buttonsContainer.addBorders(edges: [.top], color: AppColors.lightGrey, thickness: 1)
         appAlert?.rightButtonText.textColor = AppColors.main
         
         return appAlert
