@@ -26,7 +26,6 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     @IBOutlet weak var setTimeframeButton: ThemedButton!
     
     let formatter = DateFormatter()
-    var collectiveSchedule: CollectiveSchedule = CollectiveSchedule()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +42,6 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     // set the possible meeting time frame of a meetup
     @IBAction func OnSetTimeframe(_ sender: Any) {
         (delegate as? NewMeetingViewControllerDelegate)?.transitonToYourAvailabilities(self)
-        yourAvailabiliesViewController?.collectiveSchedule = collectiveSchedule
         yourAvailabiliesViewController?.isCreatingMeeting = true
         self.transitionToScreen(viewController: yourAvailabiliesViewController!)
     }
@@ -51,8 +49,8 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     func configureDatePickers() {
         fromTimePicker.tintColor = AppColors.main
         toTimePicker.tintColor = AppColors.main
-        collectiveSchedule.startTime = HourMinuteTime(date: fromTimePicker.date)
-        collectiveSchedule.endTime = HourMinuteTime(date: toTimePicker.date)
+        CollectiveSchedule.shared.startTime = HourMinuteTime(date: fromTimePicker.date)
+        CollectiveSchedule.shared.endTime = HourMinuteTime(date: toTimePicker.date)
     }
     
     func configureNameField() {
@@ -73,6 +71,7 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         meetingCalendar.view.rightAnchor.constraint(equalTo: createMeetingCalendarContainer.rightAnchor).isActive = true
         meetingCalendar.view.bottomAnchor.constraint(equalTo: createMeetingCalendarContainer.bottomAnchor).isActive = true
         meetingCalendar.view.topAnchor.constraint(equalTo: createMeetingCalendarContainer.topAnchor).isActive = true
+        meetingCalendar.addDateCallback = addDateCallback
     }
     
     @IBAction func onFromTimeChanged(_ sender: Any) {
@@ -81,7 +80,7 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         if fromTime >= toTime - 60 {
             fromTime = toTime - 60
         }
-        collectiveSchedule.startTime = fromTime
+        CollectiveSchedule.shared.startTime = fromTime
         fromTimePicker.date = fromTime.toDate()
     }
     
@@ -91,16 +90,15 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         if fromTime >= toTime - 60 {
             toTime = fromTime + 60
         }
-        collectiveSchedule.endTime = toTime
+        CollectiveSchedule.shared.endTime = toTime
         toTimePicker.date = toTime.toDate()
     }
     
-    func addDateCallback(_ collectiveSchedule: CollectiveSchedule) {
-        self.collectiveSchedule = collectiveSchedule
-        self.collectiveSchedule.startTime = HourMinuteTime(date: fromTimePicker.date)
-        self.collectiveSchedule.endTime = HourMinuteTime(date: toTimePicker.date)
+    func addDateCallback() {
+        CollectiveSchedule.shared.startTime = HourMinuteTime(date: fromTimePicker.date)
+        CollectiveSchedule.shared.endTime = HourMinuteTime(date: toTimePicker.date)
         
-        if collectiveSchedule.dates.count > 0 {
+        if CollectiveSchedule.shared.dates.count > 0 {
             setTimeframeButton.isEnabled = true
         } else {
             setTimeframeButton.isEnabled = false
@@ -108,7 +106,7 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     }
     
     @objc func newMeetingFieldDidChange(_ textField: UITextField) {
-        collectiveSchedule.meetingName = textField.text!
+        CollectiveSchedule.shared.meetingName = textField.text!
     }
     
     func instantiateController() -> CreateMeetingCalendar {
@@ -118,7 +116,6 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         
         controller.delegate = self
         controller.numRows = 6
-        controller.addDateCallback = addDateCallback
         
         return controller
     }

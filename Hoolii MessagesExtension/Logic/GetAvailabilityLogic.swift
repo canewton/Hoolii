@@ -95,8 +95,8 @@ class AvailabilityLogic {
     
     // convert the timestamps into time range collective
     // then, use TimeRangeCollective to create DayCollective
-    private static func getAvailabilityFromTimestamps(_ sortedTimeStampCollections: [[TimeStamp]], _ dates: [ScheduleDate]) -> [DayCollective?] {
-        var allAvailability: [DayCollective?] = []
+    private static func getAvailabilityFromTimestamps(_ sortedTimeStampCollections: [[TimeStamp]], _ dates: [ScheduleDate]) -> [DayCollective] {
+        var allAvailability: [DayCollective] = []
         
         for i in 0..<sortedTimeStampCollections.count {
             let timeStampCollection: [TimeStamp] = sortedTimeStampCollections[i]
@@ -105,7 +105,7 @@ class AvailabilityLogic {
             var users: [User] = []
             
             if timeStampCollection.count == 0 {
-                allAvailability.append(nil)
+                allAvailability.append(DayCollective(date: dates[i], timesFree: []))
                 continue
             }
             
@@ -130,14 +130,14 @@ class AvailabilityLogic {
         return allAvailability
     }
     
-    static func getDaysAndTimesFree(_ allSchedules: [Schedule]) -> [DayCollective?] {
+    static func getDaysAndTimesFree(_ allSchedules: [Schedule]) -> [DayCollective] {
         var dates: [ScheduleDate] = []
         
         let unsortedTimeStampCollections: [[[TimeStamp]]] = convertSchedulesToTimeStamps(allSchedules) { (date) -> () in
             dates.append(date)
         }
         let sortedTimeStampCollections: [[TimeStamp]] = sortTimeStamps(unsortedTimeStampCollections)
-        let allAvailability: [DayCollective?] = getAvailabilityFromTimestamps(sortedTimeStampCollections, dates)
+        let allAvailability: [DayCollective] = getAvailabilityFromTimestamps(sortedTimeStampCollections, dates)
         return allAvailability
     }
 }

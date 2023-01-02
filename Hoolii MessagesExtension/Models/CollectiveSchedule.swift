@@ -8,7 +8,9 @@
 import Foundation
 import Messages
 
-struct CollectiveSchedule {
+class CollectiveSchedule {
+    static var shared = CollectiveSchedule()
+    init() {}
     var allSchedules: [Schedule] = []
     var dates: [Date] = []
     var expirationDate: Date = Date()
@@ -44,7 +46,8 @@ extension CollectiveSchedule {
     }
     
     // decode a message into a CollectiveSchedule object
-    init?(queryItems: [URLQueryItem]) {
+    convenience init?(queryItems: [URLQueryItem]) {
+        self.init()
         for queryItem in queryItems {
             if queryItem.name == "allSchedules" {
                 let dataFromJsonString = queryItem.value!.data(using: .utf8)!
@@ -67,9 +70,16 @@ extension CollectiveSchedule {
         }
     }
     
+    // TODO save user schedule progress even after meeting details have changed
     func getScheduleWithUser(_ user: User) -> Schedule? {
         for i in 0..<allSchedules.count {
             if user == allSchedules[i].user {
+                for j in 0..<allSchedules[i].datesFree.count {
+                    if allSchedules[i].datesFree[j].date.date != dates[j] {
+                        allSchedules[i].datesFree = dates.map{Day(date: ScheduleDate($0), timesFree: [])}
+                        return allSchedules[i]
+                    }
+                }
                 return allSchedules[i]
             }
         }
@@ -77,7 +87,7 @@ extension CollectiveSchedule {
         return nil
     }
     
-    mutating func setScheduleWithUser(_ user: User, schedule: Schedule) {
+    func setScheduleWithUser(_ user: User, schedule: Schedule) {
         for i in 0..<allSchedules.count {
             if user == allSchedules[i].user {
                 allSchedules[i] = schedule
@@ -86,14 +96,14 @@ extension CollectiveSchedule {
     }
     
     // add an empty user schedule
-    mutating func appendEmptySchedule(user: User) -> Schedule {
+    func appendEmptySchedule(user: User) -> Schedule {
         let dayObjects: [Day] = dates.map{Day(date: ScheduleDate($0), timesFree: [])}
         let schedule = Schedule(datesFree: dayObjects, user: user)
         allSchedules.append(schedule)
         return schedule
     }
     
-    mutating func addDate(_ date: Date) {
+    func addDate(_ date: Date) {
         var insertedDate: Bool = false
         for i in 0..<dates.count {
             if date.timeIntervalSince1970 < dates[i].timeIntervalSince1970 {
@@ -107,7 +117,7 @@ extension CollectiveSchedule {
         }
     }
     
-    mutating func removeDate(_ date: Date) {
+    func removeDate(_ date: Date) {
         for i in 0..<dates.count {
             if dates[i] == date {
                 dates.remove(at: i)
@@ -122,7 +132,7 @@ extension CollectiveSchedule {
     
     // MARK: Initialization
     
-    init?(message: MSMessage?) {
+    convenience init?(message: MSMessage?) {
         guard let messageURL = message?.url else { return nil }
         // NSURLComponents parses URLs into and constructs URLs from constituent parts
         guard let urlComponents = NSURLComponents(url: messageURL, resolvingAgainstBaseURL: false) else { return nil }

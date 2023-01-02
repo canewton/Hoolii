@@ -10,10 +10,17 @@ import UIKit
 // info block on who is available at a certain time for the group view
 class AvailabilityDetail: UIView {
     @IBOutlet weak var timeRangeText: UILabel!
-    @IBOutlet weak var closeButton: UIImageView!
-    @IBOutlet weak var sizeButton: UIImageView!
+    @IBOutlet weak var dateText: UILabel!
+    @IBOutlet weak var closeIcon: UIImageView!
+    @IBOutlet weak var sizeIcon: UIImageView!
+    @IBOutlet weak var sizeButton: UIView!
+    @IBOutlet weak var closeButton: UIView!
     @IBOutlet weak var header: UIView!
     @IBOutlet weak var userListContainer: UIView!
+    @IBOutlet weak var bottomHeader: UILabel!
+    @IBOutlet weak var numberAvailable: UILabel!
+    @IBOutlet weak var bottomHeaderTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomHeaderBottomConstraint: NSLayoutConstraint!
     var closeAvailabilityDetail: (() -> Void)!
     var expandAvailabilityDetail: (() -> Void)!
     var collapseAvailabilityDetail: (() -> Void)!
@@ -64,8 +71,11 @@ class AvailabilityDetail: UIView {
         return availabilityDetail
     }
     
-    func configureTimeRange(startTime: HourMinuteTime, endTime: HourMinuteTime) {
-        timeRangeText.text = "\(startTime.toStringHourMinute()) - \(endTime.toStringHourMinute())"
+    func configureTimeRange(timeRange: TimeRange, date: ScheduleDate) {
+        timeRangeText.text = "\(timeRange.from.toStringHourMinute()) - \(timeRange.to.toStringHourMinute())"
+        
+        let calendarDate: CalendarDate = CalendarDate(date.date!)
+        dateText.text = "\(calendarDate.getWeekdayAbr()). \(calendarDate.getMonthName()) \(calendarDate.day)"
     }
     
     func createUserIcon(user: User) -> UIView {
@@ -156,13 +166,23 @@ class AvailabilityDetail: UIView {
             widthConstraint.isActive = false
             expandAvailabilityDetail()
             isCollapsed = false
-            sizeButton.image = UIImage(systemName: "arrow.down.right.and.arrow.up.left")
+            sizeIcon.image = UIImage(systemName: "arrow.down.right.and.arrow.up.left")
+            bottomHeader.text = "Who's coming?"
+            bottomHeader.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+            bottomHeaderTopConstraint.constant = 15
+            bottomHeaderBottomConstraint.constant = 15
+            numberAvailable.text = "\(userList.count)/\(CollectiveSchedule.shared.allSchedules.count) Available"
         } else {
             heightConstraint.isActive = true
             widthConstraint.isActive = true
             collapseAvailabilityDetail()
             isCollapsed = true
-            sizeButton.image = UIImage(systemName: "arrow.up.left.and.arrow.down.right")
+            sizeIcon.image = UIImage(systemName: "arrow.up.left.and.arrow.down.right")
+            bottomHeader.text = "Available"
+            bottomHeader.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+            bottomHeaderTopConstraint.constant = 10
+            bottomHeaderBottomConstraint.constant = 10
+            numberAvailable.text = ""
         }
         configureUsers(users: userList)
     }
