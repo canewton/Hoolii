@@ -644,6 +644,7 @@
                     <connections>
                         <outlet property="availabilityInputContainer" destination="XbI-sK-Our" id="YDb-QR-VcB"/>
                         <outlet property="bottomBar" destination="ZNu-2R-fyl" id="Nim-hb-rpi"/>
+                        <outlet property="bottomBarConstraint" destination="fGd-WY-Wmd" id="6lP-SK-li1"/>
                         <outlet property="editMeetingButton" destination="Ts4-pd-heY" id="TNA-FO-IBz"/>
                         <outlet property="editMeetingIcon" destination="2wM-Le-ts1" id="kf8-MU-RXz"/>
                         <outlet property="filterAvailabilitiesSwitch" destination="l8Y-O7-v2w" id="AH0-Cs-kO9"/>

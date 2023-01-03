@@ -25,6 +25,7 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
     var profileAvailabilityPreview: ProfileAvailabilityPreview!
     var newMeetingViewController: NewMeetingViewController!
     var userHasEmptySchedule: Bool = true
+    var prevController: UIViewController!
     
     let defaults = UserDefaults.standard
     
@@ -182,7 +183,8 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
     @IBAction func onCreateProfile(_ sender: Any) {
         StoredValues.setIfEmpty(key: StoredValuesConstants.hasBeenOnboarded, value: "yes")
         (delegate as? CreateProfileViewControllerDelegate)?.transitonToNewMeeting(self)
-        self.transitionToScreen(viewController: newMeetingViewController)
+        
+        self.dismiss(animated: true, completion: { () -> Void in self.prevController.dismiss(animated: true)})
     }
 }
 

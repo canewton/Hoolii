@@ -16,6 +16,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     @IBOutlet weak var editMeetingButton: UIView!
     @IBOutlet weak var topBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var meetingTitle: UILabel!
+    @IBOutlet weak var bottomBarConstraint: NSLayoutConstraint!
     var availabilityInput: FullAvailabilityInput!
     var isShowingPersonalView: Bool = true
     var isCreatingMeeting = false
@@ -55,6 +56,9 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
             editMeetingButton.removeFromSuperview()
             topBarHeightConstraint.constant = 55
         }
+        
+        // fix bug when onboarding screen goes back to this screen
+        bottomBarConstraint.isActive = true
         
         configureEditButton()
         configureFilterSwitch()

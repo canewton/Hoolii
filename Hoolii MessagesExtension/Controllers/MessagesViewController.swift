@@ -67,10 +67,7 @@ class MessagesViewController: MSMessagesAppViewController {
                 controller = yourAvailController
             }
         } else {
-            if StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
-                let onboardingController: OnboardingViewController = instantiateController()
-                controller = onboardingController
-            } else if CollectiveSchedule.shared.allSchedules.count > 0 {
+            if CollectiveSchedule.shared.allSchedules.count > 0 {
                 let yourAvailabilitiesController: YourAvailabilitiesViewController = instantiateController()
                 controller = yourAvailabilitiesController
             } else {
@@ -91,6 +88,11 @@ class MessagesViewController: MSMessagesAppViewController {
             controller.view.topAnchor.constraint(equalTo: view.topAnchor),
             controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
+        
+        if presentationStyle == .expanded && StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
+            let onboardingController: OnboardingViewController = instantiateController()
+            controller.transitionToScreen(viewController: onboardingController)
+        }
         
         controller.didMove(toParent: self)
     }

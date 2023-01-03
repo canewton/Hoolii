@@ -87,6 +87,7 @@ class OnboardingViewController: AppViewController, ViewControllerWithIdentifier 
     @IBAction func onPressNext(_ sender: Any) {
         if currentPage == numPages - 1 {
             (delegate as? OnboardingViewControllerDelegate)?.transitonToProfile(self)
+            profileViewController.prevController = self
             self.transitionToScreen(viewController: profileViewController)
         }
         if currentPage < numPages - 1 {

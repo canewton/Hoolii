@@ -58,9 +58,6 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier, 
         screenContent.heightAnchor.constraint(equalToConstant: scrollViewContentSize).isActive = true
         scrollView.delegate = self
     }
-    @IBAction func test(_ sender: Any) {
-        print("test")
-    }
     
     // set the possible meeting time frame of a meetup
     @IBAction func OnSetTimeframe(_ sender: Any) {
