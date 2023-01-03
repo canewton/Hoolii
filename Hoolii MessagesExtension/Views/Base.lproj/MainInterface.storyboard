@@ -1250,7 +1250,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Tn-VI-vtA" userLabel="SkintoneScroll">
-                                <rect key="frame" x="0.0" y="382" width="359" height="66"/>
+                                <rect key="frame" x="2" y="382" width="357" height="66"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="lCj-xY-ftq">
                                         <rect key="frame" x="24" y="0.0" width="428" height="46"/>
@@ -1402,214 +1402,18 @@
                                     <constraint firstAttribute="height" constant="66" id="ayx-vl-6xC"/>
                                     <constraint firstItem="lCj-xY-ftq" firstAttribute="top" secondItem="9Tn-VI-vtA" secondAttribute="top" id="jH9-MP-9nN"/>
                                     <constraint firstItem="lCj-xY-ftq" firstAttribute="leading" secondItem="9Tn-VI-vtA" secondAttribute="leading" constant="24" id="l7U-Ec-KSw"/>
-                                    <constraint firstAttribute="trailing" secondItem="lCj-xY-ftq" secondAttribute="trailing" constant="33" id="qNh-bB-VJL"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="paM-qC-hS9"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="HtJ-lJ-UzP"/>
                             </scrollView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Rt-rI-0Fu" userLabel="ElementScroll">
-                                <rect key="frame" x="9" y="579" width="351" height="161"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ej2-vf-FyN" userLabel="ElementStack">
-                                        <rect key="frame" x="0.0" y="0.0" width="2048" height="128"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhN-zW-0R2" userLabel="ElemButton1">
-                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="128" id="Q7y-qj-Rta"/>
-                                                    <constraint firstAttribute="width" constant="128" id="bii-qh-kLY"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=" ">
-                                                    <backgroundConfiguration key="background" image="Chin 1"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GiC-BF-3VB" userLabel="ElemButton2">
-                                                <rect key="frame" x="128" y="0.0" width="128" height="128"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="128" id="L5z-4K-dyl"/>
-                                                    <constraint firstAttribute="height" constant="128" id="zmI-f8-q1O"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=" ">
-                                                    <backgroundConfiguration key="background" image="Chin 2"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZg-qq-cvV" userLabel="ElemButton3">
-                                                <rect key="frame" x="256" y="0.0" width="128" height="128"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="128" id="xcy-Uw-w7Y"/>
-                                                    <constraint firstAttribute="width" constant="128" id="yQo-BY-Gn7"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=" ">
-                                                    <backgroundConfiguration key="background" image="Chin 3"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BRU-7r-KWA" userLabel="ElemButton4">
-                                                <rect key="frame" x="384" y="0.0" width="128" height="128"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="128" id="Bdk-zY-Wfo"/>
-                                                    <constraint firstAttribute="width" constant="128" id="l0m-MI-a57"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=" ">
-                                                    <backgroundConfiguration key="background" image="Chin 4 Beard"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdD-vr-zKu" userLabel="ElemButton5">
-                                                <rect key="frame" x="512" y="0.0" width="128" height="128"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="128" id="WRi-eE-jPG"/>
-                                                    <constraint firstAttribute="height" constant="128" id="rJs-QP-FgE"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=" ">
-                                                    <backgroundConfiguration key="background" image="Chin 5 Beard"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAN-Gh-CQj" userLabel="ElemButton6">
-                                                <rect key="frame" x="640" y="0.0" width="128" height="128"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="128" id="6uX-g7-kPy"/>
-                                                    <constraint firstAttribute="width" constant="128" id="nfv-eu-1UN"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=" ">
-                                                    <backgroundConfiguration key="background" image="Chin 6 Beard"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRw-js-Xqb" userLabel="ElemButton7">
-                                                <rect key="frame" x="768" y="0.0" width="128" height="128"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="128" id="OiQ-MC-QOT"/>
-                                                    <constraint firstAttribute="width" constant="128" id="vEl-mD-vwH"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=" ">
-                                                    <backgroundConfiguration key="background" image="Chin 7 Beard"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="147-G9-1zG" userLabel="ElemButton8">
-                                                <rect key="frame" x="896" y="0.0" width="128" height="128"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="128" id="6OT-hj-iYA"/>
-                                                    <constraint firstAttribute="width" constant="128" id="veg-O8-GFa"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=" ">
-                                                    <backgroundConfiguration key="background" image="Chin 8 Beard"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhz-16-o3L" userLabel="ElemButton9">
-                                                <rect key="frame" x="1024" y="0.0" width="128" height="128"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="128" id="dr7-6a-o1I"/>
-                                                    <constraint firstAttribute="height" constant="128" id="k7K-pv-NrN"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=" ">
-                                                    <backgroundConfiguration key="background" image="Chin 9 Beard"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oXX-0B-1ak" userLabel="ElemButton10">
-                                                <rect key="frame" x="1152" y="0.0" width="128" height="128"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="128" id="3Gx-yK-X65"/>
-                                                    <constraint firstAttribute="width" constant="128" id="FYP-Gv-f5J"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=" ">
-                                                    <backgroundConfiguration key="background" image="Chin 10 Beard"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYP-4S-PkJ" userLabel="ElemButton11">
-                                                <rect key="frame" x="1280" y="0.0" width="128" height="128"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="128" id="H4c-T5-SGu"/>
-                                                    <constraint firstAttribute="height" constant="128" id="amZ-F5-BbQ"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=" ">
-                                                    <backgroundConfiguration key="background"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdJ-YM-Rsq" userLabel="ElemButton12">
-                                                <rect key="frame" x="1408" y="0.0" width="128" height="128"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="128" id="94P-w4-OmE"/>
-                                                    <constraint firstAttribute="width" constant="128" id="a2p-qS-bVn"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=" ">
-                                                    <backgroundConfiguration key="background"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgS-Kp-pXn" userLabel="ElemButton13">
-                                                <rect key="frame" x="1536" y="0.0" width="128" height="128"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="128" id="8sg-cz-gvh"/>
-                                                    <constraint firstAttribute="width" constant="128" id="ylL-nW-orb"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=" ">
-                                                    <backgroundConfiguration key="background"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXG-gC-nWH" userLabel="ElemButton14">
-                                                <rect key="frame" x="1664" y="0.0" width="128" height="128"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="128" id="Cfm-rf-mh5"/>
-                                                    <constraint firstAttribute="width" constant="128" id="p3B-Or-8j5"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=" ">
-                                                    <backgroundConfiguration key="background"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUb-Tf-MYg" userLabel="ElemButton15">
-                                                <rect key="frame" x="1792" y="0.0" width="128" height="128"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="128" id="4cd-Um-Oke"/>
-                                                    <constraint firstAttribute="width" constant="128" id="8MN-LM-GoD"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=" ">
-                                                    <backgroundConfiguration key="background"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A0j-wQ-yAU" userLabel="ElemButton16">
-                                                <rect key="frame" x="1920" y="0.0" width="128" height="128"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="128" id="2y5-dK-ZYB"/>
-                                                    <constraint firstAttribute="height" constant="128" id="CRf-5q-vbr"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=" ">
-                                                    <backgroundConfiguration key="background"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="Ej2-vf-FyN" firstAttribute="top" secondItem="fen-Xh-Dn7" secondAttribute="top" id="4RH-Wz-lgU"/>
-                                    <constraint firstItem="Ej2-vf-FyN" firstAttribute="leading" secondItem="fen-Xh-Dn7" secondAttribute="leading" id="4lN-6v-hUK"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ej2-vf-FyN" secondAttribute="trailing" constant="-1697" id="RiO-yc-u7b"/>
-                                    <constraint firstItem="fen-Xh-Dn7" firstAttribute="bottom" secondItem="Ej2-vf-FyN" secondAttribute="bottom" id="Ywb-0y-06C"/>
-                                    <constraint firstItem="Ej2-vf-FyN" firstAttribute="height" secondItem="0Rt-rI-0Fu" secondAttribute="height" constant="-33" id="sac-bJ-zgV"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="igd-0Y-94S"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="fen-Xh-Dn7"/>
-                            </scrollView>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="g5r-lS-7pM" userLabel="ElementChoiceSlider">
-                                <rect key="frame" x="228" y="54" width="118" height="82"/>
+                                <rect key="frame" x="228" y="54" width="118" height="31"/>
                                 <connections>
                                     <action selector="elemSliderMoved:" destination="t6O-mJ-wqx" eventType="valueChanged" id="X8D-dO-mG9"/>
                                 </connections>
                             </slider>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTG-Ur-73j" userLabel="SegmentScroll">
-                                <rect key="frame" x="0.0" y="468" width="359" height="51"/>
+                                <rect key="frame" x="1" y="474" width="358" height="51"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2EN-ho-lSh">
                                         <rect key="frame" x="0.0" y="0.0" width="433" height="32"/>
@@ -1631,12 +1435,94 @@
                                 <constraints>
                                     <constraint firstItem="2EN-ho-lSh" firstAttribute="leading" secondItem="VTG-Ur-73j" secondAttribute="leading" id="3Td-ds-nsw"/>
                                     <constraint firstItem="2EN-ho-lSh" firstAttribute="top" secondItem="VTG-Ur-73j" secondAttribute="top" id="Luh-sb-Rlk"/>
-                                    <constraint firstAttribute="trailing" secondItem="2EN-ho-lSh" secondAttribute="trailing" constant="16" id="OUq-Gs-idT"/>
-                                    <constraint firstAttribute="bottom" secondItem="2EN-ho-lSh" secondAttribute="bottom" id="TjL-F1-gkn"/>
+                                    <constraint firstAttribute="trailing" secondItem="2EN-ho-lSh" secondAttribute="trailing" constant="-73" id="OUq-Gs-idT"/>
+                                    <constraint firstAttribute="bottom" secondItem="2EN-ho-lSh" secondAttribute="bottom" constant="20" id="TjL-F1-gkn"/>
                                     <constraint firstItem="2EN-ho-lSh" firstAttribute="leading" secondItem="VTG-Ur-73j" secondAttribute="leading" id="dh4-f7-6Tf"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="yhl-gk-p4u"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="LKX-kb-kNm"/>
+                            </scrollView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="Tqe-ET-JgE">
+                                <rect key="frame" x="0.0" y="584" width="359" height="97"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="k8z-C5-zXy">
+                                        <rect key="frame" x="0.0" y="0.0" width="440" height="77"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="face shape" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6WN-OP-39d" userLabel="selectFaceImg">
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="77"/>
+                                                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="aBt-e2-yjd" appends="YES" id="zwc-bw-3MD"/>
+                                                </connections>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Eyes" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3qg-Vz-DPp" userLabel="selectEyeImg">
+                                                <rect key="frame" x="55" y="0.0" width="55" height="77"/>
+                                                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="t71-Zy-Dkg" appends="YES" id="OlT-AS-isf"/>
+                                                </connections>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Nose" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oII-Lz-0gK" userLabel="selectNoseImg">
+                                                <rect key="frame" x="110" y="0.0" width="55" height="77"/>
+                                                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="TSx-QE-p2o" appends="YES" id="hSJ-IW-a9s"/>
+                                                </connections>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Brows" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zjw-eF-MA3" userLabel="selectBrowImg">
+                                                <rect key="frame" x="165" y="0.0" width="55" height="77"/>
+                                                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="OVH-dK-AXp" appends="YES" id="hij-hF-43V"/>
+                                                </connections>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mouth" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XQZ-Uo-LBH" userLabel="selectMouthImg">
+                                                <rect key="frame" x="220" y="0.0" width="55" height="77"/>
+                                                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="XB1-qc-rKf" appends="YES" id="Gcl-bl-fUu"/>
+                                                </connections>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Accessories" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6vK-eB-8Tc" userLabel="selectEarImg">
+                                                <rect key="frame" x="275" y="0.0" width="55" height="77"/>
+                                                <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <gestureRecognizers/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hair" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFE-CU-4g5" userLabel="selectMHairImg">
+                                                <rect key="frame" x="330" y="0.0" width="55" height="77"/>
+                                                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="LHH-PX-D55" appends="YES" id="KoH-OX-Ymu"/>
+                                                </connections>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hair" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SuZ-p6-975" userLabel="selectFHairImg">
+                                                <rect key="frame" x="385" y="0.0" width="55" height="77"/>
+                                                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="OIc-XJ-IWb" appends="YES" id="w5p-Of-DOT"/>
+                                                </connections>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.94509804249999996" green="0.98039215800000001" blue="0.96078431610000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="k8z-C5-zXy" firstAttribute="leading" secondItem="Tqe-ET-JgE" secondAttribute="leading" id="GFb-BU-7xR"/>
+                                    <constraint firstAttribute="bottom" secondItem="k8z-C5-zXy" secondAttribute="bottom" id="TaY-eq-3N2"/>
+                                    <constraint firstAttribute="height" constant="97" id="Za4-I4-p4R"/>
+                                    <constraint firstItem="k8z-C5-zXy" firstAttribute="top" secondItem="Tqe-ET-JgE" secondAttribute="top" id="hIa-BG-JvN"/>
+                                    <constraint firstAttribute="trailing" secondItem="k8z-C5-zXy" secondAttribute="trailing" id="hj2-H1-ukN"/>
+                                    <constraint firstItem="k8z-C5-zXy" firstAttribute="height" secondItem="Tqe-ET-JgE" secondAttribute="height" id="pht-v1-766"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="wj7-XZ-eF6"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="eEp-ga-EpB"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eh4-fR-69B"/>
@@ -1644,26 +1530,28 @@
                         <constraints>
                             <constraint firstItem="eh4-fR-69B" firstAttribute="trailing" secondItem="g5r-lS-7pM" secondAttribute="trailing" constant="15" id="1kD-pW-pXj"/>
                             <constraint firstItem="VTG-Ur-73j" firstAttribute="trailing" secondItem="eh4-fR-69B" secondAttribute="trailing" id="24f-8k-ETa"/>
-                            <constraint firstItem="eh4-fR-69B" firstAttribute="bottom" secondItem="VTG-Ur-73j" secondAttribute="bottom" constant="219" id="4Wt-Te-12E"/>
-                            <constraint firstItem="0Rt-rI-0Fu" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" constant="9" id="5iL-AW-ChY"/>
-                            <constraint firstAttribute="trailing" secondItem="0Rt-rI-0Fu" secondAttribute="trailing" id="6Kn-Pd-pF2"/>
+                            <constraint firstAttribute="trailing" secondItem="Tqe-ET-JgE" secondAttribute="trailing" id="4Dl-ce-iRF"/>
+                            <constraint firstItem="eh4-fR-69B" firstAttribute="bottom" secondItem="VTG-Ur-73j" secondAttribute="bottom" constant="162" id="4Wt-Te-12E"/>
+                            <constraint firstItem="Tqe-ET-JgE" firstAttribute="top" secondItem="WEN-cC-eAG" secondAttribute="top" constant="584" id="H18-tY-cOf"/>
                             <constraint firstItem="g5r-lS-7pM" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" constant="230" id="Hb8-jh-t9a"/>
                             <constraint firstItem="eh4-fR-69B" firstAttribute="bottom" secondItem="g5r-lS-7pM" secondAttribute="bottom" constant="603" id="HhK-NB-BPg"/>
+                            <constraint firstItem="eh4-fR-69B" firstAttribute="bottom" secondItem="VTG-Ur-73j" secondAttribute="bottom" constant="162" id="JAh-4N-bfX"/>
                             <constraint firstItem="eh4-fR-69B" firstAttribute="trailing" secondItem="9Tn-VI-vtA" secondAttribute="trailing" id="Kdm-f5-p91"/>
                             <constraint firstItem="VTG-Ur-73j" firstAttribute="trailing" secondItem="eh4-fR-69B" secondAttribute="trailing" id="LZs-3E-OoR"/>
                             <constraint firstItem="9Tn-VI-vtA" firstAttribute="top" secondItem="ccM-5I-7XT" secondAttribute="bottom" constant="18" id="Omw-3v-B5f"/>
                             <constraint firstItem="ccM-5I-7XT" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" constant="52" id="WL8-6X-0oz"/>
                             <constraint firstItem="biv-kg-mvA" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" constant="20" id="Zcd-W7-wwD"/>
-                            <constraint firstItem="eh4-fR-69B" firstAttribute="bottom" secondItem="VTG-Ur-73j" secondAttribute="bottom" constant="219" id="aHs-wd-a1n"/>
                             <constraint firstItem="g5r-lS-7pM" firstAttribute="top" secondItem="eh4-fR-69B" secondAttribute="top" constant="6" id="aya-ud-Arb"/>
                             <constraint firstItem="biv-kg-mvA" firstAttribute="top" secondItem="eh4-fR-69B" secondAttribute="top" constant="4" id="bbK-RA-o8u"/>
-                            <constraint firstAttribute="bottom" secondItem="0Rt-rI-0Fu" secondAttribute="bottom" constant="10" id="fYI-Cg-r8t"/>
+                            <constraint firstItem="VTG-Ur-73j" firstAttribute="leading" secondItem="WEN-cC-eAG" secondAttribute="leading" constant="1" id="cAN-zh-CXx"/>
                             <constraint firstItem="eh4-fR-69B" firstAttribute="bottom" secondItem="9Tn-VI-vtA" secondAttribute="bottom" constant="290" id="gHk-Kn-1gx"/>
                             <constraint firstItem="9Tn-VI-vtA" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" id="jcd-OM-bf8"/>
-                            <constraint firstItem="VTG-Ur-73j" firstAttribute="top" secondItem="9Tn-VI-vtA" secondAttribute="bottom" constant="20" id="kZl-Lq-TEQ"/>
-                            <constraint firstItem="VTG-Ur-73j" firstAttribute="leading" secondItem="9Tn-VI-vtA" secondAttribute="leading" id="lPo-X3-LaU"/>
+                            <constraint firstItem="VTG-Ur-73j" firstAttribute="top" secondItem="9Tn-VI-vtA" secondAttribute="bottom" constant="26" id="kZl-Lq-TEQ"/>
+                            <constraint firstItem="VTG-Ur-73j" firstAttribute="leading" secondItem="9Tn-VI-vtA" secondAttribute="leading" constant="-1" id="lPo-X3-LaU"/>
                             <constraint firstItem="eh4-fR-69B" firstAttribute="trailing" secondItem="biv-kg-mvA" secondAttribute="trailing" constant="267" id="pfy-X0-z3y"/>
-                            <constraint firstItem="VTG-Ur-73j" firstAttribute="top" secondItem="eh4-fR-69B" secondAttribute="top" constant="420" id="qWK-eg-PkL"/>
+                            <constraint firstItem="Tqe-ET-JgE" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" id="q3X-zP-HsO"/>
+                            <constraint firstItem="eh4-fR-69B" firstAttribute="bottom" secondItem="Tqe-ET-JgE" secondAttribute="bottom" constant="26" id="qHv-20-oaW"/>
+                            <constraint firstItem="VTG-Ur-73j" firstAttribute="top" secondItem="eh4-fR-69B" secondAttribute="top" constant="426" id="qWK-eg-PkL"/>
                             <constraint firstItem="ccM-5I-7XT" firstAttribute="top" secondItem="WEN-cC-eAG" secondAttribute="topMargin" constant="61" id="tSG-Rt-gJb"/>
                             <constraint firstItem="eh4-fR-69B" firstAttribute="trailing" secondItem="ccM-5I-7XT" secondAttribute="trailing" constant="52" id="xFd-89-Aah"/>
                         </constraints>
@@ -1686,30 +1574,42 @@
                         <outlet property="headImgView" destination="DNu-7O-Yy0" id="DKh-rY-cs3"/>
                         <outlet property="mouthImgView" destination="n5I-QK-t6q" id="CXy-a6-NqW"/>
                         <outlet property="noseImgView" destination="os9-fv-fJX" id="vR6-UL-szV"/>
+                        <outlet property="selectBrowImgView" destination="zjw-eF-MA3" id="OxF-EL-fde"/>
+                        <outlet property="selectEarImgView" destination="6vK-eB-8Tc" id="RsI-jl-RZc"/>
+                        <outlet property="selectEyeImgView" destination="3qg-Vz-DPp" id="T5s-mN-G7I"/>
+                        <outlet property="selectFaceImgView" destination="6WN-OP-39d" id="P5Z-Qp-bjA"/>
+                        <outlet property="selectFemHairImgView" destination="SuZ-p6-975" id="Xqw-eD-Wpd"/>
+                        <outlet property="selectMaleHairImgView" destination="aFE-CU-4g5" id="EhS-Uo-3y1"/>
+                        <outlet property="selectMouthImgView" destination="XQZ-Uo-LBH" id="mZL-2C-r4Q"/>
+                        <outlet property="selectNoseImgView" destination="oII-Lz-0gK" id="VJC-RJ-krL"/>
                         <outlet property="sideHairImgView" destination="CJP-xj-vDp" id="XD4-2s-F8u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wgy-Yp-Ygp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="aBt-e2-yjd"/>
+                <tapGestureRecognizer id="t71-Zy-Dkg"/>
+                <tapGestureRecognizer id="TSx-QE-p2o"/>
+                <tapGestureRecognizer id="OVH-dK-AXp"/>
+                <tapGestureRecognizer id="XB1-qc-rKf"/>
+                <tapGestureRecognizer id="LHH-PX-D55"/>
+                <tapGestureRecognizer id="OIc-XJ-IWb"/>
             </objects>
             <point key="canvasLocation" x="698.55072463768124" y="1847.5446428571427"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Accessories" width="33" height="58"/>
+        <image name="Brows" width="37" height="58"/>
         <image name="Chin 1" width="800" height="800"/>
-        <image name="Chin 10 Beard" width="800" height="800"/>
-        <image name="Chin 2" width="800" height="800"/>
-        <image name="Chin 3" width="800" height="800"/>
-        <image name="Chin 4 Beard" width="800" height="800"/>
-        <image name="Chin 5 Beard" width="800" height="800"/>
-        <image name="Chin 6 Beard" width="800" height="800"/>
-        <image name="Chin 7 Beard" width="800" height="800"/>
-        <image name="Chin 8 Beard" width="800" height="800"/>
-        <image name="Chin 9 Beard" width="800" height="800"/>
         <image name="Ear 1 + Head" width="800" height="800"/>
         <image name="Eyebrows 1" width="800" height="800"/>
+        <image name="Eyes" width="33" height="58"/>
         <image name="Eyes 1" width="800" height="800"/>
+        <image name="Hair" width="33" height="58"/>
         <image name="Male hair 1" width="800" height="800"/>
+        <image name="Mouth" width="33" height="58"/>
         <image name="Mouth 1" width="3334" height="3334"/>
+        <image name="Nose" width="32" height="58"/>
         <image name="Nose 1" width="3334" height="3334"/>
         <image name="Skintone1" width="32" height="32"/>
         <image name="Skintone10" width="32" height="32"/>
@@ -1724,6 +1624,7 @@
         <image name="Skintone8" width="32" height="32"/>
         <image name="Skintone9" width="32" height="32"/>
         <image name="circle-2" width="255" height="255"/>
+        <image name="face shape" width="55" height="58"/>
         <image name="transparent" width="1600" height="900"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

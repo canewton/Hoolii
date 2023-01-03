@@ -58,10 +58,12 @@ class AvatarCreatorViewController: AppViewController {
         UIColor(red: 253/255.0, green: 225/255.0, blue: 204/255.0, alpha: 1.0),
     ]
     
-    static var hairColor = UIColor.black
-    static var skinTone = UIColor.gray
+    let featureColorArray = [
+        UIColor(red: 239/255.0, green: 248/253.0, blue: 245/255.0, alpha: 1.0),
+        UIColor(red: 142/255.0, green: 227/255.0, blue: 202/255.0, alpha: 1.0)
+    ]
     
-    
+    // Outlets for display of Avatar
     @IBOutlet weak var backHairImgView: UIImageView!
     @IBOutlet weak var headImgView: UIImageView!
     @IBOutlet weak var earImgView: UIImageView!
@@ -76,10 +78,29 @@ class AvatarCreatorViewController: AppViewController {
     @IBOutlet weak var sideHairImgView: UIImageView!
     @IBOutlet weak var frontHairImgView: UIImageView!
     @IBOutlet weak var hairTieImgView: UIImageView!
+    
+    
     @IBOutlet weak var elemSlctrSgmnt: UISegmentedControl!
     @IBOutlet weak var elemValLabel: UILabel!
     @IBOutlet weak var elemChoiceSlider: UISlider!
+    
+    // Outlet for element selector of Images
+    @IBOutlet weak var selectFaceImgView: UIImageView!
+    @IBOutlet weak var selectEyeImgView: UIImageView!
+    @IBOutlet weak var selectNoseImgView: UIImageView!
+    @IBOutlet weak var selectBrowImgView: UIImageView!
+    @IBOutlet weak var selectMouthImgView: UIImageView!
+    @IBOutlet weak var selectMaleHairImgView: UIImageView!
+    @IBOutlet weak var selectFemHairImgView: UIImageView!
+    @IBOutlet weak var selectEarImgView: UIImageView!
+    
+    
+    // Declaration of static variab;es
+    static var hairColor = UIColor.black
+    static var skinTone = UIColor.gray
+    static var currFacialFeature = 0;
     static var itemIndex = 0;
+    
     
     override func viewDidLoad() {
         // Function loaded: set all initial colors for elements
@@ -87,11 +108,50 @@ class AvatarCreatorViewController: AppViewController {
         let sliderMax = Float((chinArray.count - 1))
         elemChoiceSlider.maximumValue = sliderMax
         initColors()
+        
+        // Enable gesture recognition for facial feature selection
+        for imageView in [selectFaceImgView, selectEyeImgView, selectNoseImgView, selectBrowImgView, selectMouthImgView, selectEarImgView, selectMaleHairImgView, selectFemHairImgView] {
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapFunct(tapGestureRecognizer:)))
+            imageView?.isUserInteractionEnabled = true
+            imageView?.addGestureRecognizer(tapGestureRecognizer)
+        }
+        
     }
     
-    
+    // Dismiss screen if user presses back button to return to profile creation
     @IBAction func BackButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true)
+    }
+    
+    // Change the facial feature the user is modifying based on which image is tapped
+    @objc func tapFunct(tapGestureRecognizer:UITapGestureRecognizer){
+        if let featureTapped = tapGestureRecognizer.view as? UIImageView {
+            if featureTapped == selectFaceImgView {
+                resetFeatureSelectedColor(newFeature: 0)
+                selectFaceImgView.backgroundColor = featureColorArray[1]
+            } else if featureTapped == selectEyeImgView {
+                resetFeatureSelectedColor(newFeature: 1)
+                selectEyeImgView.backgroundColor = featureColorArray[1]
+            } else if featureTapped == selectNoseImgView {
+                resetFeatureSelectedColor(newFeature: 2)
+                selectNoseImgView.backgroundColor = featureColorArray[1]
+            } else if featureTapped == selectBrowImgView {
+                resetFeatureSelectedColor(newFeature: 3)
+                selectBrowImgView.backgroundColor = featureColorArray[1]
+            } else if featureTapped == selectMouthImgView {
+                resetFeatureSelectedColor(newFeature: 4)
+                selectMouthImgView.backgroundColor = featureColorArray[1]
+            } else if featureTapped == selectEarImgView {
+                resetFeatureSelectedColor(newFeature: 5)
+                selectEarImgView.backgroundColor = featureColorArray[1]
+            } else if featureTapped == selectMaleHairImgView {
+                resetFeatureSelectedColor(newFeature: 6)
+                selectMaleHairImgView.backgroundColor = featureColorArray[1]
+            } else if featureTapped == selectFemHairImgView {
+                resetFeatureSelectedColor(newFeature: 7)
+                selectFemHairImgView.backgroundColor = featureColorArray[1]
+            }
+        }
     }
     
     
@@ -150,7 +210,7 @@ class AvatarCreatorViewController: AppViewController {
     }
     
     
-// USER TOUCHED SKIN/HAIR COLOR BUTTONS
+    // USER TOUCHED SKIN/HAIR COLOR BUTTONS
     @IBAction func colorBut1Pressed(_ sender: UIButton) {
         let index = elemSlctrSgmnt.selectedSegmentIndex
         changeColor(elemIndex: index, newColor: skintoneArray[0])
@@ -165,7 +225,7 @@ class AvatarCreatorViewController: AppViewController {
         changeColor(elemIndex: index, newColor: skintoneArray[2])
     }
     
-   
+    
     @IBAction func colorBut4Pressed(_ sender: UIButton) {
         let index  = elemSlctrSgmnt.selectedSegmentIndex
         changeColor(elemIndex: index, newColor: skintoneArray[3])
@@ -217,7 +277,7 @@ class AvatarCreatorViewController: AppViewController {
         let elem = String(format: "%.0f", sender.value)
         let elemInt = Int(elem) ?? 0
         
-        let index = elemSlctrSgmnt.selectedSegmentIndex
+        let index = AvatarCreatorViewController.currFacialFeature
         
         switch index {
         case 0:
@@ -256,8 +316,93 @@ class AvatarCreatorViewController: AppViewController {
         print(elemInt)
     }
     
+    func resetFeatureSelectedColor(newFeature: Int) {
+        // reset the previous feature's background back to grey
+        switch AvatarCreatorViewController.currFacialFeature {
+        case 0:
+            selectFaceImgView.backgroundColor = featureColorArray[0]
+            AvatarCreatorViewController.currFacialFeature  = newFeature
+        case 1:
+            selectEyeImgView.backgroundColor = featureColorArray[0]
+            AvatarCreatorViewController.currFacialFeature  = newFeature
+        case 2:
+            selectNoseImgView.backgroundColor = featureColorArray[0]
+            AvatarCreatorViewController.currFacialFeature  = newFeature
+        case 3:
+            selectBrowImgView.backgroundColor = featureColorArray[0]
+            AvatarCreatorViewController.currFacialFeature  = newFeature
+        case 4:
+            selectMouthImgView.backgroundColor = featureColorArray[0]
+            AvatarCreatorViewController.currFacialFeature  = newFeature
+        case 5:
+            selectEarImgView.backgroundColor = featureColorArray[0]
+            AvatarCreatorViewController.currFacialFeature  = newFeature
+        case 6:
+            selectMaleHairImgView.backgroundColor = featureColorArray[0]
+            AvatarCreatorViewController.currFacialFeature  = newFeature
+        case 7:
+            selectFemHairImgView.backgroundColor = featureColorArray[0]
+            AvatarCreatorViewController.currFacialFeature  = newFeature
+        default:
+            break
+        }
+        // then update the slider's min and max values (temporary)
+        updateSlider()
+    }
     
-    
+    func updateSlider() {
+        let index = AvatarCreatorViewController.currFacialFeature
+        if (index == 0) {
+            print("Chin")
+            elemChoiceSlider.value = 0
+            let sliderMax = Float((chinArray.count - 1))
+            elemChoiceSlider.maximumValue = sliderMax
+        }
+        if (index == 1) {
+            print("Ears")
+            elemChoiceSlider.value = 0
+            let sliderMax = Float((earArray.count - 1))
+            elemChoiceSlider.maximumValue = sliderMax
+        }
+        if (index == 2) {
+            print("Eyes")
+            elemChoiceSlider.value = 0
+            let sliderMax = Float((frameArray.count - 1))
+            elemChoiceSlider.maximumValue = sliderMax
+        }
+        if (index == 3) {
+            print("Brows")
+            elemChoiceSlider.value = 0
+            let sliderMax = Float((browArray.count - 1))
+            elemChoiceSlider.maximumValue = sliderMax
+        }
+        if (index == 4) {
+            print("Mouth")
+            elemChoiceSlider.value = 0
+            let sliderMax = Float((mouthArray.count-1))
+            elemChoiceSlider.maximumValue = sliderMax
+            
+        }
+        if (index == 5) {
+            print("Nose")
+            elemChoiceSlider.value = 0
+            let sliderMax = Float((noseArray.count - 1))
+            elemChoiceSlider.maximumValue = sliderMax
+            
+        }
+        if (index == 6) {
+            print("M. Hair")
+            elemChoiceSlider.value = 0
+            let sliderMax = Float((maleFrontArray.count - 1))
+            elemChoiceSlider.maximumValue = sliderMax
+        }
+        if (index == 7) {
+            print("F. Hair")
+            elemChoiceSlider.value = 0
+            let sliderMax = Float((femFrontArray.count - 1))
+            elemChoiceSlider.maximumValue = sliderMax
+        }
+    }
     
     func changeColor(elemIndex: Int, newColor: UIColor) {
         if (elemIndex < 6) {
