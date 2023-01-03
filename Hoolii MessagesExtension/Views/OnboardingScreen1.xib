@@ -15,20 +15,21 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cal-thinking-calendars" translatesAutoresizingMaskIntoConstraints="NO" id="8Ji-c5-Kqk">
-                    <rect key="frame" x="0.0" y="19" width="350" height="400"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="400" id="aeB-6Z-pD3"/>
-                    </constraints>
+                    <rect key="frame" x="0.0" y="47" width="350" height="371"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plan &amp; Send Meetings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XO1-dq-B59">
-                    <rect key="frame" x="68.333333333333329" y="459" width="213.66666666666669" height="25.333333333333314"/>
+                    <rect key="frame" x="68.333333333333329" y="458" width="213.66666666666669" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="26" id="lGw-t9-rJP"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Figure out the perfect date &amp; time for your hangouts! " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RoJ-f7-xcL">
-                    <rect key="frame" x="25" y="499.33333333333331" width="300" height="40.666666666666686"/>
+                    <rect key="frame" x="25" y="499" width="300" height="41"/>
                     <constraints>
+                        <constraint firstAttribute="height" constant="41" id="MLk-wS-wO7"/>
                         <constraint firstAttribute="width" constant="300" id="jon-Kr-jIL"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -44,10 +45,11 @@
                 <constraint firstItem="8Ji-c5-Kqk" firstAttribute="trailing" secondItem="DRj-fS-kgu" secondAttribute="trailing" id="FC1-9I-eEa"/>
                 <constraint firstItem="8Ji-c5-Kqk" firstAttribute="leading" secondItem="DRj-fS-kgu" secondAttribute="leading" id="Hi2-C5-Hul"/>
                 <constraint firstItem="XO1-dq-B59" firstAttribute="top" secondItem="8Ji-c5-Kqk" secondAttribute="bottom" constant="40" id="PwN-vQ-Fe2"/>
+                <constraint firstItem="8Ji-c5-Kqk" firstAttribute="top" secondItem="DRj-fS-kgu" secondAttribute="top" id="TxK-xn-505"/>
                 <constraint firstItem="RoJ-f7-xcL" firstAttribute="top" secondItem="XO1-dq-B59" secondAttribute="bottom" constant="15" id="iaK-Jd-vb4"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="120" y="43.720379146919427"/>
+            <point key="canvasLocation" x="120" y="43.364928909952603"/>
         </view>
     </objects>
     <resources>

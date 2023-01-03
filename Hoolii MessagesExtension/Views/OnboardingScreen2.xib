@@ -14,22 +14,23 @@
             <rect key="frame" x="0.0" y="0.0" width="350" height="550"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="colors-explanation" translatesAutoresizingMaskIntoConstraints="NO" id="g6V-q3-LT2">
-                    <rect key="frame" x="10.666666666666657" y="99.333333333333314" width="329" height="105"/>
-                </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cal-pointing" translatesAutoresizingMaskIntoConstraints="NO" id="zp2-bp-nGp">
-                    <rect key="frame" x="40" y="284.33333333333331" width="155" height="129"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cal-pointing-colors" translatesAutoresizingMaskIntoConstraints="NO" id="g6V-q3-LT2">
+                    <rect key="frame" x="20" y="67" width="310" height="366"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See Who's Available" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n73-3U-PbM">
-                    <rect key="frame" x="76.000000000000014" y="453.33333333333331" width="198.33333333333337" height="26"/>
+                    <rect key="frame" x="76.000000000000014" y="453" width="198.33333333333337" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="26" id="X50-lh-o4r"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Darker colors represent when everyone is most available" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LDs-cf-o5M">
-                    <rect key="frame" x="30" y="494.33333333333331" width="290" height="40.666666666666686"/>
+                    <rect key="frame" x="30" y="494" width="290" height="41"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="290" id="XHw-fb-D3M"/>
+                        <constraint firstAttribute="height" constant="41" id="YVe-Bw-Zf6"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
@@ -41,18 +42,18 @@
                 <constraint firstItem="LDs-cf-o5M" firstAttribute="top" secondItem="n73-3U-PbM" secondAttribute="bottom" constant="15" id="77Z-d7-dHy"/>
                 <constraint firstItem="LDs-cf-o5M" firstAttribute="centerX" secondItem="EKv-li-sKl" secondAttribute="centerX" id="Bkv-dr-OmG"/>
                 <constraint firstItem="n73-3U-PbM" firstAttribute="centerX" secondItem="EKv-li-sKl" secondAttribute="centerX" id="Ibm-pP-dAm"/>
-                <constraint firstItem="zp2-bp-nGp" firstAttribute="leading" secondItem="D41-ve-P6O" secondAttribute="leading" constant="40" id="K0z-UF-F0h"/>
-                <constraint firstItem="zp2-bp-nGp" firstAttribute="top" secondItem="g6V-q3-LT2" secondAttribute="bottom" constant="80" id="Km7-Oi-f72"/>
-                <constraint firstItem="n73-3U-PbM" firstAttribute="top" secondItem="zp2-bp-nGp" secondAttribute="bottom" constant="40" id="cWU-aM-zPM"/>
+                <constraint firstItem="n73-3U-PbM" firstAttribute="top" secondItem="g6V-q3-LT2" secondAttribute="bottom" constant="20" id="PF0-T0-Lir"/>
+                <constraint firstItem="D41-ve-P6O" firstAttribute="trailing" secondItem="g6V-q3-LT2" secondAttribute="trailing" constant="20" id="UMI-dP-QRl"/>
+                <constraint firstItem="g6V-q3-LT2" firstAttribute="leading" secondItem="D41-ve-P6O" secondAttribute="leading" constant="20" id="gP5-k7-0bJ"/>
+                <constraint firstItem="g6V-q3-LT2" firstAttribute="top" secondItem="D41-ve-P6O" secondAttribute="top" constant="20" id="h7j-m3-0UW"/>
                 <constraint firstAttribute="bottom" secondItem="LDs-cf-o5M" secondAttribute="bottom" constant="15" id="nNg-nm-czc"/>
                 <constraint firstItem="g6V-q3-LT2" firstAttribute="centerX" secondItem="EKv-li-sKl" secondAttribute="centerX" id="yTZ-X7-wTo"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="120.76923076923076" y="83.886255924170612"/>
+            <point key="canvasLocation" x="120" y="83.886255924170612"/>
         </view>
     </objects>
     <resources>
-        <image name="cal-pointing" width="155" height="129"/>
-        <image name="colors-explanation" width="329" height="105"/>
+        <image name="cal-pointing-colors" width="109.66666412353516" height="102"/>
     </resources>
 </document>
