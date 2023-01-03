@@ -98,7 +98,7 @@ class AvatarCreatorViewController: AppViewController {
     // Declaration of static variab;es
     static var hairColor = UIColor.black
     static var skinTone = UIColor.gray
-    static var currFacialFeature = 0;
+    static var currFacialFeature: Int = 0;
     static var itemIndex = 0;
     
     
@@ -155,120 +155,68 @@ class AvatarCreatorViewController: AppViewController {
     }
     
     
-    @IBAction func elemSelected(_ sender: UISegmentedControl) {
-        let index = sender.selectedSegmentIndex
-        if (index == 0) {
-            print("Chin")
-            elemChoiceSlider.value = 0
-            let sliderMax = Float((chinArray.count - 1))
-            elemChoiceSlider.maximumValue = sliderMax
-        }
-        if (index == 1) {
-            print("Ears")
-            elemChoiceSlider.value = 0
-            let sliderMax = Float((earArray.count - 1))
-            elemChoiceSlider.maximumValue = sliderMax
-        }
-        if (index == 2) {
-            print("Eyes")
-            elemChoiceSlider.value = 0
-            let sliderMax = Float((frameArray.count - 1))
-            elemChoiceSlider.maximumValue = sliderMax
-        }
-        if (index == 3) {
-            print("Brows")
-            elemChoiceSlider.value = 0
-            let sliderMax = Float((browArray.count - 1))
-            elemChoiceSlider.maximumValue = sliderMax
-        }
-        if (index == 4) {
-            print("Mouth")
-            elemChoiceSlider.value = 0
-            let sliderMax = Float((mouthArray.count-1))
-            elemChoiceSlider.maximumValue = sliderMax
-            
-        }
-        if (index == 5) {
-            print("Nose")
-            elemChoiceSlider.value = 0
-            let sliderMax = Float((noseArray.count - 1))
-            elemChoiceSlider.maximumValue = sliderMax
-            
-        }
-        if (index == 6) {
-            print("M. Hair")
-            elemChoiceSlider.value = 0
-            let sliderMax = Float((maleFrontArray.count - 1))
-            elemChoiceSlider.maximumValue = sliderMax
-        }
-        if (index == 7) {
-            print("F. Hair")
-            elemChoiceSlider.value = 0
-            let sliderMax = Float((femFrontArray.count - 1))
-            elemChoiceSlider.maximumValue = sliderMax
-        }
-    }
-    
+       
     
     // USER TOUCHED SKIN/HAIR COLOR BUTTONS
     @IBAction func colorBut1Pressed(_ sender: UIButton) {
-        let index = elemSlctrSgmnt.selectedSegmentIndex
+        let index = AvatarCreatorViewController.currFacialFeature
         changeColor(elemIndex: index, newColor: skintoneArray[0])
     }
     
     @IBAction func colorBut2Pressed(_ sender: UIButton) {
-        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        let index  = AvatarCreatorViewController.currFacialFeature
         changeColor(elemIndex: index, newColor: skintoneArray[1])
     }
     
-    @IBAction func colorBut3Pressed(_ sender: UIButton) {    let index  = elemSlctrSgmnt.selectedSegmentIndex
+    @IBAction func colorBut3Pressed(_ sender: UIButton) {
+        let index  = AvatarCreatorViewController.currFacialFeature
         changeColor(elemIndex: index, newColor: skintoneArray[2])
     }
     
     
     @IBAction func colorBut4Pressed(_ sender: UIButton) {
-        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        let index  = AvatarCreatorViewController.currFacialFeature
         changeColor(elemIndex: index, newColor: skintoneArray[3])
     }
     
     @IBAction func colorBut5Pressed(_ sender: UIButton) {
-        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        let index  = AvatarCreatorViewController.currFacialFeature
         changeColor(elemIndex: index, newColor: skintoneArray[4])
     }
     
     
     @IBAction func colorBut6Pressed(_ sender: UIButton) {
-        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        let index  = AvatarCreatorViewController.currFacialFeature
         changeColor(elemIndex: index, newColor: skintoneArray[5])
     }
     
     @IBAction func colorBut7Pressed(_ sender: UIButton) {
-        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        let index  = AvatarCreatorViewController.currFacialFeature
         changeColor(elemIndex: index, newColor: skintoneArray[6])
     }
     
     @IBAction func colorBut8Pressed(_ sender: UIButton) {
-        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        let index  = AvatarCreatorViewController.currFacialFeature
         changeColor(elemIndex: index, newColor: skintoneArray[7])
     }
     
     @IBAction func colorBut9Pressed(_ sender: UIButton) {
-        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        let index  = AvatarCreatorViewController.currFacialFeature
         changeColor(elemIndex: index, newColor: skintoneArray[8])
     }
     
     @IBAction func colorBut10Pressed(_ sender: UIButton) {
-        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        let index  = AvatarCreatorViewController.currFacialFeature
         changeColor(elemIndex: index, newColor: skintoneArray[9])
     }
     
     @IBAction func colorButton11Pressed(_ sender: UIButton) {
-        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        let index  = AvatarCreatorViewController.currFacialFeature
         changeColor(elemIndex: index, newColor: skintoneArray[10])
     }
     
     @IBAction func colorButton12Pressed(_ sender: UIButton) {
-        let index  = elemSlctrSgmnt.selectedSegmentIndex
+        let index  = AvatarCreatorViewController.currFacialFeature
         changeColor(elemIndex: index, newColor: skintoneArray[11])
     }
     

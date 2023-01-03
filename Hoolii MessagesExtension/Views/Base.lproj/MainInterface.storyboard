@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1268,10 +1268,10 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Tn-VI-vtA" userLabel="SkintoneScroll">
-                                <rect key="frame" x="2" y="382" width="357" height="66"/>
+                                <rect key="frame" x="1" y="409" width="358" height="66"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="lCj-xY-ftq">
-                                        <rect key="frame" x="24" y="0.0" width="428" height="46"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="428" height="46"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xzu-Cw-Dkv" userLabel="ColorButton1">
                                                 <rect key="frame" x="0.0" y="0.0" width="32" height="46"/>
@@ -1414,12 +1414,12 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="lCj-xY-ftq" secondAttribute="bottom" id="6k3-0F-bNP"/>
-                                    <constraint firstAttribute="trailing" secondItem="lCj-xY-ftq" secondAttribute="trailing" constant="20" symbolic="YES" id="9CW-zy-BuV"/>
-                                    <constraint firstItem="lCj-xY-ftq" firstAttribute="leading" secondItem="HtJ-lJ-UzP" secondAttribute="leading" constant="8" id="Oit-om-Mok"/>
-                                    <constraint firstAttribute="height" constant="66" id="ayx-vl-6xC"/>
-                                    <constraint firstItem="lCj-xY-ftq" firstAttribute="top" secondItem="9Tn-VI-vtA" secondAttribute="top" id="jH9-MP-9nN"/>
-                                    <constraint firstItem="lCj-xY-ftq" firstAttribute="leading" secondItem="9Tn-VI-vtA" secondAttribute="leading" constant="24" id="l7U-Ec-KSw"/>
+                                    <constraint firstAttribute="trailing" secondItem="lCj-xY-ftq" secondAttribute="trailing" constant="77" id="2lL-PG-xvw"/>
+                                    <constraint firstItem="lCj-xY-ftq" firstAttribute="leading" secondItem="9Tn-VI-vtA" secondAttribute="leading" id="LLs-i7-aiQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="lCj-xY-ftq" secondAttribute="bottom" id="khi-gF-My8"/>
+                                    <constraint firstAttribute="height" constant="66" id="q2B-gT-jHu"/>
+                                    <constraint firstItem="lCj-xY-ftq" firstAttribute="height" secondItem="9Tn-VI-vtA" secondAttribute="height" multiplier="0.69697" id="wi2-f1-CXF"/>
+                                    <constraint firstItem="lCj-xY-ftq" firstAttribute="top" secondItem="9Tn-VI-vtA" secondAttribute="top" id="wxz-Al-hqL"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="paM-qC-hS9"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="HtJ-lJ-UzP"/>
@@ -1430,44 +1430,14 @@
                                     <action selector="elemSliderMoved:" destination="t6O-mJ-wqx" eventType="valueChanged" id="X8D-dO-mG9"/>
                                 </connections>
                             </slider>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTG-Ur-73j" userLabel="SegmentScroll">
-                                <rect key="frame" x="1" y="474" width="358" height="51"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zmu-gX-MTM">
+                                <rect key="frame" x="0.0" y="501" width="359" height="86"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2EN-ho-lSh">
-                                        <rect key="frame" x="0.0" y="0.0" width="433" height="32"/>
-                                        <segments>
-                                            <segment title="Chin"/>
-                                            <segment title="Ears"/>
-                                            <segment title="Eyes"/>
-                                            <segment title="Brows"/>
-                                            <segment title="Mouth"/>
-                                            <segment title="Nose"/>
-                                            <segment title="M. Hair"/>
-                                            <segment title="F. Hair"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="elemSelected:" destination="t6O-mJ-wqx" eventType="valueChanged" id="fXu-uP-mpm"/>
-                                        </connections>
-                                    </segmentedControl>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="2EN-ho-lSh" firstAttribute="leading" secondItem="VTG-Ur-73j" secondAttribute="leading" id="3Td-ds-nsw"/>
-                                    <constraint firstItem="2EN-ho-lSh" firstAttribute="top" secondItem="VTG-Ur-73j" secondAttribute="top" id="Luh-sb-Rlk"/>
-                                    <constraint firstAttribute="trailing" secondItem="2EN-ho-lSh" secondAttribute="trailing" constant="-73" id="OUq-Gs-idT"/>
-                                    <constraint firstAttribute="bottom" secondItem="2EN-ho-lSh" secondAttribute="bottom" constant="20" id="TjL-F1-gkn"/>
-                                    <constraint firstItem="2EN-ho-lSh" firstAttribute="leading" secondItem="VTG-Ur-73j" secondAttribute="leading" id="dh4-f7-6Tf"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="yhl-gk-p4u"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="LKX-kb-kNm"/>
-                            </scrollView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="Tqe-ET-JgE">
-                                <rect key="frame" x="0.0" y="584" width="359" height="97"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="k8z-C5-zXy">
-                                        <rect key="frame" x="0.0" y="0.0" width="440" height="77"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="u1L-6e-Cxe">
+                                        <rect key="frame" x="0.0" y="0.0" width="440" height="86"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="face shape" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6WN-OP-39d" userLabel="selectFaceImg">
-                                                <rect key="frame" x="0.0" y="0.0" width="55" height="77"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="86"/>
                                                 <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <connections>
@@ -1475,7 +1445,7 @@
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Eyes" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3qg-Vz-DPp" userLabel="selectEyeImg">
-                                                <rect key="frame" x="55" y="0.0" width="55" height="77"/>
+                                                <rect key="frame" x="55" y="0.0" width="55" height="86"/>
                                                 <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <connections>
@@ -1483,7 +1453,7 @@
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Nose" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oII-Lz-0gK" userLabel="selectNoseImg">
-                                                <rect key="frame" x="110" y="0.0" width="55" height="77"/>
+                                                <rect key="frame" x="110" y="0.0" width="55" height="86"/>
                                                 <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <connections>
@@ -1491,7 +1461,7 @@
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Brows" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zjw-eF-MA3" userLabel="selectBrowImg">
-                                                <rect key="frame" x="165" y="0.0" width="55" height="77"/>
+                                                <rect key="frame" x="165" y="0.0" width="55" height="86"/>
                                                 <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <connections>
@@ -1499,7 +1469,7 @@
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mouth" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XQZ-Uo-LBH" userLabel="selectMouthImg">
-                                                <rect key="frame" x="220" y="0.0" width="55" height="77"/>
+                                                <rect key="frame" x="220" y="0.0" width="55" height="86"/>
                                                 <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <connections>
@@ -1507,12 +1477,12 @@
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Accessories" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6vK-eB-8Tc" userLabel="selectEarImg">
-                                                <rect key="frame" x="275" y="0.0" width="55" height="77"/>
+                                                <rect key="frame" x="275" y="0.0" width="55" height="86"/>
                                                 <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hair" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFE-CU-4g5" userLabel="selectMHairImg">
-                                                <rect key="frame" x="330" y="0.0" width="55" height="77"/>
+                                                <rect key="frame" x="330" y="0.0" width="55" height="86"/>
                                                 <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <connections>
@@ -1520,7 +1490,7 @@
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hair" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SuZ-p6-975" userLabel="selectFHairImg">
-                                                <rect key="frame" x="385" y="0.0" width="55" height="77"/>
+                                                <rect key="frame" x="385" y="0.0" width="55" height="86"/>
                                                 <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <connections>
@@ -1528,49 +1498,39 @@
                                                 </connections>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.94509804249999996" green="0.98039215800000001" blue="0.96078431610000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="k8z-C5-zXy" firstAttribute="leading" secondItem="Tqe-ET-JgE" secondAttribute="leading" id="GFb-BU-7xR"/>
-                                    <constraint firstAttribute="bottom" secondItem="k8z-C5-zXy" secondAttribute="bottom" id="TaY-eq-3N2"/>
-                                    <constraint firstAttribute="height" constant="97" id="Za4-I4-p4R"/>
-                                    <constraint firstItem="k8z-C5-zXy" firstAttribute="top" secondItem="Tqe-ET-JgE" secondAttribute="top" id="hIa-BG-JvN"/>
-                                    <constraint firstAttribute="trailing" secondItem="k8z-C5-zXy" secondAttribute="trailing" id="hj2-H1-ukN"/>
-                                    <constraint firstItem="k8z-C5-zXy" firstAttribute="height" secondItem="Tqe-ET-JgE" secondAttribute="height" id="pht-v1-766"/>
+                                    <constraint firstItem="u1L-6e-Cxe" firstAttribute="leading" secondItem="6G8-mA-YAZ" secondAttribute="leading" id="0Xj-zl-WSC"/>
+                                    <constraint firstItem="u1L-6e-Cxe" firstAttribute="height" secondItem="zmu-gX-MTM" secondAttribute="height" id="A9g-dT-VqY"/>
+                                    <constraint firstAttribute="trailing" secondItem="u1L-6e-Cxe" secondAttribute="trailing" constant="80" id="Pod-tX-2KW"/>
+                                    <constraint firstItem="u1L-6e-Cxe" firstAttribute="top" secondItem="6G8-mA-YAZ" secondAttribute="top" id="hbT-XS-MNf"/>
+                                    <constraint firstItem="u1L-6e-Cxe" firstAttribute="bottom" secondItem="6G8-mA-YAZ" secondAttribute="bottom" id="qOx-QH-HlG"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="wj7-XZ-eF6"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="eEp-ga-EpB"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="nuK-Z7-AA2"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="6G8-mA-YAZ"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eh4-fR-69B"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="eh4-fR-69B" firstAttribute="trailing" secondItem="g5r-lS-7pM" secondAttribute="trailing" constant="15" id="1kD-pW-pXj"/>
-                            <constraint firstItem="VTG-Ur-73j" firstAttribute="trailing" secondItem="eh4-fR-69B" secondAttribute="trailing" id="24f-8k-ETa"/>
-                            <constraint firstAttribute="trailing" secondItem="Tqe-ET-JgE" secondAttribute="trailing" id="4Dl-ce-iRF"/>
-                            <constraint firstItem="eh4-fR-69B" firstAttribute="bottom" secondItem="VTG-Ur-73j" secondAttribute="bottom" constant="162" id="4Wt-Te-12E"/>
-                            <constraint firstItem="Tqe-ET-JgE" firstAttribute="top" secondItem="WEN-cC-eAG" secondAttribute="top" constant="584" id="H18-tY-cOf"/>
+                            <constraint firstItem="eh4-fR-69B" firstAttribute="bottom" secondItem="zmu-gX-MTM" secondAttribute="bottom" constant="100" id="5SI-Qp-n3J"/>
                             <constraint firstItem="g5r-lS-7pM" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" constant="230" id="Hb8-jh-t9a"/>
                             <constraint firstItem="eh4-fR-69B" firstAttribute="bottom" secondItem="g5r-lS-7pM" secondAttribute="bottom" constant="603" id="HhK-NB-BPg"/>
-                            <constraint firstItem="eh4-fR-69B" firstAttribute="bottom" secondItem="VTG-Ur-73j" secondAttribute="bottom" constant="162" id="JAh-4N-bfX"/>
-                            <constraint firstItem="eh4-fR-69B" firstAttribute="trailing" secondItem="9Tn-VI-vtA" secondAttribute="trailing" id="Kdm-f5-p91"/>
-                            <constraint firstItem="VTG-Ur-73j" firstAttribute="trailing" secondItem="eh4-fR-69B" secondAttribute="trailing" id="LZs-3E-OoR"/>
-                            <constraint firstItem="9Tn-VI-vtA" firstAttribute="top" secondItem="ccM-5I-7XT" secondAttribute="bottom" constant="18" id="Omw-3v-B5f"/>
+                            <constraint firstItem="9Tn-VI-vtA" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" constant="1" id="IcI-3i-gii"/>
+                            <constraint firstItem="zmu-gX-MTM" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" id="Vc2-8R-XYs"/>
                             <constraint firstItem="ccM-5I-7XT" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" constant="52" id="WL8-6X-0oz"/>
                             <constraint firstItem="biv-kg-mvA" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" constant="20" id="Zcd-W7-wwD"/>
                             <constraint firstItem="g5r-lS-7pM" firstAttribute="top" secondItem="eh4-fR-69B" secondAttribute="top" constant="6" id="aya-ud-Arb"/>
                             <constraint firstItem="biv-kg-mvA" firstAttribute="top" secondItem="eh4-fR-69B" secondAttribute="top" constant="4" id="bbK-RA-o8u"/>
-                            <constraint firstItem="VTG-Ur-73j" firstAttribute="leading" secondItem="WEN-cC-eAG" secondAttribute="leading" constant="1" id="cAN-zh-CXx"/>
-                            <constraint firstItem="eh4-fR-69B" firstAttribute="bottom" secondItem="9Tn-VI-vtA" secondAttribute="bottom" constant="290" id="gHk-Kn-1gx"/>
-                            <constraint firstItem="9Tn-VI-vtA" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" id="jcd-OM-bf8"/>
-                            <constraint firstItem="VTG-Ur-73j" firstAttribute="top" secondItem="9Tn-VI-vtA" secondAttribute="bottom" constant="26" id="kZl-Lq-TEQ"/>
-                            <constraint firstItem="VTG-Ur-73j" firstAttribute="leading" secondItem="9Tn-VI-vtA" secondAttribute="leading" constant="-1" id="lPo-X3-LaU"/>
+                            <constraint firstItem="zmu-gX-MTM" firstAttribute="top" secondItem="WEN-cC-eAG" secondAttribute="top" constant="501" id="gPg-OV-fGE"/>
+                            <constraint firstItem="9Tn-VI-vtA" firstAttribute="top" secondItem="ccM-5I-7XT" secondAttribute="bottom" constant="45" id="hED-ba-zL2"/>
+                            <constraint firstItem="eh4-fR-69B" firstAttribute="bottom" secondItem="9Tn-VI-vtA" secondAttribute="bottom" constant="212" id="myf-J2-5Ya"/>
+                            <constraint firstAttribute="trailing" secondItem="9Tn-VI-vtA" secondAttribute="trailing" id="n5e-XI-WbE"/>
                             <constraint firstItem="eh4-fR-69B" firstAttribute="trailing" secondItem="biv-kg-mvA" secondAttribute="trailing" constant="267" id="pfy-X0-z3y"/>
-                            <constraint firstItem="Tqe-ET-JgE" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" id="q3X-zP-HsO"/>
-                            <constraint firstItem="eh4-fR-69B" firstAttribute="bottom" secondItem="Tqe-ET-JgE" secondAttribute="bottom" constant="26" id="qHv-20-oaW"/>
-                            <constraint firstItem="VTG-Ur-73j" firstAttribute="top" secondItem="eh4-fR-69B" secondAttribute="top" constant="426" id="qWK-eg-PkL"/>
                             <constraint firstItem="ccM-5I-7XT" firstAttribute="top" secondItem="WEN-cC-eAG" secondAttribute="topMargin" constant="61" id="tSG-Rt-gJb"/>
+                            <constraint firstAttribute="trailing" secondItem="zmu-gX-MTM" secondAttribute="trailing" id="vwn-Mf-XbF"/>
                             <constraint firstItem="eh4-fR-69B" firstAttribute="trailing" secondItem="ccM-5I-7XT" secondAttribute="trailing" constant="52" id="xFd-89-Aah"/>
                         </constraints>
                     </view>
@@ -1582,7 +1542,6 @@
                         <outlet property="chinImgView" destination="kjS-Lp-jq0" id="fiX-H5-wcD"/>
                         <outlet property="earImgView" destination="z9S-6Q-li7" id="RhJ-tq-GWM"/>
                         <outlet property="elemChoiceSlider" destination="g5r-lS-7pM" id="Ke2-xn-5OT"/>
-                        <outlet property="elemSlctrSgmnt" destination="2EN-ho-lSh" id="Oes-Ms-HHW"/>
                         <outlet property="eyeImgView" destination="kh9-uE-NBh" id="Hqa-4R-wLQ"/>
                         <outlet property="eyebrowImgView" destination="Eat-xg-Fku" id="GpC-8i-fw9"/>
                         <outlet property="frontHairImgView" destination="CJP-xj-vDp" id="V25-18-uDt"/>
@@ -1784,8 +1743,6 @@
         <image name="Mouth 1" width="3334" height="3334"/>
         <image name="Nose" width="32" height="58"/>
         <image name="Nose 1" width="3334" height="3334"/>
-        <image name="cal-alert-happy" width="76" height="67.5"/>
-        <image name="cal-background" width="67" height="62"/>
         <image name="Skintone1" width="32" height="32"/>
         <image name="Skintone10" width="32" height="32"/>
         <image name="Skintone11" width="32" height="32"/>
@@ -1798,6 +1755,8 @@
         <image name="Skintone7" width="32" height="32"/>
         <image name="Skintone8" width="32" height="32"/>
         <image name="Skintone9" width="32" height="32"/>
+        <image name="cal-alert-happy" width="76" height="67.5"/>
+        <image name="cal-background" width="67" height="62"/>
         <image name="circle-2" width="255" height="255"/>
         <image name="face shape" width="55" height="58"/>
         <image name="transparent" width="1600" height="900"/>
