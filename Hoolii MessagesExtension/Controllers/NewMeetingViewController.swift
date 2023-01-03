@@ -23,7 +23,9 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     @IBOutlet weak var newMeetingField: UITextField!
     @IBOutlet weak var fromTimePicker: UIDatePicker!
     @IBOutlet weak var toTimePicker: UIDatePicker!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var setTimeframeButton: ThemedButton!
+    @IBOutlet weak var screenContent: UIView!
     
     let formatter = DateFormatter()
     
@@ -34,9 +36,13 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         
         configureMeetingCalendar()
         configureNameField()
-        configureMainViewConstraints()
+        //configureMainViewConstraints()
         configureDatePickers()
         setTimeframeButton.isEnabled = false
+        
+        scrollView.contentSize = CGSize(width: view.frame.width, height: screenContent.bounds.height)
+        screenContent.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+        mainView.heightAnchor.constraint(equalToConstant: screenContent.bounds.height).isActive = true
     }
     
     // set the possible meeting time frame of a meetup
@@ -57,10 +63,10 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         newMeetingField.addTarget(self, action: #selector(newMeetingFieldDidChange(_:)), for: .editingChanged)
     }
     
-    func configureMainViewConstraints() {
-        mainViewBottomConstraint.isActive = true
-        super.configure(bottomConstraint: mainViewBottomConstraint, topConstraint: mainViewTopContraint)
-    }
+//    func configureMainViewConstraints() {
+//        mainViewBottomConstraint.isActive = true
+//        super.configure(bottomConstraint: mainViewBottomConstraint, topConstraint: mainViewTopContraint)
+//    }
     
     func configureMeetingCalendar() {
         let meetingCalendar: CreateMeetingCalendar = instantiateController()

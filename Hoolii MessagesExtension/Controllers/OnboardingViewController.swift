@@ -32,7 +32,7 @@ class OnboardingViewController: AppViewController, ViewControllerWithIdentifier 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        scrollView.contentSize = CGSize(width: self.view.frame.width * CGFloat(numPages), height: scrollView.bounds.height)
+        scrollView.contentSize = CGSize(width: self.view.frame.width * CGFloat(numPages), height: scrollView.frame.size.height)
         
         let page1 = UINib(nibName: "OnboardingScreen1", bundle: nil).instantiate(withOwner: OnboardingViewController.self, options: nil)[0] as! UIView
         
@@ -40,9 +40,9 @@ class OnboardingViewController: AppViewController, ViewControllerWithIdentifier 
         
         let page3 = UINib(nibName: "OnboardingScreen3", bundle: nil).instantiate(withOwner: OnboardingViewController.self, options: nil)[0] as! UIView
         
-        let page1container = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height))
-        let page2container = UIView(frame: CGRect(x: view.frame.size.width, y: 0, width: view.frame.size.width, height: view.frame.size.height))
-        let page3container = UIView(frame: CGRect(x: view.frame.size.width * 2, y: 0, width: view.frame.size.width, height: view.frame.size.height))
+        let page1container = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: scrollView.frame.size.height))
+        let page2container = UIView(frame: CGRect(x: view.frame.size.width, y: 0, width: view.frame.size.width, height: scrollView.frame.size.height))
+        let page3container = UIView(frame: CGRect(x: view.frame.size.width * 2, y: 0, width: view.frame.size.width, height: scrollView.frame.size.height))
         
         page1container.addSubview(page1)
         page2container.addSubview(page2)

@@ -20,6 +20,8 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var profileAvailabilityPreviewContainer: UIView!
     @IBOutlet weak var createProfileButton: ThemedButton!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var screenContent: UIView!
     var profileAvailabilityPreview: ProfileAvailabilityPreview!
     var newMeetingViewController: NewMeetingViewController!
     var userHasEmptySchedule: Bool = true
@@ -53,6 +55,9 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
         configureEditButton()
         
         setInitials()
+        
+        scrollView.contentSize = CGSize(width: view.frame.width, height: screenContent.bounds.height)
+        screenContent.frame.size.width = view.frame.width
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
