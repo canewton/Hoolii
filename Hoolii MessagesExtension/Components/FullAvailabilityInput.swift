@@ -17,6 +17,8 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     @IBOutlet weak var availabilityBarScrollView: UIScrollView!
     @IBOutlet weak var timeIndicatorScrollView: UIScrollView!
     @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var backgroundScrollView: UIScrollView!
+    @IBOutlet weak var backgroundStackView: UIStackView!
     var availabilityDetail: AvailabilityDetail!
     var autofillButton: AutofillButton!
     var isShowingAvailabilityDetail: Bool = false
@@ -27,6 +29,9 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     let timeIndicatorViewHeight: CGFloat = 15 // height of the segments inside the bar
     var startTime: HourMinuteTime!
     var endTime: HourMinuteTime!
+    
+    var availabilityDetailLeftConstraint: NSLayoutConstraint!
+    var availabilityDetailTopConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         datesScrollView.delegate = self
@@ -64,6 +69,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     // when the left space that show the times that time blocks represent is scrolled through, the availability bars should be scrolled through at the same rate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         availabilityBarScrollView.contentOffset.x = datesScrollView.contentOffset.x
+        backgroundScrollView.contentOffset.x = datesScrollView.contentOffset.x
         if scrollView == availabilityBarScrollView {
             timeIndicatorScrollView.contentOffset.y = availabilityBarScrollView.contentOffset.y
         } else if scrollView == timeIndicatorScrollView {
@@ -93,6 +99,11 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
                 availabilityBar.configureDetailsCallback(show: showAvailiabilityDetail, hide: hideAvailiabilityDetail)
                 availabilityBarHorizontalList.addArrangedSubview(availabilityBar)
             }
+            let backgroundBar: UIView = UIView()
+            backgroundStackView.addArrangedSubview(backgroundBar)
+            backgroundBar.heightAnchor.constraint(equalToConstant: self.bounds.height * 2).isActive = true
+            backgroundBar.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
+            backgroundBar.backgroundColor = AppColors.backgroundBar
         }
     }
     
@@ -110,21 +121,80 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         let jsonString: String? = StoredValues.get(key: StoredValuesConstants.userSchedule)
         if jsonString != nil {
             let regularSchedule: Schedule = Schedule(jsonValue: jsonString!)
-            for i in 0..<userSchedule.datesFree.count {
-                let correspondingWeekday: Day = regularSchedule.datesFree[CalendarDate(userSchedule.datesFree[i].date.date!).weekday]
-                userSchedule.datesFree[i].timesFree = correspondingWeekday.timesFree
+            
+            if checkIfWeeklyAvailEmpty(schedule: regularSchedule) {
+                alertForBlankWeeklyAvailability()
+            } else {
+                setAvailabilitiesFromWeeklyAvailability(schedule: regularSchedule)
             }
-            updateUserSchedule(schedule: userSchedule)
-            setCollectiveScheduleCallback(userSchedule)
+        } else {
+            alertForBlankWeeklyAvailability()
         }
     }
     
-    // the availability detail must be created every time it is displayed
-    func showAvailiabilityDetail(_ day: Day) {
-        if !isShowingAvailabilityDetail {
-            createAvailabilityDetail()
+    func setAvailabilitiesFromWeeklyAvailability(schedule: Schedule) {
+        for i in 0..<userSchedule.datesFree.count {
+            let correspondingWeekday: Day = schedule.datesFree[CalendarDate(userSchedule.datesFree[i].date.date!).weekday]
+            userSchedule.datesFree[i].timesFree = correspondingWeekday.timesFree
         }
-        isShowingAvailabilityDetail = true
+        updateUserSchedule(schedule: userSchedule)
+        setCollectiveScheduleCallback(userSchedule)
+    }
+    
+    func checkIfWeeklyAvailEmpty(schedule: Schedule) -> Bool {
+        var isEmpty = true
+        for i in 0..<schedule.datesFree.count {
+            if !schedule.datesFree[i].timesFree.isEmpty {
+                isEmpty = false
+                break
+            }
+        }
+        return isEmpty
+    }
+    
+    func alertForBlankWeeklyAvailability() {
+        let whatsYourAvailability = UIAlertController(title: "\n\n\n\n\n\nWhat's your availibility?", message: "You haven't set up your weekly availability in your Profile yet.", preferredStyle: .alert)
+        let doItLater = UIAlertAction(title: "I'll do it later", style: .cancel, handler: nil)
+        let setAvailability = UIAlertAction(title: "Set Availability", style: .default, handler: { (action) -> Void in
+            let profileVC = self.findViewController()?.storyboard?
+                .instantiateViewController(withIdentifier: "CreateProfileViewController") as! CreateProfileViewController
+            (self.findViewController() as? YourAvailabilitiesViewController)?.transitionToScreen(viewController: profileVC)
+        })
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 15, width: 130, height: 130))
+        imageView.center.x = whatsYourAvailability.view.bounds.width/3
+        imageView.image = UIImage(named: "cal-stick.png")
+        whatsYourAvailability.view.addSubview(imageView)
+        
+        whatsYourAvailability.addAction(doItLater)
+        whatsYourAvailability.addAction(setAvailability)
+        
+        findViewController()?.present(whatsYourAvailability, animated: true, completion: nil)
+    }
+    
+    // the availability detail must be created every time it is displayed
+    func showAvailiabilityDetail(_ day: DayCollective, _ time: HourMinuteTime) {
+        var timeRangeToDisplay: TimeRangeCollective = TimeRangeCollective(from: startTime, to: day.timesFree[0].from, users: [])
+        if time >= day.timesFree[day.timesFree.count - 1].to {
+            timeRangeToDisplay = TimeRangeCollective(from: day.timesFree[day.timesFree.count - 1].to, to: endTime, users: [])
+        }
+        for i in 0..<day.timesFree.count {
+            if day.timesFree[i].isWithinRange(time: time) {
+                timeRangeToDisplay = day.timesFree[i]
+                break
+            }
+        }
+        
+        if !isShowingAvailabilityDetail {
+            createAvailabilityDetail(day: day, timeRange: timeRangeToDisplay)
+            isShowingAvailabilityDetail = true
+        } else {
+            availabilityDetail.configureTimeRange(startTime: timeRangeToDisplay.from, endTime: timeRangeToDisplay.to)
+            availabilityDetail.configureUsers(users: timeRangeToDisplay.users)
+        }
+        
+        availabilityDetailTopConstraint = availabilityDetail.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 80)
+        availabilityDetailLeftConstraint = availabilityDetail.leftAnchor.constraint(equalTo: self.layoutMarginsGuide.leftAnchor, constant: 10)
     }
     
     // the availability detail must be destroyed every time it is closed
@@ -132,16 +202,36 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         if isShowingAvailabilityDetail {
             availabilityDetail.removeFromSuperview()
             availabilityDetail = nil
+            isShowingAvailabilityDetail = false
         }
-        isShowingAvailabilityDetail = false
+    }
+    
+    func expandAvailabilityDetail() {
+        availabilityDetailLeftConstraint.isActive = true
+        availabilityDetailTopConstraint.isActive = true
+        
+        UIView.animate(withDuration: 0.3, animations: {
+           self.layoutIfNeeded()
+        })
+    }
+    
+    func collapseAvailabilityDetail() {
+        availabilityDetailLeftConstraint.isActive = false
+        availabilityDetailTopConstraint.isActive = false
+        
+        UIView.animate(withDuration: 0.3, animations: {
+           self.layoutIfNeeded()
+        })
     }
 
     // instantiate the availability detail in the bottom right corner
-    func createAvailabilityDetail() {
-        availabilityDetail = AvailabilityDetail.instanceFromNib()
-        availabilityBarScrollView.addSubview(availabilityDetail)
-        availabilityDetail.bottomAnchor.constraint(equalTo: availabilityBarScrollView.layoutMarginsGuide.bottomAnchor, constant: -10).isActive = true
-        availabilityDetail.rightAnchor.constraint(equalTo: availabilityBarScrollView.layoutMarginsGuide.rightAnchor, constant: -10).isActive = true
+    func createAvailabilityDetail(day: DayCollective, timeRange: TimeRangeCollective) {
+        availabilityDetail = AvailabilityDetail.instanceFromNib(closeDetail: hideAvailiabilityDetail, expandDetail: expandAvailabilityDetail, collapseDetail: collapseAvailabilityDetail)
+        availabilityDetail.configureTimeRange(startTime: timeRange.from, endTime: timeRange.to)
+        availabilityDetail.configureUsers(users: timeRange.users)
+        self.addSubview(availabilityDetail)
+        availabilityDetail.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: -10).isActive = true
+        availabilityDetail.rightAnchor.constraint(equalTo: self.layoutMarginsGuide.rightAnchor, constant: -10).isActive = true
     }
     
     // instantiate the autofill button in the bottom right corner
@@ -209,10 +299,22 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     
     // style the top bar
     func configureTopBar() {
-        topBar.layer.shadowColor = UIColor.black.cgColor
+        topBar.layer.shadowColor = AppColors.shadowColor.cgColor
         topBar.layer.shadowOpacity = 0.2
         topBar.layer.shadowOffset = .zero
         topBar.layer.shadowRadius = 2
         topBar.layer.shadowOffset = CGSize(width: 0, height: 2)
+    }
+}
+
+extension UIView {
+    func findViewController() -> UIViewController? {
+        if let nextResponder = self.next as? UIViewController {
+            return nextResponder
+        } else if let nextResponder = self.next as? UIView {
+            return nextResponder.findViewController()
+        } else {
+            return nil
+        }
     }
 }

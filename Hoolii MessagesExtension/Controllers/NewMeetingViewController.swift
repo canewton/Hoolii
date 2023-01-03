@@ -18,11 +18,12 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var mainViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var mainViewTopContraint: NSLayoutConstraint!
-    let arrowLeftIcon: ScaledIcon = ScaledIcon(name: "chevron-left-solid", width: 15, height: 15, color: .black)
-    let arrowRightIcon: ScaledIcon = ScaledIcon(name: "chevron-right-solid", width: 15, height: 15, color: .black)
+    let arrowLeftIcon: ScaledIcon = ScaledIcon(name: "chevron-left-solid", width: 15, height: 15, color: .label)
+    let arrowRightIcon: ScaledIcon = ScaledIcon(name: "chevron-right-solid", width: 15, height: 15, color: .label)
     @IBOutlet weak var newMeetingField: UITextField!
     @IBOutlet weak var fromTimePicker: UIDatePicker!
     @IBOutlet weak var toTimePicker: UIDatePicker!
+    @IBOutlet weak var setTimeframeButton: ThemedButton!
     
     let formatter = DateFormatter()
     var collectiveSchedule: CollectiveSchedule = CollectiveSchedule()
@@ -36,6 +37,7 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         configureNameField()
         configureMainViewConstraints()
         configureDatePickers()
+        setTimeframeButton.isEnabled = false
     }
     
     // set the possible meeting time frame of a meetup
@@ -97,6 +99,12 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         self.collectiveSchedule = collectiveSchedule
         self.collectiveSchedule.startTime = HourMinuteTime(date: fromTimePicker.date)
         self.collectiveSchedule.endTime = HourMinuteTime(date: toTimePicker.date)
+        
+        if collectiveSchedule.dates.count > 0 {
+            setTimeframeButton.isEnabled = true
+        } else {
+            setTimeframeButton.isEnabled = false
+        }
     }
     
     @objc func newMeetingFieldDidChange(_ textField: UITextField) {

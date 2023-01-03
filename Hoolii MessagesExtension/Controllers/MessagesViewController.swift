@@ -7,20 +7,11 @@
 
 import UIKit
 import Messages
-import Firebase
 
 class MessagesViewController: MSMessagesAppViewController {
     
     override func viewDidLoad() {
         print("loaded")
-//        FirebaseApp.configure()
-//        let uid = "test"
-//        print("Database:")
-//        let db = Database.database()
-//        print(db)
-//
-//        let databasePath: DatabaseReference! = Database.database().reference().child("users/\(uid)/thoughts")
-//        databasePath.childByAutoId().setValue("{ 'hi': 'hi' }")
     }
     
     // MARK: - Conversation Handling
@@ -32,7 +23,7 @@ class MessagesViewController: MSMessagesAppViewController {
         
         let layout = MSMessageTemplateLayout()
         layout.caption = caption
-        layout.image = UIImage(named: "placeholder.png")
+        layout.image = UIImage(named: "message-graphic.png")
         
         let message = MSMessage(session: session ?? MSSession())
         message.url = components.url!
@@ -65,16 +56,21 @@ class MessagesViewController: MSMessagesAppViewController {
                 
         let controller: AppViewController
         if presentationStyle == .compact {
-            if collectiveSchedule.endTime == HourMinuteTime(hour: 0, minute: 0) {
+            if StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
+                let onboardingCollapsedController: OnboardingCollapsedViewController = instantiateController()
+                controller = onboardingCollapsedController
+            } else if collectiveSchedule.endTime == HourMinuteTime(hour: 0, minute: 0) {
                 let schedulePreviewController: CreateMeetingPreviewViewController = instantiateController()
-                
                 controller = schedulePreviewController
             } else {
                 let yourAvailController: YourAvailabilitiesViewController = instantiateController()
                 controller = yourAvailController
             }
         } else {
-            if collectiveSchedule.allSchedules.count > 0 {
+            if StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
+                let onboardingController: OnboardingViewController = instantiateController()
+                controller = onboardingController
+            } else if collectiveSchedule.allSchedules.count > 0 {
                 let yourAvailabilitiesController: YourAvailabilitiesViewController = instantiateController()
                 controller = yourAvailabilitiesController
                 yourAvailabilitiesController.collectiveSchedule = collectiveSchedule

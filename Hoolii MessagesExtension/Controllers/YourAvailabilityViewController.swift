@@ -45,8 +45,6 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
             return
         }
         
-        print(collectiveSchedule.startTime.hour)
-        print(collectiveSchedule.endTime.hour)
         configureMeetingName()
         
         // create new schedule for user if user has not filled it out yet
@@ -70,13 +68,45 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         configureAvailabilityInput()
         
         // dummy data that represents responses to the message
-        if collectiveSchedule.allSchedules.count < 2 {
-            collectiveSchedule.allSchedules.append(Schedule(datesFree: [Day(date: ScheduleDate(CalendarDate("12-27-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 11, minute: 0), to: HourMinuteTime(hour: 16, minute: 0))]), Day(date: ScheduleDate(CalendarDate("12-28-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 10, minute: 0), to: HourMinuteTime(hour: 13, minute: 0))]),Day(date: ScheduleDate(CalendarDate("12-29-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 12, minute: 0), to: HourMinuteTime(hour: 18, minute: 0))]),], user: User(id: "1", firstName: "Joanna", lastName: "Hu")))
-            collectiveSchedule.allSchedules.append(Schedule(datesFree: [Day(date: ScheduleDate(CalendarDate("12-27-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 9, minute: 30), to: HourMinuteTime(hour: 14, minute: 0))]), Day(date: ScheduleDate(CalendarDate("12-28-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 14, minute: 0), to: HourMinuteTime(hour: 19, minute: 0))]),Day(date: ScheduleDate(CalendarDate("12-29-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 14, minute: 0), to: HourMinuteTime(hour: 20, minute: 0))]),], user: User(id: "2", firstName: "Jessica", lastName: "Mei")))
+//        if collectiveSchedule.allSchedules.count < 2 {
+//            collectiveSchedule.allSchedules.append(Schedule(datesFree: [Day(date: ScheduleDate(CalendarDate("12-27-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 11, minute: 0), to: HourMinuteTime(hour: 16, minute: 0))]), Day(date: ScheduleDate(CalendarDate("12-28-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 10, minute: 0), to: HourMinuteTime(hour: 13, minute: 0))]),Day(date: ScheduleDate(CalendarDate("12-29-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 12, minute: 0), to: HourMinuteTime(hour: 18, minute: 0))]),], user: User(id: "1", firstName: "Joanna", lastName: "Hu")))
+//            collectiveSchedule.allSchedules.append(Schedule(datesFree: [Day(date: ScheduleDate(CalendarDate("12-27-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 9, minute: 30), to: HourMinuteTime(hour: 14, minute: 0))]), Day(date: ScheduleDate(CalendarDate("12-28-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 14, minute: 0), to: HourMinuteTime(hour: 19, minute: 0))]),Day(date: ScheduleDate(CalendarDate("12-29-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 14, minute: 0), to: HourMinuteTime(hour: 20, minute: 0))]),], user: User(id: "2", firstName: "Jessica", lastName: "Mei")))
+//        }
+    }
+    
+    func userHasEmptySchedule() -> Bool {
+        var hasEmptySchedule: Bool = true
+        for i in 0..<userSchedule.datesFree.count {
+            if userSchedule.datesFree[i].timesFree.count > 0 {
+                hasEmptySchedule = false
+            }
         }
+        return hasEmptySchedule
     }
     
     @IBAction func OnSaveAndSend(_ sender: Any) {
+        if userHasEmptySchedule() {
+            let notFilledOutMessage = UIAlertController(title: "\n\n\n\n\n\nWait! Your availability is empty.", message: "You are sending a blank schedule with no availabilities for your hangout.", preferredStyle: .alert)
+            let keepEditing = UIAlertAction(title: "Keep editing", style: .cancel, handler: nil)
+            let sendAway = UIAlertAction(title: "Send away", style: .default, handler: { (action) -> Void in
+                self.sendMessage()
+            })
+            
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 170, height: 170))
+            imageView.center.x = notFilledOutMessage.view.bounds.width/3
+            imageView.image = UIImage(named: "cal-alert.png")
+            notFilledOutMessage.view.addSubview(imageView)
+            
+            notFilledOutMessage.addAction(keepEditing)
+            notFilledOutMessage.addAction(sendAway)
+            
+            self.present(notFilledOutMessage, animated: true, completion: nil)
+        } else {
+            sendMessage()
+        }
+    }
+    
+    func sendMessage() {
         collectiveSchedule.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName), schedule: userSchedule)
         (delegate as? YourAvaialabilitiesViewControllerDelegate)?.addDataToMessage(collectiveSchedule: collectiveSchedule)
     }
@@ -94,9 +124,9 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
             
             if collectiveSchedule.dates.count == 1 {
                 if date == CalendarDate(Date()) {
-                    name += "Meeting for today"
+                    name += "Today's meeting"
                 } else {
-                    name += "Meeting for \(date.getMonthSymbol()) \(date.day)"
+                    name += "\(date.getMonthName()) \(date.day) meeting"
                 }
             } else {
                 name += "Meeting(s) starting \(date.getMonthSymbol()) \(date.day)"
@@ -116,6 +146,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
             isShowingPersonalView = false
         } else {
             displayPersonalView()
+            availabilityInput.hideAvailiabilityDetail()
             availabilityInput.showAutoFillButton()
             isShowingPersonalView = true
         }
@@ -163,14 +194,14 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     
     // set styling for the bottom bar
     func configureBottomBar() {
-        bottomBar.layer.shadowColor = UIColor.black.cgColor
+        bottomBar.layer.shadowColor = AppColors.shadowColor.cgColor
         bottomBar.layer.shadowOpacity = 0.6
         bottomBar.layer.shadowOffset = .zero
         bottomBar.layer.shadowRadius = 10
     }
     
     func configureSendButton() {
-        let sendIcon: UIImage = ScaledIcon(name: "send", width: 14, height: 14, color: .black).image
+        let sendIcon: UIImage = ScaledIcon(name: "send", width: 14, height: 14, color: .label).image
         sendButton.setImage(sendIcon, for: .normal)
         sendButton.titleLabel?.font = .systemFont(ofSize: 14)
     }
@@ -192,7 +223,7 @@ protocol YourAvaialabilitiesViewControllerDelegate: AnyObject {
 
 extension MessagesViewController: YourAvaialabilitiesViewControllerDelegate {
     func addDataToMessage(collectiveSchedule: CollectiveSchedule) {
-        SendMessage(collectiveSchedule, "When should we meet up?")
+        SendMessage(collectiveSchedule, collectiveSchedule.meetingName)
         dismiss()
     }
 }

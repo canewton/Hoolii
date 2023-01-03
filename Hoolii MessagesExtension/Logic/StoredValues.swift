@@ -14,6 +14,7 @@ struct StoredValuesConstants {
     static let lastName: String = "lastName"
     static let initials: String = "initials"
     static let userSchedule: String = "userSchedule"
+    static let hasBeenOnboarded: String = "hasBeenOnboarded"
 }
 
 struct StoredValues {
@@ -36,5 +37,9 @@ struct StoredValues {
     
     static func deleteKey(key: String) {
         defaults.removeObject(forKey: key)
+    }
+    
+    static func isKeyNil(key: String) -> Bool {
+        return self.get(key: key) == nil
     }
 }

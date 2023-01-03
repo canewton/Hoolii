@@ -33,4 +33,12 @@ struct TimeRangeCollective {
         self.to = to
         self.users = users
     }
+    
+    func isWithinRange(time: HourMinuteTime) -> Bool {
+        if time >= from && time <= to {
+            return true
+        } else {
+            return false
+        }
+    }
 }

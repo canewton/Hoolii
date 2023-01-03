@@ -20,6 +20,10 @@ struct User: Codable, Equatable {
         self.lastName = lastName
     }
     
+    func getInitials() -> String {
+        return "\(firstName.prefix(1))\(lastName.prefix(1))"
+    }
+    
     static func == (lhs: User, rhs: User) -> Bool {
         return lhs.id == rhs.id
     }

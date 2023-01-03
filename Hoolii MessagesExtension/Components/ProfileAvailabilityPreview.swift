@@ -70,7 +70,7 @@ class ProfileAvailabilityPreview: UIView {
                         
                         // display the start for the content within a container
                         let fromLabel: UILabel = UILabel()
-                        fromLabel.text = timeRange.from.toString()
+                        fromLabel.text = timeRange.from.toStringHourMinute()
                         fromLabel.font = .systemFont(ofSize: 8)
                         availabilityView.addSubview(fromLabel)
                         fromLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -81,7 +81,7 @@ class ProfileAvailabilityPreview: UIView {
                         // display the end time if the availability block is big enough
                         if (timeRange.to - timeRange.from).toFloat() > 1 {
                             let toLabel: UILabel = UILabel()
-                            toLabel.text = timeRange.to.toString()
+                            toLabel.text = timeRange.to.toStringHourMinute()
                             toLabel.font = .systemFont(ofSize: 8)
                             availabilityView.addSubview(toLabel)
                             toLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -17,8 +17,8 @@ class CreateMeetingCalendar: UIViewController, ViewControllerWithIdentifier {
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var arrowLeft: UIButton!
     @IBOutlet weak var arrowRight: UIButton!
-    let arrowLeftIcon: ScaledIcon = ScaledIcon(name: "chevron-left-solid", width: 15, height: 15, color: .black)
-    let arrowRightIcon: ScaledIcon = ScaledIcon(name: "chevron-right-solid", width: 15, height: 15, color: .black)
+    let arrowLeftIcon: ScaledIcon = ScaledIcon(name: "chevron-left-solid", width: 15, height: 15, color: .label)
+    let arrowRightIcon: ScaledIcon = ScaledIcon(name: "chevron-right-solid", width: 15, height: 15, color: .label)
     
     let formatter = DateFormatter()
     var collectiveSchedule: CollectiveSchedule = CollectiveSchedule()
@@ -66,7 +66,7 @@ class CreateMeetingCalendar: UIViewController, ViewControllerWithIdentifier {
     
     func handleCellTextColor(cell: DateCell, cellState: CellState) {
         if cellState.dateBelongsTo == .thisMonth && numRows != 1 {
-          cell.dateLabel.textColor = UIColor.black
+          cell.dateLabel.textColor = UIColor.label
        } else {
           cell.dateLabel.textColor = UIColor.gray
        }

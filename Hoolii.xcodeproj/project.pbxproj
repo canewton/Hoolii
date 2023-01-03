@@ -19,8 +19,6 @@
 		9103CF3428C989C300BBC349 /* AutofillButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9103CF3328C989C300BBC349 /* AutofillButton.xib */; };
 		9103CF3628C989EA00BBC349 /* AutofillButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103CF3528C989EA00BBC349 /* AutofillButton.swift */; };
 		9103CF3828D2F28800BBC349 /* ScheduleDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103CF3728D2F28700BBC349 /* ScheduleDate.swift */; };
-		9103E5732896479100CA661B /* libFirebaseDatabase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9103E5722896479100CA661B /* libFirebaseDatabase.a */; };
-		9103E575289647B700CA661B /* libFirebaseCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9103E574289647B700CA661B /* libFirebaseCore.a */; };
 		9103E5782896DA0400CA661B /* AvailabilityBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E5772896DA0400CA661B /* AvailabilityBar.swift */; };
 		9103E57A2897550500CA661B /* TimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E5792897550500CA661B /* TimeBlock.swift */; };
 		9103E57C289B897600CA661B /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E57B289B897600CA661B /* Day.swift */; };
@@ -56,6 +54,8 @@
 		918C88CF28D3C8C40052850E /* CreateMeetingPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918C88CE28D3C8C40052850E /* CreateMeetingPreviewViewController.swift */; };
 		91A4E813294BDB7C00AB7E11 /* AvailabilityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4E812294BDB7C00AB7E11 /* AvailabilityConstants.swift */; };
 		91A4E815294C075200AB7E11 /* AvatarCreatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4E814294C075200AB7E11 /* AvatarCreatorViewController.swift */; };
+		91A4E835295EFC0B00AB7E11 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4E834295EFC0B00AB7E11 /* OnboardingViewController.swift */; };
+		91A4E837295EFD3900AB7E11 /* OnboardingScreen1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91A4E836295EFD3900AB7E11 /* OnboardingScreen1.xib */; };
 		91A76E5028B3183100F93DE2 /* TimeIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91A76E4F28B3183100F93DE2 /* TimeIndicatorView.xib */; };
 		91A76E5228B31B1C00F93DE2 /* TimeIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A76E5128B31B1C00F93DE2 /* TimeIndicatorView.swift */; };
 		91A76E5628B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A76E5528B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift */; };
@@ -63,6 +63,9 @@
 		91A76E5A28BC972400F93DE2 /* AvailabilityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A76E5928BC972400F93DE2 /* AvailabilityDetail.swift */; };
 		91A76E5E28C1C96C00F93DE2 /* ProfileAvailabilityPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A76E5D28C1C96C00F93DE2 /* ProfileAvailabilityPreview.swift */; };
 		91B2D42428957CA200D0AAD4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91B2D42328957CA200D0AAD4 /* GoogleService-Info.plist */; };
+		91E71AC5295EFE010020ABC8 /* OnboardingScreen2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E71AC4295EFE010020ABC8 /* OnboardingScreen2.xib */; };
+		91E71AC7295EFE100020ABC8 /* OnboardingScreen3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E71AC6295EFE100020ABC8 /* OnboardingScreen3.xib */; };
+		91E71AC9295F73C10020ABC8 /* OnboardingCollapsedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E71AC8295F73C10020ABC8 /* OnboardingCollapsedViewController.swift */; };
 		E1BE96C0972C8ADFD212FDD4 /* libPods-Hoolii.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2059F873623DEA6DE6C9C3A3 /* libPods-Hoolii.a */; };
 		FC0AC900BAF8436FCCEFF0BF /* libPods-Hoolii MessagesExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB9FB6186E1010E8D04B74A1 /* libPods-Hoolii MessagesExtension.a */; };
 /* End PBXBuildFile section */
@@ -148,6 +151,8 @@
 		918C88CE28D3C8C40052850E /* CreateMeetingPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMeetingPreviewViewController.swift; sourceTree = "<group>"; };
 		91A4E812294BDB7C00AB7E11 /* AvailabilityConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityConstants.swift; sourceTree = "<group>"; };
 		91A4E814294C075200AB7E11 /* AvatarCreatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCreatorViewController.swift; sourceTree = "<group>"; };
+		91A4E834295EFC0B00AB7E11 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		91A4E836295EFD3900AB7E11 /* OnboardingScreen1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingScreen1.xib; sourceTree = "<group>"; };
 		91A76E4F28B3183100F93DE2 /* TimeIndicatorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeIndicatorView.xib; sourceTree = "<group>"; };
 		91A76E5128B31B1C00F93DE2 /* TimeIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIndicatorView.swift; sourceTree = "<group>"; };
 		91A76E5528B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterAvailabilitiesSwitch.swift; sourceTree = "<group>"; };
@@ -155,6 +160,9 @@
 		91A76E5928BC972400F93DE2 /* AvailabilityDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityDetail.swift; sourceTree = "<group>"; };
 		91A76E5D28C1C96C00F93DE2 /* ProfileAvailabilityPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAvailabilityPreview.swift; sourceTree = "<group>"; };
 		91B2D42328957CA200D0AAD4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		91E71AC4295EFE010020ABC8 /* OnboardingScreen2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingScreen2.xib; sourceTree = "<group>"; };
+		91E71AC6295EFE100020ABC8 /* OnboardingScreen3.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingScreen3.xib; sourceTree = "<group>"; };
+		91E71AC8295F73C10020ABC8 /* OnboardingCollapsedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollapsedViewController.swift; sourceTree = "<group>"; };
 		91F40B6D286164C900B6912D /* Hoolii MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hoolii MessagesExtension.entitlements"; sourceTree = "<group>"; };
 		FB9FB6186E1010E8D04B74A1 /* libPods-Hoolii MessagesExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hoolii MessagesExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -164,8 +172,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9103E5732896479100CA661B /* libFirebaseDatabase.a in Frameworks */,
-				9103E575289647B700CA661B /* libFirebaseCore.a in Frameworks */,
 				9142F97B285FA20E0070661F /* Messages.framework in Frameworks */,
 				FC0AC900BAF8436FCCEFF0BF /* libPods-Hoolii MessagesExtension.a in Frameworks */,
 			);
@@ -229,6 +235,9 @@
 				9103CF3128C9699D00BBC349 /* ProfileAvailabilityPreview.xib */,
 				9103CF3328C989C300BBC349 /* AutofillButton.xib */,
 				9100ED7E28DB0E1700DA4F43 /* CreateMeetingCalendar.storyboard */,
+				91A4E836295EFD3900AB7E11 /* OnboardingScreen1.xib */,
+				91E71AC4295EFE010020ABC8 /* OnboardingScreen2.xib */,
+				91E71AC6295EFE100020ABC8 /* OnboardingScreen3.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,6 +336,8 @@
 				9103CF2728C8E7CD00BBC349 /* WeeklyAvailabilityInputViewController.swift */,
 				918C88CE28D3C8C40052850E /* CreateMeetingPreviewViewController.swift */,
 				91A4E814294C075200AB7E11 /* AvatarCreatorViewController.swift */,
+				91A4E834295EFC0B00AB7E11 /* OnboardingViewController.swift */,
+				91E71AC8295F73C10020ABC8 /* OnboardingCollapsedViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -433,12 +444,15 @@
 			files = (
 				9100ED7F28DB0E1700DA4F43 /* CreateMeetingCalendar.storyboard in Resources */,
 				9103CF2E28C9197600BBC349 /* DayHeaderView.xib in Resources */,
+				91A4E837295EFD3900AB7E11 /* OnboardingScreen1.xib in Resources */,
+				91E71AC5295EFE010020ABC8 /* OnboardingScreen2.xib in Resources */,
 				9103CF2A28C8EA7800BBC349 /* FullAvailabilityInput.xib in Resources */,
 				9103CF3428C989C300BBC349 /* AutofillButton.xib in Resources */,
 				9142F983285FA20F0070661F /* Assets.xcassets in Resources */,
 				9103CF3228C9699D00BBC349 /* ProfileAvailabilityPreview.xib in Resources */,
 				913C119728B1DE8100B5A66F /* DateHeaderView.xib in Resources */,
 				9142F981285FA20E0070661F /* MainInterface.storyboard in Resources */,
+				91E71AC7295EFE100020ABC8 /* OnboardingScreen3.xib in Resources */,
 				91A76E5828BC8C1900F93DE2 /* AvailabilityDetail.xib in Resources */,
 				91A76E5028B3183100F93DE2 /* TimeIndicatorView.xib in Resources */,
 				913C119B28B208C700B5A66F /* AvailabilityBar.xib in Resources */,
@@ -515,6 +529,7 @@
 				91A4E813294BDB7C00AB7E11 /* AvailabilityConstants.swift in Sources */,
 				918C88CF28D3C8C40052850E /* CreateMeetingPreviewViewController.swift in Sources */,
 				916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */,
+				91E71AC9295F73C10020ABC8 /* OnboardingCollapsedViewController.swift in Sources */,
 				91A76E5628B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift in Sources */,
 				9103E58A289F50BC00CA661B /* NewMeetingViewController.swift in Sources */,
 				913C119528B0AAFA00B5A66F /* AppViewController.swift in Sources */,
@@ -527,6 +542,7 @@
 				9103E57A2897550500CA661B /* TimeBlock.swift in Sources */,
 				91A76E5E28C1C96C00F93DE2 /* ProfileAvailabilityPreview.swift in Sources */,
 				9142F996286002580070661F /* CollectiveSchedule.swift in Sources */,
+				91A4E835295EFC0B00AB7E11 /* OnboardingViewController.swift in Sources */,
 				9103E59328A72C5A00CA661B /* AppColors.swift in Sources */,
 				913C119928B1DFD100B5A66F /* DateHeaderView.swift in Sources */,
 				9103CF3628C989EA00BBC349 /* AutofillButton.swift in Sources */,
