@@ -8,7 +8,7 @@
 import UIKit
 import JTAppleCalendar
 
-class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
+class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier, UIScrollViewDelegate {
     
     // MARK: Properties
     static let storyboardIdentifier = "NewMeetingViewController"
@@ -36,13 +36,30 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
         
         configureMeetingCalendar()
         configureNameField()
-        //configureMainViewConstraints()
+        configureMainViewConstraints()
         configureDatePickers()
         setTimeframeButton.isEnabled = false
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if scrollView.contentSize.height - view.frame.size.height < 70 {
+            scrollView.isScrollEnabled = false
+            setTimeframeButton.removeFromSuperview()
+            view.addSubview(setTimeframeButton)
+            setTimeframeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            setTimeframeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
+        }
         
-        scrollView.contentSize = CGSize(width: view.frame.width, height: screenContent.bounds.height)
+        let scrollViewContentSize = screenContent.bounds.height > view.frame.size.height ? screenContent.bounds.height : view.frame.size.height
+        screenContent.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.contentSize = CGSize(width: view.frame.width, height: scrollViewContentSize)
         screenContent.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
-        mainView.heightAnchor.constraint(equalToConstant: screenContent.bounds.height).isActive = true
+        screenContent.heightAnchor.constraint(equalToConstant: scrollViewContentSize).isActive = true
+        scrollView.delegate = self
+    }
+    @IBAction func test(_ sender: Any) {
+        print("test")
     }
     
     // set the possible meeting time frame of a meetup
@@ -61,12 +78,15 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     
     func configureNameField() {
         newMeetingField.addTarget(self, action: #selector(newMeetingFieldDidChange(_:)), for: .editingChanged)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(touchNameField(gesture:)))
+        newMeetingField.addGestureRecognizer(tapGesture)
     }
     
-//    func configureMainViewConstraints() {
-//        mainViewBottomConstraint.isActive = true
-//        super.configure(bottomConstraint: mainViewBottomConstraint, topConstraint: mainViewTopContraint)
-//    }
+    func configureMainViewConstraints() {
+        mainViewBottomConstraint.isActive = true
+        super.configure(bottomConstraint: mainViewBottomConstraint, topConstraint: mainViewTopContraint)
+    }
     
     func configureMeetingCalendar() {
         let meetingCalendar: CreateMeetingCalendar = instantiateController()
@@ -113,6 +133,15 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier {
     
     @objc func newMeetingFieldDidChange(_ textField: UITextField) {
         CollectiveSchedule.shared.meetingName = textField.text!
+    }
+    
+    @objc func touchNameField(gesture: UITapGestureRecognizer) {
+        let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInset.bottom)
+        scrollView.setContentOffset(bottomOffset, animated: true)
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        newMeetingField.becomeFirstResponder()
     }
     
     func instantiateController() -> CreateMeetingCalendar {

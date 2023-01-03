@@ -94,7 +94,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="360" height="750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3o-Qc-4O3">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3o-Qc-4O3">
                                 <rect key="frame" x="0.0" y="0.0" width="360" height="750"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="3hw-qC-DJ7">
@@ -298,14 +298,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="360" height="750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f0V-kD-TLZ">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f0V-kD-TLZ">
                                 <rect key="frame" x="0.0" y="0.0" width="360" height="750"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="c6M-Ij-VWv">
                                         <rect key="frame" x="0.0" y="0.0" width="360" height="754"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="abc-g2-hbG">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="abc-g2-hbG">
                                                 <rect key="frame" x="0.0" y="48" width="360" height="706"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Select Meeting Times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNY-A3-BOP">
@@ -396,8 +396,8 @@
                                                             <constraint firstAttribute="trailing" secondItem="Veo-2z-OT0" secondAttribute="trailing" constant="20" id="zuS-ho-2s0"/>
                                                         </constraints>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mza-qD-eGz" customClass="ThemedButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
-                                                        <rect key="frame" x="105" y="637" width="150" height="34.5"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mza-qD-eGz" customClass="ThemedButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
+                                                        <rect key="frame" x="105" y="641.5" width="150" height="34.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="150" id="12S-To-GEd"/>
                                                         </constraints>
@@ -436,6 +436,7 @@
                                             <constraint firstItem="abc-g2-hbG" firstAttribute="top" secondItem="OcM-Yz-5QZ" secondAttribute="top" id="HH1-2J-Irn"/>
                                             <constraint firstItem="abc-g2-hbG" firstAttribute="trailing" secondItem="OcM-Yz-5QZ" secondAttribute="trailing" id="cyl-HD-nzC"/>
                                             <constraint firstItem="abc-g2-hbG" firstAttribute="leading" secondItem="OcM-Yz-5QZ" secondAttribute="leading" id="oeM-ai-E4C"/>
+                                            <constraint firstItem="abc-g2-hbG" firstAttribute="bottom" secondItem="c6M-Ij-VWv" secondAttribute="bottom" id="sHs-mB-MfI"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -458,6 +459,8 @@
                         <outlet property="createMeetingCalendarContainer" destination="HIn-s7-JzO" id="evU-Sb-1ZS"/>
                         <outlet property="fromTimePicker" destination="Xec-wf-rN4" id="TM0-jS-u82"/>
                         <outlet property="mainView" destination="abc-g2-hbG" id="aIL-aE-OyJ"/>
+                        <outlet property="mainViewBottomConstraint" destination="vKV-8L-Jj0" id="pna-YV-rC5"/>
+                        <outlet property="mainViewTopContraint" destination="HNe-Ty-mAq" id="2Xa-um-WtV"/>
                         <outlet property="newMeetingField" destination="Szr-IL-x6L" id="2A8-tn-K52"/>
                         <outlet property="screenContent" destination="c6M-Ij-VWv" id="8LB-FT-jOV"/>
                         <outlet property="scrollView" destination="f0V-kD-TLZ" id="7ST-0U-h0W"/>
@@ -754,7 +757,10 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start a Meeting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uiE-Cr-O9v">
-                                <rect key="frame" x="30" y="30" width="125" height="20.5"/>
+                                <rect key="frame" x="30" y="30" width="125" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="pAX-4w-ks2"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
