@@ -11,7 +11,6 @@ import UIKit
 class CreateMeetingPreviewViewController: AppViewController, ViewControllerWithIdentifier {
     @IBOutlet weak var createMeetingCalendarContainer: UIView!
     @IBOutlet weak var profileButton: ProfileButton!
-    var collectiveSchedule: CollectiveSchedule = CollectiveSchedule()
     
     static let storyboardIdentifier = "CreateMeetingPreviewViewController"
     weak var delegate: AnyObject?
@@ -29,7 +28,7 @@ class CreateMeetingPreviewViewController: AppViewController, ViewControllerWithI
     }
     
     func expandView() {
-        (delegate as? CreateMeetingPreviewViewControllerDelegate)?.createMeetingPreviewViewControllerDidSelectExpand(controller: self, collectiveSchedule: collectiveSchedule)
+        (delegate as? CreateMeetingPreviewViewControllerDelegate)?.createMeetingPreviewViewControllerDidSelectExpand(controller: self)
     }
     
     func configureMeetingCalendar() {
@@ -43,10 +42,6 @@ class CreateMeetingPreviewViewController: AppViewController, ViewControllerWithI
         meetingCalendar.view.topAnchor.constraint(equalTo: createMeetingCalendarContainer.topAnchor).isActive = true
     }
     
-    func addDateCallback(_ collectiveSchedule: CollectiveSchedule) {
-        self.collectiveSchedule = collectiveSchedule
-    }
-    
     func instantiateController() -> CreateMeetingCalendar {
         guard let controller = storyboard?.instantiateViewController(withIdentifier: CreateMeetingCalendar.storyboardIdentifier)
                 as? CreateMeetingCalendar
@@ -54,18 +49,17 @@ class CreateMeetingPreviewViewController: AppViewController, ViewControllerWithI
         
         controller.delegate = self
         controller.numRows = 1
-        controller.addDateCallback = addDateCallback
         
         return controller
     }
 }
 
 protocol CreateMeetingPreviewViewControllerDelegate: AnyObject {
-    func createMeetingPreviewViewControllerDidSelectExpand(controller: CreateMeetingPreviewViewController, collectiveSchedule: CollectiveSchedule)
+    func createMeetingPreviewViewControllerDidSelectExpand(controller: CreateMeetingPreviewViewController)
 }
 
 extension MessagesViewController: CreateMeetingPreviewViewControllerDelegate {
-    func createMeetingPreviewViewControllerDidSelectExpand(controller: CreateMeetingPreviewViewController, collectiveSchedule: CollectiveSchedule) {
+    func createMeetingPreviewViewControllerDidSelectExpand(controller: CreateMeetingPreviewViewController) {
         requestPresentationStyle(.expanded)
     }
 }

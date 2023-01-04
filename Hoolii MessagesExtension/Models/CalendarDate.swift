@@ -17,7 +17,8 @@ struct CalendarDate: Codable {
     let month: Int
     let year: Int
     let dateString: String
-    static let weekdaySymbols: [String] = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
+    static let weekdaySymbols: [String] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+    static let weekdayNames: [String] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     static let monthSymbols: [String] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     static let monthNames: [String] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     
@@ -50,6 +51,14 @@ struct CalendarDate: Codable {
     
     func getMonthName() -> String {
         return CalendarDate.monthNames[month - 1]
+    }
+    
+    func getWeekdayName() -> String {
+        return CalendarDate.weekdayNames[weekday]
+    }
+    
+    func getWeekdayAbr() -> String {
+        return CalendarDate.weekdaySymbols[weekday]
     }
     
     public static func ==(a: CalendarDate, b: CalendarDate) -> Bool {

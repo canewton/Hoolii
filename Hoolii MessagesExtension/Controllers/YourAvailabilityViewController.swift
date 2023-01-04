@@ -16,6 +16,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     @IBOutlet weak var editMeetingButton: UIView!
     @IBOutlet weak var topBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var meetingTitle: UILabel!
+    @IBOutlet weak var bottomBarConstraint: NSLayoutConstraint!
     var availabilityInput: FullAvailabilityInput!
     var isShowingPersonalView: Bool = true
     var isCreatingMeeting = false
@@ -24,7 +25,6 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     var firstName: String!
     var lastName: String!
     var id: String!
-    var collectiveSchedule: CollectiveSchedule!
     let availabilityBarWidth: CGFloat = 120 // width of the interactive column that determines availability
     let timeIndicatorViewHeight: CGFloat = 15 // might need to delete
     
@@ -41,17 +41,13 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         lastName = StoredValues.get(key: StoredValuesConstants.lastName)!
         id = StoredValues.get(key: StoredValuesConstants.userID)!
         
-        if collectiveSchedule == nil {
-            return
-        }
-        
         configureMeetingName()
         
         // create new schedule for user if user has not filled it out yet
-        if collectiveSchedule.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName)) == nil {
-            userSchedule = collectiveSchedule.appendEmptySchedule(user: User(id: id, firstName: firstName, lastName: lastName))
+        if CollectiveSchedule.shared.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName)) == nil {
+            userSchedule = CollectiveSchedule.shared.appendEmptySchedule(user: User(id: id, firstName: firstName, lastName: lastName))
         } else {
-            userSchedule = collectiveSchedule.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName))!
+            userSchedule = CollectiveSchedule.shared.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName))!
         }
         
         // determine if this person was the one who created the meeting
@@ -61,6 +57,9 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
             topBarHeightConstraint.constant = 55
         }
         
+        // fix bug when onboarding screen goes back to this screen
+        bottomBarConstraint.isActive = true
+        
         configureEditButton()
         configureFilterSwitch()
         configureSendButton()
@@ -68,9 +67,9 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         configureAvailabilityInput()
         
         // dummy data that represents responses to the message
-//        if collectiveSchedule.allSchedules.count < 2 {
-//            collectiveSchedule.allSchedules.append(Schedule(datesFree: [Day(date: ScheduleDate(CalendarDate("12-27-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 11, minute: 0), to: HourMinuteTime(hour: 16, minute: 0))]), Day(date: ScheduleDate(CalendarDate("12-28-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 10, minute: 0), to: HourMinuteTime(hour: 13, minute: 0))]),Day(date: ScheduleDate(CalendarDate("12-29-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 12, minute: 0), to: HourMinuteTime(hour: 18, minute: 0))]),], user: User(id: "1", firstName: "Joanna", lastName: "Hu")))
-//            collectiveSchedule.allSchedules.append(Schedule(datesFree: [Day(date: ScheduleDate(CalendarDate("12-27-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 9, minute: 30), to: HourMinuteTime(hour: 14, minute: 0))]), Day(date: ScheduleDate(CalendarDate("12-28-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 14, minute: 0), to: HourMinuteTime(hour: 19, minute: 0))]),Day(date: ScheduleDate(CalendarDate("12-29-2022").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 14, minute: 0), to: HourMinuteTime(hour: 20, minute: 0))]),], user: User(id: "2", firstName: "Jessica", lastName: "Mei")))
+//        if CollectiveSchedule.shared.allSchedules.count < 2 {
+//            CollectiveSchedule.shared.allSchedules.append(Schedule(datesFree: [Day(date: ScheduleDate(CalendarDate("1-27-2023").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 11, minute: 0), to: HourMinuteTime(hour: 16, minute: 0))]), Day(date: ScheduleDate(CalendarDate("1-28-2023").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 10, minute: 0), to: HourMinuteTime(hour: 13, minute: 0))]),Day(date: ScheduleDate(CalendarDate("1-29-2023").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 12, minute: 0), to: HourMinuteTime(hour: 18, minute: 0))]),], user: User(id: "1", firstName: "Joanna", lastName: "Hu")))
+//            CollectiveSchedule.shared.allSchedules.append(Schedule(datesFree: [Day(date: ScheduleDate(CalendarDate("1-27-2023").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 9, minute: 30), to: HourMinuteTime(hour: 14, minute: 0))]), Day(date: ScheduleDate(CalendarDate("1-28-2023").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 14, minute: 0), to: HourMinuteTime(hour: 19, minute: 0))]),Day(date: ScheduleDate(CalendarDate("1-29-2023").date), timesFree: [TimeRange(from: HourMinuteTime(hour: 14, minute: 0), to: HourMinuteTime(hour: 20, minute: 0))]),], user: User(id: "2", firstName: "Jessica", lastName: "Mei")))
 //        }
     }
     
@@ -86,29 +85,25 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     
     @IBAction func OnSaveAndSend(_ sender: Any) {
         if userHasEmptySchedule() {
-            let notFilledOutMessage = UIAlertController(title: "\n\n\n\n\n\nWait! Your availability is empty.", message: "You are sending a blank schedule with no availabilities for your hangout.", preferredStyle: .alert)
-            let keepEditing = UIAlertAction(title: "Keep editing", style: .cancel, handler: nil)
-            let sendAway = UIAlertAction(title: "Send away", style: .default, handler: { (action) -> Void in
-                self.sendMessage()
-            })
-            
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 170, height: 170))
-            imageView.center.x = notFilledOutMessage.view.bounds.width/3
-            imageView.image = UIImage(named: "cal-alert.png")
-            notFilledOutMessage.view.addSubview(imageView)
-            
-            notFilledOutMessage.addAction(keepEditing)
-            notFilledOutMessage.addAction(sendAway)
-            
-            self.present(notFilledOutMessage, animated: true, completion: nil)
+            if let alert = AppAlert.instanceFromNib(image: UIImage(named: "cal-alert.png"), cancelText: "Keep editing", acceptText: "Send away", title: "Wait! Your availability is empty.", description: "You are sending a blank schedule with no availabilities for your hangout.") {
+                let darkenedScreen: DarkenedScreen = DarkenedScreen(viewController: self)
+                alert.acceptCallback = {() -> Void in
+                    darkenedScreen.dismiss(animated: true)
+                    self.sendMessage()
+                }
+                alert.cancelCallback = {() -> Void in darkenedScreen.dismiss(animated: true)}
+                darkenedScreen.addAlert(alert: alert)
+                
+                self.present(darkenedScreen, animated: true, completion: nil)
+            }
         } else {
             sendMessage()
         }
     }
     
     func sendMessage() {
-        collectiveSchedule.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName), schedule: userSchedule)
-        (delegate as? YourAvaialabilitiesViewControllerDelegate)?.addDataToMessage(collectiveSchedule: collectiveSchedule)
+        CollectiveSchedule.shared.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName), schedule: userSchedule)
+        (delegate as? YourAvaialabilitiesViewControllerDelegate)?.dismissExtension()
     }
     
     @objc func onEditMeeting(gesture: UITapGestureRecognizer) {
@@ -117,12 +112,12 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     
     // Determine the name of the meeting
     func configureMeetingName() {
-        var name: String = collectiveSchedule.meetingName
+        var name: String = CollectiveSchedule.shared.meetingName
         if name == "" {
             
-            let date: CalendarDate = CalendarDate(collectiveSchedule.dates[0])
+            let date: CalendarDate = CalendarDate(CollectiveSchedule.shared.dates[0])
             
-            if collectiveSchedule.dates.count == 1 {
+            if CollectiveSchedule.shared.dates.count == 1 {
                 if date == CalendarDate(Date()) {
                     name += "Today's meeting"
                 } else {
@@ -134,13 +129,13 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         }
         
         meetingTitle.text = name
-        collectiveSchedule.meetingName = name
+        CollectiveSchedule.shared.meetingName = name
     }
     
     // Determine if the group view or the user view should be displayed
     func toggleFilterSwitch(_ filter: String) {
         if filter == "Group" {
-            collectiveSchedule.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName), schedule: userSchedule)
+            CollectiveSchedule.shared.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName), schedule: userSchedule)
             availabilityInput.hideAutoFillButton()
             displayGroupView()
             isShowingPersonalView = false
@@ -154,13 +149,13 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     
     // use the group data to display the group view
     private func displayGroupView() {
-        let allAvailabilities: [DayCollective?] = AvailabilityLogic.getDaysAndTimesFree(collectiveSchedule.allSchedules)
+        let allAvailabilities: [DayCollective] = AvailabilityLogic.getDaysAndTimesFree(CollectiveSchedule.shared.allSchedules)
 
         for i in 0..<allAvailabilities.count {
             let availabilityBar: AvailabilityBar = availabilityInput.availabilityBarHorizontalList.arrangedSubviews[i] as! AvailabilityBar
             availabilityBar.translatesAutoresizingMaskIntoConstraints = false
             availabilityBar.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
-            availabilityBar.displayAllUsersDay(day: allAvailabilities[i], numUsers: collectiveSchedule.allSchedules.count)
+            availabilityBar.displayAllUsersDay(day: allAvailabilities[i], numUsers: CollectiveSchedule.shared.allSchedules.count)
         }
     }
 
@@ -174,13 +169,13 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         }
     }
     
-    func setCollectiveSchedule(_ schedule: Schedule) {
+    func setSchedule(_ schedule: Schedule) {
         userSchedule = schedule
     }
     
     // set constraints for the availability input
     func configureAvailabilityInput() {
-        availabilityInput = FullAvailabilityInput.instanceFromNib(userSchedule: userSchedule, startTime: collectiveSchedule.startTime, endTime: collectiveSchedule.endTime, setCollectiveScheduleCallback: setCollectiveSchedule)
+        availabilityInput = FullAvailabilityInput.instanceFromNib(userSchedule: userSchedule, startTime: CollectiveSchedule.shared.startTime, endTime: CollectiveSchedule.shared.endTime, setScheduleCallback: setSchedule)
         availabilityInputContainer.addSubview(availabilityInput)
         availabilityInput.translatesAutoresizingMaskIntoConstraints = false
         availabilityInput.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
@@ -218,12 +213,12 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
 }
 
 protocol YourAvaialabilitiesViewControllerDelegate: AnyObject {
-    func addDataToMessage(collectiveSchedule: CollectiveSchedule)
+    func dismissExtension()
 }
 
 extension MessagesViewController: YourAvaialabilitiesViewControllerDelegate {
-    func addDataToMessage(collectiveSchedule: CollectiveSchedule) {
-        SendMessage(collectiveSchedule, collectiveSchedule.meetingName)
+    func dismissExtension() {
+        SendMessage()
         dismiss()
     }
 }

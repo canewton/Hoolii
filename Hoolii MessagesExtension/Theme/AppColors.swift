@@ -27,6 +27,8 @@ struct AppColors {
     
     static let shadowColor: UIColor = UIColor.label
     
+    static let darkenedScreen: UIColor = UIColor.black.withAlphaComponent(0.4)
+    
     
     // The following are progile background colors
     static let redBackground: UIColor = UIColor.init(red: 255/255, green: 169/255, blue: 165/255, alpha: 1)

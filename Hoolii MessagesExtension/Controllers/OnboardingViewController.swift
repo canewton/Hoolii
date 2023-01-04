@@ -25,19 +25,24 @@ class OnboardingViewController: AppViewController, ViewControllerWithIdentifier 
         pageControl.pageIndicatorTintColor = AppColors.lightGrey
         pageControl.currentPageIndicatorTintColor = AppColors.main
         pageControl.numberOfPages = numPages
-        scrollView.contentSize = CGSize(width: self.view.frame.width * CGFloat(numPages), height: 550)
 //        nextButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
 //        backButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        scrollView.contentSize = CGSize(width: self.view.frame.width * CGFloat(numPages), height: scrollView.frame.size.height)
         
         let page1 = UINib(nibName: "OnboardingScreen1", bundle: nil).instantiate(withOwner: OnboardingViewController.self, options: nil)[0] as! UIView
         
         let page2 = UINib(nibName: "OnboardingScreen2", bundle: nil).instantiate(withOwner: OnboardingViewController.self, options: nil)[0] as! UIView
         
         let page3 = UINib(nibName: "OnboardingScreen3", bundle: nil).instantiate(withOwner: OnboardingViewController.self, options: nil)[0] as! UIView
-
-        let page1container = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 550))
-        let page2container = UIView(frame: CGRect(x: view.frame.size.width, y: 0, width: view.frame.size.width, height: 550))
-        let page3container = UIView(frame: CGRect(x: view.frame.size.width * 2, y: 0, width: view.frame.size.width, height: 550))
+        
+        let page1container = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: scrollView.frame.size.height))
+        let page2container = UIView(frame: CGRect(x: view.frame.size.width, y: 0, width: view.frame.size.width, height: scrollView.frame.size.height))
+        let page3container = UIView(frame: CGRect(x: view.frame.size.width * 2, y: 0, width: view.frame.size.width, height: scrollView.frame.size.height))
         
         page1container.addSubview(page1)
         page2container.addSubview(page2)
@@ -82,6 +87,7 @@ class OnboardingViewController: AppViewController, ViewControllerWithIdentifier 
     @IBAction func onPressNext(_ sender: Any) {
         if currentPage == numPages - 1 {
             (delegate as? OnboardingViewControllerDelegate)?.transitonToProfile(self)
+            profileViewController.prevController = self
             self.transitionToScreen(viewController: profileViewController)
         }
         if currentPage < numPages - 1 {

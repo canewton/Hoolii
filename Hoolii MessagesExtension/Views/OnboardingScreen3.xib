@@ -15,22 +15,26 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Automate Your Availability" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5f-tU-ecE">
-                    <rect key="frame" x="46" y="458.33333333333331" width="258" height="26"/>
+                    <rect key="frame" x="46" y="458" width="258" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="26" id="D3M-oC-wUx"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cal-pointing-back" translatesAutoresizingMaskIntoConstraints="NO" id="9Dk-qj-e0R">
-                    <rect key="frame" x="115" y="318.33333333333331" width="120" height="100"/>
+                    <rect key="frame" x="115" y="318" width="120" height="100"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="Jtg-Bk-Sie"/>
                         <constraint firstAttribute="width" constant="120" id="kum-Zr-LY5"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make scheduling easier by creating a weekly availability in your profile" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ppl-pr-BNE">
-                    <rect key="frame" x="25" y="499.33333333333331" width="300" height="40.666666666666686"/>
+                    <rect key="frame" x="25" y="499" width="300" height="41"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="300" id="Gcm-62-J0r"/>
+                        <constraint firstAttribute="height" constant="41" id="Ocx-NO-NTl"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
@@ -52,6 +56,6 @@
         </view>
     </objects>
     <resources>
-        <image name="cal-pointing-back" width="122" height="101"/>
+        <image name="cal-pointing-back" width="40.666667938232422" height="33.666667938232422"/>
     </resources>
 </document>

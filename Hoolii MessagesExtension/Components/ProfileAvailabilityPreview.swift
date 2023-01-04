@@ -15,7 +15,7 @@ class ProfileAvailabilityPreview: UIView {
     var numUsers: Int = 3
     var overallTimeRange: TimeRange!
     
-    var allAvailabilities: [DayCollective?]!
+    var allAvailabilities: [DayCollective]!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -45,9 +45,9 @@ class ProfileAvailabilityPreview: UIView {
                 containerView.layer.cornerRadius = 3
                 availabilityHorizontalList.addArrangedSubview(containerView)
                 
-                if allAvailabilities[i] != nil {
-                    for j in 0..<allAvailabilities[i]!.timesFree.count {
-                        let timeRange: TimeRangeCollective = allAvailabilities[i]!.timesFree[j]
+                if allAvailabilities[i].timesFree.count > 0 {
+                    for j in 0..<allAvailabilities[i].timesFree.count {
+                        let timeRange: TimeRangeCollective = allAvailabilities[i].timesFree[j]
                         let availabilityView = UIView()
                         let availabilityOffsetView = UIView()
                         containerView.addSubview(availabilityView)
