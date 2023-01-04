@@ -89,7 +89,7 @@ class MessagesViewController: MSMessagesAppViewController {
             controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         
-        if presentationStyle == .expanded && StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
+        if presentationStyle == .expanded && (StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) || false) {
             let onboardingController: OnboardingViewController = instantiateController()
             controller.transitionToScreen(viewController: onboardingController)
         }

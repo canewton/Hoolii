@@ -26,6 +26,7 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier, 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var setTimeframeButton: ThemedButton!
     @IBOutlet weak var screenContent: UIView!
+    var loadedSubviews = false
     
     let formatter = DateFormatter()
     
@@ -43,12 +44,13 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier, 
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if scrollView.contentSize.height - view.frame.size.height < 70 {
+        if scrollView.contentSize.height - view.frame.size.height < 70 && !loadedSubviews {
             scrollView.isScrollEnabled = false
             setTimeframeButton.removeFromSuperview()
             view.addSubview(setTimeframeButton)
             setTimeframeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             setTimeframeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
+            loadedSubviews = true
         }
         
         let scrollViewContentSize = screenContent.bounds.height > view.frame.size.height ? screenContent.bounds.height : view.frame.size.height

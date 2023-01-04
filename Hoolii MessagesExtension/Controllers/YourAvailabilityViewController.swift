@@ -92,6 +92,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
                     self.sendMessage()
                 }
                 alert.cancelCallback = {() -> Void in darkenedScreen.dismiss(animated: true)}
+                alert.backgroundColor = AppColors.alert
                 darkenedScreen.addAlert(alert: alert)
                 
                 self.present(darkenedScreen, animated: true, completion: nil)

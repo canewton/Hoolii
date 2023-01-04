@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "cal grpahic.png",
+      "filename" : "cal grpahic.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "cal grpahic 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "cal grpahic 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

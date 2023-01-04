@@ -163,6 +163,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
                 (self.findViewController() as? YourAvailabilitiesViewController)?.transitionToScreen(viewController: profileVC)
             }
             alert.cancelCallback = {() -> Void in darkenedScreen.dismiss(animated: true)}
+            alert.backgroundColor = AppColors.alert
             darkenedScreen.addAlert(alert: alert)
             
             findViewController()?.present(darkenedScreen, animated: true, completion: nil)
