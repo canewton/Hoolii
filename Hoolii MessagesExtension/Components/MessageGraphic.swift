@@ -10,20 +10,6 @@ import UIKit
 final class MessageGraphic: UIView {
     var userArr: [User] = []
     
-//    override func awakeFromNib() {
-//        for i in 0..<userArr.count {
-//            let label: UILabel = UILabel()
-//            label.text = userArr[i].getInitials()
-//            label.textColor = .white
-//
-//            addSubview(label)
-//            label.center.x = self.subviews[i + 2].center.x
-//            label.center.y = self.subviews[i + 2].center.y
-//            print(self.subviews[i + 2])
-//            (self.subviews[i + 2] as? UIImageView)?.tintColor = AppColors.main
-//        }
-//    }
-    
     func convertToImage() -> UIImage? {
         for i in 0..<userArr.count {
             let backgroundCircle: UIImageView = self.subviews[i + 1] as! UIImageView

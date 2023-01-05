@@ -79,9 +79,13 @@ class AvailabilityDetail: UIView {
     }
     
     func createUserIcon(user: User) -> UIView {
+        return createIcon(text: user.getInitials())
+    }
+    
+    func createIcon(text: String) -> UIView {
         let userContainer: UIView = UIView()
-        let initials: UILabel = UILabel(frame: CGRect(x: 14, y: 14, width: ProfileButton.width, height: ProfileButton.height))
-        initials.text = user.getInitials()
+        let iconLabel: UILabel = UILabel(frame: CGRect(x: 14, y: 14, width: ProfileButton.width, height: ProfileButton.height))
+        iconLabel.text = text
         
         userContainer.translatesAutoresizingMaskIntoConstraints = false
         userContainer.widthAnchor.constraint(equalToConstant: CGFloat(ProfileButton.width)).isActive = true
@@ -93,48 +97,72 @@ class AvailabilityDetail: UIView {
         userContainer.layer.shadowRadius = 1
         userContainer.backgroundColor = AppColors.redBackground
         
-        userContainer.addSubview(initials)
-        initials.font = .systemFont(ofSize: 11, weight: .bold)
-        initials.textColor = .white
-        initials.textAlignment = .center
-        initials.center.x = 15
-        initials.center.y = 15
-        
+        userContainer.addSubview(iconLabel)
+        iconLabel.font = .systemFont(ofSize: 11, weight: .bold)
+        iconLabel.textColor = .white
+        iconLabel.textAlignment = .center
+        iconLabel.center.x = 15
+        iconLabel.center.y = 15
         return userContainer
     }
     
     func configureUsers(users: [User]) {
         userList = users
+        bottomHeader.text = "\(userList.count)/\(CollectiveSchedule.shared.allSchedules.count) Availabile"
         
         for v in userListContainer.subviews {
             v.removeFromSuperview()
         }
         
         if isCollapsed {
-            for i in 0..<users.count {
-                let userContainer: UIView = createUserIcon(user: users[i])
-                
-                userListContainer.addSubview(userContainer)
-                
-                userContainer.topAnchor.constraint(equalTo: userListContainer.topAnchor, constant: 0).isActive = true
-                userContainer.leftAnchor.constraint(equalTo: userListContainer.leftAnchor, constant: CGFloat(25 * i)).isActive = true
+            let maxNumberUsers = 7
+            let numIcons = users.count > maxNumberUsers ? maxNumberUsers : users.count
+            for i in 0..<numIcons {
+                if i == maxNumberUsers - 1 {
+                    let iconContainer: UIView = createIcon(text: "+\(users.count - maxNumberUsers - 1)")
+                    
+                    userListContainer.addSubview(iconContainer)
+                    
+                    iconContainer.topAnchor.constraint(equalTo: userListContainer.topAnchor, constant: 0).isActive = true
+                    iconContainer.leftAnchor.constraint(equalTo: userListContainer.leftAnchor, constant: CGFloat(25 * i)).isActive = true
+                } else {
+                    let userContainer: UIView = createUserIcon(user: users[i])
+                    
+                    userListContainer.addSubview(userContainer)
+                    
+                    userContainer.topAnchor.constraint(equalTo: userListContainer.topAnchor, constant: 0).isActive = true
+                    userContainer.leftAnchor.constraint(equalTo: userListContainer.leftAnchor, constant: CGFloat(25 * i)).isActive = true
+                }
             }
         } else {
+            let scrollView: UIScrollView = UIScrollView()
             let userStackList: UIStackView = UIStackView()
-            userListContainer.addSubview(userStackList)
+            scrollView.addSubview(userStackList)
+            userListContainer.addSubview(scrollView)
+            scrollView.translatesAutoresizingMaskIntoConstraints = false
+            scrollView.topAnchor.constraint(equalTo: userListContainer.topAnchor).isActive = true
+            scrollView.leftAnchor.constraint(equalTo: userListContainer.leftAnchor).isActive = true
+            scrollView.rightAnchor.constraint(equalTo: userListContainer.rightAnchor).isActive = true
+            scrollView.bottomAnchor.constraint(equalTo: userListContainer.bottomAnchor).isActive = true
+            scrollView.isScrollEnabled = true
+            scrollView.isUserInteractionEnabled = true
             userStackList.translatesAutoresizingMaskIntoConstraints = false
-            userStackList.topAnchor.constraint(equalTo: userListContainer.topAnchor).isActive = true
-            userStackList.leftAnchor.constraint(equalTo: userListContainer.leftAnchor).isActive = true
-            userStackList.rightAnchor.constraint(equalTo: userListContainer.rightAnchor).isActive = true
+            userStackList.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+            userStackList.leftAnchor.constraint(equalTo: scrollView.leftAnchor).isActive = true
+            userStackList.rightAnchor.constraint(equalTo: scrollView.rightAnchor).isActive = true
             userStackList.distribution = .equalSpacing
             userStackList.spacing = 10
             userStackList.axis = .vertical
+
+            var scrollHeight: CGFloat = 0
             
             for i in 0..<users.count {
                 let userContainer: UIView = createUserIcon(user: users[i])
                 let userIconAndNameContainer: UIView = UIView()
                 let userFullName: UILabel = UILabel(frame: CGRect(x: 45, y: 0, width: 300, height: 30))
                 userFullName.text = "\(users[i].firstName) \(users[i].lastName)"
+                
+                scrollHeight += 56
                 
                 userIconAndNameContainer.addSubview(userContainer)
                 userIconAndNameContainer.addSubview(userFullName)
@@ -153,6 +181,8 @@ class AvailabilityDetail: UIView {
                    self.layoutIfNeeded()
                 })
             }
+            
+            scrollView.contentSize = CGSize(width: scrollView.contentSize.width, height: scrollHeight)
         }
     }
     
@@ -178,7 +208,7 @@ class AvailabilityDetail: UIView {
             collapseAvailabilityDetail()
             isCollapsed = true
             sizeIcon.image = UIImage(systemName: "arrow.up.left.and.arrow.down.right")
-            bottomHeader.text = "Available"
+            bottomHeader.text = "\(userList.count)/\(CollectiveSchedule.shared.allSchedules.count) Available"
             bottomHeader.font = UIFont.systemFont(ofSize: 12, weight: .regular)
             bottomHeaderTopConstraint.constant = 10
             bottomHeaderBottomConstraint.constant = 10

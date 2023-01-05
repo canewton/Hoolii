@@ -94,14 +94,6 @@ class HooliiMessage {
         let daysAndTimesFree: [DayCollective] = AvailabilityLogic.getDaysAndTimesFree(collectiveSchedule.allSchedules)
         self.allSchedules = []
         self.allSchedules = dayCollectivesToStrings(daysAndTimesFree: daysAndTimesFree)
-//        print(allSchedules)
-//
-//        let dayCollectives = stringsToDayCollectives(strings: self.allSchedules, dates: dates, startTime: startTime)
-//
-//        let original = getCollectiveSchedule()
-//        for i in 0..<original.allSchedules.count {
-//            print(original.allSchedules[i].toString())
-//        }
     }
     
     func getCollectiveSchedule() -> CollectiveSchedule {
@@ -159,7 +151,6 @@ class HooliiMessage {
             var lastUsers: [User] = []
             var time = startTime
             while j < strings[i].count {
-                print("loop: \(j)")
                 let startIndex = strings[i].index(strings[i].startIndex, offsetBy: j)
                 let endIndex = strings[i].index(strings[i].startIndex, offsetBy: j + 5)
                 let hexStr = strings[i][startIndex..<endIndex]
@@ -173,7 +164,6 @@ class HooliiMessage {
                     timeCollectives.append(TimeRangeCollective(from: time, to: time + 30, users: users))
                     lastUsers = users
                 }
-                print(timeCollectives)
                 time = time + 30
                 j += 5
             }
@@ -220,7 +210,6 @@ class HooliiMessage {
         
         for i in 0..<userNumbers.count {
             let index: Int = userNumbers[i]
-            print("index: \(index)")
             outputStr = replace(myString: outputStr, index, "1")
         }
 
@@ -233,7 +222,6 @@ class HooliiMessage {
         let binaryStrArr = Array(binary)
         for i in 0..<users.count {
             if binaryStrArr[i] == one {
-                print("output:\(i) user: \(users[i])")
                 output.append(users[i])
             }
         }

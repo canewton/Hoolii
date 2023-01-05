@@ -182,8 +182,6 @@ class AvailabilityLogic {
     }
     
     private static func getUserTimeRanges(user: User, times: [TimeRangeCollective]) -> [TimeRange] {
-        //print("start")
-        //print(times)
         var output: [TimeRange] = []
         for i in 0..<times.count {
             for j in 0..<times[i].users.count {

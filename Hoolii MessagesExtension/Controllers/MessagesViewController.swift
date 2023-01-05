@@ -17,8 +17,6 @@ class MessagesViewController: MSMessagesAppViewController {
     // MARK: - Conversation Handling
     fileprivate func composeMessage(_ collectiveSchedule: CollectiveSchedule, _ caption: String, _ session: MSSession? = nil) -> MSMessage {
         
-        print(collectiveSchedule)
-        
         // URLComponents are a structure that parses URLs into and constructs URLs from their constituent parts
         var components = URLComponents()
         components.queryItems = HooliiMessage(collectiveSchedule: CollectiveSchedule.shared).queryItems
@@ -39,12 +37,9 @@ class MessagesViewController: MSMessagesAppViewController {
         guard let conversation = activeConversation else { fatalError("Expected a conversation") }
         let message = composeMessage(CollectiveSchedule.shared, CollectiveSchedule.shared.meetingName, conversation.selectedMessage?.session)
         
-        print("message")
-        print(message)
         conversation.insert(message) { error in
             if let error = error {
                 print(error)
-                print("error")
             }
         }
         //conversation.insertText("https://www.when2meet.com/ ")
