@@ -573,14 +573,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MK0-nP-scU">
                                 <rect key="frame" x="0.0" y="48" width="360" height="70"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meeting Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hwm-Ot-hLB">
-                                        <rect key="frame" x="30" y="15" width="122" height="21.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Meeting Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hwm-Ot-hLB">
+                                        <rect key="frame" x="30" y="15" width="253" height="22"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B8u-Bb-8Bp" customClass="ProfileButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
-                                        <rect key="frame" x="302" y="12" width="28" height="28"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B8u-Bb-8Bp" customClass="ProfileButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
+                                        <rect key="frame" x="303" y="12" width="27" height="28"/>
                                         <color key="backgroundColor" systemColor="systemMintColor"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ts4-pd-heY">
@@ -615,6 +615,7 @@
                                 <constraints>
                                     <constraint firstItem="Ts4-pd-heY" firstAttribute="leading" secondItem="MK0-nP-scU" secondAttribute="leading" constant="30" id="9MQ-b2-7bJ"/>
                                     <constraint firstItem="Hwm-Ot-hLB" firstAttribute="top" secondItem="MK0-nP-scU" secondAttribute="top" constant="15" id="JVd-db-g18"/>
+                                    <constraint firstItem="B8u-Bb-8Bp" firstAttribute="leading" secondItem="Hwm-Ot-hLB" secondAttribute="trailing" constant="15" id="UEQ-Rk-p10"/>
                                     <constraint firstItem="Hwm-Ot-hLB" firstAttribute="leading" secondItem="MK0-nP-scU" secondAttribute="leading" constant="30" id="Ut9-Hm-k0q"/>
                                     <constraint firstItem="Ts4-pd-heY" firstAttribute="top" secondItem="Hwm-Ot-hLB" secondAttribute="bottom" constant="8" id="bjp-GN-dUh"/>
                                     <constraint firstItem="B8u-Bb-8Bp" firstAttribute="top" secondItem="MK0-nP-scU" secondAttribute="top" constant="12" id="gR3-LH-mnf"/>
@@ -1081,7 +1082,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="biv-kg-mvA" userLabel="BackButton">
-                                <rect key="frame" x="20" y="52" width="72" height="34.5"/>
+                                <rect key="frame" x="20" y="52" width="73" height="34.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Back">
                                     <color key="baseBackgroundColor" red="0.37796253938630919" green="0.66498450003814424" blue="0.58152239621960333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1091,10 +1092,10 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ccM-5I-7XT" userLabel="AvatarView">
-                                <rect key="frame" x="52" y="109" width="255" height="255"/>
+                                <rect key="frame" x="52" y="109" width="256" height="255"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle-2" translatesAutoresizingMaskIntoConstraints="NO" id="J8n-iI-5c5" userLabel="BackgroundImg">
-                                        <rect key="frame" x="9" y="10" width="237" height="235"/>
+                                        <rect key="frame" x="9.5" y="10" width="237" height="235"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="237" id="4no-e6-r4Y"/>
                                             <constraint firstAttribute="height" constant="235" id="NDf-g1-zyG"/>
@@ -1316,7 +1317,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Tn-VI-vtA" userLabel="SkintoneScroll">
-                                <rect key="frame" x="0.0" y="382" width="359" height="66"/>
+                                <rect key="frame" x="0.0" y="382" width="360" height="66"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="lCj-xY-ftq">
                                         <rect key="frame" x="24" y="0.0" width="428" height="46"/>
@@ -1669,13 +1670,13 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="fen-Xh-Dn7"/>
                             </scrollView>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="g5r-lS-7pM" userLabel="ElementChoiceSlider">
-                                <rect key="frame" x="228" y="54" width="118" height="82"/>
+                                <rect key="frame" x="228" y="54" width="119" height="94"/>
                                 <connections>
                                     <action selector="elemSliderMoved:" destination="t6O-mJ-wqx" eventType="valueChanged" id="X8D-dO-mG9"/>
                                 </connections>
                             </slider>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTG-Ur-73j" userLabel="SegmentScroll">
-                                <rect key="frame" x="0.0" y="468" width="359" height="51"/>
+                                <rect key="frame" x="0.0" y="468" width="360" height="63"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2EN-ho-lSh">
                                         <rect key="frame" x="0.0" y="0.0" width="433" height="32"/>
