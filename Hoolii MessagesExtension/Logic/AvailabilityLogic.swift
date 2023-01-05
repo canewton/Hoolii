@@ -140,4 +140,69 @@ class AvailabilityLogic {
         let allAvailability: [DayCollective] = getAvailabilityFromTimestamps(sortedTimeStampCollections, dates)
         return allAvailability
     }
+    
+    static func getSchedules(_ daysAndTimesFree: [DayCollective], users: [User]) -> [Schedule] {
+        var schedules: [Schedule] = []
+        
+        let timeRangeCollectives: [[TimeRangeCollective]] = turnIntoTimeRanges(daysAndTimesFree)
+        let dates: [ScheduleDate] = turnIntoDates(daysAndTimesFree)
+        let days: [[Day]] = turnIntoDays(timeRangeCollectives, dates: dates, users: users)
+        for i in 0..<users.count {
+            schedules.append(Schedule(datesFree: days[i], user: users[i]))
+        }
+        
+        return schedules
+    }
+    
+    private static func turnIntoTimeRanges(_ daysAndTimesFree: [DayCollective]) -> [[TimeRangeCollective]] {
+        var output: [[TimeRangeCollective]] = []
+        for i in 0..<daysAndTimesFree.count {
+            output.append(daysAndTimesFree[i].timesFree)
+        }
+        return output
+    }
+    
+    private static func turnIntoDates(_ daysAndTimesFree: [DayCollective]) -> [ScheduleDate] {
+        var output: [ScheduleDate] = []
+        for i in 0..<daysAndTimesFree.count {
+            output.append(daysAndTimesFree[i].date)
+        }
+        return output
+    }
+    
+    private static func turnIntoDays(_ timeRangeCollectives: [[TimeRangeCollective]], dates: [ScheduleDate], users: [User]) -> [[Day]] {
+        var output: [[Day]] = Array(repeating: [], count: users.count)
+        for i in 0..<timeRangeCollectives.count {
+            for j in 0..<users.count {
+                let timeRanges = getUserTimeRanges(user: users[j], times: timeRangeCollectives[i])
+                output[j].append(Day(date: dates[i], timesFree: timeRanges))
+            }
+        }
+        return output
+    }
+    
+    private static func getUserTimeRanges(user: User, times: [TimeRangeCollective]) -> [TimeRange] {
+        //print("start")
+        //print(times)
+        var output: [TimeRange] = []
+        for i in 0..<times.count {
+            for j in 0..<times[i].users.count {
+                if times[i].users[j].id == user.id {
+                    output.append(TimeRange(from: times[i].from, to: times[i].to))
+                }
+            }
+        }
+        
+        var i = 0
+        while i < output.count - 1 {
+            if output[i].to == output[i + 1].from {
+                output[i] = TimeRange(from: output[i].from, to: output[i + 1].to)
+                output.remove(at: i + 1)
+            } else {
+                i += 1
+            }
+        }
+        
+        return output
+    }
 }

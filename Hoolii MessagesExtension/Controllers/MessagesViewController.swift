@@ -17,13 +17,16 @@ class MessagesViewController: MSMessagesAppViewController {
     // MARK: - Conversation Handling
     fileprivate func composeMessage(_ collectiveSchedule: CollectiveSchedule, _ caption: String, _ session: MSSession? = nil) -> MSMessage {
         
+        print(collectiveSchedule)
+        
         // URLComponents are a structure that parses URLs into and constructs URLs from their constituent parts
         var components = URLComponents()
-        components.queryItems = CollectiveSchedule.shared.queryItems
+        components.queryItems = HooliiMessage(collectiveSchedule: CollectiveSchedule.shared).queryItems
+        print(components.queryItems)
         
         let layout = MSMessageTemplateLayout()
         layout.caption = caption
-        layout.image = UIImage(named: "message-graphic.png")
+        layout.image = (MessageGraphic.instanceFromNib()!).convertToImage()
         
         let message = MSMessage(session: session ?? MSSession())
         message.url = components.url!
@@ -35,9 +38,13 @@ class MessagesViewController: MSMessagesAppViewController {
     public func SendMessage() {
         guard let conversation = activeConversation else { fatalError("Expected a conversation") }
         let message = composeMessage(CollectiveSchedule.shared, CollectiveSchedule.shared.meetingName, conversation.selectedMessage?.session)
+        
+        print("message")
+        print(message)
         conversation.insert(message) { error in
             if let error = error {
                 print(error)
+                print("error")
             }
         }
         //conversation.insertText("https://www.when2meet.com/ ")
@@ -52,7 +59,7 @@ class MessagesViewController: MSMessagesAppViewController {
     // MARK: Determine active view controller
     private func presentViewController(for conversation: MSConversation, with presenentationStyle: MSMessagesAppPresentationStyle) {
         // Parse a `Schedule` from the conversation's `selectedMessage` or create a new `Schedule`.
-        CollectiveSchedule.shared = CollectiveSchedule(message: conversation.selectedMessage) ?? CollectiveSchedule()
+        CollectiveSchedule.shared = HooliiMessage(message: conversation.selectedMessage)?.getCollectiveSchedule() ?? CollectiveSchedule()
                 
         let controller: AppViewController
         if presentationStyle == .compact {

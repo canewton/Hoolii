@@ -13,7 +13,6 @@ class CollectiveSchedule {
     init() {}
     var allSchedules: [Schedule] = []
     var dates: [Date] = []
-    var expirationDate: Date = Date()
     var meetingName: String = ""
     var startTime: HourMinuteTime = HourMinuteTime(hour: 0, minute: 0)
     var endTime: HourMinuteTime = HourMinuteTime(hour: 0, minute: 0)
@@ -37,7 +36,6 @@ extension CollectiveSchedule {
         
         items.append(URLQueryItem(name: "allSchedules", value: allSchedulesEncodedString))
         items.append(URLQueryItem(name: "dates", value: datesEncodedString))
-        items.append(URLQueryItem(name: "expirationDate", value: CalendarDate(expirationDate).dateString))
         items.append(URLQueryItem(name: "meetingName", value: meetingName))
         items.append(URLQueryItem(name: "startTime", value: startTimeEncodedString))
         items.append(URLQueryItem(name: "endTime", value: endTimeEncodedString))
@@ -52,8 +50,6 @@ extension CollectiveSchedule {
             if queryItem.name == "allSchedules" {
                 let dataFromJsonString = queryItem.value!.data(using: .utf8)!
                 allSchedules = try! JSONDecoder().decode([Schedule].self, from: dataFromJsonString)
-            } else if queryItem.name == "expirationDate" {
-                expirationDate = CalendarDate(queryItem.value!).date
             } else if queryItem.name == "meetingName" {
                 meetingName = queryItem.value!
             } else if queryItem.name == "endTime" {

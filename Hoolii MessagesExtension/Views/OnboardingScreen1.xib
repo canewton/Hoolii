@@ -53,6 +53,6 @@
         </view>
     </objects>
     <resources>
-        <image name="cal-thinking-calendars" width="332" height="445"/>
+        <image name="cal-thinking-calendars" width="316" height="462"/>
     </resources>
 </document>
