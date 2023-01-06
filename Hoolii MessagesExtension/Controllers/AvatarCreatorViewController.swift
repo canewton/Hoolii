@@ -7,7 +7,14 @@
 
 import UIKit
 
-class AvatarCreatorViewController: AppViewController {
+class ImageTableViewCell: UITableViewCell {
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    
+    @IBOutlet weak var foregroundImageView: UIImageView!
+    
+}
+
+class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITableViewDataSource {
     
     let chinArray = ["Chin 1.svg", "Chin 2.svg", "Chin 3.svg", "Chin 4 Beard.svg", "Chin 5 Beard.svg", "Chin 6 Beard.svg", "Chin 7 Beard.svg", "Chin 8 Beard.svg", "Chin 9 Beard.svg", "Chin 10 Beard.svg"]
     
@@ -94,13 +101,14 @@ class AvatarCreatorViewController: AppViewController {
     @IBOutlet weak var selectFemHairImgView: UIImageView!
     @IBOutlet weak var selectEarImgView: UIImageView!
     
+    @IBOutlet weak var elemTableView: UITableView!
     
-    // Declaration of static variab;es
+  
+    // Declaration of static variables
     static var hairColor = UIColor.black
     static var skinTone = UIColor.gray
     static var currFacialFeature: Int = 0;
     static var itemIndex = 0;
-    
     
     override func viewDidLoad() {
         // Function loaded: set all initial colors for elements
@@ -116,6 +124,10 @@ class AvatarCreatorViewController: AppViewController {
             imageView?.addGestureRecognizer(tapGestureRecognizer)
         }
         
+        // declare delegate and source for table
+        elemTableView.dataSource = self
+        elemTableView.delegate = self
+        elemTableView.register(ImageTableViewCell.self, forCellReuseIdentifier: "ImageTableViewCell")
     }
     
     // Dismiss screen if user presses back button to return to profile creation
@@ -298,6 +310,34 @@ class AvatarCreatorViewController: AppViewController {
         updateSlider()
     }
     
+ // METHODS/VARS FOR UPKEEP OF TABLEVIEW
+    
+    let tableFrontArray = ["Chin 1.svg", "Chin 2.svg", "Chin 3.svg", "Chin 4 Beard.svg", "Chin 5 Beard.svg", "Chin 6 Beard.svg", "Chin 7 Beard.svg", "Chin 8 Beard.svg", "Chin 9 Beard.svg", "Chin 10 Beard.svg"]
+    let tableBackArray = ["transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"]
+    // returns the number of images that cells are being made from
+    func tableView(_ tableView: UITableView, numberOfRowsInSection: Int) -> Int {
+        return tableFrontArray.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let newCell = tableView.dequeueReusableCell(withIdentifier: "ImageTableViewCell", for: indexPath) as! ImageTableViewCell
+        newCell.backgroundImageView.image = UIImage(named: tableFrontArray[indexPath.row])
+        newCell.foregroundImageView.image = UIImage(named: tableBackArray[indexPath.row])
+        
+        let cellTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(cellTapped(_:)))
+        newCell.foregroundImageView.addGestureRecognizer(cellTapRecognizer)
+        newCell.foregroundImageView.isUserInteractionEnabled = true
+        
+        return newCell
+    }
+    
+    @objc func cellTapped(_ sender: UITapGestureRecognizer) {
+        // handle tap gesture here
+    }
+
+    // TABLE VIEW METHODS END HERE
+    
+   
     func updateSlider() {
         let index = AvatarCreatorViewController.currFacialFeature
         if (index == 0) {
