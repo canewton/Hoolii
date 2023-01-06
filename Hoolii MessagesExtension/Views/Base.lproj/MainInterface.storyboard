@@ -1027,6 +1027,14 @@
         <!--Avatar Creator View Controller-->
         <scene sceneID="J3t-sM-h6E">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wgy-Yp-Ygp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="XB1-qc-rKf"/>
+                <tapGestureRecognizer id="OVH-dK-AXp"/>
+                <tapGestureRecognizer id="TSx-QE-p2o"/>
+                <tapGestureRecognizer id="LHH-PX-D55"/>
+                <tapGestureRecognizer id="OIc-XJ-IWb"/>
+                <tapGestureRecognizer id="aBt-e2-yjd"/>
+                <tapGestureRecognizer id="t71-Zy-Dkg"/>
                 <viewController storyboardIdentifier="AvatarCreatorViewController" modalPresentationStyle="fullScreen" id="t6O-mJ-wqx" customClass="AvatarCreatorViewController" customModule="Hoolii_MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WEN-cC-eAG">
                         <rect key="frame" x="0.0" y="0.0" width="360" height="750"/>
@@ -1079,13 +1087,13 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Eyebrows 1" translatesAutoresizingMaskIntoConstraints="NO" id="Eat-xg-Fku" userLabel="EyeBrowImage">
                                         <rect key="frame" x="0.0" y="-5.3333333333333286" width="255" height="255"/>
                                     </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="transparent" translatesAutoresizingMaskIntoConstraints="NO" id="Sii-aK-tGD" userLabel="SideHairImage">
+                                        <rect key="frame" x="0.0" y="-5" width="255" height="255"/>
+                                    </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Male hair 1" translatesAutoresizingMaskIntoConstraints="NO" id="CJP-xj-vDp" userLabel="FrontHairImage">
                                         <rect key="frame" x="0.0" y="-5.3333333333333286" width="255" height="255"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="transparent" translatesAutoresizingMaskIntoConstraints="NO" id="Sii-aK-tGD" userLabel="SideHairImage">
-                                        <rect key="frame" x="0.0" y="-5.3333333333333286" width="255" height="255"/>
-                                    </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="transparent" translatesAutoresizingMaskIntoConstraints="NO" id="OAU-p6-T32" userLabel="HairTieImage">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="transparent" translatesAutoresizingMaskIntoConstraints="NO" id="OAU-p6-T32" userLabel="HairTieImage">
                                         <rect key="frame" x="0.0" y="-5.3333333333333286" width="255" height="255"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="transparent" translatesAutoresizingMaskIntoConstraints="NO" id="ftD-bg-n9B" userLabel="GlassesFrameImage">
@@ -1287,7 +1295,7 @@
                                 <rect key="frame" x="0.0" y="386" width="360" height="78"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="KU7-B3-2sF" userLabel="FeatureStack">
-                                        <rect key="frame" x="0.0" y="0.0" width="440" height="78"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="385" height="78"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="face shape" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6WN-OP-39d" userLabel="selectFaceImg">
                                                 <rect key="frame" x="0.0" y="0.0" width="55" height="78"/>
@@ -1340,14 +1348,6 @@
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="LHH-PX-D55" appends="YES" id="KoH-OX-Ymu"/>
-                                                </connections>
-                                            </imageView>
-                                            <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hair" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SuZ-p6-975" userLabel="selectFHairImg">
-                                                <rect key="frame" x="385" y="0.0" width="55" height="78"/>
-                                                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <gestureRecognizers/>
-                                                <connections>
-                                                    <outletCollection property="gestureRecognizers" destination="OIc-XJ-IWb" appends="YES" id="w5p-Of-DOT"/>
                                                 </connections>
                                             </imageView>
                                         </subviews>
@@ -1437,21 +1437,12 @@
                         <outlet property="selectEarImgView" destination="6vK-eB-8Tc" id="RsI-jl-RZc"/>
                         <outlet property="selectEyeImgView" destination="3qg-Vz-DPp" id="T5s-mN-G7I"/>
                         <outlet property="selectFaceImgView" destination="6WN-OP-39d" id="P5Z-Qp-bjA"/>
-                        <outlet property="selectFemHairImgView" destination="SuZ-p6-975" id="Xqw-eD-Wpd"/>
-                        <outlet property="selectMaleHairImgView" destination="aFE-CU-4g5" id="EhS-Uo-3y1"/>
+                        <outlet property="selectHairImgView" destination="aFE-CU-4g5" id="EhS-Uo-3y1"/>
                         <outlet property="selectMouthImgView" destination="XQZ-Uo-LBH" id="mZL-2C-r4Q"/>
                         <outlet property="selectNoseImgView" destination="oII-Lz-0gK" id="VJC-RJ-krL"/>
-                        <outlet property="sideHairImgView" destination="CJP-xj-vDp" id="XD4-2s-F8u"/>
+                        <outlet property="sideHairImgView" destination="Sii-aK-tGD" id="KGk-0x-DYL"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wgy-Yp-Ygp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="aBt-e2-yjd"/>
-                <tapGestureRecognizer id="t71-Zy-Dkg"/>
-                <tapGestureRecognizer id="TSx-QE-p2o"/>
-                <tapGestureRecognizer id="OVH-dK-AXp"/>
-                <tapGestureRecognizer id="XB1-qc-rKf"/>
-                <tapGestureRecognizer id="LHH-PX-D55"/>
-                <tapGestureRecognizer id="OIc-XJ-IWb"/>
             </objects>
             <point key="canvasLocation" x="697.67441860465112" y="1846.9957081545065"/>
         </scene>

@@ -25,20 +25,19 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
     let lensArray = ["transparent","Eyes Glasses 2 lense.svg","Eyes Glasses 3 lense.svg", "Eyes Glasses 4 lense.svg", "Eyes Glasses 5 lense.svg"]
     let frameArray = ["transparent","Eyes Glasses 2.svg","Eyes Glasses 3.svg", "Eyes Glasses 4.svg", "Eyes Glasses 5.svg"]
     
-    let maleFrontArray = ["Male hair 1", "Male hair 2", "Male hair 3", "Male hair 4", "Male hair 5", "Male hair 6", "Male hair 7 front", "Male hair 8", "Male hair 9 front", "Male hair 10 front", "Male hair 11 front", "Male hair 12", "Male hair 13", "Male hair 14", "Male hair 15", "Male hair 16"]
-    let maleBackArray = ["transparent","transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "Male hair 9 back", "Male hair 10 back", "Male hair 11 back", "transparent", "transparent", "transparent", "transparent", "transparent"]
-    let maleSideArray = ["transparent","transparent", "transparent", "transparent", "transparent", "transparent", "Male hair 7 side", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"]
-    let maleHairtieArray = ["transparent","transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "Male hair 9 hairtie", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"]
+    let frontHairArray = ["Male hair 1", "Male hair 2", "Male hair 3", "Male hair 4", "Male hair 5", "Male hair 6", "Male hair 7 front", "Male hair 8", "Male hair 9 front", "Male hair 10 front", "Male hair 11 front", "Male hair 12", "Male hair 13", "Male hair 14", "Male hair 15", "Male hair 16", "Female hair 1 front","Female hair 2 front", "Female hair 3 front", "Female hair 4 front", "Female hair 5 front", "Female hair 6 front", "transparent", "Female hair 8 front", "Female hair 9 front", "Female hair 10", "Female hair 11", "Female hair 12 front", "Female hair 13", "Female hair 14 front", "Female hair 15"]
+   
+    let backHairArray = ["transparent","transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "Male hair 9 back", "Male hair 10 back", "Male hair 11 back", "transparent", "transparent", "transparent", "transparent", "transparent", "Female hair 1 back", "Female hair 2 back", "Female hair 3 back", "Female hair 4 back", "Female hair 5 back", "Female hair 6 back", "Female hair 7", "Female hair 8 back", "Female hair 9 back", "transparent", "transparent", "Female hair 12 back", "transparent", "Female hair 14 back", "transparent" ]
+   
+    let hairSideArray = ["transparent","transparent", "transparent", "transparent", "transparent", "transparent", "Male hair 7 side", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "Female hair 9 front highlight", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"]
     
-    let femFrontArray = ["Female hair 1 front","Female hair 2 front", "Female hair 3 front", "Female hair 4 front", "Female hair 5 front", "Female hair 6 front", "transparent", "Female hair 8 front", "Female hair 9 front", "Female hair 10", "Female hair 11", "Female hair 12 front", "Female hair 13", "Female hair 14 front", "Female hair 15"]
-    let femBackArray = ["Female hair 1 back", "Female hair 2 back", "Female hair 3 back", "Female hair 4 back", "Female hair 5 back", "Female hair 6 back", "Female hair 7", "Female hair 8 back", "Female hair 9 back", "transparent", "transparent", "Female hair 12 back", "transparent", "Female hair 14 back", "transparent"]
-    let femSideArray = ["transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "Female hair 9 front highlight", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"]
-    let femHairtieArray = ["transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "Female hair 9 front hairtie", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"]
+    let hairTieArray = ["transparent","transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "Male hair 9 hairtie", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "Female hair 9 front hairtie", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"]
     
     let mouthArray = ["Mouth 1.png","Mouth 2.png", "Mouth 3.png", "Mouth 4.png", "Mouth 5.png"]
     
     let noseArray = ["Nose 1.png","Nose 2.png", "Nose 3.png", "Nose 4.png", "Nose 5.png"]
     
+    // Array storing all selectable skin tones
     let skintoneArray = [
         UIColor(red: 63/255.0, green: 39/255.0, blue: 27/255.0, alpha: 1.0),
         
@@ -97,18 +96,33 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
     @IBOutlet weak var selectNoseImgView: UIImageView!
     @IBOutlet weak var selectBrowImgView: UIImageView!
     @IBOutlet weak var selectMouthImgView: UIImageView!
-    @IBOutlet weak var selectMaleHairImgView: UIImageView!
+    @IBOutlet weak var selectHairImgView: UIImageView!
     @IBOutlet weak var selectFemHairImgView: UIImageView!
     @IBOutlet weak var selectEarImgView: UIImageView!
     
+    // Outlet for element table
     @IBOutlet weak var elemTableView: UITableView!
     
-  
-    // Declaration of static variables
+    
+    // Declaration of static variables used in AvatarCreator Exclusively
     static var hairColor = UIColor.black
     static var skinTone = UIColor.gray
-    static var currFacialFeature: Int = 0;
-    static var itemIndex = 0;
+    static var currFacialFeature: Int = 0
+    static var itemIndex = 0
+    
+    // Declaration of static variables used in saving/reconstructing avatar
+    static var chinIndex = 0
+    static var earIndex = 0
+    static var eyeIndex = 0
+    static var noseIndex = 0
+    static var browsIndex = 0
+    static var mouthIndex = 0
+    static var hairIndex = 0
+    static var hairColorIndex = 0
+    static var skinToneIndex = 0
+    // avatar index: [Chin, Ear, Glasses, Nose, Brows, Mouth, Hair, Hair Color, Skin Tone
+    static var avatarIndexArray = [0,0,0,0,0,0,0,0,0]
+    
     
     override func viewDidLoad() {
         // Function loaded: set all initial colors for elements
@@ -118,16 +132,16 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
         initColors()
         
         // Enable gesture recognition for facial feature selection
-        for imageView in [selectFaceImgView, selectEyeImgView, selectNoseImgView, selectBrowImgView, selectMouthImgView, selectEarImgView, selectMaleHairImgView, selectFemHairImgView] {
+        for imageView in [selectFaceImgView, selectEyeImgView, selectNoseImgView, selectBrowImgView, selectMouthImgView, selectEarImgView, selectHairImgView, selectFemHairImgView] {
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapFunct(tapGestureRecognizer:)))
             imageView?.isUserInteractionEnabled = true
             imageView?.addGestureRecognizer(tapGestureRecognizer)
         }
         
         // declare delegate and source for table
-        elemTableView.dataSource = self
-        elemTableView.delegate = self
-        elemTableView.register(ImageTableViewCell.self, forCellReuseIdentifier: "ImageTableViewCell")
+        //  elemTableView.dataSource = self
+        //elemTableView.delegate = self
+        //elemTableView.register(ImageTableViewCell.self, forCellReuseIdentifier: "ImageTableViewCell")
     }
     
     // Dismiss screen if user presses back button to return to profile creation
@@ -156,80 +170,77 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
             } else if featureTapped == selectEarImgView {
                 resetFeatureSelectedColor(newFeature: 5)
                 selectEarImgView.backgroundColor = featureColorArray[1]
-            } else if featureTapped == selectMaleHairImgView {
+            } else if featureTapped == selectHairImgView {
                 resetFeatureSelectedColor(newFeature: 6)
-                selectMaleHairImgView.backgroundColor = featureColorArray[1]
-            } else if featureTapped == selectFemHairImgView {
-                resetFeatureSelectedColor(newFeature: 7)
-                selectFemHairImgView.backgroundColor = featureColorArray[1]
+                selectHairImgView.backgroundColor = featureColorArray[1]
             }
         }
     }
     
     
-       
+    
     
     // USER TOUCHED SKIN/HAIR COLOR BUTTONS
     @IBAction func colorBut1Pressed(_ sender: UIButton) {
         let index = AvatarCreatorViewController.currFacialFeature
-        changeColor(elemIndex: index, newColor: skintoneArray[0])
+        changeColor(elemIndex: index, newColor: skintoneArray[0], staticIndex: 0)
     }
     
     @IBAction func colorBut2Pressed(_ sender: UIButton) {
         let index  = AvatarCreatorViewController.currFacialFeature
-        changeColor(elemIndex: index, newColor: skintoneArray[1])
+        changeColor(elemIndex: index, newColor: skintoneArray[1], staticIndex: 1)
     }
     
     @IBAction func colorBut3Pressed(_ sender: UIButton) {
         let index  = AvatarCreatorViewController.currFacialFeature
-        changeColor(elemIndex: index, newColor: skintoneArray[2])
+        changeColor(elemIndex: index, newColor: skintoneArray[2], staticIndex: 2)
     }
     
     
     @IBAction func colorBut4Pressed(_ sender: UIButton) {
         let index  = AvatarCreatorViewController.currFacialFeature
-        changeColor(elemIndex: index, newColor: skintoneArray[3])
+        changeColor(elemIndex: index, newColor: skintoneArray[3], staticIndex: 3)
     }
     
     @IBAction func colorBut5Pressed(_ sender: UIButton) {
         let index  = AvatarCreatorViewController.currFacialFeature
-        changeColor(elemIndex: index, newColor: skintoneArray[4])
+        changeColor(elemIndex: index, newColor: skintoneArray[4], staticIndex: 4)
     }
     
     
     @IBAction func colorBut6Pressed(_ sender: UIButton) {
         let index  = AvatarCreatorViewController.currFacialFeature
-        changeColor(elemIndex: index, newColor: skintoneArray[5])
+        changeColor(elemIndex: index, newColor: skintoneArray[5],staticIndex: 5)
     }
     
     @IBAction func colorBut7Pressed(_ sender: UIButton) {
         let index  = AvatarCreatorViewController.currFacialFeature
-        changeColor(elemIndex: index, newColor: skintoneArray[6])
+        changeColor(elemIndex: index, newColor: skintoneArray[6], staticIndex: 6)
     }
     
     @IBAction func colorBut8Pressed(_ sender: UIButton) {
         let index  = AvatarCreatorViewController.currFacialFeature
-        changeColor(elemIndex: index, newColor: skintoneArray[7])
+        changeColor(elemIndex: index, newColor: skintoneArray[7], staticIndex: 7)
     }
     
     @IBAction func colorBut9Pressed(_ sender: UIButton) {
         let index  = AvatarCreatorViewController.currFacialFeature
-        changeColor(elemIndex: index, newColor: skintoneArray[8])
+        changeColor(elemIndex: index, newColor: skintoneArray[8], staticIndex: 8)
     }
     
     @IBAction func colorBut10Pressed(_ sender: UIButton) {
         let index  = AvatarCreatorViewController.currFacialFeature
-        changeColor(elemIndex: index, newColor: skintoneArray[9])
+        changeColor(elemIndex: index, newColor: skintoneArray[9], staticIndex: 9)
     }
     
     @IBAction func colorButton11Pressed(_ sender: UIButton) {
         let index  = AvatarCreatorViewController.currFacialFeature
-        changeColor(elemIndex: index, newColor: skintoneArray[10])
+        changeColor(elemIndex: index, newColor: skintoneArray[10], staticIndex: 10)
     }
     
     @IBAction func colorButton12Pressed(_ sender: UIButton) {
         let index  = AvatarCreatorViewController.currFacialFeature
-        changeColor(elemIndex: index, newColor: skintoneArray[11])
+        changeColor(elemIndex: index, newColor: skintoneArray[11], staticIndex: 11)
     }
     
     
@@ -261,15 +272,10 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
         case 5:
             noseImgView.image = UIImage(imageLiteralResourceName: noseArray[elemInt])
         case 6:
-            backHairImgView.image = UIImage(imageLiteralResourceName: maleBackArray[elemInt])
-            sideHairImgView.image = UIImage(imageLiteralResourceName: maleSideArray[elemInt])
-            hairTieImgView.image = UIImage(imageLiteralResourceName: maleHairtieArray[elemInt])
-            frontHairImgView.image = UIImage(imageLiteralResourceName: maleFrontArray[elemInt])
-        case 7:
-            backHairImgView.image = UIImage(imageLiteralResourceName: femBackArray[elemInt])
-            sideHairImgView.image = UIImage(imageLiteralResourceName: femSideArray[elemInt])
-            hairTieImgView.image = UIImage(imageLiteralResourceName: femHairtieArray[elemInt])
-            frontHairImgView.image = UIImage(imageLiteralResourceName: femFrontArray[elemInt])
+            backHairImgView.image = UIImage(imageLiteralResourceName: backHairArray[elemInt])
+            sideHairImgView.image = UIImage(imageLiteralResourceName: hairSideArray[elemInt])
+            hairTieImgView.image = UIImage(imageLiteralResourceName: hairTieArray[elemInt])
+            frontHairImgView.image = UIImage(imageLiteralResourceName: frontHairArray[elemInt])
         default:
             break
         }
@@ -298,10 +304,7 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
             selectEarImgView.backgroundColor = featureColorArray[0]
             AvatarCreatorViewController.currFacialFeature  = newFeature
         case 6:
-            selectMaleHairImgView.backgroundColor = featureColorArray[0]
-            AvatarCreatorViewController.currFacialFeature  = newFeature
-        case 7:
-            selectFemHairImgView.backgroundColor = featureColorArray[0]
+            selectHairImgView.backgroundColor = featureColorArray[0]
             AvatarCreatorViewController.currFacialFeature  = newFeature
         default:
             break
@@ -310,7 +313,7 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
         updateSlider()
     }
     
- // METHODS/VARS FOR UPKEEP OF TABLEVIEW
+    // METHODS/VARS FOR UPKEEP OF TABLEVIEW
     
     let tableFrontArray = ["Chin 1.svg", "Chin 2.svg", "Chin 3.svg", "Chin 4 Beard.svg", "Chin 5 Beard.svg", "Chin 6 Beard.svg", "Chin 7 Beard.svg", "Chin 8 Beard.svg", "Chin 9 Beard.svg", "Chin 10 Beard.svg"]
     let tableBackArray = ["transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"]
@@ -318,7 +321,7 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, numberOfRowsInSection: Int) -> Int {
         return tableFrontArray.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let newCell = tableView.dequeueReusableCell(withIdentifier: "ImageTableViewCell", for: indexPath) as! ImageTableViewCell
         newCell.backgroundImageView.image = UIImage(named: tableFrontArray[indexPath.row])
@@ -334,10 +337,10 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
     @objc func cellTapped(_ sender: UITapGestureRecognizer) {
         // handle tap gesture here
     }
-
+    
     // TABLE VIEW METHODS END HERE
     
-   
+    
     func updateSlider() {
         let index = AvatarCreatorViewController.currFacialFeature
         if (index == 0) {
@@ -379,47 +382,111 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
             
         }
         if (index == 6) {
-            print("M. Hair")
+            print("Hair")
             elemChoiceSlider.value = 0
-            let sliderMax = Float((maleFrontArray.count - 1))
+            let sliderMax = Float((frontHairArray.count - 1))
             elemChoiceSlider.maximumValue = sliderMax
         }
-        if (index == 7) {
-            print("F. Hair")
-            elemChoiceSlider.value = 0
-            let sliderMax = Float((femFrontArray.count - 1))
-            elemChoiceSlider.maximumValue = sliderMax
-        }
+
     }
     
-    func changeColor(elemIndex: Int, newColor: UIColor) {
+    func changeColor(elemIndex: Int, newColor: UIColor, staticIndex: Int) {
         if (elemIndex < 6) {
             // in this case, user is modifying facial features
             headImgView.tintColor = newColor
             chinImgView.tintColor = newColor
             AvatarCreatorViewController.skinTone = newColor
+            AvatarCreatorViewController.avatarIndexArray[8] = staticIndex
         } else {
             // user is changing hair color
             backHairImgView.tintColor = newColor
             frontHairImgView.tintColor = newColor
+            sideHairImgView.tintColor = newColor
             // check for beard to recolor
             if(beardImgView.image != UIImage(imageLiteralResourceName: "transparent")) {
                 beardImgView.tintColor = newColor
             }
             AvatarCreatorViewController.hairColor = newColor
+            AvatarCreatorViewController.avatarIndexArray[7] = staticIndex
         }
         
     }
     
+    // Initialize the starting hair and skin tones to the first available options
     func initColors(){
         // Initialize facial details w/ default vals
-        changeColor(elemIndex: 0, newColor: skintoneArray[1])
+        changeColor(elemIndex: 0, newColor: skintoneArray[1], staticIndex: 0)
         // Initialize hair with default color
-        changeColor(elemIndex: 7, newColor: UIColor.black)
+        changeColor(elemIndex: 7, newColor: UIColor.black, staticIndex: 0)
     }
     
+    // Choose the appropriate customization option given its index
+    func updateAvatar(elemIndex: Int) {
+        let index = AvatarCreatorViewController.currFacialFeature
+        switch index {
+        
+        case 0: // CUSTOMIZATION OF CHIN/BEARD
+            chinImgView.image = UIImage(named: chinArray[elemIndex])
+            AvatarCreatorViewController.avatarIndexArray[0] = elemIndex
+            if(elemIndex >= 3){
+                chinImgView.image = UIImage(named: chinArray[1])
+                beardImgView.image = UIImage(named: chinArray[elemIndex])
+                mouthImgView.image = UIImage(named: mouthArray[0])
+            } else {
+                beardImgView.image = UIImage(named: "transparent")
+            }
+            
+        case 1: // CUSTOMIZATION OF EARS
+            earImgView.image = UIImage(named: earArray[elemIndex])
+            AvatarCreatorViewController.avatarIndexArray[1] = elemIndex
+        case 2:
+            glassLensImgView.image = UIImage(named: lensArray[elemIndex])
+            glassFrameImgVIew.image = UIImage(named: frameArray[elemIndex] )
+            AvatarCreatorViewController.avatarIndexArray[2] = elemIndex
+        case 3: // CUSTOMIZATION OF EYEBROWS
+            eyebrowImgView.image = UIImage(named: browArray[elemIndex])
+            AvatarCreatorViewController.avatarIndexArray[3] = elemIndex
+        case 4: // CUSTOMIZATION OF MOUTH SHAPE
+            mouthImgView.image = UIImage(named: mouthArray[elemIndex])
+            AvatarCreatorViewController.avatarIndexArray[4] = elemIndex
+        case 5: // CUSTOMIZATION OF NOSE
+            noseImgView.image = UIImage(named: noseArray[elemIndex])
+            AvatarCreatorViewController.avatarIndexArray[5] = elemIndex
+        case 6: // CUSTOMIZATION OF HAIR
+            backHairImgView.image = UIImage(named: backHairArray[elemIndex])
+            hairTieImgView.image = UIImage(named: hairTieArray[elemIndex])
+            frontHairImgView.image = UIImage(named: frontHairArray[elemIndex])
+            sideHairImgView.image = UIImage(named: hairSideArray[elemIndex])
+            AvatarCreatorViewController.avatarIndexArray[6] = elemIndex
+        default:
+            break
+        }
+        print(elemIndex)
+    }
+
     
+    func saveAvatar() -> [Int] {
+        return AvatarCreatorViewController.avatarIndexArray
+    }
     
+    func restoreAvatar(avatarArray: [Int]) {
+        for(index, element) in avatarArray.enumerated() {
+            // rebuild the facial features
+            if(index < 7) {
+                AvatarCreatorViewController.currFacialFeature = index
+                updateAvatar(elemIndex: element)
+            } else if (index == 7) {
+              // restore the Hair Color
+               changeColor(elemIndex: 0, newColor: skintoneArray[element], staticIndex: element)
+            } else if (index == 8) {
+                //restore the hair color
+                changeColor(elemIndex: 10, newColor: skintoneArray[element], staticIndex: element)
+            }
+        }
+    }
+  
+} // end of AvatarViewCreator Class
     
-    
-}
+
+
+
