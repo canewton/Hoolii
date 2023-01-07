@@ -139,8 +139,8 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
         }
         
         // declare delegate and source for table
-        //  elemTableView.dataSource = self
-        //elemTableView.delegate = self
+        elemTableView.dataSource = self
+        elemTableView.delegate = self
         //elemTableView.register(ImageTableViewCell.self, forCellReuseIdentifier: "ImageTableViewCell")
     }
     
@@ -484,6 +484,58 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
             }
         }
     }
+    
+//    // public funct that draws the avatar into an image view of custom size
+//    func createCompositeImage(avatarWidth: Int, avatarHeight:Int, avatarIndices: [Int]) -> UIImage {
+//
+//
+//
+//
+//        let compositeImageSize = CGSize(width: avatarWidth, height: avatarHeight)
+//
+//        UIGraphicsBeginImageContextWithOptions(compositeImageSize, false, 0.0)
+//
+//        let backHairView = UIImageView(image: UIImage(named: backHairArray[avatarIndices[0]]))
+//        backHairView.tintColor = skintoneArray[avatarIndices[8]]
+//
+//        let headView = UIImageView(image: UIImage(named: "Ear 1 + Head"))
+//        headView.tintColor = skintoneArray[avatarIndices[9]]
+//
+//        let earView = UIImageView(image: UIImage(named: earArray[avatarIndices[2]]))
+//        earView.tintColor = skintoneArray[avatarIndices[9]]
+//
+//
+//        let chinView =  UIImageView(image: UIImage(named: chinArray[avatarIndices[))
+//
+//        let imageView4 = UIImageView(image: UIImage(named: "image4"))
+//
+//        let imageView5 = UIImageView(image: UIImage(named: "image5"))
+//
+//        let imageView6 = UIImageView(image: UIImage(named: "image6"))
+//
+//        let imageView7 = UIImageView(image: UIImage(named: "image7"))
+//
+//        let imageView8 = UIImageView(image: UIImage(named: "image8"))
+//
+//        let imageView9 = UIImageView(image: UIImage(named: "image9"))
+//
+//        backHairView.draw(CGRect(origin: CGPoint.zero, size: compositeImageSize))
+//        headView.draw(CGRect(origin: CGPoint.zero, size: compositeImageSize))
+//        imageView3.draw(CGRect(origin: CGPoint.zero, size: compositeImageSize))
+//        imageView4.draw(CGRect(origin: CGPoint.zero, size: compositeImageSize))
+//        imageView5.draw(CGRect(origin: CGPoint.zero, size: compositeImageSize))
+//        imageView6.draw(CGRect(origin: CGPoint.zero, size: compositeImageSize))
+//        imageView7.draw(CGRect(origin: CGPoint.zero, size: compositeImageSize))
+//        imageView8.draw(CGRect(origin: CGPoint.zero, size: compositeImageSize))
+//        imageView9.draw(CGRect(origin: CGPoint.zero, size: compositeImageSize))
+//
+//        let compositeImage = UIGraphicsGetImageFromCurrentImageContext()!
+//
+//        UIGraphicsEndImageContext()
+//
+//        return compositeImage
+//    }
+
   
 } // end of AvatarViewCreator Class
     
