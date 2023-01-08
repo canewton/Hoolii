@@ -40,6 +40,10 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier, 
         configureMainViewConstraints()
         configureDatePickers()
         setTimeframeButton.isEnabled = false
+        
+        if !StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) && StoredValues.isKeyNil(key: StoredValuesConstants.newMeetingOnboarding) {
+            AlertManager.createNewMeetingAlert(controller: self)
+        }
     }
     
     override func viewDidLayoutSubviews() {

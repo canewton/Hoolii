@@ -91,6 +91,13 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
 //        }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if (!StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) && StoredValues.isKeyNil(key: StoredValuesConstants.yourAvailabilityOnboarding)) || true { AlertManager.yourAvailabilityAlert(controller: self)
+        }
+    }
+    
     func userHasEmptySchedule() -> Bool {
         var hasEmptySchedule: Bool = true
         for i in 0..<userSchedule.datesFree.count {
@@ -103,18 +110,10 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     
     @IBAction func OnSaveAndSend(_ sender: Any) {
         if userHasEmptySchedule() {
-            if let alert = AppAlert.instanceFromNib(image: UIImage(named: "cal-alert.png"), cancelText: "Keep editing", acceptText: "Send away", title: "Wait! Your availability is empty.", description: "You are sending a blank schedule with no availabilities for your hangout.") {
-                let darkenedScreen: DarkenedScreen = DarkenedScreen(viewController: self)
-                alert.acceptCallback = {() -> Void in
-                    darkenedScreen.dismiss(animated: true)
-                    self.sendMessage()
-                }
-                alert.cancelCallback = {() -> Void in darkenedScreen.dismiss(animated: true)}
-                alert.backgroundColor = AppColors.alert
-                darkenedScreen.addAlert(alert: alert)
-                
-                self.present(darkenedScreen, animated: true, completion: nil)
-            }
+            AlertManager.sendAlert(controller: self, acceptCallback: {(_ darkenedScreen: UIViewController) -> Void in darkenedScreen.dismiss(animated: true)}, cancelCallback: {(_ darkenedScreen: UIViewController) -> Void in
+                darkenedScreen.dismiss(animated: true)
+                self.sendMessage()
+            })
         } else {
             sendMessage()
         }

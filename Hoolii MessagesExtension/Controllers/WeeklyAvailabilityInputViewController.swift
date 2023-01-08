@@ -38,7 +38,12 @@ class WeeklyAvailabilityInputViewController: AppViewController, ViewControllerWi
         if onSaveCallback != nil {
             onSaveCallback!()
         }
-        self.dismiss(animated: true, completion: nil)
+        
+        AlertManager.saveWeeklyAvailabilityAlert(controller: self, dismissCallback: afterSaveAlertAction)
+    }
+    
+    func afterSaveAlertAction() {
+        self.dismiss(animated: true)
     }
     
     func configureBottomBar() {

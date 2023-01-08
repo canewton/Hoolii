@@ -91,8 +91,9 @@ class MessagesViewController: MSMessagesAppViewController {
             controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         
-        if presentationStyle == .expanded && (StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) || false) {
+        if presentationStyle == .expanded && (StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) || true) {
             let onboardingController: OnboardingViewController = instantiateController()
+            onboardingController.prevController = controller
             controller.transitionToScreen(viewController: onboardingController)
         }
         

@@ -113,6 +113,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         userSchedule = schedule
         for _ in 0..<availabilityBarHorizontalList.subviews.count {
             availabilityBarHorizontalList.subviews[0].removeFromSuperview()
+            backgroundStackView.subviews[0].removeFromSuperview()
         }
         configureAvailabilityBars()
     }
@@ -154,20 +155,16 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     }
     
     func alertForBlankWeeklyAvailability() {
-        if let alert = AppAlert.instanceFromNib(image: UIImage(named: "cal-stick.png"), cancelText: "I'll do it later", acceptText: "Set Availability", title: "What's your availibility?", description: "You haven't set up your weekly availability in your Profile yet.") {
-            let darkenedScreen: DarkenedScreen = DarkenedScreen(viewController: findViewController()!)
-            alert.acceptCallback = {() -> Void in
-                darkenedScreen.dismiss(animated: true)
-                let profileVC = self.findViewController()?.storyboard?
-                    .instantiateViewController(withIdentifier: "CreateProfileViewController") as! CreateProfileViewController
-                (self.findViewController() as? YourAvailabilitiesViewController)?.transitionToScreen(viewController: profileVC)
-            }
-            alert.cancelCallback = {() -> Void in darkenedScreen.dismiss(animated: true)}
-            alert.backgroundColor = AppColors.alert
-            darkenedScreen.addAlert(alert: alert)
-            
-            findViewController()?.present(darkenedScreen, animated: true, completion: nil)
-        }
+        AlertManager.autofillAlert(controller: findViewController()!, acceptCallback: {(_ darkenedScreen: UIViewController) -> Void in
+            darkenedScreen.dismiss(animated: true)
+            self.goToProfileViewController()
+        }, cancelCallback: {(_ darkenedScreen: UIViewController) -> Void in darkenedScreen.dismiss(animated: true)})
+    }
+    
+    func goToProfileViewController() {
+        let profileVC = self.findViewController()?.storyboard?
+            .instantiateViewController(withIdentifier: "CreateProfileViewController") as! CreateProfileViewController
+        (self.findViewController() as? YourAvailabilitiesViewController)?.transitionToScreen(viewController: profileVC)
     }
     
     // the availability detail must be created every time it is displayed

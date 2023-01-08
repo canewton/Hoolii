@@ -8,6 +8,8 @@
 import UIKit
 
 final class DarkenedScreen: UIViewController {
+    var dismissCallback: (() -> Void)?
+    
     init(viewController: UIViewController) {
         super.init(nibName: nil, bundle: nil)
         
@@ -22,11 +24,33 @@ final class DarkenedScreen: UIViewController {
         super.init(coder: coder)
     }
     
-    func addAlert(alert: AppAlert) {
+    override func viewDidLoad() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(gesture:)))
+        tap.numberOfTapsRequired = 1
+        tap.numberOfTouchesRequired = 1
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    @objc func handleTapGesture(gesture: UITapGestureRecognizer) {
+        self.dismiss(animated: true)
+        if dismissCallback != nil {
+            dismissCallback!()
+        }
+    }
+    
+    func addAlert(alert: UIView) {
         self.view.addSubview(alert)
         alert.translatesAutoresizingMaskIntoConstraints = false
         alert.widthAnchor.constraint(equalToConstant: 340).isActive = true
         alert.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         alert.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        
+        if let appAlert = alert as? AppAlert {
+            appAlert.dismissCallback = {() -> Void in self.dismiss(animated: true)}
+        }
+    }
+    
+    func addDismissCallback(callback: @escaping (() -> Void)) {
+        dismissCallback = callback
     }
 }

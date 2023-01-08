@@ -67,9 +67,15 @@ extension CollectiveSchedule {
     }
     
     // TODO save user schedule progress even after meeting details have changed
+    
     func getScheduleWithUser(_ user: User) -> Schedule? {
         for i in 0..<allSchedules.count {
             if user == allSchedules[i].user {
+                if dates.count != allSchedules[i].datesFree.count {
+                    allSchedules[i].datesFree = dates.map{Day(date: ScheduleDate($0), timesFree: [])}
+                    return allSchedules[i]
+                }
+                
                 for j in 0..<allSchedules[i].datesFree.count {
                     if allSchedules[i].datesFree[j].date.date != dates[j] {
                         allSchedules[i].datesFree = dates.map{Day(date: ScheduleDate($0), timesFree: [])}

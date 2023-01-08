@@ -2,124 +2,98 @@
 //  AppAlert.swift
 //  Hoolii MessagesExtension
 //
-//  Created by Caden Newton on 1/1/23.
+//  Created by Caden Newton on 1/6/23.
 //
 
+import Foundation
 import UIKit
 
 final class AppAlert: UIView {
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var leftButton: UIView!
-    @IBOutlet weak var rightButton: UIView!
-    @IBOutlet weak var leftButtonText: UILabel!
-    @IBOutlet weak var rightButtonText: UILabel!
-    @IBOutlet weak var alertTitle: UILabel!
-    @IBOutlet weak var alertDescription: UILabel!
-    @IBOutlet weak var buttonsContainer: UIStackView!
-    var cancelCallback: (() -> Void)!
-    var acceptCallback: (() -> Void)!
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var descriptionBottomContraint: NSLayoutConstraint!
+    @IBOutlet weak var descriptionHeight: NSLayoutConstraint!
+    @IBOutlet weak var titleHeight: NSLayoutConstraint!
+    @IBOutlet weak var dismissButton: UILabel!
     
-    class func instanceFromNib(image: UIImage?, cancelText: String, acceptText: String, title: String, description: String) -> AppAlert? {
+    var dismissCallback: (() -> Void)?
+    
+    class func instanceFromNib(image: UIImage?, title: String, description: String, labelOnBottom: Bool = true, dismissButtonText: String? = nil) -> AppAlert? {
         let appAlert = UINib(nibName: "AppAlert", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? AppAlert
-        appAlert?.imageView.image = image
-        appAlert?.leftButtonText.text = cancelText
-        appAlert?.rightButtonText.text = acceptText
-        appAlert?.alertTitle.text = title
-        appAlert?.alertDescription.text = description
+        let imageView: UIImageView = UIImageView()
+        imageView.image = image
+        imageView.contentMode = .scaleAspectFit
+        
+        let labelsView = UINib(nibName: "AlertLabels", bundle: nil).instantiate(withOwner: self, options: nil)[0] as! AlertLabels
+        labelsView.alertTitle.text = title
+        labelsView.alertDescription.text = description
+        
+        if labelOnBottom {
+            appAlert?.topView.addSubview(imageView)
+            
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            imageView.topAnchor.constraint(equalTo: (appAlert?.topView.topAnchor)!).isActive = true
+            imageView.leftAnchor.constraint(equalTo: (appAlert?.topView.leftAnchor)!).isActive = true
+            imageView.rightAnchor.constraint(equalTo: (appAlert?.topView.rightAnchor)!).isActive = true
+            imageView.bottomAnchor.constraint(equalTo: (appAlert?.topView.bottomAnchor)!).isActive = true
+            
+            appAlert?.bottomView.addSubview(labelsView)
+            
+            labelsView.translatesAutoresizingMaskIntoConstraints = false
+            labelsView.topAnchor.constraint(equalTo: (appAlert?.bottomView.topAnchor)!).isActive = true
+            labelsView.leftAnchor.constraint(equalTo: (appAlert?.bottomView.leftAnchor)!).isActive = true
+            labelsView.rightAnchor.constraint(equalTo: (appAlert?.bottomView.rightAnchor)!).isActive = true
+            labelsView.bottomAnchor.constraint(equalTo: (appAlert?.bottomView.bottomAnchor)!).isActive = true
+        } else {
+            appAlert?.topView.addSubview(labelsView)
+            
+            labelsView.translatesAutoresizingMaskIntoConstraints = false
+            labelsView.topAnchor.constraint(equalTo: (appAlert?.topView.topAnchor)!).isActive = true
+            labelsView.leftAnchor.constraint(equalTo: (appAlert?.topView.leftAnchor)!).isActive = true
+            labelsView.rightAnchor.constraint(equalTo: (appAlert?.topView.rightAnchor)!).isActive = true
+            labelsView.bottomAnchor.constraint(equalTo: (appAlert?.topView.bottomAnchor)!).isActive = true
+            
+            appAlert?.bottomView.addSubview(imageView)
+            
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            imageView.topAnchor.constraint(equalTo: (appAlert?.bottomView.topAnchor)!).isActive = true
+            imageView.leftAnchor.constraint(equalTo: (appAlert?.bottomView.leftAnchor)!).isActive = true
+            imageView.rightAnchor.constraint(equalTo: (appAlert?.bottomView.rightAnchor)!).isActive = true
+            imageView.bottomAnchor.constraint(equalTo: (appAlert?.bottomView.bottomAnchor)!).isActive = true
+        }
         
         appAlert?.layer.cornerRadius = 15
-        appAlert?.leftButton.backgroundColor = .clear
-        appAlert?.rightButton.backgroundColor = .clear
-        appAlert?.leftButton.addBorders(edges: [.right], color: AppColors.lightGrey, thickness: 0.5)
-        appAlert?.rightButton.addBorders(edges: [.left], color: AppColors.lightGrey, thickness: 0.5)
-        appAlert?.buttonsContainer.addBorders(edges: [.top], color: AppColors.lightGrey, thickness: 1)
-        appAlert?.rightButtonText.textColor = AppColors.main
+        
+        if dismissButtonText == nil {
+            appAlert?.dismissButton.removeFromSuperview()
+            appAlert?.descriptionBottomContraint.constant = 15
+        } else {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(onDismiss(gesture:)))
+            tap.numberOfTapsRequired = 1
+            tap.numberOfTouchesRequired = 1
+            appAlert?.dismissButton.addGestureRecognizer(tap)
+            appAlert?.dismissButton.textColor = AppColors.main
+            appAlert?.dismissButton.text = dismissButtonText
+        }
+        
+        if description == "" {
+            appAlert?.descriptionHeight.constant = 0
+        }
+        
+        if title == "" {
+            appAlert?.titleHeight.constant = 0
+        }
         
         return appAlert
     }
     
-    override func awakeFromNib() {
-        let acceptTap = UILongPressGestureRecognizer(target: self, action: #selector(handleAcceptTap(gesture:)))
-        acceptTap.minimumPressDuration = 0
-        rightButton.isUserInteractionEnabled = true
-        rightButton.addGestureRecognizer(acceptTap)
-        
-        let cancelTap = UILongPressGestureRecognizer(target: self, action: #selector(handleCancelTap(gesture:)))
-        cancelTap.minimumPressDuration = 0
-        leftButton.isUserInteractionEnabled = true
-        leftButton.addGestureRecognizer(cancelTap)
-    }
-    
-    @objc func handleAcceptTap(gesture: UILongPressGestureRecognizer) {
-        if gesture.state == .began {
-            rightButtonText.textColor = AppColors.lightGrey
-        } else if gesture.state == .ended {
-            rightButtonText.textColor = AppColors.main
-            let loc = gesture.location(in: rightButton)
-            if rightButton.frame.contains(loc){
-                acceptCallback()
-            }
-        }
-    }
-    
-    @objc func handleCancelTap(gesture: UILongPressGestureRecognizer) {
-        if gesture.state == .began {
-            leftButtonText.textColor = AppColors.lightGrey
-        } else if gesture.state == .ended {
-            leftButtonText.textColor = .label
-            let loc = gesture.location(in: leftButton)
-            if leftButton.frame.contains(loc){
-                cancelCallback()
-            }
+    @objc func onDismiss(gesture: UITapGestureRecognizer) {
+        if dismissCallback != nil {
+            dismissCallback!()
         }
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-    }
-}
-
-extension UIView {
-    @discardableResult
-    func addBorders(edges: UIRectEdge,
-                    color: UIColor,
-                    inset: CGFloat = 0.0,
-                    thickness: CGFloat = 1.0) -> [UIView] {
-
-        var borders = [UIView]()
-
-        @discardableResult
-        func addBorder(formats: String...) -> UIView {
-            let border = UIView(frame: .zero)
-            border.backgroundColor = color
-            border.translatesAutoresizingMaskIntoConstraints = false
-            addSubview(border)
-            addConstraints(formats.flatMap {
-                NSLayoutConstraint.constraints(withVisualFormat: $0,
-                                               options: [],
-                                               metrics: ["inset": inset, "thickness": thickness],
-                                               views: ["border": border]) })
-            borders.append(border)
-            return border
-        }
-
-
-        if edges.contains(.top) || edges.contains(.all) {
-            addBorder(formats: "V:|-0-[border(==thickness)]", "H:|-inset-[border]-inset-|")
-        }
-
-        if edges.contains(.bottom) || edges.contains(.all) {
-            addBorder(formats: "V:[border(==thickness)]-0-|", "H:|-inset-[border]-inset-|")
-        }
-
-        if edges.contains(.left) || edges.contains(.all) {
-            addBorder(formats: "V:|-inset-[border]-inset-|", "H:|-0-[border(==thickness)]")
-        }
-
-        if edges.contains(.right) || edges.contains(.all) {
-            addBorder(formats: "V:|-inset-[border]-inset-|", "H:[border(==thickness)]-0-|")
-        }
-
-        return borders
     }
 }

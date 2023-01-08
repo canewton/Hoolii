@@ -19,6 +19,7 @@ class OnboardingViewController: AppViewController, ViewControllerWithIdentifier 
     let numPages: Int = 3
     var currentPage = 0
     var loadedSubviews = false
+    var prevController: UIViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,7 +92,7 @@ class OnboardingViewController: AppViewController, ViewControllerWithIdentifier 
     
     @IBAction func onPressNext(_ sender: Any) {
         if currentPage == numPages - 1 {
-            (delegate as? OnboardingViewControllerDelegate)?.transitonToProfile(self)
+            (delegate as? OnboardingViewControllerDelegate)?.transitonToProfile(self, callback: profileDismissCallback)
             profileViewController.prevController = self
             self.transitionToScreen(viewController: profileViewController)
         }
@@ -106,16 +107,25 @@ class OnboardingViewController: AppViewController, ViewControllerWithIdentifier 
             nextButtonWidth.constant = 130
         }
     }
+    
+    func profileDismissCallback() {
+        if let yourAvailVC = prevController as? YourAvailabilitiesViewController {
+            AlertManager.yourAvailabilityAlert(controller: yourAvailVC)
+        } else if let newMeetingVC = prevController as? NewMeetingViewController{
+            AlertManager.createNewMeetingAlert(controller: newMeetingVC)
+        }
+    }
 }
 
 protocol OnboardingViewControllerDelegate: AnyObject {
-    func transitonToProfile(_ controller: OnboardingViewController)
+    func transitonToProfile(_ controller: OnboardingViewController, callback: @escaping (() -> Void))
 }
 
 extension MessagesViewController: OnboardingViewControllerDelegate {
     // allow this controller to transition to the YourAvailabilities screen
-    func transitonToProfile(_ controller: OnboardingViewController) {
+    func transitonToProfile(_ controller: OnboardingViewController, callback: @escaping (() -> Void)) {
         let profileVC: CreateProfileViewController = instantiateController()
+        profileVC.dismissCallback = callback
         controller.profileViewController = profileVC
     }
 }

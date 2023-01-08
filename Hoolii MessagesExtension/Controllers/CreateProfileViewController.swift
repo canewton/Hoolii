@@ -26,6 +26,7 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
     var newMeetingViewController: NewMeetingViewController!
     var userHasEmptySchedule: Bool = true
     var prevController: UIViewController!
+    var dismissCallback: (() -> Void)!
     
     let defaults = UserDefaults.standard
     
@@ -38,7 +39,7 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if !StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
+        if !StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) && false {
             createProfileButton.removeFromSuperview()
         }
         
@@ -184,7 +185,7 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
         StoredValues.setIfEmpty(key: StoredValuesConstants.hasBeenOnboarded, value: "yes")
         (delegate as? CreateProfileViewControllerDelegate)?.transitonToNewMeeting(self)
         
-        self.dismiss(animated: true, completion: { () -> Void in self.prevController.dismiss(animated: true)})
+        self.dismiss(animated: true, completion: { () -> Void in self.prevController.dismiss(animated: true, completion: self.dismissCallback)})
     }
 }
 
