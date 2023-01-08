@@ -24,7 +24,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     var firstName: String!
     var lastName: String!
     var id: String!
-    var avatarIndices: [Int]!
+    var userAvatar: Avatar!
     var collectiveSchedule: CollectiveSchedule!
     let availabilityBarWidth: CGFloat = 120 // width of the interactive column that determines availability
     let timeIndicatorViewHeight: CGFloat = 15 // might need to delete
@@ -49,10 +49,10 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         configureMeetingName()
         
         // create new schedule for user if user has not filled it out yet
-        if collectiveSchedule.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName)) == nil {
-            userSchedule = collectiveSchedule.appendEmptySchedule(user: User(id: id, firstName: firstName, lastName: lastName))
+        if collectiveSchedule.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName, userAvatar: userAvatar)) == nil {
+            userSchedule = collectiveSchedule.appendEmptySchedule(user: User(id: id, firstName: firstName, lastName: lastName, userAvatar: userAvatar))
         } else {
-            userSchedule = collectiveSchedule.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName))!
+            userSchedule = collectiveSchedule.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName, userAvatar: userAvatar))!
         }
         
         // determine if this person was the one who created the meeting
@@ -108,7 +108,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     }
     
     func sendMessage() {
-        collectiveSchedule.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName), schedule: userSchedule)
+        collectiveSchedule.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName, userAvatar:userAvatar), schedule: userSchedule)
         (delegate as? YourAvaialabilitiesViewControllerDelegate)?.addDataToMessage(collectiveSchedule: collectiveSchedule)
     }
     
@@ -141,7 +141,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     // Determine if the group view or the user view should be displayed
     func toggleFilterSwitch(_ filter: String) {
         if filter == "Group" {
-            collectiveSchedule.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName), schedule: userSchedule)
+            collectiveSchedule.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName, userAvatar: userAvatar), schedule: userSchedule)
             availabilityInput.hideAutoFillButton()
             displayGroupView()
             isShowingPersonalView = false

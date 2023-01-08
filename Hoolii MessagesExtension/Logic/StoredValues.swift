@@ -13,7 +13,6 @@ struct StoredValuesConstants {
     static let firstName: String = "firstName"
     static let lastName: String = "lastName"
     static let initials: String = "initials"
-    static let avatarIndices: [Int] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     static let userSchedule: String = "userSchedule"
     static let hasBeenOnboarded: String = "hasBeenOnboarded"
 }

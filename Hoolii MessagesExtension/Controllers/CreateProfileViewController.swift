@@ -4,6 +4,7 @@
 //
 //  Created by Caden Newton on 7/16/22.
 //
+
 import Foundation
 
 import UIKit
@@ -19,12 +20,9 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var profileAvailabilityPreviewContainer: UIView!
     @IBOutlet weak var createProfileButton: ThemedButton!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var screenContent: UIView!
     var profileAvailabilityPreview: ProfileAvailabilityPreview!
     var newMeetingViewController: NewMeetingViewController!
     var userHasEmptySchedule: Bool = true
-    var prevController: UIViewController!
     
     let defaults = UserDefaults.standard
     
@@ -55,9 +53,6 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
         configureEditButton()
         
         setInitials()
-        
-        scrollView.contentSize = CGSize(width: view.frame.width, height: screenContent.bounds.height)
-        screenContent.frame.size.width = view.frame.width
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -182,8 +177,7 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
     @IBAction func onCreateProfile(_ sender: Any) {
         StoredValues.setIfEmpty(key: StoredValuesConstants.hasBeenOnboarded, value: "yes")
         (delegate as? CreateProfileViewControllerDelegate)?.transitonToNewMeeting(self)
-        
-        self.dismiss(animated: true, completion: { () -> Void in self.prevController.dismiss(animated: true)})
+        self.transitionToScreen(viewController: newMeetingViewController)
     }
 }
 

@@ -4,7 +4,9 @@
 //
 //  Created by Caden Newton on 7/16/22.
 //
+
 import Foundation
+
 
 struct User: Codable, Equatable {
     
@@ -12,11 +14,12 @@ struct User: Codable, Equatable {
     var id: String
     var firstName: String
     var lastName: String
-    
-    init(id: String, firstName: String, lastName: String) {
+    var userAvatar: Avatar
+    init(id: String, firstName: String, lastName: String, userAvatar: Avatar) {
         self.id = id
         self.firstName = firstName
         self.lastName = lastName
+        self.userAvatar = userAvatar
     }
     
     func getInitials() -> String {

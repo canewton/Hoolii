@@ -7,14 +7,14 @@
 
 import UIKit
 
-class ImageTableViewCell: UITableViewCell {
+class ImageCollectionViewCell: UICollectionViewCell {
+    
     @IBOutlet weak var backgroundImageView: UIImageView!
-    
     @IBOutlet weak var foregroundImageView: UIImageView!
-    
 }
 
-class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITableViewDataSource {
+
+class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     let chinArray = ["Chin 1.svg", "Chin 2.svg", "Chin 3.svg", "Chin 4 Beard.svg", "Chin 5 Beard.svg", "Chin 6 Beard.svg", "Chin 7 Beard.svg", "Chin 8 Beard.svg", "Chin 9 Beard.svg", "Chin 10 Beard.svg"]
     
@@ -26,9 +26,9 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
     let frameArray = ["transparent","Eyes Glasses 2.svg","Eyes Glasses 3.svg", "Eyes Glasses 4.svg", "Eyes Glasses 5.svg"]
     
     let frontHairArray = ["Male hair 1", "Male hair 2", "Male hair 3", "Male hair 4", "Male hair 5", "Male hair 6", "Male hair 7 front", "Male hair 8", "Male hair 9 front", "Male hair 10 front", "Male hair 11 front", "Male hair 12", "Male hair 13", "Male hair 14", "Male hair 15", "Male hair 16", "Female hair 1 front","Female hair 2 front", "Female hair 3 front", "Female hair 4 front", "Female hair 5 front", "Female hair 6 front", "transparent", "Female hair 8 front", "Female hair 9 front", "Female hair 10", "Female hair 11", "Female hair 12 front", "Female hair 13", "Female hair 14 front", "Female hair 15"]
-   
+    
     let backHairArray = ["transparent","transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "Male hair 9 back", "Male hair 10 back", "Male hair 11 back", "transparent", "transparent", "transparent", "transparent", "transparent", "Female hair 1 back", "Female hair 2 back", "Female hair 3 back", "Female hair 4 back", "Female hair 5 back", "Female hair 6 back", "Female hair 7", "Female hair 8 back", "Female hair 9 back", "transparent", "transparent", "Female hair 12 back", "transparent", "Female hair 14 back", "transparent" ]
-   
+    
     let hairSideArray = ["transparent","transparent", "transparent", "transparent", "transparent", "transparent", "Male hair 7 side", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "Female hair 9 front highlight", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"]
     
     let hairTieArray = ["transparent","transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "Male hair 9 hairtie", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "Female hair 9 front hairtie", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"]
@@ -101,7 +101,10 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
     @IBOutlet weak var selectEarImgView: UIImageView!
     
     // Outlet for element table
-    @IBOutlet weak var elemTableView: UITableView!
+    
+    @IBOutlet weak var elemCollectionView: UICollectionView!
+    
+
     
     
     // Declaration of static variables used in AvatarCreator Exclusively
@@ -138,10 +141,11 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
             imageView?.addGestureRecognizer(tapGestureRecognizer)
         }
         
-        // declare delegate and source for table
-        elemTableView.dataSource = self
-        elemTableView.delegate = self
-        //elemTableView.register(ImageTableViewCell.self, forCellReuseIdentifier: "ImageTableViewCell")
+        // declare delegate and source for collection
+        elemCollectionView.dataSource = self
+        elemCollectionView.delegate = self
+        //elemCollectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        
     }
     
     // Dismiss screen if user presses back button to return to profile creation
@@ -313,32 +317,51 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
         updateSlider()
     }
     
-    // METHODS/VARS FOR UPKEEP OF TABLEVIEW
+    // METHODS/VARS FOR UPKEEP OF COLLECTION VIEW
     
     let tableFrontArray = ["Chin 1.svg", "Chin 2.svg", "Chin 3.svg", "Chin 4 Beard.svg", "Chin 5 Beard.svg", "Chin 6 Beard.svg", "Chin 7 Beard.svg", "Chin 8 Beard.svg", "Chin 9 Beard.svg", "Chin 10 Beard.svg"]
     let tableBackArray = ["transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent", "transparent"]
+    
+    // Returns the number of sections in the view
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
     // returns the number of images that cells are being made from
-    func tableView(_ tableView: UITableView, numberOfRowsInSection: Int) -> Int {
-        return tableFrontArray.count
-    }
+
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let newCell = tableView.dequeueReusableCell(withIdentifier: "ImageTableViewCell", for: indexPath) as! ImageTableViewCell
-        newCell.backgroundImageView.image = UIImage(named: tableFrontArray[indexPath.row])
-        newCell.foregroundImageView.image = UIImage(named: tableBackArray[indexPath.row])
-        
-        let cellTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(cellTapped(_:)))
-        newCell.foregroundImageView.addGestureRecognizer(cellTapRecognizer)
-        newCell.foregroundImageView.isUserInteractionEnabled = true
-        
-        return newCell
-    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            return tableFrontArray.count
+        }
+
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ImageCollectionViewCell
+            cell.foregroundImageView.tag = indexPath.item
+            cell.foregroundImageView.image = UIImage(named: tableFrontArray[indexPath.item])
+            cell.backgroundImageView.image = UIImage(named: "transparent")
+
+            // add a tap gesture recognizer to the foreground image view
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+            cell.foregroundImageView.addGestureRecognizer(tapGestureRecognizer)
+            cell.foregroundImageView.isUserInteractionEnabled = true
+
+            return cell
+        }
+
+        @objc func handleTap(_ sender: UITapGestureRecognizer) {
+            // get the index of the image that was tapped using the tag property
+            let index = sender.view?.tag
+            print("Image at index \(index) was tapped")
+        }
     
-    @objc func cellTapped(_ sender: UITapGestureRecognizer) {
-        // handle tap gesture here
-    }
-    
+
+
+
     // TABLE VIEW METHODS END HERE
+    
+    
+    
+    
     
     
     func updateSlider() {
@@ -387,7 +410,7 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
             let sliderMax = Float((frontHairArray.count - 1))
             elemChoiceSlider.maximumValue = sliderMax
         }
-
+        
     }
     
     func changeColor(elemIndex: Int, newColor: UIColor, staticIndex: Int) {
@@ -424,7 +447,7 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
     func updateAvatar(elemIndex: Int) {
         let index = AvatarCreatorViewController.currFacialFeature
         switch index {
-        
+            
         case 0: // CUSTOMIZATION OF CHIN/BEARD
             chinImgView.image = UIImage(named: chinArray[elemIndex])
             AvatarCreatorViewController.avatarIndexArray[0] = elemIndex
@@ -463,7 +486,7 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
         }
         print(elemIndex)
     }
-
+    
     
     func saveAvatar() -> [Int] {
         return AvatarCreatorViewController.avatarIndexArray
@@ -476,8 +499,8 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
                 AvatarCreatorViewController.currFacialFeature = index
                 updateAvatar(elemIndex: element)
             } else if (index == 7) {
-              // restore the Hair Color
-               changeColor(elemIndex: 0, newColor: skintoneArray[element], staticIndex: element)
+                // restore the Hair Color
+                changeColor(elemIndex: 0, newColor: skintoneArray[element], staticIndex: element)
             } else if (index == 8) {
                 //restore the hair color
                 changeColor(elemIndex: 10, newColor: skintoneArray[element], staticIndex: element)
@@ -485,60 +508,10 @@ class AvatarCreatorViewController: AppViewController,UITableViewDelegate, UITabl
         }
     }
     
-//    // public funct that draws the avatar into an image view of custom size
-//    func createCompositeImage(avatarWidth: Int, avatarHeight:Int, avatarIndices: [Int]) -> UIImage {
-//
-//
-//
-//
-//        let compositeImageSize = CGSize(width: avatarWidth, height: avatarHeight)
-//
-//        UIGraphicsBeginImageContextWithOptions(compositeImageSize, false, 0.0)
-//
-//        let backHairView = UIImageView(image: UIImage(named: backHairArray[avatarIndices[0]]))
-//        backHairView.tintColor = skintoneArray[avatarIndices[8]]
-//
-//        let headView = UIImageView(image: UIImage(named: "Ear 1 + Head"))
-//        headView.tintColor = skintoneArray[avatarIndices[9]]
-//
-//        let earView = UIImageView(image: UIImage(named: earArray[avatarIndices[2]]))
-//        earView.tintColor = skintoneArray[avatarIndices[9]]
-//
-//
-//        let chinView =  UIImageView(image: UIImage(named: chinArray[avatarIndices[))
-//
-//        let imageView4 = UIImageView(image: UIImage(named: "image4"))
-//
-//        let imageView5 = UIImageView(image: UIImage(named: "image5"))
-//
-//        let imageView6 = UIImageView(image: UIImage(named: "image6"))
-//
-//        let imageView7 = UIImageView(image: UIImage(named: "image7"))
-//
-//        let imageView8 = UIImageView(image: UIImage(named: "image8"))
-//
-//        let imageView9 = UIImageView(image: UIImage(named: "image9"))
-//
-//        backHairView.draw(CGRect(origin: CGPoint.zero, size: compositeImageSize))
-//        headView.draw(CGRect(origin: CGPoint.zero, size: compositeImageSize))
-//        imageView3.draw(CGRect(origin: CGPoint.zero, size: compositeImageSize))
-//        imageView4.draw(CGRect(origin: CGPoint.zero, size: compositeImageSize))
-//        imageView5.draw(CGRect(origin: CGPoint.zero, size: compositeImageSize))
-//        imageView6.draw(CGRect(origin: CGPoint.zero, size: compositeImageSize))
-//        imageView7.draw(CGRect(origin: CGPoint.zero, size: compositeImageSize))
-//        imageView8.draw(CGRect(origin: CGPoint.zero, size: compositeImageSize))
-//        imageView9.draw(CGRect(origin: CGPoint.zero, size: compositeImageSize))
-//
-//        let compositeImage = UIGraphicsGetImageFromCurrentImageContext()!
-//
-//        UIGraphicsEndImageContext()
-//
-//        return compositeImage
-//    }
-
-  
-} // end of AvatarViewCreator Class
     
+    
+} // end of AvatarViewCreator Class
+
 
 
 
