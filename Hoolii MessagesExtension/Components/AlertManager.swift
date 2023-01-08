@@ -12,6 +12,7 @@ class AlertManager {
         let darkenedScreen: DarkenedScreen = DarkenedScreen(viewController: controller)
         alert.backgroundColor = AppColors.alert
         darkenedScreen.addAlert(alert: alert)
+        darkenedScreen.dismissOnTap = false
         alert.heightAnchor.constraint(equalToConstant: 290).isActive = true
         
         StoredValues.set(key: StoredValuesConstants.newMeetingOnboarding, value: "yes")
@@ -24,9 +25,11 @@ class AlertManager {
         let darkenedScreen: DarkenedScreen = DarkenedScreen(viewController: controller)
         alert.backgroundColor = AppColors.alert
         darkenedScreen.addAlert(alert: alert)
+        darkenedScreen.dismissOnTap = false
         alert.translatesAutoresizingMaskIntoConstraints = false
         alert.heightAnchor.constraint(equalToConstant: 450).isActive = true
         
+        StoredValues.set(key: StoredValuesConstants.newMeetingOnboarding, value: "yes")
         StoredValues.set(key: StoredValuesConstants.yourAvailabilityOnboarding, value: "yes")
         
         controller.present(darkenedScreen, animated: true, completion: nil)

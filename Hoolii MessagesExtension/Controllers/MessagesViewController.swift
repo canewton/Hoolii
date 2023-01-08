@@ -12,6 +12,9 @@ class MessagesViewController: MSMessagesAppViewController {
     
     override func viewDidLoad() {
         print("loaded")
+//        StoredValues.deleteKey(key: StoredValuesConstants.newMeetingOnboarding)
+//        StoredValues.deleteKey(key: StoredValuesConstants.yourAvailabilityOnboarding)
+//        StoredValues.deleteKey(key: StoredValuesConstants.hasBeenOnboarded)
     }
     
     // MARK: - Conversation Handling
@@ -91,7 +94,7 @@ class MessagesViewController: MSMessagesAppViewController {
             controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         
-        if presentationStyle == .expanded && (StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) || true) {
+        if presentationStyle == .expanded && (StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded)) {
             let onboardingController: OnboardingViewController = instantiateController()
             onboardingController.prevController = controller
             controller.transitionToScreen(viewController: onboardingController)

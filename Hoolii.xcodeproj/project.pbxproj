@@ -275,9 +275,9 @@
 				91E71ACC296188BB0020ABC8 /* AppActionableAlert.swift */,
 				91CAA92C2968BAC30009348C /* AppAlert.swift */,
 				91CAA92E296A103F0009348C /* AlertManager.swift */,
+				916099EA296A4D9C00783A29 /* AlertLabels.swift */,
 				91E71ACE29618FCE0020ABC8 /* DarkenedScreen.swift */,
 				91CABD9329657AAD002FB91C /* MessageGraphic.swift */,
-				916099EA296A4D9C00783A29 /* AlertLabels.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";

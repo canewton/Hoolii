@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="330" height="367"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VS7-CX-Dwt">
+                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VS7-CX-Dwt">
                     <rect key="frame" x="90" y="327" width="150" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="Q1G-9u-WPl"/>
@@ -42,7 +42,7 @@
                 <constraint firstItem="0T7-Dp-PcT" firstAttribute="top" secondItem="LA5-KJ-rjm" secondAttribute="bottom" constant="15" id="70v-MZ-fWx"/>
                 <constraint firstItem="6Aj-oQ-Ra9" firstAttribute="trailing" secondItem="LA5-KJ-rjm" secondAttribute="trailing" id="7XB-Fq-pIW"/>
                 <constraint firstItem="0T7-Dp-PcT" firstAttribute="leading" secondItem="6Aj-oQ-Ra9" secondAttribute="leading" id="8Hm-Ql-MHm"/>
-                <constraint firstItem="VS7-CX-Dwt" firstAttribute="top" secondItem="0T7-Dp-PcT" secondAttribute="bottom" constant="15" id="G4c-7d-N90"/>
+                <constraint firstItem="0T7-Dp-PcT" firstAttribute="bottom" secondItem="yCd-HR-Brh" secondAttribute="bottom" constant="-60" id="ToM-K5-zLg"/>
                 <constraint firstItem="VS7-CX-Dwt" firstAttribute="centerX" secondItem="yCd-HR-Brh" secondAttribute="centerX" id="tk4-Ct-Xsb"/>
                 <constraint firstItem="6Aj-oQ-Ra9" firstAttribute="trailing" secondItem="0T7-Dp-PcT" secondAttribute="trailing" id="vet-vm-zGa"/>
                 <constraint firstItem="LA5-KJ-rjm" firstAttribute="leading" secondItem="6Aj-oQ-Ra9" secondAttribute="leading" id="wim-zp-wj6"/>
@@ -51,6 +51,7 @@
             <connections>
                 <outlet property="bottomView" destination="0T7-Dp-PcT" id="OBt-KW-f6F"/>
                 <outlet property="dismissButton" destination="VS7-CX-Dwt" id="umB-pL-Ywk"/>
+                <outlet property="labelsBottomConstraint" destination="ToM-K5-zLg" id="a3G-e9-b6W"/>
                 <outlet property="topView" destination="LA5-KJ-rjm" id="A3M-J9-Pzj"/>
             </connections>
             <point key="canvasLocation" x="41.53846153846154" y="193.72037914691941"/>

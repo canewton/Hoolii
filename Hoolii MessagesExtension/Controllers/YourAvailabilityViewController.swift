@@ -94,7 +94,8 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        if (!StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) && StoredValues.isKeyNil(key: StoredValuesConstants.yourAvailabilityOnboarding)) || true { AlertManager.yourAvailabilityAlert(controller: self)
+        if (!StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) && StoredValues.isKeyNil(key: StoredValuesConstants.yourAvailabilityOnboarding)) {
+            AlertManager.yourAvailabilityAlert(controller: self)
         }
     }
     
@@ -110,9 +111,10 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     
     @IBAction func OnSaveAndSend(_ sender: Any) {
         if userHasEmptySchedule() {
-            AlertManager.sendAlert(controller: self, acceptCallback: {(_ darkenedScreen: UIViewController) -> Void in darkenedScreen.dismiss(animated: true)}, cancelCallback: {(_ darkenedScreen: UIViewController) -> Void in
-                darkenedScreen.dismiss(animated: true)
+            AlertManager.sendAlert(controller: self, acceptCallback: {(_ darkenedScreen: UIViewController) -> Void in darkenedScreen.dismiss(animated: true)
                 self.sendMessage()
+            }, cancelCallback: {(_ darkenedScreen: UIViewController) -> Void in
+                darkenedScreen.dismiss(animated: true)
             })
         } else {
             sendMessage()

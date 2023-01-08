@@ -39,7 +39,7 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if !StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) && false {
+        if !StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
             createProfileButton.removeFromSuperview()
         }
         

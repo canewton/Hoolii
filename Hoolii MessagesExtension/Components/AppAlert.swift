@@ -11,10 +11,10 @@ import UIKit
 final class AppAlert: UIView {
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
-    @IBOutlet weak var descriptionBottomContraint: NSLayoutConstraint!
     @IBOutlet weak var descriptionHeight: NSLayoutConstraint!
     @IBOutlet weak var titleHeight: NSLayoutConstraint!
     @IBOutlet weak var dismissButton: UILabel!
+    @IBOutlet weak var labelsBottomConstraint: NSLayoutConstraint!
     
     var dismissCallback: (() -> Void)?
     
@@ -66,12 +66,8 @@ final class AppAlert: UIView {
         
         if dismissButtonText == nil {
             appAlert?.dismissButton.removeFromSuperview()
-            appAlert?.descriptionBottomContraint.constant = 15
+            appAlert?.labelsBottomConstraint.constant = -15
         } else {
-            let tap = UITapGestureRecognizer(target: self, action: #selector(onDismiss(gesture:)))
-            tap.numberOfTapsRequired = 1
-            tap.numberOfTouchesRequired = 1
-            appAlert?.dismissButton.addGestureRecognizer(tap)
             appAlert?.dismissButton.textColor = AppColors.main
             appAlert?.dismissButton.text = dismissButtonText
         }
@@ -85,6 +81,15 @@ final class AppAlert: UIView {
         }
         
         return appAlert
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(onDismiss(gesture:)))
+        tap.numberOfTapsRequired = 1
+        tap.numberOfTouchesRequired = 1
+        dismissButton.addGestureRecognizer(tap)
     }
     
     @objc func onDismiss(gesture: UITapGestureRecognizer) {
