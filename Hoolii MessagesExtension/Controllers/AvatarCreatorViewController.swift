@@ -336,6 +336,7 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ImageCollectionViewCell
+            cell.backgroundColor = .green
             cell.foregroundImageView.tag = indexPath.item
             cell.foregroundImageView.image = UIImage(named: tableFrontArray[indexPath.item])
             cell.backgroundImageView.image = UIImage(named: "transparent")
