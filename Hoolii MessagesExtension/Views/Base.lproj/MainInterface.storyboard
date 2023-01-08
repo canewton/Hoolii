@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -1292,52 +1292,52 @@
                                         <subviews>
                                             <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="face shape" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6WN-OP-39d" userLabel="selectFaceImg">
                                                 <rect key="frame" x="0.0" y="0.0" width="55" height="78"/>
-                                                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" red="0.94509804249999996" green="0.98039215800000001" blue="0.96078431610000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="aBt-e2-yjd" appends="YES" id="zwc-bw-3MD"/>
                                                 </connections>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Accessories" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6vK-eB-8Tc" userLabel="selectEarImg">
-                                                <rect key="frame" x="55" y="0.0" width="55" height="78"/>
-                                                <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <gestureRecognizers/>
-                                            </imageView>
                                             <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Eyes" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3qg-Vz-DPp" userLabel="selectEyeImg">
-                                                <rect key="frame" x="110" y="0.0" width="55" height="78"/>
-                                                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <rect key="frame" x="55" y="0.0" width="55" height="78"/>
+                                                <color key="backgroundColor" red="0.94509804249999996" green="0.98039215800000001" blue="0.96078431610000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="t71-Zy-Dkg" appends="YES" id="OlT-AS-isf"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Nose" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oII-Lz-0gK" userLabel="selectNoseImg">
-                                                <rect key="frame" x="165" y="0.0" width="55" height="78"/>
-                                                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <rect key="frame" x="110" y="0.0" width="55" height="78"/>
+                                                <color key="backgroundColor" red="0.94509804249999996" green="0.98039215800000001" blue="0.96078431610000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="TSx-QE-p2o" appends="YES" id="hSJ-IW-a9s"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Brows" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zjw-eF-MA3" userLabel="selectBrowImg">
-                                                <rect key="frame" x="220" y="0.0" width="55" height="78"/>
-                                                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <rect key="frame" x="165" y="0.0" width="55" height="78"/>
+                                                <color key="backgroundColor" red="0.94509804249999996" green="0.98039215800000001" blue="0.96078431610000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="OVH-dK-AXp" appends="YES" id="hij-hF-43V"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mouth" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XQZ-Uo-LBH" userLabel="selectMouthImg">
-                                                <rect key="frame" x="275" y="0.0" width="55" height="78"/>
-                                                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <rect key="frame" x="220" y="0.0" width="55" height="78"/>
+                                                <color key="backgroundColor" red="0.94509804249999996" green="0.98039215800000001" blue="0.96078431610000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="XB1-qc-rKf" appends="YES" id="Gcl-bl-fUu"/>
                                                 </connections>
                                             </imageView>
+                                            <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Accessories" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6vK-eB-8Tc" userLabel="selectEarImg">
+                                                <rect key="frame" x="275" y="0.0" width="55" height="78"/>
+                                                <color key="backgroundColor" red="0.94509804249999996" green="0.98039215800000001" blue="0.96078431610000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <gestureRecognizers/>
+                                            </imageView>
                                             <imageView clipsSubviews="YES" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hair" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFE-CU-4g5" userLabel="selectMHairImg">
                                                 <rect key="frame" x="330" y="0.0" width="55" height="78"/>
-                                                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="backgroundColor" red="0.94509804249999996" green="0.98039215800000001" blue="0.96078431610000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="LHH-PX-D55" appends="YES" id="KoH-OX-Ymu"/>
@@ -1375,26 +1375,51 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ear 1 + Head" translatesAutoresizingMaskIntoConstraints="NO" id="YqO-xL-Gwb" userLabel="bckgrndView">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Chin 6 Beard" translatesAutoresizingMaskIntoConstraints="NO" id="FaR-Cp-z7C" userLabel="foregrndView">
-                                                    <rect key="frame" x="14" y="8" width="100" height="100"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Ear 1 + Head" translatesAutoresizingMaskIntoConstraints="NO" id="NwA-ug-hvp" userLabel="midgroundView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Ear 1 + Head" translatesAutoresizingMaskIntoConstraints="NO" id="hkW-jq-LoY" userLabel="cellHairTieImgView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Ear 1 + Head" translatesAutoresizingMaskIntoConstraints="NO" id="51L-7A-ajJ" userLabel="cellSideImgView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Ear 1 + Head" translatesAutoresizingMaskIntoConstraints="NO" id="Al1-Fb-SaS" userLabel="subforegrndView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chin 6 Beard" translatesAutoresizingMaskIntoConstraints="NO" id="FaR-Cp-z7C" userLabel="foregrndView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="FaR-Cp-z7C" firstAttribute="width" secondItem="YqO-xL-Gwb" secondAttribute="width" id="4BR-W2-gX5"/>
+                                                <constraint firstItem="FaR-Cp-z7C" firstAttribute="leading" secondItem="YqO-xL-Gwb" secondAttribute="leading" id="5s7-6P-tT7"/>
                                                 <constraint firstAttribute="trailing" secondItem="YqO-xL-Gwb" secondAttribute="trailing" id="5zu-bF-V9w"/>
                                                 <constraint firstItem="YqO-xL-Gwb" firstAttribute="top" secondItem="4dQ-vg-aWh" secondAttribute="top" id="HXd-Uu-4Q5"/>
                                                 <constraint firstItem="YqO-xL-Gwb" firstAttribute="leading" secondItem="4dQ-vg-aWh" secondAttribute="leading" id="L5B-nC-6Tw"/>
+                                                <constraint firstItem="FaR-Cp-z7C" firstAttribute="top" secondItem="YqO-xL-Gwb" secondAttribute="top" id="QS9-wk-NtI"/>
                                                 <constraint firstAttribute="trailing" secondItem="YqO-xL-Gwb" secondAttribute="trailing" id="Y8i-gr-7I8"/>
                                                 <constraint firstAttribute="bottom" secondItem="YqO-xL-Gwb" secondAttribute="bottom" id="Z23-Nw-IV4"/>
                                                 <constraint firstItem="YqO-xL-Gwb" firstAttribute="leading" secondItem="4dQ-vg-aWh" secondAttribute="leading" id="adE-sB-cy9"/>
                                                 <constraint firstItem="YqO-xL-Gwb" firstAttribute="top" secondItem="4dQ-vg-aWh" secondAttribute="top" id="c6y-Ak-GDB"/>
                                                 <constraint firstAttribute="bottom" secondItem="YqO-xL-Gwb" secondAttribute="bottom" id="d5r-yH-rJh"/>
+                                                <constraint firstItem="FaR-Cp-z7C" firstAttribute="height" secondItem="YqO-xL-Gwb" secondAttribute="height" id="vjN-p2-JNs"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <connections>
                                             <outlet property="backgroundImageView" destination="YqO-xL-Gwb" id="vAp-8N-IBc"/>
-                                            <outlet property="foregroundImageView" destination="FaR-Cp-z7C" id="5PP-uS-0bo"/>
+                                            <outlet property="cellHairTieImageView" destination="hkW-jq-LoY" id="9FT-5r-UfV"/>
+                                            <outlet property="cellSideGroundImageView" destination="51L-7A-ajJ" id="lle-HF-ola"/>
+                                            <outlet property="foregroundImageView" destination="FaR-Cp-z7C" id="9JH-Za-z04"/>
+                                            <outlet property="midgroundImageView" destination="NwA-ug-hvp" id="TMJ-B5-Qpr"/>
+                                            <outlet property="subforegroundImageView" destination="Al1-Fb-SaS" id="6Jh-gr-thH"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
