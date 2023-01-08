@@ -27,11 +27,9 @@
                 </label>
                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LA5-KJ-rjm">
                     <rect key="frame" x="0.0" y="25" width="330" height="202"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0T7-Dp-PcT">
                     <rect key="frame" x="0.0" y="258" width="330" height="49"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="6Aj-oQ-Ra9"/>

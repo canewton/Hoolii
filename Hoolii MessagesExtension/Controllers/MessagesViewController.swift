@@ -12,9 +12,9 @@ class MessagesViewController: MSMessagesAppViewController {
     
     override func viewDidLoad() {
         print("loaded")
-//        StoredValues.deleteKey(key: StoredValuesConstants.newMeetingOnboarding)
-//        StoredValues.deleteKey(key: StoredValuesConstants.yourAvailabilityOnboarding)
-//        StoredValues.deleteKey(key: StoredValuesConstants.hasBeenOnboarded)
+        StoredValues.deleteKey(key: StoredValuesConstants.newMeetingOnboarding)
+        StoredValues.deleteKey(key: StoredValuesConstants.yourAvailabilityOnboarding)
+        StoredValues.deleteKey(key: StoredValuesConstants.hasBeenOnboarded)
     }
     
     // MARK: - Conversation Handling
@@ -61,12 +61,9 @@ class MessagesViewController: MSMessagesAppViewController {
                 
         let controller: AppViewController
         if presentationStyle == .compact {
-            if StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
+            if CollectiveSchedule.shared.endTime == HourMinuteTime(hour: 0, minute: 0) {
                 let onboardingCollapsedController: OnboardingCollapsedViewController = instantiateController()
                 controller = onboardingCollapsedController
-            } else if CollectiveSchedule.shared.endTime == HourMinuteTime(hour: 0, minute: 0) {
-                let schedulePreviewController: CreateMeetingPreviewViewController = instantiateController()
-                controller = schedulePreviewController
             } else {
                 let yourAvailController: YourAvailabilitiesViewController = instantiateController()
                 controller = yourAvailController

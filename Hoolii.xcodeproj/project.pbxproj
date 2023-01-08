@@ -53,6 +53,8 @@
 		916099E6296A4A8200783A29 /* OnboardingScreen3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 916099E5296A4A8200783A29 /* OnboardingScreen3.xib */; };
 		916099E9296A4AE000783A29 /* AlertLabels.xib in Resources */ = {isa = PBXBuildFile; fileRef = 916099E8296A4AE000783A29 /* AlertLabels.xib */; };
 		916099EB296A4D9C00783A29 /* AlertLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916099EA296A4D9C00783A29 /* AlertLabels.swift */; };
+		916099ED296A96C400783A29 /* AutofillFeedback.xib in Resources */ = {isa = PBXBuildFile; fileRef = 916099EC296A96C400783A29 /* AutofillFeedback.xib */; };
+		916099EF296A97D600783A29 /* AutofillFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916099EE296A97D600783A29 /* AutofillFeedback.swift */; };
 		9167C7DA296627DE00BB4220 /* MessageGraphic.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9167C7D9296627DE00BB4220 /* MessageGraphic.xib */; };
 		9167C7DC296628ED00BB4220 /* MessageGraphic1People.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9167C7DB296628ED00BB4220 /* MessageGraphic1People.xib */; };
 		9167C7DE2966330600BB4220 /* MessageGraphic2People.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9167C7DD2966330600BB4220 /* MessageGraphic2People.xib */; };
@@ -177,6 +179,8 @@
 		916099E5296A4A8200783A29 /* OnboardingScreen3.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingScreen3.xib; sourceTree = "<group>"; };
 		916099E8296A4AE000783A29 /* AlertLabels.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertLabels.xib; sourceTree = "<group>"; };
 		916099EA296A4D9C00783A29 /* AlertLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertLabels.swift; sourceTree = "<group>"; };
+		916099EC296A96C400783A29 /* AutofillFeedback.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AutofillFeedback.xib; sourceTree = "<group>"; };
+		916099EE296A97D600783A29 /* AutofillFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutofillFeedback.swift; sourceTree = "<group>"; };
 		9167C7D9296627DE00BB4220 /* MessageGraphic.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageGraphic.xib; sourceTree = "<group>"; };
 		9167C7DB296628ED00BB4220 /* MessageGraphic1People.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageGraphic1People.xib; sourceTree = "<group>"; };
 		9167C7DD2966330600BB4220 /* MessageGraphic2People.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageGraphic2People.xib; sourceTree = "<group>"; };
@@ -278,6 +282,7 @@
 				916099EA296A4D9C00783A29 /* AlertLabels.swift */,
 				91E71ACE29618FCE0020ABC8 /* DarkenedScreen.swift */,
 				91CABD9329657AAD002FB91C /* MessageGraphic.swift */,
+				916099EE296A97D600783A29 /* AutofillFeedback.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -298,6 +303,7 @@
 				9103CF3128C9699D00BBC349 /* ProfileAvailabilityPreview.xib */,
 				9103CF3328C989C300BBC349 /* AutofillButton.xib */,
 				9100ED7E28DB0E1700DA4F43 /* CreateMeetingCalendar.storyboard */,
+				916099EC296A96C400783A29 /* AutofillFeedback.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -556,6 +562,7 @@
 				9167C7E2296633C400BB4220 /* MessageGraphic4People.xib in Resources */,
 				9103CF2A28C8EA7800BBC349 /* FullAvailabilityInput.xib in Resources */,
 				9167C7DA296627DE00BB4220 /* MessageGraphic.xib in Resources */,
+				916099ED296A96C400783A29 /* AutofillFeedback.xib in Resources */,
 				916099E9296A4AE000783A29 /* AlertLabels.xib in Resources */,
 				9167C7EA2966356E00BB4220 /* MessageGraphic8People.xib in Resources */,
 				9103CF3428C989C300BBC349 /* AutofillButton.xib in Resources */,
@@ -668,6 +675,7 @@
 				9100ED8528E01C9D00DA4F43 /* HourMinuteTime.swift in Sources */,
 				9142F97E285FA20E0070661F /* MessagesViewController.swift in Sources */,
 				91A4E815294C075200AB7E11 /* AvatarCreatorViewController.swift in Sources */,
+				916099EF296A97D600783A29 /* AutofillFeedback.swift in Sources */,
 				9103E57A2897550500CA661B /* TimeBlock.swift in Sources */,
 				91A76E5E28C1C96C00F93DE2 /* ProfileAvailabilityPreview.swift in Sources */,
 				9142F996286002580070661F /* CollectiveSchedule.swift in Sources */,

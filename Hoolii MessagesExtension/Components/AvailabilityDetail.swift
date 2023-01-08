@@ -108,7 +108,10 @@ class AvailabilityDetail: UIView {
     
     func configureUsers(users: [User]) {
         userList = users
-        bottomHeader.text = "\(userList.count)/\(CollectiveSchedule.shared.allSchedules.count) Availabile"
+        
+        if isCollapsed {
+            bottomHeader.text = "\(userList.count)/\(CollectiveSchedule.shared.allSchedules.count) Availabile"
+        }
         
         for v in userListContainer.subviews {
             v.removeFromSuperview()

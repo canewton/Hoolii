@@ -11,8 +11,6 @@ import UIKit
 final class AppAlert: UIView {
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
-    @IBOutlet weak var descriptionHeight: NSLayoutConstraint!
-    @IBOutlet weak var titleHeight: NSLayoutConstraint!
     @IBOutlet weak var dismissButton: UILabel!
     @IBOutlet weak var labelsBottomConstraint: NSLayoutConstraint!
     
@@ -66,18 +64,10 @@ final class AppAlert: UIView {
         
         if dismissButtonText == nil {
             appAlert?.dismissButton.removeFromSuperview()
-            appAlert?.labelsBottomConstraint.constant = -15
+            appAlert?.labelsBottomConstraint.constant = -20
         } else {
             appAlert?.dismissButton.textColor = AppColors.main
             appAlert?.dismissButton.text = dismissButtonText
-        }
-        
-        if description == "" {
-            appAlert?.descriptionHeight.constant = 0
-        }
-        
-        if title == "" {
-            appAlert?.titleHeight.constant = 0
         }
         
         return appAlert

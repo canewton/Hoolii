@@ -10,9 +10,9 @@ import UIKit
 class OnboardingViewController: AppViewController, ViewControllerWithIdentifier {
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButtonWidth: NSLayoutConstraint!
+    @IBOutlet weak var nextButton: UILabel!
+    @IBOutlet weak var backButton: UILabel!
     var profileViewController: CreateProfileViewController!
     static let storyboardIdentifier = "OnboardingViewController"
     weak var delegate: AnyObject?
@@ -28,8 +28,16 @@ class OnboardingViewController: AppViewController, ViewControllerWithIdentifier 
         pageControl.currentPageIndicatorTintColor = AppColors.main
         pageControl.numberOfPages = numPages
         self.view.backgroundColor = AppColors.alert
-//        nextButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-//        backButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        
+        let nextTap = UITapGestureRecognizer(target: self, action: #selector(onNext(gesture:)))
+        nextTap.numberOfTapsRequired = 1
+        nextTap.numberOfTouchesRequired = 1
+        nextButton.addGestureRecognizer(nextTap)
+        
+        let backTap = UITapGestureRecognizer(target: self, action: #selector(onBack(gesture:)))
+        backTap.numberOfTapsRequired = 1
+        backTap.numberOfTouchesRequired = 1
+        backButton.addGestureRecognizer(backTap)
     }
     
     override func viewDidLayoutSubviews() {
@@ -77,10 +85,10 @@ class OnboardingViewController: AppViewController, ViewControllerWithIdentifier 
         }
     }
     
-    @IBAction func onPressBack(_ sender: Any) {
+    @objc func onBack(gesture: UITapGestureRecognizer) {
         if currentPage == numPages - 1 {
-            nextButton.setTitle("Next", for: .normal)
-            nextButton.tintColor = UIColor.label
+            nextButton.text = "Next"
+            nextButton.textColor = .label
             nextButtonWidth.constant = 65
         }
         if currentPage > 0 {
@@ -90,7 +98,7 @@ class OnboardingViewController: AppViewController, ViewControllerWithIdentifier 
         }
     }
     
-    @IBAction func onPressNext(_ sender: Any) {
+    @objc func onNext(gesture: UITapGestureRecognizer) {
         if currentPage == numPages - 1 {
             (delegate as? OnboardingViewControllerDelegate)?.transitonToProfile(self, callback: profileDismissCallback)
             profileViewController.prevController = self
@@ -102,8 +110,8 @@ class OnboardingViewController: AppViewController, ViewControllerWithIdentifier 
             pageControl.currentPage = currentPage
         }
         if currentPage == numPages - 1 {
-            nextButton.setTitle("Get Started", for: .normal)
-            nextButton.tintColor = AppColors.main
+            nextButton.text = "Get Started"
+            nextButton.textColor = AppColors.main
             nextButtonWidth.constant = 130
         }
     }

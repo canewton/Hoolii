@@ -21,6 +21,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     @IBOutlet weak var backgroundStackView: UIStackView!
     var availabilityDetail: AvailabilityDetail!
     var autofillButton: AutofillButton!
+    var autofillFeedback: AutofillFeedback?
     var isShowingAvailabilityDetail: Bool = false
     var currentDateShowing: ScheduleDate = ScheduleDate(Date())
     var userSchedule: Schedule!
@@ -128,16 +129,57 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
                 alertForBlankWeeklyAvailability()
             } else {
                 setAvailabilitiesFromWeeklyAvailability(schedule: regularSchedule)
+                
+                displayAutofillFeedback(text: "Your weekly availability has autofilled your schedule!")
             }
         } else {
             alertForBlankWeeklyAvailability()
         }
     }
     
+    func displayAutofillFeedback(text: String) {
+        if autofillFeedback == nil {
+            autofillFeedback = AutofillFeedback.instanceFromNib()
+            availabilityBarScrollView.addSubview(autofillFeedback!)
+            autofillFeedback?.translatesAutoresizingMaskIntoConstraints = false
+            autofillFeedback?.widthAnchor.constraint(equalToConstant: 200).isActive = true
+            autofillFeedback?.heightAnchor.constraint(equalToConstant: 60).isActive = true
+            autofillFeedback?.bottomAnchor.constraint(equalTo: availabilityBarScrollView.layoutMarginsGuide.bottomAnchor, constant: -10).isActive = true
+            autofillFeedback?.rightAnchor.constraint(equalTo: availabilityBarScrollView.layoutMarginsGuide.rightAnchor, constant: -10).isActive = true
+            autofillFeedback?.feedbackLabel.text = text
+            autofillFeedback?.transform = CGAffineTransform(scaleX: 0.85, y: 0)
+            
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [],  animations: {
+                self.autofillFeedback?.transform = .identity
+            })
+            
+            Timer.scheduledTimer(withTimeInterval: 5, repeats: false, block: hideAutofillFeedback)
+        }
+    }
+    
+    func hideAutofillFeedback(timer: Timer) {
+        UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
+            self.autofillFeedback?.transform = CGAffineTransform(scaleX: 0.85, y: 0.001)
+
+         }) { (success) in
+             self.autofillFeedback?.removeFromSuperview()
+             self.autofillFeedback = nil
+         }
+    }
+    
     func setAvailabilitiesFromWeeklyAvailability(schedule: Schedule) {
+        var autofilledAvailabilities = false
         for i in 0..<userSchedule.datesFree.count {
             let correspondingWeekday: Day = schedule.datesFree[CalendarDate(userSchedule.datesFree[i].date.date!).weekday]
             userSchedule.datesFree[i].timesFree = correspondingWeekday.timesFree
+            
+            if correspondingWeekday.timesFree.count > 0 && (CollectiveSchedule.shared.startTime < correspondingWeekday.timesFree[0].from || CollectiveSchedule.shared.endTime > correspondingWeekday.timesFree[correspondingWeekday.timesFree.count - 1].to) {
+                autofilledAvailabilities = true
+            }
+        }
+        
+        if autofilledAvailabilities == false {
+            displayAutofillFeedback(text: "No weekly availabilities fit into this timeframe.")
         }
         updateUserSchedule(schedule: userSchedule)
         setScheduleCallback(userSchedule)
@@ -169,6 +211,10 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     
     // the availability detail must be created every time it is displayed
     func showAvailiabilityDetail(_ day: DayCollective, _ time: HourMinuteTime) {
+        if availabilityDetail != nil && availabilityDetail.isCollapsed == false {
+            return
+        }
+        
         var timeRangeToDisplay: TimeRangeCollective = TimeRangeCollective(from: startTime, to: endTime, users: [])
         if day.timesFree.count > 0 {
             timeRangeToDisplay = TimeRangeCollective(from: startTime, to: day.timesFree[0].from, users: [])
