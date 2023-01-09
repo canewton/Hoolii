@@ -11,10 +11,10 @@ import Messages
 class MessagesViewController: MSMessagesAppViewController {
     
     override func viewDidLoad() {
-        print("loaded")
-        StoredValues.deleteKey(key: StoredValuesConstants.newMeetingOnboarding)
-        StoredValues.deleteKey(key: StoredValuesConstants.yourAvailabilityOnboarding)
-        StoredValues.deleteKey(key: StoredValuesConstants.hasBeenOnboarded)
+//        print("loaded")
+//        StoredValues.deleteKey(key: StoredValuesConstants.newMeetingOnboarding)
+//        StoredValues.deleteKey(key: StoredValuesConstants.yourAvailabilityOnboarding)
+//        StoredValues.deleteKey(key: StoredValuesConstants.hasBeenOnboarded)
     }
     
     // MARK: - Conversation Handling

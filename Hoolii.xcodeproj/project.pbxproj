@@ -45,7 +45,6 @@
 		9142F97B285FA20E0070661F /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9142F97A285FA20E0070661F /* Messages.framework */; };
 		9142F97E285FA20E0070661F /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F97D285FA20E0070661F /* MessagesViewController.swift */; };
 		9142F981285FA20E0070661F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9142F97F285FA20E0070661F /* MainInterface.storyboard */; };
-		9142F983285FA20F0070661F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9142F982285FA20F0070661F /* Assets.xcassets */; };
 		9142F996286002580070661F /* CollectiveSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F995286002580070661F /* CollectiveSchedule.swift */; };
 		9142F998286022460070661F /* SchedulePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F997286022460070661F /* SchedulePreviewViewController.swift */; };
 		916099E2296A4A4E00783A29 /* OnboardingScreen1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 916099E1296A4A4E00783A29 /* OnboardingScreen1.xib */; };
@@ -55,6 +54,8 @@
 		916099EB296A4D9C00783A29 /* AlertLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916099EA296A4D9C00783A29 /* AlertLabels.swift */; };
 		916099ED296A96C400783A29 /* AutofillFeedback.xib in Resources */ = {isa = PBXBuildFile; fileRef = 916099EC296A96C400783A29 /* AutofillFeedback.xib */; };
 		916099EF296A97D600783A29 /* AutofillFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916099EE296A97D600783A29 /* AutofillFeedback.swift */; };
+		916099F0296B95A800783A29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9142F982285FA20F0070661F /* Assets.xcassets */; };
+		916099F1296B95C000783A29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9142F982285FA20F0070661F /* Assets.xcassets */; };
 		9167C7DA296627DE00BB4220 /* MessageGraphic.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9167C7D9296627DE00BB4220 /* MessageGraphic.xib */; };
 		9167C7DC296628ED00BB4220 /* MessageGraphic1People.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9167C7DB296628ED00BB4220 /* MessageGraphic1People.xib */; };
 		9167C7DE2966330600BB4220 /* MessageGraphic2People.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9167C7DD2966330600BB4220 /* MessageGraphic2People.xib */; };
@@ -545,6 +546,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				916099F0296B95A800783A29 /* Assets.xcassets in Resources */,
 				9142F970285FA20E0070661F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -557,6 +559,7 @@
 				9167C7F029663CE600BB4220 /* MessageGraphic11People.xib in Resources */,
 				916099E2296A4A4E00783A29 /* OnboardingScreen1.xib in Resources */,
 				9167C7EC29663BF400BB4220 /* MessageGraphic9People.xib in Resources */,
+				916099F1296B95C000783A29 /* Assets.xcassets in Resources */,
 				916099E6296A4A8200783A29 /* OnboardingScreen3.xib in Resources */,
 				9103CF2E28C9197600BBC349 /* DayHeaderView.xib in Resources */,
 				9167C7E2296633C400BB4220 /* MessageGraphic4People.xib in Resources */,
@@ -569,7 +572,6 @@
 				91E71ACB296181320020ABC8 /* AppActionableAlert.xib in Resources */,
 				9167C7E42966341F00BB4220 /* MessageGraphic5People.xib in Resources */,
 				9167C7E82966350400BB4220 /* MessageGraphic7People.xib in Resources */,
-				9142F983285FA20F0070661F /* Assets.xcassets in Resources */,
 				9167C7F429663E6C00BB4220 /* MessageGraphic13People.xib in Resources */,
 				916099E4296A4A6A00783A29 /* OnboardingScreen2.xib in Resources */,
 				9167C7DE2966330600BB4220 /* MessageGraphic2People.xib in Resources */,
@@ -907,12 +909,16 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.HooliiApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -929,12 +935,16 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.HooliiApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
