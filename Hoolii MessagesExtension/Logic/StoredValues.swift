@@ -15,6 +15,8 @@ struct StoredValuesConstants {
     static let initials: String = "initials"
     static let userSchedule: String = "userSchedule"
     static let hasBeenOnboarded: String = "hasBeenOnboarded"
+    static let yourAvailabilityOnboarding: String = "yourAvailabilityOnboarding"
+    static let newMeetingOnboarding: String = "newMeetingOnboarding"
 }
 
 struct StoredValues {

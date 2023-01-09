@@ -11,7 +11,10 @@ import Messages
 class MessagesViewController: MSMessagesAppViewController {
     
     override func viewDidLoad() {
-        print("loaded")
+//        print("loaded")
+//        StoredValues.deleteKey(key: StoredValuesConstants.newMeetingOnboarding)
+//        StoredValues.deleteKey(key: StoredValuesConstants.yourAvailabilityOnboarding)
+//        StoredValues.deleteKey(key: StoredValuesConstants.hasBeenOnboarded)
     }
     
     // MARK: - Conversation Handling
@@ -19,11 +22,12 @@ class MessagesViewController: MSMessagesAppViewController {
         
         // URLComponents are a structure that parses URLs into and constructs URLs from their constituent parts
         var components = URLComponents()
-        components.queryItems = CollectiveSchedule.shared.queryItems
+        components.queryItems = HooliiMessage(collectiveSchedule: CollectiveSchedule.shared).queryItems
+        print(components.queryItems)
         
         let layout = MSMessageTemplateLayout()
         layout.caption = caption
-        layout.image = UIImage(named: "message-graphic.png")
+        layout.image = (MessageGraphic.instanceFromNib()!).convertToImage()
         
         let message = MSMessage(session: session ?? MSSession())
         message.url = components.url!
@@ -35,6 +39,7 @@ class MessagesViewController: MSMessagesAppViewController {
     public func SendMessage() {
         guard let conversation = activeConversation else { fatalError("Expected a conversation") }
         let message = composeMessage(CollectiveSchedule.shared, CollectiveSchedule.shared.meetingName, conversation.selectedMessage?.session)
+        
         conversation.insert(message) { error in
             if let error = error {
                 print(error)
@@ -52,16 +57,13 @@ class MessagesViewController: MSMessagesAppViewController {
     // MARK: Determine active view controller
     private func presentViewController(for conversation: MSConversation, with presenentationStyle: MSMessagesAppPresentationStyle) {
         // Parse a `Schedule` from the conversation's `selectedMessage` or create a new `Schedule`.
-        CollectiveSchedule.shared = CollectiveSchedule(message: conversation.selectedMessage) ?? CollectiveSchedule()
+        CollectiveSchedule.shared = HooliiMessage(message: conversation.selectedMessage)?.getCollectiveSchedule() ?? CollectiveSchedule()
                 
         let controller: AppViewController
         if presentationStyle == .compact {
-            if StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
+            if CollectiveSchedule.shared.endTime == HourMinuteTime(hour: 0, minute: 0) {
                 let onboardingCollapsedController: OnboardingCollapsedViewController = instantiateController()
                 controller = onboardingCollapsedController
-            } else if CollectiveSchedule.shared.endTime == HourMinuteTime(hour: 0, minute: 0) {
-                let schedulePreviewController: CreateMeetingPreviewViewController = instantiateController()
-                controller = schedulePreviewController
             } else {
                 let yourAvailController: YourAvailabilitiesViewController = instantiateController()
                 controller = yourAvailController
@@ -89,8 +91,9 @@ class MessagesViewController: MSMessagesAppViewController {
             controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         
-        if presentationStyle == .expanded && StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
+        if presentationStyle == .expanded && (StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded)) {
             let onboardingController: OnboardingViewController = instantiateController()
+            onboardingController.prevController = controller
             controller.transitionToScreen(viewController: onboardingController)
         }
         

@@ -122,7 +122,7 @@ final class AvailabilityBar: UIView {
     
     // before the component gets displayed to the UI, configure some properties
     func nibSetup() {
-        self.backgroundColor = AppColors.lightGrey
+        self.backgroundColor = AppColors.availabilityBar
         
         verticalStack.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         let numberOfBlocks: Int = Int((endTime - startTime).toFloat()/(CGFloat(AvailabilityConstants.timeInterval)/60.0))
