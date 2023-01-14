@@ -18,7 +18,8 @@ struct Avatar: Codable, Equatable {
     var hairIndex:  Int
     var skinTone:   Int
     var hairColor:  Int
-    init(chinIndex:Int, earIndex: Int, browIndex: Int, glassIndex: Int , mouthIndex: Int, noseIndex: Int, hairIndex: Int, skinTone:  Int, hairColor: Int) {
+    var backgroundIndex: Int
+    init(chinIndex:Int, earIndex: Int, browIndex: Int, glassIndex: Int , mouthIndex: Int, noseIndex: Int, hairIndex: Int, skinTone:  Int, hairColor: Int, backgroundIndex: Int) {
         self.chinIndex = chinIndex
         self.earIndex = earIndex
         self.browIndex = browIndex
@@ -28,5 +29,16 @@ struct Avatar: Codable, Equatable {
         self.hairIndex = hairIndex
         self.skinTone = skinTone
         self.hairColor = hairColor
+        self.backgroundIndex = backgroundIndex
+    }
+    
+    init(jsonValue: String) {
+        let dataFromJsonString = jsonValue.data(using: .utf8)!
+        self = try! JSONDecoder().decode(Avatar.self, from: dataFromJsonString)
+    }
+    
+    func getJsonValue() -> String {
+        let encodedData = try! JSONEncoder().encode(self)
+        return String(data: encodedData, encoding: .utf8)!
     }
 }

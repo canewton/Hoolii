@@ -15,7 +15,7 @@ struct StoredValuesConstants {
     static let initials: String = "initials"
     static let userSchedule: String = "userSchedule"
     static let hasBeenOnboarded: String = "hasBeenOnboarded"
-    static let userAvatar: Avatar = Avatar(chinIndex: 0, earIndex: 0, browIndex: 0, glassIndex: 0, mouthIndex: 0, noseIndex: 0, hairIndex: 0, skinTone: 0, hairColor: 0)
+    static let userAvatar: String = "userAvatar"
 }
 
 struct StoredValues {

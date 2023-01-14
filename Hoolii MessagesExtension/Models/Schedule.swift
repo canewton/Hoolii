@@ -29,6 +29,7 @@ struct Schedule: Codable {
         return String(data: encodedData, encoding: .utf8)!
     }
     
+    
     mutating func addDate(_ date: ScheduleDate) {
         self.addDate(date, timesFree: [])
     }
