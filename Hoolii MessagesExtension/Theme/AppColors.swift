@@ -57,11 +57,34 @@ struct AppColors {
         UIColor(red: 253/255.0, green: 225/255.0, blue: 204/255.0, alpha: 1.0),
     ]
     
+    static let hairColorArray = [
+        UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0),
+        UIColor(red: 30/255.0, green: 22/255.0, blue: 23/255.0, alpha: 1.0),
+        UIColor(red: 40/255.0, green: 23/255.0, blue: 16/255.0, alpha: 1.0),
+        UIColor(red: 63/255.0, green: 39/255.0, blue: 27/255.0, alpha: 1.0),
+        UIColor(red: 83/255.0, green: 56/255.0, blue: 26/255.0, alpha: 1.0),
+        UIColor(red: 110/255.0, green: 62/255.0, blue: 24/255.0, alpha: 1.0),
+        UIColor(red: 134/255.0, green: 68/255.0, blue: 56/255.0, alpha: 1.0),
+        UIColor(red: 158/255.0, green: 99/255.0, blue: 113/255.0, alpha: 1.0),
+        UIColor(red: 172/255.0, green: 66/255.0, blue: 42/255.0, alpha: 1.0),
+        UIColor(red: 205/255.0, green: 130/255.0, blue: 60/255.0, alpha: 1.0),
+        UIColor(red: 205/255.0, green: 154/255.0, blue: 80/255.0, alpha: 1.0),
+        UIColor(red: 242/255.0, green: 176/255.0, blue: 98/255.0, alpha: 1.0),
+        UIColor(red: 213/255.0, green: 165/255.0, blue: 119/255.0, alpha: 1.0),
+        UIColor(red: 225/255.0, green: 185/255.0, blue: 134/255.0, alpha: 1.0),
+        UIColor(red: 152/255.0, green: 136/255.0, blue: 0.0, alpha: 1.0),
+        UIColor(red: 211/255.0, green: 188/255.0, blue: 154/255.0, alpha: 1.0),
+        UIColor(red: 228/255.0, green: 225/255.0, blue: 206/255.0, alpha: 1.0)
+    ]
+    
+    
+    
     static let featureColorArray = [
         // Feature deselected:
         UIColor(red: 239/255.0, green: 248/253.0, blue: 245/255.0, alpha: 1.0),
         // Feature Selected
         UIColor(red: 142/255.0, green: 227/255.0, blue: 202/255.0, alpha: 1.0)
     ]
+    
     
 }

@@ -11,15 +11,17 @@ struct Avatar: Codable, Equatable {
     // MARK: Properties
     var chinIndex: Int
     var earIndex:  Int
+    var browIndex: Int
     var glassIndex: Int
     var mouthIndex: Int
     var noseIndex:  Int
     var hairIndex:  Int
     var skinTone:   Int
     var hairColor:  Int
-    init(chinIndex:Int, earIndex: Int, glassIndex: Int , mouthIndex: Int, noseIndex: Int, hairIndex: Int, skinTone:  Int, hairColor: Int) {
+    init(chinIndex:Int, earIndex: Int, browIndex: Int, glassIndex: Int , mouthIndex: Int, noseIndex: Int, hairIndex: Int, skinTone:  Int, hairColor: Int) {
         self.chinIndex = chinIndex
         self.earIndex = earIndex
+        self.browIndex = browIndex
         self.glassIndex = glassIndex
         self.mouthIndex = mouthIndex
         self.noseIndex = noseIndex
