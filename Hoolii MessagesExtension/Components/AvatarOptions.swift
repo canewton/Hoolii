@@ -15,9 +15,9 @@ class AvatarOptions: UIStackView {
     required init(coder: NSCoder) {
         super.init(coder: coder)
         for i in 0..<numTabs {
-            let facialFeature = FacialFeatureIcon.instanceFromNib(image: UIImage(named: AvatarConstants.facialFeatureIcons[i])!, text: AvatarConstants.facialFeatureIcons[i])!
+            let facialFeature = FacialFeatureIcon.instanceFromNib(image: UIImage(named: AvatarConstants.facialFeatureSelectionList[i].iconName)!, text: AvatarConstants.facialFeatureSelectionList[i].iconName)!
             facialFeature.translatesAutoresizingMaskIntoConstraints = false
-            facialFeature.heightAnchor.constraint(equalToConstant: 90).isActive = true
+            facialFeature.heightAnchor.constraint(equalToConstant: 60).isActive = true
             facialFeature.widthAnchor.constraint(equalToConstant: 75).isActive = true
             facialFeature.index = i
             facialFeature.isSelectedCallback = selectFacialFeature

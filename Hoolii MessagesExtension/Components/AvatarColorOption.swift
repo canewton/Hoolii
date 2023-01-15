@@ -21,6 +21,8 @@ class AvatarColorOption: UIView {
         let colorTapRecognizer = UITapGestureRecognizer(target:self, action: #selector(colorTapped(colorTapRecognizer:)))
         self.isUserInteractionEnabled = true
         self.addGestureRecognizer(colorTapRecognizer)
+        
+        self.layer.cornerRadius = 5
     }
     
     @objc func colorTapped(colorTapRecognizer: UITapGestureRecognizer) {

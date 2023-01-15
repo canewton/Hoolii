@@ -50,6 +50,20 @@ final class FacialFeatureOption: UIView {
         tapCallback(self)
     }
     
+    func setHairColor(color: UIColor) {
+        hairBack.tintColor = color
+        hairFront.tintColor = color
+        hairMidBack.tintColor = color
+        hairMidFront.tintColor = color
+        brows.tintColor = color
+        beard.tintColor = color
+    }
+    
+    func setSkinColor(color: UIColor) {
+        chin.tintColor = color
+        face.tintColor = color
+    }
+    
     func addChin(_ image: UIImage?) -> FacialFeatureOption {
         chin.image = image
         
@@ -110,6 +124,7 @@ final class FacialFeatureOption: UIView {
     
     func addBeard(_ image: UIImage?) -> FacialFeatureOption {
         beard.image = image
+        chin.image = AvatarConstants.chinOption2.chin.image
         
         beard.tintColor = AppColors.hairColorArray[0]
         return self
