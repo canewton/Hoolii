@@ -52,6 +52,7 @@
 		916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D270B288319E4003C96BD /* CreateProfileViewController.swift */; };
 		916D270E28836F3A003C96BD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D270D28836F3A003C96BD /* User.swift */; };
 		916D2711288CA97C003C96BD /* GetAvailabilityLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D2710288CA97B003C96BD /* GetAvailabilityLogic.swift */; };
+		916E3EA72973E0BE0036432E /* AvatarConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E3EA62973E0BE0036432E /* AvatarConstants.swift */; };
 		918C88CF28D3C8C40052850E /* CreateMeetingPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918C88CE28D3C8C40052850E /* CreateMeetingPreviewViewController.swift */; };
 		91A4E813294BDB7C00AB7E11 /* AvailabilityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4E812294BDB7C00AB7E11 /* AvailabilityConstants.swift */; };
 		91A4E815294C075200AB7E11 /* AvatarCreatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4E814294C075200AB7E11 /* AvatarCreatorViewController.swift */; };
@@ -150,6 +151,7 @@
 		916D270B288319E4003C96BD /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		916D270D28836F3A003C96BD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		916D2710288CA97B003C96BD /* GetAvailabilityLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAvailabilityLogic.swift; sourceTree = "<group>"; };
+		916E3EA62973E0BE0036432E /* AvatarConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarConstants.swift; sourceTree = "<group>"; };
 		918C88CE28D3C8C40052850E /* CreateMeetingPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMeetingPreviewViewController.swift; sourceTree = "<group>"; };
 		91A4E812294BDB7C00AB7E11 /* AvailabilityConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityConstants.swift; sourceTree = "<group>"; };
 		91A4E814294C075200AB7E11 /* AvatarCreatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCreatorViewController.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				916D2710288CA97B003C96BD /* GetAvailabilityLogic.swift */,
 				913C119228B07EDD00B5A66F /* StoredValues.swift */,
 				91A4E812294BDB7C00AB7E11 /* AvailabilityConstants.swift */,
+				916E3EA62973E0BE0036432E /* AvatarConstants.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				479D3FC4296A80940009F213 /* Avatar.swift in Sources */,
 				913C119528B0AAFA00B5A66F /* AppViewController.swift in Sources */,
 				9103E5782896DA0400CA661B /* AvailabilityBar.swift in Sources */,
+				916E3EA72973E0BE0036432E /* AvatarConstants.swift in Sources */,
 				9103E59728A84A9900CA661B /* ThemedButton.swift in Sources */,
 				9103E587289F4F5900CA661B /* YourAvailabilityViewController.swift in Sources */,
 				9100ED8528E01C9D00DA4F43 /* HourMinuteTime.swift in Sources */,
@@ -708,7 +712,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Hoolii MessagesExtension/Hoolii MessagesExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 79X4LTX7K6;
+				DEVELOPMENT_TEAM = XSTA74W85B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Hoolii MessagesExtension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Hoolii;
@@ -737,7 +741,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Hoolii MessagesExtension/Hoolii MessagesExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 79X4LTX7K6;
+				DEVELOPMENT_TEAM = XSTA74W85B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Hoolii MessagesExtension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Hoolii;
@@ -766,7 +770,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 79X4LTX7K6;
+				DEVELOPMENT_TEAM = XSTA74W85B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -788,7 +792,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 79X4LTX7K6;
+				DEVELOPMENT_TEAM = XSTA74W85B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
