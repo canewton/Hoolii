@@ -25,6 +25,12 @@ class CreateMeetingCalendar: UIViewController, ViewControllerWithIdentifier {
     var addDateCallback: (() -> Void)!
     var numRows: Int = 6
     
+    // for date group selection
+    let referenceCalendar = Calendar(identifier: .gregorian)
+    var isSelecting = true
+    var dateRangeSelection: [Date] = []
+    var firstDateSelected: Date = Date()
+    
     // Set styling, images, and colors
     override func viewDidLoad() {
         configureCalendar()
@@ -35,6 +41,10 @@ class CreateMeetingCalendar: UIViewController, ViewControllerWithIdentifier {
         
         formatter.dateFormat = "MMMM"
         monthLabel.text = formatter.string(from: Date())
+        
+        let panGensture = UILongPressGestureRecognizer(target: self, action: #selector(didStartRangeSelecting(gesture:)))
+        panGensture.minimumPressDuration = 0
+        calendarView.addGestureRecognizer(panGensture)
     }
     
     func configureCalendar() {
@@ -61,6 +71,48 @@ class CreateMeetingCalendar: UIViewController, ViewControllerWithIdentifier {
         cell.selectedViewRight.backgroundColor = .clear
         handleCellTextColor(cell: cell, cellState: cellState)
         handleCellSelected(cell: cell, cellState: cellState)
+    }
+    
+    @objc func didStartRangeSelecting(gesture: UILongPressGestureRecognizer) {
+        let point = gesture.location(in: gesture.view!)
+        
+        guard let cellState = calendarView.cellStatus(at: point) else { return }
+        
+        if gesture.state == .began {
+            
+            if cellState.isSelected {
+                isSelecting = false
+            } else {
+                dateRangeSelection = []
+                isSelecting = true
+                dateRangeSelection.append(cellState.date)
+                firstDateSelected = cellState.date
+            }
+        } else {
+            if cellState.isSelected && isSelecting == false {
+                calendarView.selectDates(from: cellState.date, to: cellState.date, keepSelectionIfMultiSelectionAllowed: false)
+            } else if !cellState.isSelected && isSelecting == true {
+                if dateRangeSelection[0] > cellState.date {
+                    let dateRange = calendarView.generateDateRange(from: cellState.date, to: dateRangeSelection[dateRangeSelection.count - 1])
+                    calendarView.selectDates(dateRange, keepSelectionIfMultiSelectionAllowed: true)
+                    dateRangeSelection = dateRange
+                } else {
+                    let dateRange = calendarView.generateDateRange(from: dateRangeSelection[0], to: cellState.date)
+                    calendarView.selectDates(dateRange, keepSelectionIfMultiSelectionAllowed: true)
+                    dateRangeSelection = dateRange
+                }
+            } else if isSelecting == true {
+                if dateRangeSelection[dateRangeSelection.count - 1] > cellState.date && firstDateSelected == dateRangeSelection[0] {
+                    let followingDay = referenceCalendar.date(byAdding: .day, value: 1, to: cellState.date)!
+                    calendarView.deselectDates(from: followingDay, to: dateRangeSelection[dateRangeSelection.count - 1], triggerSelectionDelegate: true)
+                    dateRangeSelection = calendarView.generateDateRange(from: firstDateSelected, to: cellState.date)
+                } else if dateRangeSelection[0] < cellState.date && firstDateSelected == dateRangeSelection[dateRangeSelection.count - 1] {
+                    let previousDay = referenceCalendar.date(byAdding: .day, value: -1, to: cellState.date)!
+                    calendarView.deselectDates(from: dateRangeSelection[0], to: previousDay, triggerSelectionDelegate: true)
+                    dateRangeSelection = calendarView.generateDateRange(from: cellState.date, to: firstDateSelected)
+                }
+            }
+        }
     }
     
     func handleCellTextColor(cell: DateCell, cellState: CellState) {

@@ -16,6 +16,7 @@ class AdaptsToKeyboard: AppViewController {
     var animationCurveOptions: UIView.AnimationOptions = UIView.AnimationOptions()
     var keyboardHeight: CGFloat = 0
     var tap: UITapGestureRecognizer = UITapGestureRecognizer()
+    var offset: CGFloat = 0
     
     
     public func configure(bottomConstraint: NSLayoutConstraint, topConstraint: NSLayoutConstraint) {
@@ -35,6 +36,8 @@ class AdaptsToKeyboard: AppViewController {
             name: UIResponder.keyboardWillChangeFrameNotification,
             object: nil
         )
+        
+        offset = self.view.bounds.height - 600
     }
     
     @objc private func keyboardWillChangeFrame(_ notification: NSNotification) {
@@ -65,8 +68,8 @@ class AdaptsToKeyboard: AppViewController {
             options: animationCurveOptions,
             animations: { [unowned self] in
                 let bottomInset = keyboardHeight > 0 ? keyboardHeight : view.safeAreaInsets.bottom
-                self.bottomConstraint?.constant = bottomInset - 200
-                self.topConstraint?.constant = -bottomInset + 200
+                self.bottomConstraint?.constant = bottomInset - offset
+                self.topConstraint?.constant = -bottomInset + offset
                 view.layoutIfNeeded()
             }
         )

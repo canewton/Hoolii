@@ -7,14 +7,37 @@
 
 import UIKit
 import Messages
+import Alamofire
 
 class MessagesViewController: MSMessagesAppViewController {
     
     override func viewDidLoad() {
-//        print("loaded")
+        print("loaded")
 //        StoredValues.deleteKey(key: StoredValuesConstants.newMeetingOnboarding)
 //        StoredValues.deleteKey(key: StoredValuesConstants.yourAvailabilityOnboarding)
 //        StoredValues.deleteKey(key: StoredValuesConstants.hasBeenOnboarded)
+//        AF.request("https://hoolii.fly.dev/collective-schedule", method: .get).validate().responseJSON(completionHandler: handleResponse)
+    }
+    
+    func handleResponse(_ response: AFDataResponse<Any>) {
+        switch (response.result) {
+            case .success(let successRes):
+            
+            print("success")
+            print(successRes)
+
+            do {
+//                let users = try JSONDecoder().decode([User].self, from: response.data!)
+//                print(users)
+                debugPrint(response.data!)
+
+            } catch let error as NSError {
+                print("Failed to load: \(error.localizedDescription)")
+            }
+
+            case .failure(let error):
+                print("Request error: \(error.localizedDescription)")
+        }
     }
     
     // MARK: - Conversation Handling
@@ -45,7 +68,7 @@ class MessagesViewController: MSMessagesAppViewController {
                 print(error)
             }
         }
-        //conversation.insertText("https://www.when2meet.com/ ")
+        conversation.insertText("https://www.when2meet.com/ ")
     }
     
     // MARK: Determine active view controller before extension becomes active
