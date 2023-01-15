@@ -97,12 +97,5 @@ struct AppColors {
         UIColor(red: 247/255.0, green: 196/255.0, blue: 227/255.0, alpha: 1.0)
     ]
     
-    static let featureColorArray = [
-        // Feature deselected:
-        UIColor(red: 239/255.0, green: 248/253.0, blue: 245/255.0, alpha: 1.0),
-        // Feature Selected
-        UIColor(red: 142/255.0, green: 227/255.0, blue: 202/255.0, alpha: 1.0)
-    ]
-    
     
 }

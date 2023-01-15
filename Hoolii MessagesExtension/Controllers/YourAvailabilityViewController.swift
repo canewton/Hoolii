@@ -171,8 +171,6 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     // use the group data to display the group view
     private func displayGroupView() {
         let allAvailabilities: [DayCollective] = AvailabilityLogic.getDaysAndTimesFree(CollectiveSchedule.shared.allSchedules)
-        
-        var test: HooliiMessage = HooliiMessage(collectiveSchedule: CollectiveSchedule.shared)
 
         for i in 0..<allAvailabilities.count {
             let availabilityBar: AvailabilityBar = availabilityInput.availabilityBarHorizontalList.arrangedSubviews[i] as! AvailabilityBar

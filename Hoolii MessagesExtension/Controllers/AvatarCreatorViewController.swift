@@ -7,21 +7,13 @@
 
 import UIKit
 
-class ImageCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var cellBackHairView: UIImageView!
-    @IBOutlet weak var cellHeadEarView: UIImageView!
-    @IBOutlet weak var cellChinImageView: UIImageView!
-    @IBOutlet weak var cellSideGroundImageView: UIImageView!
-    @IBOutlet weak var cellBackFeatureView: UIImageView!
-    @IBOutlet weak var cellFrontFeatureView: UIImageView!
-}
-
  // MARK: VARIABLE DECLARATION START
 class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     // Outlets for display of Avatar
+    @IBOutlet weak var avatarOptions: AvatarOptions!
+    @IBOutlet weak var colorOptionsStack: UIStackView!
     @IBOutlet weak var avatarContainerImgView: UIView!
-    @IBOutlet weak var facialFeatureStackView: UIStackView!
     
     @IBOutlet weak var avatarBackgroundImageView: UIImageView!
     @IBOutlet weak var backHairImgView: UIImageView!
@@ -38,16 +30,6 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     @IBOutlet weak var sideHairImgView: UIImageView!
     @IBOutlet weak var frontHairImgView: UIImageView!
     @IBOutlet weak var hairTieImgView: UIImageView!
-    
-    // Outlet for element selector of Images
-    @IBOutlet weak var selectFaceImgView: UIImageView!
-    @IBOutlet weak var selectEyeImgView: UIImageView!
-    @IBOutlet weak var selectNoseImgView: UIImageView!
-    @IBOutlet weak var selectBrowImgView: UIImageView!
-    @IBOutlet weak var selectMouthImgView: UIImageView!
-    @IBOutlet weak var selectHairImgView: UIImageView!
-    @IBOutlet weak var selectEarImgView: UIImageView!
-    @IBOutlet weak var selectBackgroundImgView: UIImageView!
     
     // Outlets for Skin/Hair Color Selectors
     @IBOutlet weak var colorImage1: UIImageView!
@@ -77,6 +59,7 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     var skinTone = UIColor.gray
     var currFacialFeature: Int = 0
     var itemIndex = 0
+    var facialFeatureIconIndex: Int = 0
     
     // Define the actual avatar variable being made/stored
     
@@ -92,24 +75,34 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         avatarBackgroundImageView.layer.cornerRadius = 109.5
         avatarBackgroundImageView.clipsToBounds = true
         
-        selectFaceImgView.backgroundColor = AppColors.featureColorArray[1]
-        
         avatarBackgroundImageView.clipsToBounds = true
         
-        // Enable gesture recognition for facial feature selection
-        for imageView in [selectFaceImgView, selectEyeImgView, selectNoseImgView, selectBrowImgView, selectMouthImgView, selectEarImgView, selectHairImgView, selectBackgroundImgView] {
-            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapFunct(tapGestureRecognizer:)))
-            imageView?.isUserInteractionEnabled = true
-            imageView?.addGestureRecognizer(tapGestureRecognizer)
-        }
-        for colorImageView in [colorImage1, colorImage2, colorImage3, colorImage4, colorImage5, colorImage6, colorImage7, colorImage8, colorImage9, colorImage10, colorImage11, colorImage12, colorImage13, colorImage14, colorImage15, colorImage16, colorImage17] {
-            let colorTapRecognizer = UITapGestureRecognizer(target:self, action: #selector(colorTapped(colorTapRecognizer:)))
-            colorImageView?.isUserInteractionEnabled = true
-            colorImageView?.addGestureRecognizer(colorTapRecognizer)
-        }
+        avatarOptions.displayFacialFeatureOptionsCallback = displayFacialFeatureOptions
+        setUpColorStack(colors: AppColors.skintoneArray)
+        
         // declare delegate and source for collection
         elemCollectionView.dataSource = self
         elemCollectionView.delegate = self
+    }
+    
+    func setUpColorStack(colors: [UIColor]) {
+        for _ in 0..<colorOptionsStack.subviews.count {
+            colorOptionsStack.subviews[0].removeFromSuperview()
+        }
+        
+        for i in 0..<colors.count {
+            let colorView = AvatarColorOption(color: colors[i])
+            colorView.widthAnchor.constraint(equalToConstant: 40).isActive = true
+            colorView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+            colorOptionsStack.addArrangedSubview(colorView)
+            colorView.centerYAnchor.constraint(equalTo: colorOptionsStack.centerYAnchor).isActive = true
+            colorView.callback = colorTapped
+        }
+    }
+    
+    func displayFacialFeatureOptions(index: Int) {
+        facialFeatureIconIndex = index
+        elemCollectionView.reloadData()
     }
     
     // Dismiss screen if user presses back button to return to profile creation
@@ -117,231 +110,10 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         self.dismiss(animated: true)
     }
     
-    
-    //MARK: CHANGING OF AVATAR FEATURES FUNCTIONS HANDLED HERE
-    @objc func tapFunct(tapGestureRecognizer:UITapGestureRecognizer){
-        if let featureTapped = tapGestureRecognizer.view as? UIImageView {
-            if featureTapped == selectFaceImgView {
-                // Color in the button
-                updateFeatureSelection(newFeature: 0)
-                selectFaceImgView.backgroundColor = AppColors.featureColorArray[1]
-                // Generate new cells for the collection view
-                AvatarConstants.cellBackHairArray = Array(repeating: "transparent",count: AvatarConstants.chinArray.count)
-                AvatarConstants.cellHeadTopArray = Array(repeating: "Ear 1 + Head", count: AvatarConstants.chinArray.count)
-                AvatarConstants.cellChinArray = ["Chin 1.svg", "Chin 2.svg", "Chin 3.svg", "Chin 2", "Chin 2", "Chin 2", "Chin 2", "Chin 2", "Chin 2", "Chin 2"]
-                AvatarConstants.cellSideHairArray = Array(repeating: "transparent", count: AvatarConstants.chinArray.count)
-                AvatarConstants.cellBackFeatureArray = Array(repeating: "transparent", count: AvatarConstants.chinArray.count)
-                AvatarConstants.cellFrontFeatureArray = ["transparent", "transparent", "transparent", "Chin 4 Beard.svg", "Chin 5 Beard.svg", "Chin 6 Beard.svg", "Chin 7 Beard.svg", "Chin 8 Beard.svg", "Chin 9 Beard.svg", "Chin 10 Beard.svg"]
-            } else if featureTapped == selectEyeImgView {
-                // color in button
-                updateFeatureSelection(newFeature: 1)
-                selectEyeImgView.backgroundColor = AppColors.featureColorArray[1]
-                // generate new cells in collection view
-                AvatarConstants.cellBackHairArray = Array(repeating: "transparent", count: AvatarConstants.lensArray.count)
-                AvatarConstants.cellHeadTopArray = Array(repeating: "Ear 1 + Head", count: AvatarConstants.frameArray.count)
-                AvatarConstants.cellChinArray = Array(repeating: AvatarConstants.chinArray[(generatedAvatar.chinIndex) % 3], count: AvatarConstants.frameArray.count)
-                AvatarConstants.cellSideHairArray = Array(repeating: "transparent", count: AvatarConstants.lensArray.count)
-                AvatarConstants.cellFrontFeatureArray = AvatarConstants.frameArray
-                AvatarConstants.cellBackFeatureArray = AvatarConstants.lensArray
-                
-            } else if featureTapped == selectNoseImgView {
-                // Color in button
-                updateFeatureSelection(newFeature: 2)
-                selectNoseImgView.backgroundColor = AppColors.featureColorArray[1]
-                // generate new cells in collection view
-                AvatarConstants.cellBackHairArray = Array(repeating: "transparent", count: AvatarConstants.noseArray.count)
-                AvatarConstants.cellHeadTopArray = Array(repeating: "Ear 1 + Head", count: AvatarConstants.frameArray.count)
-                AvatarConstants.cellChinArray = Array(repeating: AvatarConstants.chinArray[(generatedAvatar.chinIndex) % 3], count: AvatarConstants.frameArray.count)
-                AvatarConstants.cellSideHairArray = Array(repeating: "transparent", count: AvatarConstants.noseArray.count)
-                AvatarConstants.cellBackFeatureArray = Array(repeating: "transparent", count: AvatarConstants.noseArray.count)
-                AvatarConstants.cellFrontFeatureArray = AvatarConstants.noseArray
-                
-            } else if featureTapped == selectBrowImgView {
-                // update button color
-                updateFeatureSelection(newFeature: 3)
-                selectBrowImgView.backgroundColor = AppColors.featureColorArray[1]
-                // Generate new cells in collection view
-                AvatarConstants.cellBackHairArray =  Array(repeating: "transparent", count: AvatarConstants.browArray.count)
-                AvatarConstants.cellHeadTopArray = Array(repeating: "Ear 1 + Head", count: AvatarConstants.browArray.count)
-                AvatarConstants.cellChinArray = Array(repeating: AvatarConstants.chinArray[(generatedAvatar.chinIndex) % 3], count: AvatarConstants.browArray.count)
-                AvatarConstants.cellSideHairArray = Array(repeating: "transparent", count: AvatarConstants.browArray.count)
-                AvatarConstants.cellBackFeatureArray = Array(repeating: "transparent", count: AvatarConstants.browArray.count)
-                AvatarConstants.cellFrontFeatureArray = AvatarConstants.browArray
-                
-            } else if featureTapped == selectMouthImgView {
-                // update button Color
-                updateFeatureSelection(newFeature: 4)
-                selectMouthImgView.backgroundColor = AppColors.featureColorArray[1]
-                // Generate new cells in collection view
-                AvatarConstants.cellBackHairArray = Array(repeating: "transparent", count: AvatarConstants.mouthArray.count)
-                AvatarConstants.cellHeadTopArray = Array(repeating: "Ear 1 + Head", count: AvatarConstants.mouthArray.count)
-                AvatarConstants.cellChinArray = Array(repeating: AvatarConstants.chinArray[(generatedAvatar.chinIndex) % 3], count: AvatarConstants.mouthArray.count)
-                AvatarConstants.cellSideHairArray = Array(repeating: "transparent", count: AvatarConstants.mouthArray.count)
-                AvatarConstants.cellBackFeatureArray = Array(repeating: "transparent", count: AvatarConstants.mouthArray.count)
-                AvatarConstants.cellFrontFeatureArray = AvatarConstants.mouthArray
-                
-            } else if featureTapped == selectEarImgView {
-                // Update Button Color
-                updateFeatureSelection(newFeature: 5)
-                selectEarImgView.backgroundColor = AppColors.featureColorArray[1]
-                //  Generate new cells in collection view
-                AvatarConstants.cellBackHairArray =  Array(repeating: "transparent", count: AvatarConstants.earArray.count)
-                AvatarConstants.cellHeadTopArray = Array(repeating: "Ear 1 + Head", count: AvatarConstants.earArray.count)
-                AvatarConstants.cellChinArray = Array(repeating: AvatarConstants.chinArray[(generatedAvatar.chinIndex) % 3], count: AvatarConstants.earArray.count)
-                AvatarConstants.cellSideHairArray = Array(repeating: "transparent", count: AvatarConstants.earArray.count)
-                AvatarConstants.cellBackFeatureArray = Array(repeating: "transparent", count: AvatarConstants.earArray.count)
-                AvatarConstants.cellFrontFeatureArray = AvatarConstants.earArray
-                
-            } else if featureTapped == selectHairImgView {
-                // Update Button Color
-                updateFeatureSelection(newFeature: 6)
-                selectHairImgView.backgroundColor = AppColors.featureColorArray[1]
-                // Generate new cells in collection view
-                AvatarConstants.cellBackHairArray = AvatarConstants.backHairArray
-                AvatarConstants.cellHeadTopArray = Array(repeating: "Ear 1 + Head", count: AvatarConstants.backHairArray.count)
-                AvatarConstants.cellChinArray =  Array(repeating: AvatarConstants.chinArray[(generatedAvatar.chinIndex) % 3], count: AvatarConstants.frontHairArray.count)
-                AvatarConstants.cellSideHairArray = AvatarConstants.hairSideArray
-                AvatarConstants.cellBackFeatureArray = AvatarConstants.hairTieArray
-                AvatarConstants.cellFrontFeatureArray = AvatarConstants.frontHairArray
-            } else if featureTapped == selectBackgroundImgView {
-                // Update button color and do nothing else; color changing functionality handled in ChangeColor
-                updateFeatureSelection(newFeature: 7)
-                selectBackgroundImgView.backgroundColor = AppColors.featureColorArray[1]
-            }
-            elemCollectionView.reloadData()
-            swapColorSet()
-        }
-    }
-    
-    
-    // Choose the appropriate customization option given its index
-    func updateAvatar(elemIndex: Int) {
-        let index = currFacialFeature
-        switch index {
-            
-        case 0: // CUSTOMIZATION OF CHIN/BEARD
-            chinImgView.image = UIImage(named: AvatarConstants.chinArray[elemIndex])
-            generatedAvatar.chinIndex = elemIndex
-            if(elemIndex >= 3){
-                chinImgView.image = UIImage(named: AvatarConstants.chinArray[1])
-                beardImgView.image = UIImage(named: AvatarConstants.chinArray[elemIndex])
-                mouthImgView.image = UIImage(named: AvatarConstants.mouthArray[0])
-            } else {
-                beardImgView.image = UIImage(named: "transparent")
-            }
-            
-        case 1: // CUSTOMIZATION OF EYES
-            glassLensImgView.image = UIImage(named: AvatarConstants.lensArray[elemIndex])
-            glassFrameImgVIew.image = UIImage(named: AvatarConstants.frameArray[elemIndex] )
-            generatedAvatar.glassIndex = elemIndex
-            
-        case 2: // CUSTOMIZATION OF NOSE
-            noseImgView.image = UIImage(named: AvatarConstants.noseArray[elemIndex])
-            generatedAvatar.noseIndex = elemIndex
-        case 3: // CUSTOMIZATION OF EYEBROWS
-            eyebrowImgView.image = UIImage(named: AvatarConstants.browArray[elemIndex])
-            generatedAvatar.browIndex = elemIndex
-        case 4: // CUSTOMIZATION OF MOUTH SHAPE
-            mouthImgView.image = UIImage(named: AvatarConstants.mouthArray[elemIndex])
-            generatedAvatar.mouthIndex = elemIndex
-        case 5: // CUSTOMIZATION OF EARS
-            earImgView.image = UIImage(named: AvatarConstants.earArray[elemIndex])
-            generatedAvatar.earIndex = elemIndex
-        case 6: // CUSTOMIZATION OF HAIR
-            backHairImgView.image = UIImage(named: AvatarConstants.backHairArray[elemIndex])
-            hairTieImgView.image = UIImage(named: AvatarConstants.hairTieArray[elemIndex])
-            frontHairImgView.image = UIImage(named: AvatarConstants.frontHairArray[elemIndex])
-            sideHairImgView.image = UIImage(named: AvatarConstants.hairSideArray[elemIndex])
-            generatedAvatar.hairIndex = elemIndex
-        default:
-            break
-        }
-        print(elemIndex)
-    }
-    
-    
-    
-    
-    func updateFeatureSelection(newFeature: Int) {
-        // reset the previous feature's background back to grey
-        switch currFacialFeature {
-        case 0:
-            selectFaceImgView.backgroundColor = AppColors.featureColorArray[0]
-            currFacialFeature = newFeature
-        case 1:
-            selectEyeImgView.backgroundColor = AppColors.featureColorArray[0]
-            currFacialFeature = newFeature
-        case 2:
-            selectNoseImgView.backgroundColor = AppColors.featureColorArray[0]
-            currFacialFeature = newFeature
-        case 3:
-            selectBrowImgView.backgroundColor = AppColors.featureColorArray[0]
-            currFacialFeature = newFeature
-        case 4:
-            selectMouthImgView.backgroundColor = AppColors.featureColorArray[0]
-            currFacialFeature = newFeature
-        case 5:
-            selectEarImgView.backgroundColor = AppColors.featureColorArray[0]
-            currFacialFeature = newFeature
-        case 6:
-            selectHairImgView.backgroundColor = AppColors.featureColorArray[0]
-            currFacialFeature = newFeature
-        case 7:
-            selectBackgroundImgView.backgroundColor = AppColors.featureColorArray[0]
-            currFacialFeature = newFeature
-        default:
-            break
-        }
-        
-    }
-    // MARK: FUNCTIONS FOR CHANGING AVATAR FEATURES END HERE
-    
     // MARK: COLOR SELECTION METHODS BEGIN HERE
-    @objc func colorTapped(colorTapRecognizer: UITapGestureRecognizer) {
-        if let colorTapped = colorTapRecognizer.view as? UIImageView {
-            switch colorTapped {
-                // Change color of elements based on current feature user has highlighted
-            case colorImage1:
-                changeColor(colorIndex: 0, featureChanged: currFacialFeature)
-            case colorImage2:
-                changeColor(colorIndex: 1, featureChanged: currFacialFeature)
-            case colorImage3:
-                changeColor(colorIndex: 2, featureChanged: currFacialFeature)
-            case colorImage4:
-                changeColor(colorIndex: 3, featureChanged: currFacialFeature)
-            case colorImage5:
-                changeColor(colorIndex: 4, featureChanged: currFacialFeature)
-            case colorImage6:
-                changeColor(colorIndex: 5, featureChanged: currFacialFeature)
-            case colorImage7:
-                changeColor(colorIndex: 6, featureChanged: currFacialFeature)
-            case colorImage8:
-                changeColor(colorIndex: 7, featureChanged: currFacialFeature)
-            case colorImage9:
-                changeColor(colorIndex: 8, featureChanged: currFacialFeature)
-            case colorImage10:
-                changeColor(colorIndex: 9, featureChanged: currFacialFeature)
-            case colorImage11:
-                changeColor(colorIndex: 10, featureChanged: currFacialFeature)
-            case colorImage12:
-                changeColor(colorIndex: 11, featureChanged: currFacialFeature)
-            case colorImage13:
-                changeColor(colorIndex: 12, featureChanged: currFacialFeature)
-            case colorImage14:
-                changeColor(colorIndex: 13, featureChanged: currFacialFeature)
-            case colorImage15:
-                changeColor(colorIndex: 14, featureChanged: currFacialFeature)
-            case colorImage16:
-                changeColor(colorIndex: 15, featureChanged: currFacialFeature)
-            case colorImage17:
-                changeColor(colorIndex: 16, featureChanged: currFacialFeature)
-            default:
-                break
-            }
-            // regenerate cells to reflect new colors
-            elemCollectionView.reloadData()
-        }
-        
+    func colorTapped(color: UIColor) {
+        headImgView.tintColor = color
+        chinImgView.tintColor = color
     }
     
     
@@ -422,48 +194,51 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     
     
     //MARK: METHODS/VARS FOR UPKEEP OF COLLECTION VIEW BEGIN HERE
-    
-    
-    
     // Returns the number of sections in the view
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     // returns the number of images that cells are being made from
-    
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return AvatarConstants.cellFrontFeatureArray.count
+        return AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].options.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! ImageCollectionViewCell
-        cell.backgroundColor = .green
-        cell.cellFrontFeatureView.tag = indexPath.item
-        
-        cell.cellBackHairView.image = UIImage(named: AvatarConstants.cellBackHairArray[indexPath.item])?.withRenderingMode(.alwaysOriginal)
-        
-        cell.cellHeadEarView.image = UIImage(named: AvatarConstants.cellHeadTopArray[indexPath.item])?.withRenderingMode(.alwaysOriginal)
-        
-        cell.cellChinImageView.image = UIImage(named: AvatarConstants.cellSideHairArray[indexPath.item])?.withRenderingMode(.alwaysOriginal)
-        cell.cellSideGroundImageView.image = UIImage(named: AvatarConstants.cellChinArray[indexPath.item])?.withRenderingMode(.alwaysOriginal)
-        cell.cellBackFeatureView.image = UIImage(named: AvatarConstants.cellBackFeatureArray[indexPath.item])?.withRenderingMode(.alwaysOriginal)
-        cell.cellFrontFeatureView.image = UIImage(named: AvatarConstants.cellFrontFeatureArray[indexPath.item])?.withRenderingMode(.alwaysOriginal)
-        // add a tap gesture recognizer to the foreground image view
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        cell.cellFrontFeatureView.addGestureRecognizer(tapGestureRecognizer)
-        cell.cellFrontFeatureView.isUserInteractionEnabled = true
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        let avatarOption = AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].options[indexPath.item]
+        cell.addSubview(avatarOption)
+        avatarOption.leftAnchor.constraint(equalTo: cell.leftAnchor).isActive = true
+        avatarOption.rightAnchor.constraint(equalTo: cell.rightAnchor).isActive = true
+        avatarOption.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
+        avatarOption.bottomAnchor.constraint(equalTo: cell.bottomAnchor).isActive = true
+        avatarOption.tapCallback = tapAvatarOption
         
         return cell
     }
     
-    @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        // get the index of the image that was tapped using the tag property
-        let index = sender.view?.tag
-        print("Image at index \(index ?? -1) was tapped")
-        let elemIndex: Int = index!
-        updateAvatar(elemIndex: elemIndex)
+    func tapAvatarOption(facialFeature: FacialFeatureOption) {
+        switch AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName {
+        case "Hair":
+            backHairImgView.image = facialFeature.hairBack.image
+            frontHairImgView.image = facialFeature.hairFront.image
+        case "Head":
+            chinImgView.image = facialFeature.chin.image
+            beardImgView.image = facialFeature.beard.image
+        case "Brows":
+            eyebrowImgView.image = facialFeature.brows.image
+        case "Nose":
+            noseImgView.image = facialFeature.nose.image
+        case "Ears":
+            earImgView.image = facialFeature.ears.image
+        case "Eyes":
+            eyeImgView.image = facialFeature.eyes.image
+            glassFrameImgVIew.image = facialFeature.glasses.image
+        case "Mouth":
+            mouthImgView.image = facialFeature.mouth.image
+        default:
+            return
+        }
     }
     
     //MARK: COLLECTION VIEW METHODS END HERE
