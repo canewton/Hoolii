@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		479D3FC4296A80940009F213 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479D3FC2296A7B940009F213 /* Avatar.swift */; };
 		9100ED7D28DAF97200DA4F43 /* CreateMeetingCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9100ED7C28DAF97200DA4F43 /* CreateMeetingCalendar.swift */; };
 		9100ED7F28DB0E1700DA4F43 /* CreateMeetingCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9100ED7E28DB0E1700DA4F43 /* CreateMeetingCalendar.storyboard */; };
 		9100ED8528E01C9D00DA4F43 /* HourMinuteTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9100ED8428E01C9D00DA4F43 /* HourMinuteTime.swift */; };
@@ -72,6 +73,7 @@
 		9167C7F429663E6C00BB4220 /* MessageGraphic13People.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9167C7F329663E6C00BB4220 /* MessageGraphic13People.xib */; };
 		916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D270B288319E4003C96BD /* CreateProfileViewController.swift */; };
 		916D270E28836F3A003C96BD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D270D28836F3A003C96BD /* User.swift */; };
+		916E3EA72973E0BE0036432E /* AvatarConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E3EA62973E0BE0036432E /* AvatarConstants.swift */; };
 		916D2711288CA97C003C96BD /* AvailabilityLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D2710288CA97B003C96BD /* AvailabilityLogic.swift */; };
 		918C88CF28D3C8C40052850E /* CreateMeetingPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918C88CE28D3C8C40052850E /* CreateMeetingPreviewViewController.swift */; };
 		91A4E813294BDB7C00AB7E11 /* AvailabilityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4E812294BDB7C00AB7E11 /* AvailabilityConstants.swift */; };
@@ -127,6 +129,7 @@
 /* Begin PBXFileReference section */
 		2059F873623DEA6DE6C9C3A3 /* libPods-Hoolii.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hoolii.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CD53A2C79DF1E2CACBC2B9 /* Pods-Hoolii MessagesExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hoolii MessagesExtension.release.xcconfig"; path = "Target Support Files/Pods-Hoolii MessagesExtension/Pods-Hoolii MessagesExtension.release.xcconfig"; sourceTree = "<group>"; };
+		479D3FC2296A7B940009F213 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		6186FBB547B0CC2FA8646E18 /* Pods-Hoolii.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hoolii.release.xcconfig"; path = "Target Support Files/Pods-Hoolii/Pods-Hoolii.release.xcconfig"; sourceTree = "<group>"; };
 		64BE8558663AC40F9266F4E1 /* Pods-Hoolii.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hoolii.debug.xcconfig"; path = "Target Support Files/Pods-Hoolii/Pods-Hoolii.debug.xcconfig"; sourceTree = "<group>"; };
 		687D8B39CA7BF0E3240E0268 /* Pods-Hoolii MessagesExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hoolii MessagesExtension.debug.xcconfig"; path = "Target Support Files/Pods-Hoolii MessagesExtension/Pods-Hoolii MessagesExtension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -198,6 +201,7 @@
 		9167C7F329663E6C00BB4220 /* MessageGraphic13People.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageGraphic13People.xib; sourceTree = "<group>"; };
 		916D270B288319E4003C96BD /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		916D270D28836F3A003C96BD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		916E3EA62973E0BE0036432E /* AvatarConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarConstants.swift; sourceTree = "<group>"; };
 		916D2710288CA97B003C96BD /* AvailabilityLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityLogic.swift; sourceTree = "<group>"; };
 		918C88CE28D3C8C40052850E /* CreateMeetingPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMeetingPreviewViewController.swift; sourceTree = "<group>"; };
 		91A4E812294BDB7C00AB7E11 /* AvailabilityConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityConstants.swift; sourceTree = "<group>"; };
@@ -377,6 +381,7 @@
 		9142F992285FFDAE0070661F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				479D3FC2296A7B940009F213 /* Avatar.swift */,
 				9142F995286002580070661F /* CollectiveSchedule.swift */,
 				913EF79928693DBB00D5DB08 /* Schedule.swift */,
 				916D270D28836F3A003C96BD /* User.swift */,
@@ -437,6 +442,7 @@
 				916D2710288CA97B003C96BD /* AvailabilityLogic.swift */,
 				913C119228B07EDD00B5A66F /* StoredValues.swift */,
 				91A4E812294BDB7C00AB7E11 /* AvailabilityConstants.swift */,
+				916E3EA62973E0BE0036432E /* AvatarConstants.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -667,9 +673,11 @@
 				91E71AC9295F73C10020ABC8 /* OnboardingCollapsedViewController.swift in Sources */,
 				91A76E5628B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift in Sources */,
 				9103E58A289F50BC00CA661B /* NewMeetingViewController.swift in Sources */,
+				479D3FC4296A80940009F213 /* Avatar.swift in Sources */,
 				913C119528B0AAFA00B5A66F /* AppViewController.swift in Sources */,
 				91CABD9429657AAD002FB91C /* MessageGraphic.swift in Sources */,
 				9103E5782896DA0400CA661B /* AvailabilityBar.swift in Sources */,
+				916E3EA72973E0BE0036432E /* AvatarConstants.swift in Sources */,
 				91E71AD129623D6B0020ABC8 /* HorizontalOrientationViewController.swift in Sources */,
 				9103E59728A84A9900CA661B /* ThemedButton.swift in Sources */,
 				916099EB296A4D9C00783A29 /* AlertLabels.swift in Sources */,
