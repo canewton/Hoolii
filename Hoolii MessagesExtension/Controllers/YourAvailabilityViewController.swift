@@ -25,6 +25,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     var firstName: String!
     var lastName: String!
     var id: String!
+    var userAvatar: Avatar!
     let availabilityBarWidth: CGFloat = 120 // width of the interactive column that determines availability
     let timeIndicatorViewHeight: CGFloat = 15 // might need to delete
     
