@@ -11,7 +11,10 @@ import Messages
 class MessagesViewController: MSMessagesAppViewController {
     
     override func viewDidLoad() {
-        print("loaded")
+//        print("loaded")
+//        StoredValues.deleteKey(key: StoredValuesConstants.newMeetingOnboarding)
+//        StoredValues.deleteKey(key: StoredValuesConstants.yourAvailabilityOnboarding)
+//        StoredValues.deleteKey(key: StoredValuesConstants.hasBeenOnboarded)
     }
     
     // MARK: - Conversation Handling
@@ -19,11 +22,12 @@ class MessagesViewController: MSMessagesAppViewController {
         
         // URLComponents are a structure that parses URLs into and constructs URLs from their constituent parts
         var components = URLComponents()
-        components.queryItems = collectiveSchedule.queryItems
+        components.queryItems = HooliiMessage(collectiveSchedule: CollectiveSchedule.shared).queryItems
+        print(components.queryItems)
         
         let layout = MSMessageTemplateLayout()
         layout.caption = caption
-        layout.image = UIImage(named: "message-graphic.png")
+        layout.image = (MessageGraphic.instanceFromNib()!).convertToImage()
         
         let message = MSMessage(session: session ?? MSSession())
         message.url = components.url!
@@ -32,9 +36,10 @@ class MessagesViewController: MSMessagesAppViewController {
         return message
     }
     
-    public func SendMessage(_ collectiveSchedule: CollectiveSchedule, _ caption: String) {
+    public func SendMessage() {
         guard let conversation = activeConversation else { fatalError("Expected a conversation") }
-        let message = composeMessage(collectiveSchedule, caption, conversation.selectedMessage?.session)
+        let message = composeMessage(CollectiveSchedule.shared, CollectiveSchedule.shared.meetingName, conversation.selectedMessage?.session)
+        
         conversation.insert(message) { error in
             if let error = error {
                 print(error)
@@ -52,28 +57,21 @@ class MessagesViewController: MSMessagesAppViewController {
     // MARK: Determine active view controller
     private func presentViewController(for conversation: MSConversation, with presenentationStyle: MSMessagesAppPresentationStyle) {
         // Parse a `Schedule` from the conversation's `selectedMessage` or create a new `Schedule`.
-        let collectiveSchedule = CollectiveSchedule(message: conversation.selectedMessage) ?? CollectiveSchedule()
+        CollectiveSchedule.shared = HooliiMessage(message: conversation.selectedMessage)?.getCollectiveSchedule() ?? CollectiveSchedule()
                 
         let controller: AppViewController
         if presentationStyle == .compact {
-            if StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
+            if CollectiveSchedule.shared.endTime == HourMinuteTime(hour: 0, minute: 0) {
                 let onboardingCollapsedController: OnboardingCollapsedViewController = instantiateController()
                 controller = onboardingCollapsedController
-            } else if collectiveSchedule.endTime == HourMinuteTime(hour: 0, minute: 0) {
-                let schedulePreviewController: CreateMeetingPreviewViewController = instantiateController()
-                controller = schedulePreviewController
             } else {
                 let yourAvailController: YourAvailabilitiesViewController = instantiateController()
                 controller = yourAvailController
             }
         } else {
-            if StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
-                let onboardingController: OnboardingViewController = instantiateController()
-                controller = onboardingController
-            } else if collectiveSchedule.allSchedules.count > 0 {
+            if CollectiveSchedule.shared.allSchedules.count > 0 {
                 let yourAvailabilitiesController: YourAvailabilitiesViewController = instantiateController()
                 controller = yourAvailabilitiesController
-                yourAvailabilitiesController.collectiveSchedule = collectiveSchedule
             } else {
                 let newMeetingController: NewMeetingViewController = instantiateController()
                 controller = newMeetingController
@@ -93,6 +91,12 @@ class MessagesViewController: MSMessagesAppViewController {
             controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         
+        if presentationStyle == .expanded && (StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded)) {
+            let onboardingController: OnboardingViewController = instantiateController()
+            onboardingController.prevController = controller
+            controller.transitionToScreen(viewController: onboardingController)
+        }
+        
         controller.didMove(toParent: self)
     }
     
@@ -102,6 +106,32 @@ class MessagesViewController: MSMessagesAppViewController {
         super.willTransition(to: presentationStyle)
         // when a new view controller is transitioned to, remove the view controller that is currently on the screen
         removeAllChildViewControllers()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        if(size.width > self.view.frame.size.width){
+            // screen is horizontal
+            self.dismiss(animated: false, completion: nil)
+            let horizontalOrientationController: HorizontalOrientationViewController = instantiateController()
+            addChild(horizontalOrientationController)
+            view.addSubview(horizontalOrientationController.view)
+            horizontalOrientationController.view.translatesAutoresizingMaskIntoConstraints = false
+            horizontalOrientationController.view.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+            horizontalOrientationController.view.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+            horizontalOrientationController.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+            horizontalOrientationController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        } else {
+            // screen is vertical
+            for child in children {
+                if let controller = child as? HorizontalOrientationViewController {
+                    controller.willMove(toParent: nil)
+                    controller.view.removeFromSuperview()
+                    controller.removeFromParent()
+                }
+            }
+        }
     }
     
     // Tells the view controller that the extenson has transitioned to a new presentation style -> compact or exmpanded

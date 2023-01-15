@@ -71,7 +71,7 @@ final class AvailabilityBar: UIView {
     }
     
     // color in the time blocks in the availability bar to correspond to the availibility of everyone who responded
-    func displayAllUsersDay(day: DayCollective?, numUsers: Int) {
+    func displayAllUsersDay(day: DayCollective, numUsers: Int) {
         displayAllUsers = true
         collectiveDay = day
         var timesFreeIndex: Int = 0
@@ -81,13 +81,13 @@ final class AvailabilityBar: UIView {
                 let timeBlock = block as? TimeBlock
                 let time = indexToTime(index: i)
                 
-                if day != nil {
-                    if day!.timesFree[timesFreeIndex].from <= time && day!.timesFree[timesFreeIndex].to > time {
-                        timeBlock?.highlight(numPeople: day!.timesFree[timesFreeIndex].users.count, totalPeople: numUsers)
-                    } else if day!.timesFree[timesFreeIndex].to <= time && timesFreeIndex + 1 < day!.timesFree.count {
+                if day.timesFree.count > 0 {
+                    if day.timesFree[timesFreeIndex].from <= time && day.timesFree[timesFreeIndex].to > time {
+                        timeBlock?.highlight(numPeople: day.timesFree[timesFreeIndex].users.count, totalPeople: numUsers)
+                    } else if day.timesFree[timesFreeIndex].to <= time && timesFreeIndex + 1 < day.timesFree.count {
                         timesFreeIndex = timesFreeIndex + 1
-                        if day!.timesFree[timesFreeIndex].from <= time && day!.timesFree[timesFreeIndex].to > time {
-                            timeBlock?.highlight(numPeople: day!.timesFree[timesFreeIndex].users.count, totalPeople: numUsers)
+                        if day.timesFree[timesFreeIndex].from <= time && day.timesFree[timesFreeIndex].to > time {
+                            timeBlock?.highlight(numPeople: day.timesFree[timesFreeIndex].users.count, totalPeople: numUsers)
                         } else {
                             timeBlock?.undoHighlight()
                         }
@@ -122,7 +122,7 @@ final class AvailabilityBar: UIView {
     
     // before the component gets displayed to the UI, configure some properties
     func nibSetup() {
-        self.backgroundColor = AppColors.lightGrey
+        self.backgroundColor = AppColors.availabilityBar
         
         verticalStack.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         let numberOfBlocks: Int = Int((endTime - startTime).toFloat()/(CGFloat(AvailabilityConstants.timeInterval)/60.0))

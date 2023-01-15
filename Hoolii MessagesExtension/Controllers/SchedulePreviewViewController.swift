@@ -15,7 +15,6 @@ class SchedulePreviewViewController: AppViewController, ViewControllerWithIdenti
     @IBOutlet weak var profileButton: ProfileButton!
     @IBOutlet weak var availabilityPreviewContainer: UIView!
     
-    var collectiveSchedule: CollectiveSchedule!
     var availabilityPreview: ProfileAvailabilityPreview!
     
     override func viewDidLoad() {
@@ -36,7 +35,7 @@ class SchedulePreviewViewController: AppViewController, ViewControllerWithIdenti
     }
     
     func configureAvailabilityPreview() {
-        availabilityPreview = ProfileAvailabilityPreview.instanceFromNib(schedules: collectiveSchedule.allSchedules, emptySchedule: false)!
+        availabilityPreview = ProfileAvailabilityPreview.instanceFromNib(schedules: CollectiveSchedule.shared.allSchedules, emptySchedule: false)!
         availabilityPreviewContainer.addSubview(availabilityPreviewContainer)
         availabilityPreviewContainer.translatesAutoresizingMaskIntoConstraints = false
         availabilityPreviewContainer.leftAnchor.constraint(equalTo: availabilityPreviewContainer.leftAnchor).isActive = true

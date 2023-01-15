@@ -71,7 +71,7 @@ struct Schedule: Codable {
         var output: String = ""
         
         for i in 0..<datesFree.count {
-            output += "*** \(datesFree[i].date): "
+            output += "*** \(datesFree[i].date.date): "
             for j in 0..<datesFree[i].timesFree.count {
                 output += "\(datesFree[i].timesFree[j].from.hour) \(datesFree[i].timesFree[j].from.minute) - \(datesFree[i].timesFree[j].to.hour) \(datesFree[i].timesFree[j].to.minute) -> "
             }

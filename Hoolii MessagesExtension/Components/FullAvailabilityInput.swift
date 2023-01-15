@@ -21,9 +21,11 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     @IBOutlet weak var backgroundStackView: UIStackView!
     var availabilityDetail: AvailabilityDetail!
     var autofillButton: AutofillButton!
+    var autofillFeedback: AutofillFeedback?
     var isShowingAvailabilityDetail: Bool = false
+    var currentDateShowing: ScheduleDate = ScheduleDate(Date())
     var userSchedule: Schedule!
-    var setCollectiveScheduleCallback: ((Schedule) -> Void)!
+    var setScheduleCallback: ((Schedule) -> Void)!
     
     let availabilityBarWidth: CGFloat = 120 // width of the interactive column that determines
     let timeIndicatorViewHeight: CGFloat = 15 // height of the segments inside the bar
@@ -56,12 +58,12 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     }
     
     // display all of the availability bars based on a schedule
-    class func instanceFromNib(userSchedule: Schedule, startTime: HourMinuteTime, endTime: HourMinuteTime, setCollectiveScheduleCallback: @escaping ((Schedule) -> Void)) -> FullAvailabilityInput? {
+    class func instanceFromNib(userSchedule: Schedule, startTime: HourMinuteTime, endTime: HourMinuteTime, setScheduleCallback: @escaping ((Schedule) -> Void)) -> FullAvailabilityInput? {
         let fullAvailabilityInput: FullAvailabilityInput? = UINib(nibName: "FullAvailabilityInput", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? FullAvailabilityInput
         fullAvailabilityInput?.userSchedule = userSchedule
         fullAvailabilityInput?.startTime = startTime
         fullAvailabilityInput?.endTime = endTime
-        fullAvailabilityInput?.setCollectiveScheduleCallback = setCollectiveScheduleCallback
+        fullAvailabilityInput?.setScheduleCallback = setScheduleCallback
         fullAvailabilityInput?.setUpComponents()
         return fullAvailabilityInput
     }
@@ -82,7 +84,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         
         // the parent screen needs to set the userSchedule data based on information provided in this component
         // the callback allows for this
-        setCollectiveScheduleCallback(userSchedule)
+        setScheduleCallback(userSchedule)
     }
     
     // when each availability bar is interacted with, set callbacks so that data is changed from these interactions
@@ -112,6 +114,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         userSchedule = schedule
         for _ in 0..<availabilityBarHorizontalList.subviews.count {
             availabilityBarHorizontalList.subviews[0].removeFromSuperview()
+            backgroundStackView.subviews[0].removeFromSuperview()
         }
         configureAvailabilityBars()
     }
@@ -126,19 +129,60 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
                 alertForBlankWeeklyAvailability()
             } else {
                 setAvailabilitiesFromWeeklyAvailability(schedule: regularSchedule)
+                
+                displayAutofillFeedback(text: "Your weekly availability has autofilled your schedule!")
             }
         } else {
             alertForBlankWeeklyAvailability()
         }
     }
     
+    func displayAutofillFeedback(text: String) {
+        if autofillFeedback == nil {
+            autofillFeedback = AutofillFeedback.instanceFromNib()
+            availabilityBarScrollView.addSubview(autofillFeedback!)
+            autofillFeedback?.translatesAutoresizingMaskIntoConstraints = false
+            autofillFeedback?.widthAnchor.constraint(equalToConstant: 200).isActive = true
+            autofillFeedback?.heightAnchor.constraint(equalToConstant: 60).isActive = true
+            autofillFeedback?.bottomAnchor.constraint(equalTo: availabilityBarScrollView.layoutMarginsGuide.bottomAnchor, constant: -10).isActive = true
+            autofillFeedback?.rightAnchor.constraint(equalTo: availabilityBarScrollView.layoutMarginsGuide.rightAnchor, constant: -10).isActive = true
+            autofillFeedback?.feedbackLabel.text = text
+            autofillFeedback?.transform = CGAffineTransform(scaleX: 0.85, y: 0)
+            
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [],  animations: {
+                self.autofillFeedback?.transform = .identity
+            })
+            
+            Timer.scheduledTimer(withTimeInterval: 5, repeats: false, block: hideAutofillFeedback)
+        }
+    }
+    
+    func hideAutofillFeedback(timer: Timer) {
+        UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [], animations: {
+            self.autofillFeedback?.transform = CGAffineTransform(scaleX: 0.85, y: 0.001)
+
+         }) { (success) in
+             self.autofillFeedback?.removeFromSuperview()
+             self.autofillFeedback = nil
+         }
+    }
+    
     func setAvailabilitiesFromWeeklyAvailability(schedule: Schedule) {
+        var autofilledAvailabilities = false
         for i in 0..<userSchedule.datesFree.count {
             let correspondingWeekday: Day = schedule.datesFree[CalendarDate(userSchedule.datesFree[i].date.date!).weekday]
             userSchedule.datesFree[i].timesFree = correspondingWeekday.timesFree
+            
+            if correspondingWeekday.timesFree.count > 0 && (CollectiveSchedule.shared.startTime < correspondingWeekday.timesFree[0].from || CollectiveSchedule.shared.endTime > correspondingWeekday.timesFree[correspondingWeekday.timesFree.count - 1].to) {
+                autofilledAvailabilities = true
+            }
+        }
+        
+        if autofilledAvailabilities == false {
+            displayAutofillFeedback(text: "No weekly availabilities fit into this timeframe.")
         }
         updateUserSchedule(schedule: userSchedule)
-        setCollectiveScheduleCallback(userSchedule)
+        setScheduleCallback(userSchedule)
     }
     
     func checkIfWeeklyAvailEmpty(schedule: Schedule) -> Bool {
@@ -153,44 +197,51 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     }
     
     func alertForBlankWeeklyAvailability() {
-        let whatsYourAvailability = UIAlertController(title: "\n\n\n\n\n\nWhat's your availibility?", message: "You haven't set up your weekly availability in your Profile yet.", preferredStyle: .alert)
-        let doItLater = UIAlertAction(title: "I'll do it later", style: .cancel, handler: nil)
-        let setAvailability = UIAlertAction(title: "Set Availability", style: .default, handler: { (action) -> Void in
-            let profileVC = self.findViewController()?.storyboard?
-                .instantiateViewController(withIdentifier: "CreateProfileViewController") as! CreateProfileViewController
-            (self.findViewController() as? YourAvailabilitiesViewController)?.transitionToScreen(viewController: profileVC)
-        })
-        
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 15, width: 130, height: 130))
-        imageView.center.x = whatsYourAvailability.view.bounds.width/3
-        imageView.image = UIImage(named: "cal-stick.png")
-        whatsYourAvailability.view.addSubview(imageView)
-        
-        whatsYourAvailability.addAction(doItLater)
-        whatsYourAvailability.addAction(setAvailability)
-        
-        findViewController()?.present(whatsYourAvailability, animated: true, completion: nil)
+        AlertManager.autofillAlert(controller: findViewController()!, acceptCallback: {(_ darkenedScreen: UIViewController) -> Void in
+            darkenedScreen.dismiss(animated: true)
+            self.goToProfileViewController()
+        }, cancelCallback: {(_ darkenedScreen: UIViewController) -> Void in darkenedScreen.dismiss(animated: true)})
+    }
+    
+    func goToProfileViewController() {
+        let profileVC = self.findViewController()?.storyboard?
+            .instantiateViewController(withIdentifier: "CreateProfileViewController") as! CreateProfileViewController
+        (self.findViewController() as? YourAvailabilitiesViewController)?.transitionToScreen(viewController: profileVC)
     }
     
     // the availability detail must be created every time it is displayed
     func showAvailiabilityDetail(_ day: DayCollective, _ time: HourMinuteTime) {
-        var timeRangeToDisplay: TimeRangeCollective = TimeRangeCollective(from: startTime, to: day.timesFree[0].from, users: [])
-        if time >= day.timesFree[day.timesFree.count - 1].to {
-            timeRangeToDisplay = TimeRangeCollective(from: day.timesFree[day.timesFree.count - 1].to, to: endTime, users: [])
+        if availabilityDetail != nil && availabilityDetail.isCollapsed == false {
+            return
         }
-        for i in 0..<day.timesFree.count {
-            if day.timesFree[i].isWithinRange(time: time) {
-                timeRangeToDisplay = day.timesFree[i]
-                break
+        
+        var timeRangeToDisplay: TimeRangeCollective = TimeRangeCollective(from: startTime, to: endTime, users: [])
+        if day.timesFree.count > 0 {
+            timeRangeToDisplay = TimeRangeCollective(from: startTime, to: day.timesFree[0].from, users: [])
+            
+            if time >= day.timesFree[day.timesFree.count - 1].to {
+                timeRangeToDisplay = TimeRangeCollective(from: day.timesFree[day.timesFree.count - 1].to, to: endTime, users: [])
+            }
+            for i in 0..<day.timesFree.count {
+                if day.timesFree[i].isWithinRange(time: time) {
+                    timeRangeToDisplay = day.timesFree[i]
+                    break
+                }
             }
         }
         
         if !isShowingAvailabilityDetail {
-            createAvailabilityDetail(day: day, timeRange: timeRangeToDisplay)
+            createAvailabilityDetail(date: day.date, timeRange: timeRangeToDisplay)
             isShowingAvailabilityDetail = true
-        } else {
-            availabilityDetail.configureTimeRange(startTime: timeRangeToDisplay.from, endTime: timeRangeToDisplay.to)
+            currentDateShowing = day.date
+        } else if currentDateShowing == day.date {
+            availabilityDetail.configureTimeRange(timeRange: TimeRange(from: timeRangeToDisplay.from, to: timeRangeToDisplay.to), date: day.date)
             availabilityDetail.configureUsers(users: timeRangeToDisplay.users)
+        } else {
+            hideAvailiabilityDetail()
+            createAvailabilityDetail(date: day.date, timeRange: timeRangeToDisplay)
+            currentDateShowing = day.date
+            isShowingAvailabilityDetail = true
         }
         
         availabilityDetailTopConstraint = availabilityDetail.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 80)
@@ -225,9 +276,9 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     }
 
     // instantiate the availability detail in the bottom right corner
-    func createAvailabilityDetail(day: DayCollective, timeRange: TimeRangeCollective) {
+    func createAvailabilityDetail(date: ScheduleDate, timeRange: TimeRangeCollective) {
         availabilityDetail = AvailabilityDetail.instanceFromNib(closeDetail: hideAvailiabilityDetail, expandDetail: expandAvailabilityDetail, collapseDetail: collapseAvailabilityDetail)
-        availabilityDetail.configureTimeRange(startTime: timeRange.from, endTime: timeRange.to)
+        availabilityDetail.configureTimeRange(timeRange: TimeRange(from: timeRange.from, to: timeRange.to), date: date)
         availabilityDetail.configureUsers(users: timeRange.users)
         self.addSubview(availabilityDetail)
         availabilityDetail.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: -10).isActive = true
@@ -281,7 +332,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
                     dateView.translatesAutoresizingMaskIntoConstraints = false
                     dateView.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
                     dateView.dateLabel.text = String(CalendarDate(userSchedule.datesFree[i].date.date!).day)
-                    dateView.weekdayLabel.text = CalendarDate(userSchedule.datesFree[i].date.date!).weekdayString
+                    dateView.weekdayLabel.text = CalendarDate(userSchedule.datesFree[i].date.date!).getWeekdayAbr().uppercased()
                     datesHorizontalList.addArrangedSubview(dateView)
                 }
             // the availability bars are displaying weekdays for setting the profile weekly availability
@@ -289,7 +340,9 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
                 if let dayView = DayHeaderView.instanceFromNib() {
                     dayView.translatesAutoresizingMaskIntoConstraints = false
                     dayView.widthAnchor.constraint(equalToConstant: availabilityBarWidth).isActive = true
-                    dayView.weekdayLabel.text = CalendarDate.weekdaySymbols[userSchedule.datesFree[i].date.weekDate!]
+                    
+                    let weekdayStr = CalendarDate.weekdaySymbols[userSchedule.datesFree[i].date.weekDate!]
+                    dayView.weekdayLabel.text = weekdayStr.uppercased()
                     datesHorizontalList.addArrangedSubview(dayView)
                 }
             }
