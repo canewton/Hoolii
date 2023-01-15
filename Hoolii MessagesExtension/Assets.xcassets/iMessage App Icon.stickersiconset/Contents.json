@@ -1,11 +1,13 @@
 {
   "images" : [
     {
+      "filename" : "hoolii_dark_green_square.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
+      "filename" : "hoolii_dark_green_square 1.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
@@ -23,6 +25,7 @@
       "size" : "60x45"
     },
     {
+      "filename" : "hoolii_dark_green_square 2.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
@@ -40,29 +43,34 @@
       "size" : "74x55"
     },
     {
+      "filename" : "hoolii_dark_green_square 3.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
     },
     {
+      "filename" : "hoolii_dark_green_square 4.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "2x",
       "size" : "27x20"
     },
     {
+      "filename" : "hoolii_dark_green_square 5.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "3x",
       "size" : "27x20"
     },
     {
+      "filename" : "hoolii_dark_green_square 6.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "2x",
       "size" : "32x24"
     },
     {
+      "filename" : "hoolii_dark_green_square 7.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "3x",

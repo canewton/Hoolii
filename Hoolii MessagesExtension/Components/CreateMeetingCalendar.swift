@@ -21,9 +21,8 @@ class CreateMeetingCalendar: UIViewController, ViewControllerWithIdentifier {
     let arrowRightIcon: ScaledIcon = ScaledIcon(name: "chevron-right-solid", width: 15, height: 15, color: .label)
     
     let formatter = DateFormatter()
-    var collectiveSchedule: CollectiveSchedule = CollectiveSchedule()
     
-    var addDateCallback: ((_ collectiveSchedule: CollectiveSchedule) -> Void)!
+    var addDateCallback: (() -> Void)!
     var numRows: Int = 6
     
     // Set styling, images, and colors
@@ -122,14 +121,14 @@ extension CreateMeetingCalendar: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         configureCell(view: cell, cellState: cellState)
-        collectiveSchedule.addDate(date)
-        addDateCallback(collectiveSchedule)
+        CollectiveSchedule.shared.addDate(date)
+        addDateCallback()
     }
 
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         configureCell(view: cell, cellState: cellState)
-        collectiveSchedule.removeDate(date)
-        addDateCallback(collectiveSchedule)
+        CollectiveSchedule.shared.removeDate(date)
+        addDateCallback()
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
