@@ -108,12 +108,13 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
         if storedAvatar != nil {
             let avatar = Avatar(jsonValue: storedAvatar!)
             let profileIconContent = (avatar.toFacialFeatureOption())
+            let shiftConst = profileIconContent.getShiftConst() * profileIcon.bounds.height
             profileIcon.addSubview(profileIconContent)
             profileIconContent.translatesAutoresizingMaskIntoConstraints = false
-            profileIconContent.topAnchor.constraint(equalTo: profileIcon.topAnchor, constant: 5).isActive = true
+            profileIconContent.topAnchor.constraint(equalTo: profileIcon.topAnchor, constant: 5 - shiftConst).isActive = true
             profileIconContent.leftAnchor.constraint(equalTo: profileIcon.leftAnchor, constant: 5).isActive = true
             profileIconContent.rightAnchor.constraint(equalTo: profileIcon.rightAnchor, constant: -5).isActive = true
-            profileIconContent.bottomAnchor.constraint(equalTo: profileIcon.bottomAnchor, constant: -5).isActive = true
+            profileIconContent.bottomAnchor.constraint(equalTo: profileIcon.bottomAnchor, constant: -5 - shiftConst).isActive = true
             
             profileIcon.backgroundColor = AppColors.backgroundColorArray[avatar.backgroundIndex]
         }
@@ -124,7 +125,7 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
         let id: String = StoredValues.get(key: StoredValuesConstants.userID)!
         let firstName: String = StoredValues.get(key: StoredValuesConstants.firstName)!
         let lastName: String = StoredValues.get(key: StoredValuesConstants.lastName)!
-        return User(id: id, firstName: firstName, lastName: lastName, userAvatar: Avatar(chinIndex: 0, earIndex: 0, browIndex: 0, glassIndex: 0, mouthIndex: 0, noseIndex: 0, hairIndex: 0, skinTone: 0, hairColor: 0, backgroundIndex: 0))
+        return User(id: id, firstName: firstName, lastName: lastName, userAvatar: Avatar())
     }
     
     // if there is the weekly availability has not been set, return an empty scedule

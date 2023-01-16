@@ -35,7 +35,7 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     var editProfileCallback: (() -> Void)!
     
     // Define the actual avatar variable being made/stored
-    var generatedAvatar: Avatar = Avatar(chinIndex: 0, earIndex: 0, browIndex: 0, glassIndex: 0, mouthIndex: 0, noseIndex: 0, hairIndex: 8, skinTone: 0, hairColor: 0, backgroundIndex: 0)
+    var generatedAvatar: Avatar = Avatar()
     
     // MARK: VARIABLE DECLARATION END
     

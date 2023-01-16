@@ -22,6 +22,8 @@ final class FacialFeatureOption: UIView {
     @IBOutlet weak var hairMidFront: UIImageView!
     @IBOutlet weak var brows: UIImageView!
     @IBOutlet weak var mouth: UIImageView!
+    var hairShiftConst: CGFloat = 0
+    var beardShiftConst: CGFloat = 0
     
     class func instanceFromNib() -> FacialFeatureOption {
         let facialFeatureOption = UINib(nibName: "FacialFeatureOption", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? FacialFeatureOption
@@ -119,6 +121,26 @@ final class FacialFeatureOption: UIView {
         return self
     }
     
+    func addHair(front: UIImage?, back: UIImage?, hairShift: CGFloat) -> FacialFeatureOption {
+        hairShiftConst = hairShift
+        return addHair(front: front, back: back)
+    }
+    
+    func addHair(_ front: UIImage?, hairShift: CGFloat) -> FacialFeatureOption {
+        hairShiftConst = hairShift
+        return addHair(front)
+    }
+    
+    func addHair(front: UIImage?, middle: UIImage?, back: UIImage?, hairShift: CGFloat) -> FacialFeatureOption {
+        hairShiftConst = hairShift
+        return addHair(front: front, middle: middle, back: back)
+    }
+    
+    func addHair(front: UIImage?, midFront: UIImage?, midBack: UIImage?, back: UIImage?, hairShift: CGFloat) -> FacialFeatureOption {
+        hairShiftConst = hairShift
+        return addHair(front: front, midFront: midFront, midBack: midBack, back: back)
+    }
+    
     func addEyes(_ image: UIImage?) -> FacialFeatureOption {
         eyes.image = UIImage(named: "Eyes 1")
         glasses.image = image
@@ -131,6 +153,11 @@ final class FacialFeatureOption: UIView {
         
         beard.tintColor = AppColors.hairColorArray[0]
         return self
+    }
+    
+    func addBeard(_ image: UIImage?, beardShift: CGFloat) -> FacialFeatureOption {
+        beardShiftConst = beardShift
+        return addBeard(image)
     }
     
     func addEars(_ image: UIImage?) -> FacialFeatureOption {
@@ -148,5 +175,16 @@ final class FacialFeatureOption: UIView {
     func addMouth(_ image: UIImage?) -> FacialFeatureOption {
         mouth.image = image
         return self
+    }
+    
+    func getShiftConst() -> CGFloat {
+        print("beard")
+        print(beardShiftConst)
+        if hairShiftConst >= 0 && beardShiftConst >= 0 {
+            return hairShiftConst > beardShiftConst ? hairShiftConst : beardShiftConst
+        } else if hairShiftConst <= 0 && beardShiftConst >= 0 {
+            return hairShiftConst + beardShiftConst
+        }
+        return 0
     }
 }

@@ -20,7 +20,7 @@ struct Avatar: Codable, Equatable {
     var skinTone:   Int
     var hairColor:  Int
     var backgroundIndex: Int
-    init(chinIndex:Int, earIndex: Int, browIndex: Int, glassIndex: Int , mouthIndex: Int, noseIndex: Int, hairIndex: Int, skinTone:  Int, hairColor: Int, backgroundIndex: Int) {
+    init(chinIndex:Int, earIndex: Int, browIndex: Int, glassIndex: Int , mouthIndex: Int, noseIndex: Int, hairIndex: Int, skinTone:  Int, hairColor: Int, backgroundIndex: Int, shiftConst: Int) {
         self.chinIndex = chinIndex
         self.earIndex = earIndex
         self.browIndex = browIndex
@@ -31,6 +31,10 @@ struct Avatar: Codable, Equatable {
         self.skinTone = skinTone
         self.hairColor = hairColor
         self.backgroundIndex = backgroundIndex
+    }
+    
+    init() {
+        self.init(chinIndex: 0, earIndex: 0, browIndex: 0, glassIndex: 0, mouthIndex: 0, noseIndex: 0, hairIndex: 0, skinTone: 0, hairColor: 0, backgroundIndex: 0, shiftConst: 0)
     }
     
     init(jsonValue: String) {
@@ -67,6 +71,9 @@ struct Avatar: Codable, Equatable {
         facialFeatureOption.hairMidFront.tintColor = AppColors.hairColorArray[hairColor]
         facialFeatureOption.brows.tintColor = AppColors.hairColorArray[hairColor]
         facialFeatureOption.beard.tintColor = AppColors.hairColorArray[hairColor]
+        
+        facialFeatureOption.hairShiftConst = AvatarConstants.hairOptions[hairIndex].hairShiftConst
+        facialFeatureOption.beardShiftConst = AvatarConstants.chinOptions[chinIndex].beardShiftConst
         
         return facialFeatureOption
     }
