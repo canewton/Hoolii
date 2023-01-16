@@ -52,7 +52,7 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     @IBOutlet weak var noseImgView: UIImageView!
     @IBOutlet weak var mouthImgView: UIImageView!
     @IBOutlet weak var eyeImgView: UIImageView!
-    @IBOutlet weak var glassFrameImgVIew: UIImageView!
+    @IBOutlet weak var glassFrameImgView: UIImageView!
     @IBOutlet weak var glassLensImgView: UIImageView!
     @IBOutlet weak var eyebrowImgView: UIImageView!
     @IBOutlet weak var sideHairImgView: UIImageView!
@@ -243,6 +243,11 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
                 updateFeatureSelection(newFeature: 7)
                 selectBackgroundImgView.backgroundColor = AppColors.featureColorArray[1]
             }
+            if(featureTapped == selectBackgroundImgView) {
+                elemCollectionView.isHidden = true
+            } else {
+                elemCollectionView.isHidden = false
+            }
             elemCollectionView.reloadData()
             swapColorSet()
         }
@@ -267,9 +272,8 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
             
         case 1: // CUSTOMIZATION OF EYES
             glassLensImgView.image = UIImage(named: AvatarCreatorViewController.lensArray[elemIndex])
-            glassFrameImgVIew.image = UIImage(named: AvatarCreatorViewController.frameArray[elemIndex] )
+            glassFrameImgView.image = UIImage(named: AvatarCreatorViewController.frameArray[elemIndex] )
             AvatarCreatorViewController.eyeIndex = elemIndex
-            
         case 2: // CUSTOMIZATION OF NOSE
             noseImgView.image = UIImage(named: AvatarCreatorViewController.noseArray[elemIndex])
             AvatarCreatorViewController.noseIndex = elemIndex
@@ -288,14 +292,12 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
             frontHairImgView.image = UIImage(named: AvatarCreatorViewController.frontHairArray[elemIndex])
             sideHairImgView.image = UIImage(named: AvatarCreatorViewController.hairSideArray[elemIndex])
             AvatarCreatorViewController.hairIndex = elemIndex
+        case 7: // Customization of background color does not alter cells
+            break
         default:
             break
         }
-        print(elemIndex)
     }
-    
-    
-    
     
     func updateFeatureSelection(newFeature: Int) {
         // reset the previous feature's background back to grey
@@ -401,6 +403,7 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         var index = 0
         for imageView in imageViews {
             if (index < colorArray.count) {
+                // make sure the images aren't hidden then hange their colors
                 imageView?.isHidden = false
                 imageView?.backgroundColor = colorArray[index]
                 // Add shadows to the images
@@ -410,7 +413,7 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
                 imageView?.layer.shadowOffset = CGSize(width: 0, height: 4)
                 index += 1
             } else {
-                // hide both the image and its shadow
+                // hide both the image and its shadow if num colors in array exceeded
                 imageView?.isHidden = true
                 imageView?.layer.shadowOpacity = 0.0
             }
@@ -437,7 +440,7 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
             AvatarCreatorViewController.hairColor = AppColors.hairColorArray[colorIndex]
             AvatarCreatorViewController.hairColorIndex = colorIndex
         } else if (featureChanged > 6) {
-            // User is changing the background color
+            // User is changing the background color;
             avatarBackgroundImageView.backgroundColor = AppColors.backgroundColorArray[colorIndex]
             AvatarCreatorViewController.backgroundColorIndex = colorIndex
         }
@@ -505,6 +508,7 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         let index = sender.view?.tag
         print("Image at index \(index ?? -1) was tapped")
         let elemIndex: Int = index!
+
         updateAvatar(elemIndex: elemIndex)
     }
     
@@ -579,7 +583,7 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     }
     
     func storeAvatar() {
-        // Update generatedAVatar with the user's current selection of variables
+        // Update generatedAvatar with the user's current selection of variables
         saveAvatar(newAvatar: &generatedAvatar)
         StoredValues.set(key: StoredValuesConstants.userAvatar, value: generatedAvatar.getJsonValue())
         // dismiss the avatarCreatorView
@@ -592,9 +596,81 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         storeAvatar()
     }
     
-    
+//
+//    @IBOutlet weak var offsetLabel: UILabel!
+//
+//    @IBAction func offsetSlider(_ sender: UISlider) {
+//        let initialYPositon = backHairImgView.frame.origin.y
+//        let roundedVal = Double(round(sender.value))
+//        offsetLabel.text = String(roundedVal)
+//        offsetTesting(initValue: initialYPositon, slideVal: roundedVal)
+//    }
+//
+//
+//    func offsetTesting(initValue: Double, slideVal: Double ) {
+//        backHairImgView.frame.origin.y = initValue + slideVal
+//        headImgView.frame.origin.y = initValue + slideVal
+//        earImgView.frame.origin.y = initValue + slideVal
+//        chinImgView.frame.origin.y = initValue + slideVal
+//        beardImgView.frame.origin.y = initValue + slideVal
+//        noseImgView.frame.origin.y = initValue + slideVal
+//        mouthImgView.frame.origin.y = initValue + slideVal
+//        eyeImgView.frame.origin.y = initValue + slideVal
+//        glassFrameImgView.frame.origin.y  = initValue + slideVal
+//        glassLensImgView.frame.origin.y = initValue + slideVal
+//        eyebrowImgView.frame.origin.y = initValue + slideVal
+//        sideHairImgView.frame.origin.y = initValue + slideVal
+//        frontHairImgView.frame.origin.y = initValue + slideVal
+//        hairTieImgView.frame.origin.y = initValue + slideVal
+//    }
+//
+//
+//    @IBOutlet weak var bruh: UISlider!
+//
+//
+//    @IBOutlet weak var elemLabel: UILabel!
+//
+//
+//
+//
+//    @IBAction func resetButtonPressed(_ sender: Any) {
+//        backHairImgView.frame.origin.y = 0
+//        headImgView.frame.origin.y = 0
+//        earImgView.frame.origin.y = 0
+//        chinImgView.frame.origin.y = 0
+//        beardImgView.frame.origin.y = 0
+//        noseImgView.frame.origin.y = 0
+//        mouthImgView.frame.origin.y = 0
+//        eyeImgView.frame.origin.y = 0
+//        glassFrameImgView.frame.origin.y  = 0
+//        glassLensImgView.frame.origin.y = 0
+//        eyebrowImgView.frame.origin.y = 0
+//        sideHairImgView.frame.origin.y = 9.67
+//        frontHairImgView.frame.origin.y = 9.67
+//        hairTieImgView.frame.origin.y = 9.67
+//        bruh.value = 0
+//    }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 } // MARK: end of AvatarViewCreator Class
-
-
+//
+//
 
 
