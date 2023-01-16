@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
     
     // MARK: VARIABLE DECLARATION START
     
@@ -19,6 +19,7 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     @IBOutlet weak var bottomBar: UIView!
     @IBOutlet weak var saveAvatarButton: ThemedButton!
     @IBOutlet weak var backgroundColor: UIView!
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var facialFeatureOptionsLabel: UILabel!
     
     // Outlet for element table
@@ -33,6 +34,7 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     var currSkinColorIndex: Int = 0
     var currHairColorIndex: Int = 0
     var currBackgroundColorIndex: Int = 0
+    var editNameCallback: (() -> Void)!
     
     // Define the actual avatar variable being made/stored
     var generatedAvatar: Avatar = Avatar(chinIndex: 0, earIndex: 0, browIndex: 0, glassIndex: 0, mouthIndex: 0, noseIndex: 0, hairIndex: 8, skinTone: 0, hairColor: 0, backgroundIndex: 0)
@@ -43,6 +45,16 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     override func viewDidLoad() {
         // Function loaded: set all initial colors for elements
         super.viewDidLoad()
+        
+        StoredValues.setIfEmpty(key: StoredValuesConstants.firstName, value: "")
+        StoredValues.setIfEmpty(key: StoredValuesConstants.lastName, value: "")
+        
+        let firstName: String = StoredValues.get(key: StoredValuesConstants.firstName)!
+        let lastName: String = StoredValues.get(key: StoredValuesConstants.lastName)!
+        let fullName: String = "\(firstName) \(lastName)"
+        if fullName != "" {
+            nameTextField.text = fullName
+        }
         
         avatarView.addSubview(avatarContent)
         avatarContent.translatesAutoresizingMaskIntoConstraints = false
@@ -68,11 +80,85 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         avatarContent.setSkinColor(color: AppColors.skintoneArray[currSkinColorIndex])
         
         displayFacialFeatureOptions(index: 0)
+        nameTextField.delegate = self
+        nameTextField.autocapitalizationType = .words
+        
+        if nameTextField.text?.trimmingCharacters(in: .whitespaces) == "Enter Full Name Here" {
+            saveAvatarButton.isEnabled = false
+        }
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         elemCollectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    /**
+     * Called when 'return' key pressed. return NO to ignore.
+     */
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    @IBAction func onEditNameBegin(_ sender: Any) {
+        if nameTextField.text == "Enter First and Last Name Here" {
+            nameTextField.text = ""
+        }
+    }
+    
+    @IBAction func onEditNameEnd(_ sender: Any) {
+        if nameTextField.text == "" {
+            nameTextField.text = "Enter First and Last Name Here"
+        }
+        
+        if nameTextField.text?.trimmingCharacters(in: .whitespaces) != "Enter Full Name Here" {
+            saveAvatarButton.isEnabled = true
+            
+            let fullName = nameTextField.text!.trimmingCharacters(in: .whitespaces)
+            var firstName = ""
+            var lastName = ""
+            var components = fullName.components(separatedBy: " ")
+            if components.count > 0 {
+                firstName = components.removeFirst()
+                lastName = ""
+                for i in 0..<(components.count) {
+                    lastName += "\(components[i]) "
+                }
+                lastName = lastName.trimmingCharacters(in: .whitespaces)
+            }
+            
+            let firstNameUppercased = firstName.uppercased()
+            let lastNameUppercased = lastName.uppercased()
+            var initials = ""
+            
+            if firstNameUppercased.count > 0 {
+                let firstNameIndex = firstNameUppercased.index(firstNameUppercased.startIndex, offsetBy: 1)
+                initials += firstNameUppercased.prefix(upTo: firstNameIndex)
+            }
+            if lastNameUppercased.count > 0 {
+                let lastNameIndex = lastNameUppercased.index(lastNameUppercased.startIndex, offsetBy: 1)
+                initials += lastNameUppercased.prefix(upTo: lastNameIndex)
+            }
+            
+            StoredValues.set(key: StoredValuesConstants.firstName, value: firstName)
+            StoredValues.set(key: StoredValuesConstants.lastName, value: lastName)
+            StoredValues.set(key: StoredValuesConstants.initials, value: initials)
+            
+            if editNameCallback != nil {
+                editNameCallback()
+            }
+            
+        } else {
+            saveAvatarButton.isEnabled = false
+        }
+    }
+    
+   /**
+    * Called when the user click on the view (outside the UITextField).
+    */
+    override func touchesBegan(_ touches: Set<UITouch>, with: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func setUpColorStack(colors: [UIColor]) {
