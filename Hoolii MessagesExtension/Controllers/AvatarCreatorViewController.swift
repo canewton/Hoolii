@@ -31,10 +31,8 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     var facialFeatureIconIndex: Int = 0
     var avatarContent: FacialFeatureOption!
     let colorScrollHeightConstant: CGFloat = 40
-    var currSkinColorIndex: Int = 0
-    var currHairColorIndex: Int = 0
-    var currBackgroundColorIndex: Int = 0
     var editNameCallback: (() -> Void)!
+    var editProfileCallback: (() -> Void)!
     
     // Define the actual avatar variable being made/stored
     var generatedAvatar: Avatar = Avatar(chinIndex: 0, earIndex: 0, browIndex: 0, glassIndex: 0, mouthIndex: 0, noseIndex: 0, hairIndex: 8, skinTone: 0, hairColor: 0, backgroundIndex: 0)
@@ -59,7 +57,6 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         let storedAvatar = StoredValues.get(key: StoredValuesConstants.userAvatar)
         if storedAvatar != nil {
             generatedAvatar = Avatar(jsonValue: storedAvatar!)
-            print(generatedAvatar)
             avatarContent = generatedAvatar.toFacialFeatureOption()
         } else {
             avatarContent = FacialFeatureOption.instanceFromNib()
@@ -84,8 +81,8 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         elemCollectionView.dataSource = self
         elemCollectionView.delegate = self
         
-        avatarContent.setHairColor(color: AppColors.hairColorArray[currHairColorIndex])
-        avatarContent.setSkinColor(color: AppColors.skintoneArray[currSkinColorIndex])
+        avatarContent.setHairColor(color: AppColors.hairColorArray[generatedAvatar.hairColor])
+        avatarContent.setSkinColor(color: AppColors.skintoneArray[generatedAvatar.skinTone])
         
         displayFacialFeatureOptions(index: 0)
         nameTextField.delegate = self
@@ -198,19 +195,19 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         case "Hair":
             colorScrollHeight.constant = colorScrollHeightConstant
             setUpColorStack(colors: AppColors.hairColorArray)
-            (colorOptionsStack.arrangedSubviews[currHairColorIndex] as! AvatarColorOption).selectWithoutAnimation()
+            (colorOptionsStack.arrangedSubviews[generatedAvatar.hairColor] as! AvatarColorOption).selectWithoutAnimation()
         case "Head":
             colorScrollHeight.constant = colorScrollHeightConstant
             setUpColorStack(colors: AppColors.skintoneArray)
-            (colorOptionsStack.arrangedSubviews[currSkinColorIndex] as! AvatarColorOption).selectWithoutAnimation()
+            (colorOptionsStack.arrangedSubviews[generatedAvatar.skinTone] as! AvatarColorOption).selectWithoutAnimation()
         case "Brows":
             colorScrollHeight.constant = colorScrollHeightConstant
             setUpColorStack(colors: AppColors.hairColorArray)
-            (colorOptionsStack.arrangedSubviews[currHairColorIndex] as! AvatarColorOption).selectWithoutAnimation()
+            (colorOptionsStack.arrangedSubviews[generatedAvatar.hairColor] as! AvatarColorOption).selectWithoutAnimation()
         case "Background":
             colorScrollHeight.constant = colorScrollHeightConstant
             setUpColorStack(colors: AppColors.backgroundColorArray)
-            (colorOptionsStack.arrangedSubviews[currBackgroundColorIndex] as! AvatarColorOption).selectWithoutAnimation()
+            (colorOptionsStack.arrangedSubviews[generatedAvatar.backgroundIndex] as! AvatarColorOption).selectWithoutAnimation()
         default:
             colorScrollHeight.constant = 0
         }
@@ -232,21 +229,21 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     func colorTapped(colorIndex: Int) {
         switch AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName {
         case "Hair":
-            (colorOptionsStack.arrangedSubviews[currHairColorIndex] as! AvatarColorOption).deselect()
+            (colorOptionsStack.arrangedSubviews[generatedAvatar.hairColor] as! AvatarColorOption).deselect()
             avatarContent.setHairColor(color: AppColors.hairColorArray[colorIndex])
-            currHairColorIndex = colorIndex
+            generatedAvatar.hairColor = colorIndex
         case "Head":
-            (colorOptionsStack.arrangedSubviews[currSkinColorIndex] as! AvatarColorOption).deselect()
+            (colorOptionsStack.arrangedSubviews[generatedAvatar.skinTone] as! AvatarColorOption).deselect()
             avatarContent.setSkinColor(color: AppColors.skintoneArray[colorIndex])
-            currSkinColorIndex = colorIndex
+            generatedAvatar.skinTone = colorIndex
         case "Brows":
-            (colorOptionsStack.arrangedSubviews[currHairColorIndex] as! AvatarColorOption).deselect()
+            (colorOptionsStack.arrangedSubviews[generatedAvatar.hairColor] as! AvatarColorOption).deselect()
             avatarContent.setHairColor(color: AppColors.hairColorArray[colorIndex])
-            currHairColorIndex = colorIndex
+            generatedAvatar.hairColor = colorIndex
         case "Background":
-            (colorOptionsStack.arrangedSubviews[currBackgroundColorIndex] as! AvatarColorOption).deselect()
+            (colorOptionsStack.arrangedSubviews[generatedAvatar.backgroundIndex] as! AvatarColorOption).deselect()
             backgroundColor.backgroundColor = AppColors.backgroundColorArray[colorIndex]
-            currBackgroundColorIndex = colorIndex
+            generatedAvatar.backgroundIndex = colorIndex
         default:
             return
         }
@@ -302,8 +299,8 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         avatarOption.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
         avatarOption.bottomAnchor.constraint(equalTo: cell.bottomAnchor).isActive = true
         
-        avatarOption.setSkinColor(color: AppColors.skintoneArray[currSkinColorIndex])
-        avatarOption.setHairColor(color: AppColors.hairColorArray[currHairColorIndex])
+        avatarOption.setSkinColor(color: AppColors.skintoneArray[generatedAvatar.skinTone])
+        avatarOption.setHairColor(color: AppColors.hairColorArray[generatedAvatar.hairColor])
         
         return cell
     }
@@ -365,12 +362,16 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     func storeAvatar() {
         // Update generatedAVatar with the user's current selection of variables
         StoredValues.set(key: StoredValuesConstants.userAvatar, value: generatedAvatar.getJsonValue())
-        // dismiss the avatarCreatorView
-        self.dismiss(animated: true)
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         storeAvatar()
+        if editProfileCallback != nil {
+            editProfileCallback()
+        }
+        
+        // dismiss the avatarCreatorView
+        self.dismiss(animated: true)
     }
     
     //MARK: END OF AVATAR SAVNG FUNCTIONS

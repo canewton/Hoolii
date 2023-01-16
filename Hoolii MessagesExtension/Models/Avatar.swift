@@ -59,6 +59,15 @@ struct Avatar: Codable, Equatable {
         facialFeatureOption.hairMidFront.image = AvatarConstants.hairOptions[hairIndex].hairMidFront.image
         facialFeatureOption.hairMidBack.image = AvatarConstants.hairOptions[hairIndex].hairMidBack.image
         
+        facialFeatureOption.face.tintColor = AppColors.skintoneArray[skinTone]
+        facialFeatureOption.chin.tintColor = AppColors.skintoneArray[skinTone]
+        facialFeatureOption.hairBack.tintColor = AppColors.hairColorArray[hairColor]
+        facialFeatureOption.hairFront.tintColor = AppColors.hairColorArray[hairColor]
+        facialFeatureOption.hairMidBack.tintColor = AppColors.hairColorArray[hairColor]
+        facialFeatureOption.hairMidFront.tintColor = AppColors.hairColorArray[hairColor]
+        facialFeatureOption.brows.tintColor = AppColors.hairColorArray[hairColor]
+        facialFeatureOption.beard.tintColor = AppColors.hairColorArray[hairColor]
+        
         return facialFeatureOption
     }
     

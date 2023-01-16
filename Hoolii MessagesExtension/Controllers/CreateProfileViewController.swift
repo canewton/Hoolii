@@ -12,7 +12,6 @@ import UIKit
 class CreateProfileViewController: AppViewController, ViewControllerWithIdentifier {
     @IBOutlet weak var backButton: BackButton!
     @IBOutlet weak var profileIcon: UIView!
-    @IBOutlet weak var profileInitials: UILabel!
     @IBOutlet weak var profileAvailabilityPreviewContainer: UIView!
     @IBOutlet weak var createProfileButton: ThemedButton!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -49,6 +48,7 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
         configureProfileIcon()
         configureNameLabel()
         configureEditButtons()
+        generateUserAvatar()
         
         scrollView.contentSize = CGSize(width: view.frame.width, height: screenContent.bounds.height)
         screenContent.frame.size.width = view.frame.width
@@ -95,7 +95,28 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
         let avatarCreatorVC = self.storyboard?
             .instantiateViewController(withIdentifier: "AvatarCreatorViewController") as! AvatarCreatorViewController
         avatarCreatorVC.editNameCallback = configureNameLabel
+        avatarCreatorVC.editProfileCallback = generateUserAvatar
         self.transitionToScreen(viewController: avatarCreatorVC)
+    }
+    
+    func generateUserAvatar() {
+        for _ in 0..<profileIcon.subviews.count {
+            profileIcon.subviews[0].removeFromSuperview()
+        }
+        
+        let storedAvatar = StoredValues.get(key: StoredValuesConstants.userAvatar)
+        if storedAvatar != nil {
+            let avatar = Avatar(jsonValue: storedAvatar!)
+            let profileIconContent = (avatar.toFacialFeatureOption())
+            profileIcon.addSubview(profileIconContent)
+            profileIconContent.translatesAutoresizingMaskIntoConstraints = false
+            profileIconContent.topAnchor.constraint(equalTo: profileIcon.topAnchor, constant: 5).isActive = true
+            profileIconContent.leftAnchor.constraint(equalTo: profileIcon.leftAnchor, constant: 5).isActive = true
+            profileIconContent.rightAnchor.constraint(equalTo: profileIcon.rightAnchor, constant: -5).isActive = true
+            profileIconContent.bottomAnchor.constraint(equalTo: profileIcon.bottomAnchor, constant: -5).isActive = true
+            
+            profileIcon.backgroundColor = AppColors.backgroundColorArray[avatar.backgroundIndex]
+        }
     }
     
     // get the user stored in local storage
@@ -142,7 +163,7 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
     }
     
     func configureProfileIcon() {
-        profileIcon.layer.cornerRadius = 55
+        profileIcon.layer.cornerRadius = 65
     }
     
     @IBAction func onCreateProfile(_ sender: Any) {

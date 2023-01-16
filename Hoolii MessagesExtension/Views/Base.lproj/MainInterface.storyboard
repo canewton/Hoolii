@@ -113,31 +113,21 @@
                                                 <rect key="frame" x="30" y="165.66666666666666" width="300" height="159.99999999999997"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Fu-cQ-FSK">
-                                                        <rect key="frame" x="0.0" y="25" width="110" height="110"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bV1-vS-Fv3">
-                                                                <rect key="frame" x="20" y="25" width="70" height="60"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
+                                                        <rect key="frame" x="0.0" y="15" width="130" height="130"/>
                                                         <color key="backgroundColor" systemColor="systemMintColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="110" id="52v-ab-GGN"/>
-                                                            <constraint firstAttribute="height" constant="110" id="BbP-SX-GM7"/>
-                                                            <constraint firstItem="bV1-vS-Fv3" firstAttribute="centerX" secondItem="0Fu-cQ-FSK" secondAttribute="centerX" id="ERZ-W5-2BU"/>
-                                                            <constraint firstItem="bV1-vS-Fv3" firstAttribute="centerY" secondItem="0Fu-cQ-FSK" secondAttribute="centerY" id="rI4-jT-FSR"/>
+                                                            <constraint firstAttribute="width" constant="130" id="52v-ab-GGN"/>
+                                                            <constraint firstAttribute="height" constant="130" id="BbP-SX-GM7"/>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qh8-8v-KX7">
-                                                        <rect key="frame" x="140" y="55" width="33" height="15"/>
+                                                        <rect key="frame" x="160" y="55" width="33" height="15"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJ2-Yw-wS0">
-                                                        <rect key="frame" x="140" y="80" width="42" height="21"/>
+                                                        <rect key="frame" x="160" y="80" width="42" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -154,7 +144,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdo-an-0R3">
-                                                <rect key="frame" x="30" y="375.66666666666669" width="300" height="40"/>
+                                                <rect key="frame" x="30" y="360.66666666666669" width="300" height="40"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weekly Availability" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l7T-SJ-poC">
                                                         <rect key="frame" x="0.0" y="10.333333333333313" width="145" height="19.333333333333329"/>
@@ -278,7 +268,7 @@
                                             <constraint firstItem="34e-7O-q3f" firstAttribute="top" secondItem="mNO-Sa-CkO" secondAttribute="bottom" constant="5" id="3Fh-gf-4KV"/>
                                             <constraint firstItem="mNO-Sa-CkO" firstAttribute="leading" secondItem="nF9-oH-xEU" secondAttribute="leading" constant="30" id="4aL-Oe-gL0"/>
                                             <constraint firstItem="Q9k-BT-OpU" firstAttribute="top" secondItem="nF9-oH-xEU" secondAttribute="top" constant="15" id="8ak-o1-O6A"/>
-                                            <constraint firstItem="tdo-an-0R3" firstAttribute="top" secondItem="34e-7O-q3f" secondAttribute="bottom" constant="50" id="B6Q-D3-DLI"/>
+                                            <constraint firstItem="tdo-an-0R3" firstAttribute="top" secondItem="34e-7O-q3f" secondAttribute="bottom" constant="35" id="B6Q-D3-DLI"/>
                                             <constraint firstItem="4Xt-a6-RuJ" firstAttribute="centerX" secondItem="3hw-qC-DJ7" secondAttribute="centerX" id="FMc-wl-Fss"/>
                                             <constraint firstItem="6j5-Uo-h0f" firstAttribute="top" secondItem="tdo-an-0R3" secondAttribute="bottom" constant="20" id="FeW-yb-PvU"/>
                                             <constraint firstItem="Q9k-BT-OpU" firstAttribute="leading" secondItem="nF9-oH-xEU" secondAttribute="leading" constant="20" id="ITF-Db-DU5"/>
@@ -318,7 +308,6 @@
                         <outlet property="nameLabel" destination="vJ2-Yw-wS0" id="OPQ-yd-qom"/>
                         <outlet property="profileAvailabilityPreviewContainer" destination="6j5-Uo-h0f" id="8u2-qQ-aRg"/>
                         <outlet property="profileIcon" destination="0Fu-cQ-FSK" id="r2C-UX-bat"/>
-                        <outlet property="profileInitials" destination="bV1-vS-Fv3" id="2J9-j4-FIj"/>
                         <outlet property="screenContent" destination="3hw-qC-DJ7" id="Zk7-Af-dIN"/>
                         <outlet property="scrollView" destination="g3o-Qc-4O3" id="Lzs-3L-UGk"/>
                     </connections>
