@@ -233,7 +233,7 @@
                                             </view>
                                         </subviews>
                                         <viewLayoutGuide key="safeArea" id="nF9-oH-xEU"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="alert"/>
                                         <constraints>
                                             <constraint firstItem="Q9k-BT-OpU" firstAttribute="top" secondItem="nF9-oH-xEU" secondAttribute="top" constant="15" id="8ak-o1-O6A"/>
                                             <constraint firstItem="tdo-an-0R3" firstAttribute="top" secondItem="34e-7O-q3f" secondAttribute="bottom" constant="50" id="B6Q-D3-DLI"/>
@@ -1093,7 +1093,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Rat-HC-B0K">
-                                <rect key="frame" x="20" y="544" width="320" height="146"/>
+                                <rect key="frame" x="20" y="554" width="320" height="136"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Eaa-xX-F6k">
                                     <size key="itemSize" width="98" height="98"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1140,7 +1140,7 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="3xc-Jb-lmk"/>
+                                    <constraint firstAttribute="height" constant="70" id="3xc-Jb-lmk"/>
                                     <constraint firstAttribute="trailing" secondItem="0SU-Tc-N9n" secondAttribute="trailing" id="7kg-td-XkJ"/>
                                     <constraint firstItem="0SU-Tc-N9n" firstAttribute="top" secondItem="dXN-oL-Q37" secondAttribute="top" id="TYV-3O-hVf"/>
                                     <constraint firstItem="0SU-Tc-N9n" firstAttribute="leading" secondItem="dXN-oL-Q37" secondAttribute="leading" id="hc2-9P-nxd"/>
@@ -1150,7 +1150,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="YtQ-6L-m3T"/>
                             </scrollView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbw-kT-qGW" userLabel="colorScroll">
-                                <rect key="frame" x="0.0" y="453" width="360" height="40"/>
+                                <rect key="frame" x="0.0" y="463" width="360" height="40"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="mGZ-ii-K0j">
                                         <rect key="frame" x="0.0" y="0.0" width="360" height="40"/>
@@ -1174,7 +1174,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Head" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3PS-Yy-h06">
-                                <rect key="frame" x="20" y="508" width="42" height="21"/>
+                                <rect key="frame" x="20" y="518" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1248,13 +1248,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wgy-Yp-Ygp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="XB1-qc-rKf"/>
-                <tapGestureRecognizer id="OVH-dK-AXp"/>
-                <tapGestureRecognizer id="TSx-QE-p2o"/>
-                <tapGestureRecognizer id="LHH-PX-D55"/>
-                <tapGestureRecognizer id="OIc-XJ-IWb"/>
-                <tapGestureRecognizer id="aBt-e2-yjd"/>
-                <tapGestureRecognizer id="t71-Zy-Dkg"/>
             </objects>
             <point key="canvasLocation" x="697.67441860465112" y="1846.9957081545065"/>
         </scene>
