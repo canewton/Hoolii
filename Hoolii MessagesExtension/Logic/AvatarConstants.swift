@@ -17,7 +17,7 @@ class AvatarConstants {
     static let hairOption6 = FacialFeatureOption.instanceFromNib().addHair(front: UIImage(named: "Female hair 6 front"), back: UIImage(named: "Female hair 6 back"))
     static let hairOption7 = FacialFeatureOption.instanceFromNib().addHair(front: nil, back: UIImage(named: "Female hair 7"))
     static let hairOption8 = FacialFeatureOption.instanceFromNib().addHair(front: UIImage(named: "Female hair 8 front"), back: UIImage(named: "Female hair 8 back"))
-    static let hairOption9 = FacialFeatureOption.instanceFromNib().addHair(front: UIImage(named: "Female hair 9 front"), back: UIImage(named: "Female hair 9 back"))
+    static let hairOption9 = FacialFeatureOption.instanceFromNib().addHair(front: UIImage(named: "Female hair 9 front"), midFront: UIImage(named: "Female hair 9 front highlight"), midBack: UIImage(named: "Female hair 9 front hairtie"), back: UIImage(named: "Female hair 9 back"))
     static let hairOption10 = FacialFeatureOption.instanceFromNib().addHair(UIImage(named: "Female hair 10"))
     static let hairOption11 = FacialFeatureOption.instanceFromNib().addHair(UIImage(named: "Female hair 11"))
     static let hairOption12 = FacialFeatureOption.instanceFromNib().addHair(front: UIImage(named: "Female hair 12 front"), back: UIImage(named: "Female hair 12 back"))
@@ -30,9 +30,9 @@ class AvatarConstants {
     static let hairOption19 = FacialFeatureOption.instanceFromNib().addHair(UIImage(named: "Male hair 4"))
     static let hairOption20 = FacialFeatureOption.instanceFromNib().addHair(UIImage(named: "Male hair 5"))
     static let hairOption21 = FacialFeatureOption.instanceFromNib().addHair(UIImage(named: "Male hair 6"))
-    static let hairOption22 = FacialFeatureOption.instanceFromNib().addHair(front: UIImage(named: "Male hair 7 front"), back: UIImage(named: "Male hair 7 back"))
+    static let hairOption22 = FacialFeatureOption.instanceFromNib().addHair(front: UIImage(named: "Male hair 7 front"), midFront: UIImage(named: "Male hair 7 side"), midBack: nil, back: nil)
     static let hairOption23 = FacialFeatureOption.instanceFromNib().addHair(UIImage(named: "Male hair 8"))
-    static let hairOption24 = FacialFeatureOption.instanceFromNib().addHair(front: UIImage(named: "Male hair 9 front"), back: UIImage(named: "Male hair 9 back"))
+    static let hairOption24 = FacialFeatureOption.instanceFromNib().addHair(front: UIImage(named: "Male hair 9 front"), midFront: UIImage(named: "Male hair 9 hairtie"), midBack: nil, back: UIImage(named: "Male hair 9 back"))
     static let hairOption25 = FacialFeatureOption.instanceFromNib().addHair(front: UIImage(named: "Male hair 10 front"), back: UIImage(named: "Male hair 10 back"))
     static let hairOption26 = FacialFeatureOption.instanceFromNib().addHair(front: UIImage(named: "Male hair 11 front"), back: UIImage(named: "Male hair 11 back"))
     static let hairOption27 = FacialFeatureOption.instanceFromNib().addHair(UIImage(named: "Male hair 12"))
@@ -90,5 +90,5 @@ class AvatarConstants {
     static let earOption5 = FacialFeatureOption.instanceFromNib().addEars(UIImage(named: "Ears 5"))
     static let earOptions: [FacialFeatureOption] = [earOption1, earOption2, earOption3, earOption4, earOption5]
     
-    static let facialFeatureSelectionList: [FacialFeatureSelection] = [FacialFeatureSelection(iconName: "Head", options: chinOptions), FacialFeatureSelection(iconName: "Eyes", options: eyeOptions), FacialFeatureSelection(iconName: "Nose", options: noseOptions), FacialFeatureSelection(iconName: "Brows", options: browOptions), FacialFeatureSelection(iconName: "Mouth", options: mouthOptions), FacialFeatureSelection(iconName: "Ears", options: earOptions), FacialFeatureSelection(iconName: "Hair", options: hairOptions), FacialFeatureSelection(iconName: "Background", options: chinOptions)]
+    static let facialFeatureSelectionList: [FacialFeatureSelection] = [FacialFeatureSelection(iconName: "Head", options: chinOptions), FacialFeatureSelection(iconName: "Eyes", options: eyeOptions), FacialFeatureSelection(iconName: "Nose", options: noseOptions), FacialFeatureSelection(iconName: "Brows", options: browOptions), FacialFeatureSelection(iconName: "Mouth", options: mouthOptions), FacialFeatureSelection(iconName: "Ears", options: earOptions), FacialFeatureSelection(iconName: "Hair", options: hairOptions), FacialFeatureSelection(iconName: "Background", options: [])]
 }

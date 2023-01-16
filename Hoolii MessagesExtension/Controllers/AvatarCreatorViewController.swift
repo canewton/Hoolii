@@ -16,6 +16,10 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     @IBOutlet weak var colorOptionsStack: UIStackView!
     @IBOutlet weak var avatarContainerImgView: UIView!
     @IBOutlet weak var avatarView: UIView!
+    @IBOutlet weak var bottomBar: UIView!
+    @IBOutlet weak var saveAvatarButton: ThemedButton!
+    @IBOutlet weak var backgroundColor: UIView!
+    @IBOutlet weak var facialFeatureOptionsLabel: UILabel!
     
     // Outlet for element table
     @IBOutlet weak var elemCollectionView: UICollectionView!
@@ -38,8 +42,6 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     override func viewDidLoad() {
         // Function loaded: set all initial colors for elements
         super.viewDidLoad()
-        avatarView.layer.cornerRadius = 100
-        avatarView.clipsToBounds = true
         
         avatarView.addSubview(avatarContent)
         avatarContent.translatesAutoresizingMaskIntoConstraints = false
@@ -52,6 +54,10 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         
         avatarOptions.displayFacialFeatureOptionsCallback = displayFacialFeatureOptions
         setUpColorStack(colors: AppColors.skintoneArray)
+        configureBottomBar()
+        backgroundColor.backgroundColor = AppColors.backgroundColorArray[0]
+        
+        backgroundColor.layer.cornerRadius = 50
         
         // declare delegate and source for collection
         elemCollectionView.dataSource = self
@@ -81,6 +87,15 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         }
     }
     
+    func configureBottomBar() {
+        bottomBar.layer.shadowColor = AppColors.shadowColor.cgColor
+        bottomBar.layer.shadowOpacity = 0.4
+        bottomBar.layer.shadowOffset = .zero
+        bottomBar.layer.shadowRadius = 10
+        
+        saveAvatarButton.setImage(ScaledIcon(name: "checkmark", width: 15, height: 15, color: .label).image, for: .normal)
+    }
+    
     func displayFacialFeatureOptions(index: Int) {
         facialFeatureIconIndex = index
         
@@ -94,8 +109,16 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         case "Brows":
             colorScrollHeight.constant = colorScrollHeightConstant
             setUpColorStack(colors: AppColors.skintoneArray)
+        case "Background":
+            colorScrollHeight.constant = colorScrollHeightConstant
+            setUpColorStack(colors: AppColors.backgroundColorArray)
         default:
             colorScrollHeight.constant = 0
+        }
+        
+        facialFeatureOptionsLabel.text = AvatarConstants.facialFeatureSelectionList[index].iconName
+        if AvatarConstants.facialFeatureSelectionList[index].iconName == "Background" {
+            facialFeatureOptionsLabel.text = ""
         }
         
         elemCollectionView.reloadData()
@@ -118,6 +141,8 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         case "Brows":
             avatarContent.setHairColor(color: color)
             currHairColor = color
+        case "Background":
+            backgroundColor.backgroundColor = color
         default:
             return
         }
@@ -140,6 +165,11 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        
+        for _ in 0..<cell.subviews.count {
+            cell.subviews[0].removeFromSuperview()
+        }
+        
         let avatarOption = AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].options[indexPath.item]
         cell.addSubview(avatarOption)
         avatarOption.translatesAutoresizingMaskIntoConstraints = false
@@ -168,6 +198,8 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         case "Hair":
             avatarContent.hairBack.image = facialFeature.hairBack.image
             avatarContent.hairFront.image = facialFeature.hairFront.image
+            avatarContent.hairMidBack.image = facialFeature.hairMidBack.image
+            avatarContent.hairMidFront.image = facialFeature.hairMidFront.image
         case "Head":
             avatarContent.chin.image = facialFeature.chin.image
             avatarContent.beard.image = facialFeature.beard.image
@@ -203,5 +235,5 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         storeAvatar()
     }
     
-    //MARK: END OF AVATAR SAVNG/RESTORATION FUNCTIONS
+    //MARK: END OF AVATAR SAVNG FUNCTIONS
 }

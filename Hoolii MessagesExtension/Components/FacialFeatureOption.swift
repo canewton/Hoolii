@@ -57,6 +57,24 @@ final class FacialFeatureOption: UIView {
         hairMidFront.tintColor = color
         brows.tintColor = color
         beard.tintColor = color
+        
+        if hairMidFront.image == UIImage(named: "Male hair 7 side") {
+            hairMidFront.tintColor = adjustedColorForColor(c: color, percent: 0.6)
+        }
+    }
+    
+    func adjustedColorForColor( c: UIColor, percent: CGFloat) -> UIColor {
+        var r,g,b,a: CGFloat
+        r = 0.0
+        g = 0.0
+        b = 0.0
+        a = 0.0
+
+        if c.getRed(&r, green: &g, blue: &b, alpha: &a) {
+            return UIColor(red: max(r * percent, 0.0), green: max(g * percent, 0.0), blue: max(b * percent, 0.0), alpha: a)
+        }
+
+        return UIColor()
     }
     
     func setSkinColor(color: UIColor) {
