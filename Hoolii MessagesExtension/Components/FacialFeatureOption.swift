@@ -23,8 +23,6 @@ final class FacialFeatureOption: UIView {
     @IBOutlet weak var brows: UIImageView!
     @IBOutlet weak var mouth: UIImageView!
     
-    var tapCallback: ((FacialFeatureOption) -> Void)!
-    
     class func instanceFromNib() -> FacialFeatureOption {
         let facialFeatureOption = UINib(nibName: "FacialFeatureOption", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? FacialFeatureOption
         
@@ -33,21 +31,8 @@ final class FacialFeatureOption: UIView {
         
         facialFeatureOption?.chin.tintColor = AppColors.skintoneArray[0]
         facialFeatureOption?.face.tintColor = AppColors.skintoneArray[0]
-        facialFeatureOption?.nibSetup()
         
         return facialFeatureOption!
-    }
-    
-    func nibSetup() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunct(tapGestureRecognizer:)))
-        tap.numberOfTapsRequired = 1
-        tap.numberOfTouchesRequired = 1
-        self.isUserInteractionEnabled = true
-        self.addGestureRecognizer(tap)
-    }
-    
-    @objc func tapFunct(tapGestureRecognizer: UITapGestureRecognizer) {
-        tapCallback(self)
     }
     
     func setHairColor(color: UIColor) {

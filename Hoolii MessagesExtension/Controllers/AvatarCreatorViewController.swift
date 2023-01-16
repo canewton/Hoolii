@@ -35,7 +35,7 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     var currBackgroundColorIndex: Int = 0
     
     // Define the actual avatar variable being made/stored
-    var generatedAvatar: Avatar = Avatar(chinIndex: 0, earIndex: 0, browIndex: 0, glassIndex: 0, mouthIndex: 0, noseIndex: 0, hairIndex: 0, skinTone: 0, hairColor: 0, backgroundIndex: 0)
+    var generatedAvatar: Avatar = Avatar(chinIndex: 0, earIndex: 0, browIndex: 0, glassIndex: 0, mouthIndex: 0, noseIndex: 0, hairIndex: 8, skinTone: 0, hairColor: 0, backgroundIndex: 0)
     
     // MARK: VARIABLE DECLARATION END
     
@@ -175,6 +175,26 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        cell.layer.cornerRadius = 5
+        cell.layer.borderColor = UIColor.gray.cgColor
+        
+        if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Hair" && generatedAvatar.hairIndex == indexPath.item {
+            cell.layer.borderWidth = 2
+        } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Head" && generatedAvatar.chinIndex == indexPath.item {
+            cell.layer.borderWidth = 2
+        } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Brows" && generatedAvatar.browIndex == indexPath.item {
+            cell.layer.borderWidth = 2
+        } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Nose" && generatedAvatar.noseIndex == indexPath.item {
+            cell.layer.borderWidth = 2
+        } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Ears" && generatedAvatar.earIndex == indexPath.item {
+            cell.layer.borderWidth = 2
+        } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Eyes" && generatedAvatar.glassIndex == indexPath.item {
+            cell.layer.borderWidth = 2
+        } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Mouth" && generatedAvatar.mouthIndex == indexPath.item {
+            cell.layer.borderWidth = 2
+        } else {
+            cell.layer.borderWidth = 0
+        }
         
         for _ in 0..<cell.subviews.count {
             cell.subviews[0].removeFromSuperview()
@@ -187,12 +207,52 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         avatarOption.rightAnchor.constraint(equalTo: cell.rightAnchor).isActive = true
         avatarOption.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
         avatarOption.bottomAnchor.constraint(equalTo: cell.bottomAnchor).isActive = true
-        avatarOption.tapCallback = tapAvatarOption
         
         avatarOption.setSkinColor(color: AppColors.skintoneArray[currSkinColorIndex])
         avatarOption.setHairColor(color: AppColors.hairColorArray[currHairColorIndex])
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        for i in 0..<collectionView.subviews.count {
+            collectionView.subviews[i].layer.borderWidth = 0
+        }
+        
+        let cell = collectionView.cellForItem(at: indexPath)!
+        let facialFeature = cell.subviews[0] as! FacialFeatureOption
+        collectionView.cellForItem(at: indexPath)!.layer.borderWidth = 2
+        
+        switch AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName {
+        case "Hair":
+            avatarContent.hairBack.image = facialFeature.hairBack.image
+            avatarContent.hairFront.image = facialFeature.hairFront.image
+            avatarContent.hairMidBack.image = facialFeature.hairMidBack.image
+            avatarContent.hairMidFront.image = facialFeature.hairMidFront.image
+            generatedAvatar.hairIndex = indexPath.item
+        case "Head":
+            avatarContent.chin.image = facialFeature.chin.image
+            avatarContent.beard.image = facialFeature.beard.image
+            generatedAvatar.chinIndex = indexPath.item
+        case "Brows":
+            avatarContent.brows.image = facialFeature.brows.image
+            generatedAvatar.browIndex = indexPath.item
+        case "Nose":
+            avatarContent.nose.image = facialFeature.nose.image
+            generatedAvatar.noseIndex = indexPath.item
+        case "Ears":
+            avatarContent.ears.image = facialFeature.ears.image
+            generatedAvatar.earIndex = indexPath.item
+        case "Eyes":
+            avatarContent.eyes.image = facialFeature.eyes.image
+            avatarContent.glasses.image = facialFeature.glasses.image
+            generatedAvatar.glassIndex = indexPath.item
+        case "Mouth":
+            avatarContent.mouth.image = facialFeature.mouth.image
+            generatedAvatar.mouthIndex = indexPath.item
+        default:
+            return
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -201,32 +261,6 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         let itemSize = CGSize(width: collectionItemWidth, height: collectionItemWidth)
             
         return itemSize
-    }
-    
-    func tapAvatarOption(facialFeature: FacialFeatureOption) {
-        switch AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName {
-        case "Hair":
-            avatarContent.hairBack.image = facialFeature.hairBack.image
-            avatarContent.hairFront.image = facialFeature.hairFront.image
-            avatarContent.hairMidBack.image = facialFeature.hairMidBack.image
-            avatarContent.hairMidFront.image = facialFeature.hairMidFront.image
-        case "Head":
-            avatarContent.chin.image = facialFeature.chin.image
-            avatarContent.beard.image = facialFeature.beard.image
-        case "Brows":
-            avatarContent.brows.image = facialFeature.brows.image
-        case "Nose":
-            avatarContent.nose.image = facialFeature.nose.image
-        case "Ears":
-            avatarContent.ears.image = facialFeature.ears.image
-        case "Eyes":
-            avatarContent.eyes.image = facialFeature.eyes.image
-            avatarContent.glasses.image = facialFeature.glasses.image
-        case "Mouth":
-            avatarContent.mouth.image = facialFeature.mouth.image
-        default:
-            return
-        }
     }
     
     //MARK: COLLECTION VIEW METHODS END HERE
