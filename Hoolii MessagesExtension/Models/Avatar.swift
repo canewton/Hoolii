@@ -43,6 +43,25 @@ struct Avatar: Codable, Equatable {
         return String(data: encodedData, encoding: .utf8)!
     }
     
+    func toFacialFeatureOption() -> FacialFeatureOption {
+        let facialFeatureOption = FacialFeatureOption.instanceFromNib()
+        
+        facialFeatureOption.chin.image = AvatarConstants.chinOptions[chinIndex].chin.image
+        facialFeatureOption.beard.image = AvatarConstants.chinOptions[chinIndex].beard.image
+        facialFeatureOption.ears.image = AvatarConstants.earOptions[earIndex].ears.image
+        facialFeatureOption.brows.image = AvatarConstants.browOptions[browIndex].brows.image
+        facialFeatureOption.eyes.image = AvatarConstants.eyeOptions[glassIndex].eyes.image
+        facialFeatureOption.glasses.image = AvatarConstants.eyeOptions[glassIndex].glasses.image
+        facialFeatureOption.mouth.image = AvatarConstants.mouthOptions[mouthIndex].mouth.image
+        facialFeatureOption.nose.image = AvatarConstants.noseOptions[noseIndex].nose.image
+        facialFeatureOption.hairFront.image = AvatarConstants.hairOptions[hairIndex].hairFront.image
+        facialFeatureOption.hairBack.image = AvatarConstants.hairOptions[hairIndex].hairBack.image
+        facialFeatureOption.hairMidFront.image = AvatarConstants.hairOptions[hairIndex].hairMidFront.image
+        facialFeatureOption.hairMidBack.image = AvatarConstants.hairOptions[hairIndex].hairMidBack.image
+        
+        return facialFeatureOption
+    }
+    
 //    static func recreateAvatar(size: CGSize, avatarIndices: Avatar) -> UIImage {
 //        // Create all of the images
 //        let backHairImage = UIImage(named: AvatarConstants.backHairArray[avatarIndices.hairIndex])?.withTintColor(AppColors.skintoneArray[avatarIndices.skinTone])

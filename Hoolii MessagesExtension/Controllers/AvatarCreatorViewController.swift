@@ -29,7 +29,7 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     var currFacialFeature: Int = 0
     var itemIndex = 0
     var facialFeatureIconIndex: Int = 0
-    var avatarContent: FacialFeatureOption = FacialFeatureOption.instanceFromNib()
+    var avatarContent: FacialFeatureOption!
     let colorScrollHeightConstant: CGFloat = 40
     var currSkinColorIndex: Int = 0
     var currHairColorIndex: Int = 0
@@ -56,14 +56,22 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
             nameTextField.text = fullName
         }
         
+        let storedAvatar = StoredValues.get(key: StoredValuesConstants.userAvatar)
+        if storedAvatar != nil {
+            generatedAvatar = Avatar(jsonValue: storedAvatar!)
+            print(generatedAvatar)
+            avatarContent = generatedAvatar.toFacialFeatureOption()
+        } else {
+            avatarContent = FacialFeatureOption.instanceFromNib()
+            avatarContent = avatarContent.addHair(front: AvatarConstants.hairOption8.hairFront.image, back: AvatarConstants.hairOption8.hairBack.image).addMouth(AvatarConstants.mouthOption1.mouth.image).addEyes(AvatarConstants.eyeOption1.eyes.image).addNose(AvatarConstants.noseOption1.nose.image)
+        }
+        
         avatarView.addSubview(avatarContent)
         avatarContent.translatesAutoresizingMaskIntoConstraints = false
         avatarContent.topAnchor.constraint(equalTo: avatarView.topAnchor).isActive = true
         avatarContent.leftAnchor.constraint(equalTo: avatarView.leftAnchor).isActive = true
         avatarContent.rightAnchor.constraint(equalTo: avatarView.rightAnchor).isActive = true
         avatarContent.bottomAnchor.constraint(equalTo: avatarView.bottomAnchor).isActive = true
-        
-        avatarContent = avatarContent.addHair(front: AvatarConstants.hairOption8.hairFront.image, back: AvatarConstants.hairOption8.hairBack.image).addMouth(AvatarConstants.mouthOption1.mouth.image).addEyes(AvatarConstants.eyeOption1.eyes.image).addNose(AvatarConstants.noseOption1.nose.image)
         
         avatarOptions.displayFacialFeatureOptionsCallback = displayFacialFeatureOptions
         setUpColorStack(colors: AppColors.skintoneArray)
