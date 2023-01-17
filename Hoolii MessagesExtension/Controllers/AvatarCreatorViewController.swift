@@ -394,6 +394,9 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         storeAvatar()
+        
+        changeProfileButtonAvatars(avatar: generatedAvatar)
+        
         if editProfileCallback != nil {
             editProfileCallback()
         }
@@ -404,6 +407,18 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         } else {
             self.dismiss(animated: true)
         }
+    }
+    
+    func changeProfileButtonAvatars(avatar: Avatar) {
+        ProfileButton.avatar.addBeardAndChin(beard: AvatarConstants.chinOptions[avatar.chinIndex].beard.image, chin: AvatarConstants.chinOptions[avatar.chinIndex].chin.image, beardShift: AvatarConstants.chinOptions[avatar.chinIndex].beardShiftConst)
+        ProfileButton.avatar.addNose(AvatarConstants.noseOptions[avatar.noseIndex].nose.image)
+        ProfileButton.avatar.addMouth(AvatarConstants.mouthOptions[avatar.mouthIndex].mouth.image)
+        ProfileButton.avatar.addBrows(AvatarConstants.browOptions[avatar.browIndex].brows.image)
+        ProfileButton.avatar.addEars(AvatarConstants.earOptions[avatar.earIndex].ears.image)
+        ProfileButton.avatar.addHair(front: AvatarConstants.hairOptions[avatar.hairIndex].hairFront.image, midFront: AvatarConstants.hairOptions[avatar.hairIndex].hairMidFront.image, midBack: AvatarConstants.hairOptions[avatar.hairIndex].hairMidBack.image, back: AvatarConstants.hairOptions[avatar.hairIndex].hairBack.image, hairShift: AvatarConstants.hairOptions[avatar.hairIndex].hairShiftConst)
+        
+        ProfileButton.topConstraint.constant = -1 * ProfileButton.avatar.getShiftConst() * ProfileButton.height + 1
+        ProfileButton.bottomConstraint.constant = -1 * ProfileButton.avatar.getShiftConst() * ProfileButton.height - 1
     }
     
     //MARK: END OF AVATAR SAVNG FUNCTIONS

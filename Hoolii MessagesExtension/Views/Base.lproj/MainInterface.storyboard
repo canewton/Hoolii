@@ -429,7 +429,7 @@
                                                     <constraint firstItem="PNY-A3-BOP" firstAttribute="top" secondItem="HIn-s7-JzO" secondAttribute="bottom" constant="20" id="Hyg-0b-FkD"/>
                                                     <constraint firstAttribute="trailing" secondItem="HIn-s7-JzO" secondAttribute="trailing" constant="25" id="OZV-WN-qcM"/>
                                                     <constraint firstAttribute="trailing" secondItem="71Z-dF-OKr" secondAttribute="trailing" constant="30" id="cNS-lr-EDd"/>
-                                                    <constraint firstItem="ixQ-a1-p1S" firstAttribute="top" secondItem="abc-g2-hbG" secondAttribute="top" constant="25" id="ftO-kb-u82"/>
+                                                    <constraint firstItem="ixQ-a1-p1S" firstAttribute="top" secondItem="abc-g2-hbG" secondAttribute="top" constant="20" id="ftO-kb-u82"/>
                                                     <constraint firstAttribute="bottom" secondItem="mza-qD-eGz" secondAttribute="bottom" constant="30" id="gVT-ff-jpP"/>
                                                     <constraint firstAttribute="trailing" secondItem="Szr-IL-x6L" secondAttribute="trailing" constant="30" id="glL-Iv-qsR"/>
                                                     <constraint firstItem="71Z-dF-OKr" firstAttribute="leading" secondItem="abc-g2-hbG" secondAttribute="leading" constant="30" id="lJA-Ar-7ZU"/>
@@ -628,7 +628,7 @@
                                     <constraint firstItem="B8u-Bb-8Bp" firstAttribute="leading" secondItem="Hwm-Ot-hLB" secondAttribute="trailing" constant="15" id="UEQ-Rk-p10"/>
                                     <constraint firstItem="Hwm-Ot-hLB" firstAttribute="leading" secondItem="MK0-nP-scU" secondAttribute="leading" constant="30" id="Ut9-Hm-k0q"/>
                                     <constraint firstItem="Ts4-pd-heY" firstAttribute="top" secondItem="Hwm-Ot-hLB" secondAttribute="bottom" constant="8" id="bjp-GN-dUh"/>
-                                    <constraint firstItem="B8u-Bb-8Bp" firstAttribute="top" secondItem="MK0-nP-scU" secondAttribute="top" constant="12" id="gR3-LH-mnf"/>
+                                    <constraint firstItem="B8u-Bb-8Bp" firstAttribute="top" secondItem="MK0-nP-scU" secondAttribute="top" constant="8" id="gR3-LH-mnf"/>
                                     <constraint firstAttribute="trailing" secondItem="B8u-Bb-8Bp" secondAttribute="trailing" constant="30" id="uXH-e0-CL3"/>
                                     <constraint firstAttribute="height" constant="70" id="y8t-Rf-mD9"/>
                                 </constraints>
