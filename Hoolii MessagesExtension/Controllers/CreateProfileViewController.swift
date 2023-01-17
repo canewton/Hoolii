@@ -164,7 +164,7 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
     }
     
     func configureProfileIcon() {
-        profileIcon.layer.cornerRadius = 65
+        profileIcon.layer.cornerRadius = 80
     }
     
     @IBAction func onCreateProfile(_ sender: Any) {

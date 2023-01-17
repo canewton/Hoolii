@@ -178,8 +178,6 @@ final class FacialFeatureOption: UIView {
     }
     
     func getShiftConst() -> CGFloat {
-        print("beard")
-        print(beardShiftConst)
         if hairShiftConst >= 0 && beardShiftConst >= 0 {
             return hairShiftConst > beardShiftConst ? hairShiftConst : beardShiftConst
         } else if hairShiftConst <= 0 && beardShiftConst >= 0 {

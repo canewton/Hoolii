@@ -21,6 +21,7 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     @IBOutlet weak var backgroundColor: UIView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var facialFeatureOptionsLabel: UILabel!
+    @IBOutlet weak var collectionViewBottomConstraint: NSLayoutConstraint!
     
     // Outlet for element table
     @IBOutlet weak var elemCollectionView: UICollectionView!
@@ -44,6 +45,8 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         // Function loaded: set all initial colors for elements
         super.viewDidLoad()
         
+        MessagesViewController.currViewController = self
+        
         StoredValues.setIfEmpty(key: StoredValuesConstants.firstName, value: "")
         StoredValues.setIfEmpty(key: StoredValuesConstants.lastName, value: "")
         
@@ -58,9 +61,11 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         if storedAvatar != nil {
             generatedAvatar = Avatar(jsonValue: storedAvatar!)
             avatarContent = generatedAvatar.toFacialFeatureOption()
+            backgroundColor.backgroundColor = AppColors.backgroundColorArray[generatedAvatar.backgroundIndex]
         } else {
             avatarContent = FacialFeatureOption.instanceFromNib()
             avatarContent = avatarContent.addHair(front: AvatarConstants.hairOption8.hairFront.image, back: AvatarConstants.hairOption8.hairBack.image).addMouth(AvatarConstants.mouthOption1.mouth.image).addEyes(AvatarConstants.eyeOption1.eyes.image).addNose(AvatarConstants.noseOption1.nose.image)
+            backgroundColor.backgroundColor = AppColors.backgroundColorArray[0]
         }
         
         avatarView.addSubview(avatarContent)
@@ -73,7 +78,6 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         avatarOptions.displayFacialFeatureOptionsCallback = displayFacialFeatureOptions
         setUpColorStack(colors: AppColors.skintoneArray)
         configureBottomBar()
-        backgroundColor.backgroundColor = AppColors.backgroundColorArray[0]
         
         backgroundColor.layer.cornerRadius = 50
         

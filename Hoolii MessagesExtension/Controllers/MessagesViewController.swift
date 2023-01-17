@@ -11,6 +11,8 @@ import Alamofire
 
 class MessagesViewController: MSMessagesAppViewController {
     
+    static var currViewController: UIViewController!
+    
     override func viewDidLoad() {
         print("loaded")
 //        StoredValues.deleteKey(key: StoredValuesConstants.newMeetingOnboarding)
@@ -91,6 +93,10 @@ class MessagesViewController: MSMessagesAppViewController {
                 let yourAvailController: YourAvailabilitiesViewController = instantiateController()
                 controller = yourAvailController
             }
+            
+            if let currVC = MessagesViewController.currViewController as? AvatarCreatorViewController {
+                currVC.collectionViewBottomConstraint.isActive = false
+            }
         } else {
             if CollectiveSchedule.shared.allSchedules.count > 0 {
                 let yourAvailabilitiesController: YourAvailabilitiesViewController = instantiateController()
@@ -98,6 +104,11 @@ class MessagesViewController: MSMessagesAppViewController {
             } else {
                 let newMeetingController: NewMeetingViewController = instantiateController()
                 controller = newMeetingController
+            }
+            
+            if let currVC = MessagesViewController.currViewController as? AvatarCreatorViewController {
+                currVC.collectionViewBottomConstraint = currVC.elemCollectionView.bottomAnchor.constraint(equalTo: currVC.bottomBar.topAnchor)
+                currVC.collectionViewBottomConstraint.isActive = true
             }
         }
         
