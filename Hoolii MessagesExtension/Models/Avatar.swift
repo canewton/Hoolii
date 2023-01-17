@@ -34,7 +34,7 @@ struct Avatar: Codable, Equatable {
     }
     
     init() {
-        self.init(chinIndex: 0, earIndex: 0, browIndex: 0, glassIndex: 0, mouthIndex: 0, noseIndex: 0, hairIndex: 0, skinTone: 0, hairColor: 0, backgroundIndex: 0, shiftConst: 0)
+        self.init(chinIndex: 0, earIndex: 0, browIndex: 0, glassIndex: 0, mouthIndex: 0, noseIndex: 0, hairIndex: 8, skinTone: 0, hairColor: 0, backgroundIndex: 0, shiftConst: 0)
     }
     
     init(jsonValue: String) {

@@ -13,7 +13,6 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
     @IBOutlet weak var backButton: BackButton!
     @IBOutlet weak var profileIcon: UIView!
     @IBOutlet weak var profileAvailabilityPreviewContainer: UIView!
-    @IBOutlet weak var createProfileButton: ThemedButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var screenContent: UIView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -32,10 +31,6 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if !StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
-            createProfileButton.removeFromSuperview()
-        }
         
         // set initial values of the profile if a profile has not yet been created
         StoredValues.setIfEmpty(key: StoredValuesConstants.firstName, value: "")
@@ -165,31 +160,5 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
     
     func configureProfileIcon() {
         profileIcon.layer.cornerRadius = 80
-    }
-    
-    @IBAction func onCreateProfile(_ sender: Any) {
-        StoredValues.setIfEmpty(key: StoredValuesConstants.hasBeenOnboarded, value: "yes")
-        (delegate as? CreateProfileViewControllerDelegate)?.transitonToNewMeeting(self)
-        
-        self.dismiss(animated: true, completion: { () -> Void in self.prevController.dismiss(animated: true, completion: self.dismissCallback)})
-    }
-}
-
-extension CreateProfileViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-}
-
-protocol CreateProfileViewControllerDelegate: AnyObject {
-    func transitonToNewMeeting(_ controller: CreateProfileViewController)
-}
-
-extension MessagesViewController: CreateProfileViewControllerDelegate {
-    // allow this controller to transition to the YourAvailabilities screen
-    func transitonToNewMeeting(_ controller: CreateProfileViewController) {
-        let newMeetingVC: NewMeetingViewController = instantiateController()
-        controller.newMeetingViewController = newMeetingVC
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
+class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifier, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
     
     // MARK: VARIABLE DECLARATION START
     
@@ -22,6 +22,11 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var facialFeatureOptionsLabel: UILabel!
     @IBOutlet weak var collectionViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var editTextIcon: UIImageView!
+    @IBOutlet weak var screenLabel: UILabel!
+    
+    static var storyboardIdentifier: String = "AvatarCreatorViewController"
+    var delegate: AnyObject?
     
     // Outlet for element table
     @IBOutlet weak var elemCollectionView: UICollectionView!
@@ -35,6 +40,10 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     var editNameCallback: (() -> Void)!
     var editProfileCallback: (() -> Void)!
     
+    // For onboarding
+    var prevController: UIViewController!
+    var dismissCallback: (() -> Void)!
+    
     // Define the actual avatar variable being made/stored
     var generatedAvatar: Avatar = Avatar()
     
@@ -47,14 +56,13 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         
         MessagesViewController.currViewController = self
         
-        StoredValues.setIfEmpty(key: StoredValuesConstants.firstName, value: "")
-        StoredValues.setIfEmpty(key: StoredValuesConstants.lastName, value: "")
-        
-        let firstName: String = StoredValues.get(key: StoredValuesConstants.firstName)!
-        let lastName: String = StoredValues.get(key: StoredValuesConstants.lastName)!
+        let firstName: String = StoredValues.get(key: StoredValuesConstants.firstName) ?? ""
+        let lastName: String = StoredValues.get(key: StoredValuesConstants.lastName) ?? ""
         let fullName: String = "\(firstName) \(lastName)"
-        if fullName != "" {
+        if fullName.trimmingCharacters(in: .whitespaces) != "" {
             nameTextField.text = fullName
+        } else {
+            nameTextField.text = "Enter First and Last Name Here"
         }
         
         let storedAvatar = StoredValues.get(key: StoredValuesConstants.userAvatar)
@@ -66,6 +74,12 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
             avatarContent = FacialFeatureOption.instanceFromNib()
             avatarContent = avatarContent.addHair(front: AvatarConstants.hairOption8.hairFront.image, back: AvatarConstants.hairOption8.hairBack.image).addMouth(AvatarConstants.mouthOption1.mouth.image).addEyes(AvatarConstants.eyeOption1.eyes.image).addNose(AvatarConstants.noseOption1.nose.image)
             backgroundColor.backgroundColor = AppColors.backgroundColorArray[0]
+        }
+        
+        if StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
+            screenLabel.text = "Create A New Profile"
+        } else {
+            screenLabel.text = "Edit Profile"
         }
         
         avatarView.addSubview(avatarContent)
@@ -95,6 +109,16 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
         if nameTextField.text?.trimmingCharacters(in: .whitespaces) == "Enter Full Name Here" {
             saveAvatarButton.isEnabled = false
         }
+        
+        let editTextTap = UITapGestureRecognizer(target: self, action: #selector(editTextOnTap(gesture:)))
+        editTextIcon.isUserInteractionEnabled = true
+        editTextIcon.addGestureRecognizer(editTextTap)
+    }
+    
+    @objc func editTextOnTap(gesture: UITapGestureRecognizer) {
+        nameTextField.becomeFirstResponder()
+        let newPosition = nameTextField.endOfDocument
+        nameTextField.selectedTextRange = nameTextField.textRange(from: newPosition, to: newPosition)
     }
     
     override func viewWillLayoutSubviews() {
@@ -111,13 +135,13 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
     }
 
     @IBAction func onEditNameBegin(_ sender: Any) {
-        if nameTextField.text == "Enter First and Last Name Here" {
+        if nameTextField.text?.trimmingCharacters(in: .whitespaces) == "Enter First and Last Name Here" {
             nameTextField.text = ""
         }
     }
     
     @IBAction func onEditNameEnd(_ sender: Any) {
-        if nameTextField.text == "" {
+        if nameTextField.text?.trimmingCharacters(in: .whitespaces) == "" {
             nameTextField.text = "Enter First and Last Name Here"
         }
         
@@ -374,8 +398,12 @@ class AvatarCreatorViewController: AppViewController, UICollectionViewDataSource
             editProfileCallback()
         }
         
-        // dismiss the avatarCreatorView
-        self.dismiss(animated: true)
+        if StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
+            StoredValues.setIfEmpty(key: StoredValuesConstants.hasBeenOnboarded, value: "yes")
+            self.dismiss(animated: true, completion: { () -> Void in self.prevController.dismiss(animated: true, completion: self.dismissCallback)})
+        } else {
+            self.dismiss(animated: true)
+        }
     }
     
     //MARK: END OF AVATAR SAVNG FUNCTIONS
