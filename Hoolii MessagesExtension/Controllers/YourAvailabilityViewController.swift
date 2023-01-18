@@ -41,14 +41,15 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         firstName = StoredValues.get(key: StoredValuesConstants.firstName)!
         lastName = StoredValues.get(key: StoredValuesConstants.lastName)!
         id = StoredValues.get(key: StoredValuesConstants.userID)!
+        userAvatar = Avatar(jsonValue: StoredValues.get(key: StoredValuesConstants.userAvatar)!)
         
         configureMeetingName()
         
         // create new schedule for user if user has not filled it out yet
-        if CollectiveSchedule.shared.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName, userAvatar: Avatar())) == nil {
-            userSchedule = CollectiveSchedule.shared.appendEmptySchedule(user: User(id: id, firstName: firstName, lastName: lastName, userAvatar: Avatar()))
+        if CollectiveSchedule.shared.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName, avatar: Avatar())) == nil {
+            userSchedule = CollectiveSchedule.shared.appendEmptySchedule(user: User(id: id, firstName: firstName, lastName: lastName, avatar: userAvatar))
         } else {
-            userSchedule = CollectiveSchedule.shared.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName, userAvatar: Avatar()))!
+            userSchedule = CollectiveSchedule.shared.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName, avatar: userAvatar))!
         }
         
         // determine if this person was the one who created the meeting
@@ -123,7 +124,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     }
     
     func sendMessage() {
-        CollectiveSchedule.shared.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName, userAvatar: Avatar()), schedule: userSchedule)
+        CollectiveSchedule.shared.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName, avatar: userAvatar), schedule: userSchedule)
         (delegate as? YourAvaialabilitiesViewControllerDelegate)?.dismissExtension()
     }
     
@@ -156,7 +157,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     // Determine if the group view or the user view should be displayed
     func toggleFilterSwitch(_ filter: String) {
         if filter == "Group" {
-            CollectiveSchedule.shared.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName, userAvatar: Avatar()), schedule: userSchedule)
+            CollectiveSchedule.shared.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName, avatar: userAvatar), schedule: userSchedule)
             availabilityInput.hideAutoFillButton()
             displayGroupView()
             isShowingPersonalView = false

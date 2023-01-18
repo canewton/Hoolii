@@ -79,31 +79,51 @@ class AvailabilityDetail: UIView {
     }
     
     func createUserIcon(user: User) -> UIView {
-        return createIcon(text: user.getInitials())
-    }
-    
-    func createIcon(text: String) -> UIView {
         let userContainer: UIView = UIView()
-        let iconLabel: UILabel = UILabel(frame: CGRect(x: 14, y: 14, width: ProfileButton.width, height: ProfileButton.height))
-        iconLabel.text = text
-        
         userContainer.translatesAutoresizingMaskIntoConstraints = false
-        userContainer.widthAnchor.constraint(equalToConstant: CGFloat(ProfileButton.width)).isActive = true
-        userContainer.heightAnchor.constraint(equalToConstant: CGFloat(ProfileButton.height)).isActive = true
-        userContainer.layer.cornerRadius = 15
+        
+        var profileIcon = ProfileIcon(initials: user.getInitials())
+        
+        if user.avatar != nil {
+            profileIcon = ProfileIcon(avatar: user.avatar!)
+        }
+        
+        userContainer.addSubview(profileIcon)
+        
+        profileIcon.topAnchor.constraint(equalTo: userContainer.topAnchor).isActive = true
+        profileIcon.bottomAnchor.constraint(equalTo: userContainer.bottomAnchor).isActive = true
+        profileIcon.leftAnchor.constraint(equalTo: userContainer.leftAnchor).isActive = true
+        profileIcon.rightAnchor.constraint(equalTo: userContainer.rightAnchor).isActive = true
+        
+        userContainer.layer.cornerRadius = profileIcon.width/2
         userContainer.layer.shadowColor = AppColors.shadowColor.cgColor
         userContainer.layer.shadowOpacity = 0.3
         userContainer.layer.shadowOffset = .zero
         userContainer.layer.shadowRadius = 1
-        userContainer.backgroundColor = AppColors.redBackground
         
-        userContainer.addSubview(iconLabel)
-        iconLabel.font = .systemFont(ofSize: 11, weight: .bold)
-        iconLabel.textColor = .white
-        iconLabel.textAlignment = .center
-        iconLabel.center.x = 15
-        iconLabel.center.y = 15
         return userContainer
+    }
+    
+    func createIcon(text: String) -> UIView {
+        let iconContainer: UIView = UIView()
+        iconContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        let icon = ProfileIcon(initials: text)
+        
+        iconContainer.addSubview(icon)
+        
+        icon.topAnchor.constraint(equalTo: iconContainer.topAnchor).isActive = true
+        icon.bottomAnchor.constraint(equalTo: iconContainer.bottomAnchor).isActive = true
+        icon.leftAnchor.constraint(equalTo: iconContainer.leftAnchor).isActive = true
+        icon.rightAnchor.constraint(equalTo: iconContainer.rightAnchor).isActive = true
+        
+        iconContainer.layer.cornerRadius = icon.width/2
+        iconContainer.layer.shadowColor = AppColors.shadowColor.cgColor
+        iconContainer.layer.shadowOpacity = 0.3
+        iconContainer.layer.shadowOffset = .zero
+        iconContainer.layer.shadowRadius = 1
+        
+        return iconContainer
     }
     
     func configureUsers(users: [User]) {
@@ -118,7 +138,7 @@ class AvailabilityDetail: UIView {
         }
         
         if isCollapsed {
-            let maxNumberUsers = 7
+            let maxNumberUsers = 5
             let numIcons = users.count > maxNumberUsers ? maxNumberUsers : users.count
             for i in 0..<numIcons {
                 if i == maxNumberUsers - 1 {
@@ -160,29 +180,16 @@ class AvailabilityDetail: UIView {
             var scrollHeight: CGFloat = 0
             
             for i in 0..<users.count {
-                let userContainer: UIView = createUserIcon(user: users[i])
-                let userIconAndNameContainer: UIView = UIView()
-                let userFullName: UILabel = UILabel(frame: CGRect(x: 45, y: 0, width: 300, height: 30))
-                userFullName.text = "\(users[i].firstName) \(users[i].lastName)"
+                scrollHeight += 60
                 
-                scrollHeight += 56
+                let listElem = AvalabilityDetailListElement.instanceFromNib(icon: createUserIcon(user: users[i]), text: "\(users[i].firstName) \(users[i].lastName)")
+                listElem.translatesAutoresizingMaskIntoConstraints = false
+                listElem.heightAnchor.constraint(equalToConstant: 50).isActive = true
                 
-                userIconAndNameContainer.addSubview(userContainer)
-                userIconAndNameContainer.addSubview(userFullName)
-                userIconAndNameContainer.backgroundColor = AppColors.lightGrey
-                userIconAndNameContainer.layer.cornerRadius = 5
+                userStackList.addArrangedSubview(listElem)
                 
-                userContainer.topAnchor.constraint(equalTo: userIconAndNameContainer.topAnchor, constant: 8).isActive = true
-                userContainer.bottomAnchor.constraint(equalTo: userIconAndNameContainer.bottomAnchor, constant: -8).isActive = true
-                userContainer.leftAnchor.constraint(equalTo: userIconAndNameContainer.leftAnchor, constant: 8).isActive = true
-                
-                userFullName.center.y = 23
-                
-                userStackList.addArrangedSubview(userIconAndNameContainer)
-                
-                UIView.animate(withDuration: 0.3, animations: {
-                   self.layoutIfNeeded()
-                })
+                listElem.leftAnchor.constraint(equalTo: userStackList.leftAnchor).isActive = true
+                listElem.rightAnchor.constraint(equalTo: userStackList.rightAnchor).isActive = true
             }
             
             scrollView.contentSize = CGSize(width: scrollView.contentSize.width, height: scrollHeight)

@@ -120,7 +120,7 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
         let id: String = StoredValues.get(key: StoredValuesConstants.userID)!
         let firstName: String = StoredValues.get(key: StoredValuesConstants.firstName)!
         let lastName: String = StoredValues.get(key: StoredValuesConstants.lastName)!
-        return User(id: id, firstName: firstName, lastName: lastName, userAvatar: Avatar())
+        return User(id: id, firstName: firstName, lastName: lastName, avatar: Avatar())
     }
     
     // if there is the weekly availability has not been set, return an empty scedule

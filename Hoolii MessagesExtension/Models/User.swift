@@ -14,12 +14,12 @@ struct User: Codable, Equatable {
     var id: String
     var firstName: String
     var lastName: String
-    var userAvatar: Avatar
-    init(id: String, firstName: String, lastName: String, userAvatar: Avatar) {
+    var avatar: Avatar?
+    init(id: String, firstName: String, lastName: String, avatar: Avatar?) {
         self.id = id
         self.firstName = firstName
         self.lastName = lastName
-        self.userAvatar = userAvatar
+        self.avatar = avatar
     }
     
     func getInitials() -> String {

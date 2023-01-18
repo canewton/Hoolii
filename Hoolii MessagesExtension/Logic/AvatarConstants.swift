@@ -9,7 +9,7 @@ import UIKit
 
 class AvatarConstants {
     static let hairOption0 = FacialFeatureOption.instanceFromNib().addHair(nil)
-    static let hairOption1 = FacialFeatureOption.instanceFromNib().addHair(front: UIImage(named: "Female hair 1 front"), back: UIImage(named: "Female hair 1 back"), hairShift: 0.1)
+    static let hairOption1 = FacialFeatureOption.instanceFromNib().addHair(front: UIImage(named: "Female hair 1 front"), back: UIImage(named: "Female hair 1 back"), hairShift: 0.02)
     static let hairOption2 = FacialFeatureOption.instanceFromNib().addHair(front: UIImage(named: "Female hair 2 front"), back: UIImage(named: "Female hair 2 back"))
     static let hairOption3 = FacialFeatureOption.instanceFromNib().addHair(front: UIImage(named: "Female hair 3 front"), back: UIImage(named: "Female hair 3 back"), hairShift: 0.05)
     static let hairOption4 = FacialFeatureOption.instanceFromNib().addHair(front: UIImage(named: "Female hair 4 front"), back: UIImage(named: "Female hair 4 back"))

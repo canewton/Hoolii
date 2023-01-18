@@ -11,6 +11,9 @@
 		9100ED7D28DAF97200DA4F43 /* CreateMeetingCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9100ED7C28DAF97200DA4F43 /* CreateMeetingCalendar.swift */; };
 		9100ED7F28DB0E1700DA4F43 /* CreateMeetingCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9100ED7E28DB0E1700DA4F43 /* CreateMeetingCalendar.storyboard */; };
 		9100ED8528E01C9D00DA4F43 /* HourMinuteTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9100ED8428E01C9D00DA4F43 /* HourMinuteTime.swift */; };
+		9103B62D29775392004CCB33 /* ProfileIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103B62C29775392004CCB33 /* ProfileIcon.swift */; };
+		9103B62F297774D1004CCB33 /* AvalabilityDetailListElement.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9103B62E297774D1004CCB33 /* AvalabilityDetailListElement.xib */; };
+		9103B631297775A2004CCB33 /* AvalabilityDetailListElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103B630297775A2004CCB33 /* AvalabilityDetailListElement.swift */; };
 		9103CF2828C8E7CD00BBC349 /* WeeklyAvailabilityInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103CF2728C8E7CD00BBC349 /* WeeklyAvailabilityInputViewController.swift */; };
 		9103CF2A28C8EA7800BBC349 /* FullAvailabilityInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9103CF2928C8EA7800BBC349 /* FullAvailabilityInput.xib */; };
 		9103CF2C28C8EB5200BBC349 /* FullAvailabilityInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103CF2B28C8EB5200BBC349 /* FullAvailabilityInput.swift */; };
@@ -143,6 +146,9 @@
 		9100ED7C28DAF97200DA4F43 /* CreateMeetingCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMeetingCalendar.swift; sourceTree = "<group>"; };
 		9100ED7E28DB0E1700DA4F43 /* CreateMeetingCalendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateMeetingCalendar.storyboard; sourceTree = "<group>"; };
 		9100ED8428E01C9D00DA4F43 /* HourMinuteTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourMinuteTime.swift; sourceTree = "<group>"; };
+		9103B62C29775392004CCB33 /* ProfileIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileIcon.swift; sourceTree = "<group>"; };
+		9103B62E297774D1004CCB33 /* AvalabilityDetailListElement.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvalabilityDetailListElement.xib; sourceTree = "<group>"; };
+		9103B630297775A2004CCB33 /* AvalabilityDetailListElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvalabilityDetailListElement.swift; sourceTree = "<group>"; };
 		9103CF2728C8E7CD00BBC349 /* WeeklyAvailabilityInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyAvailabilityInputViewController.swift; sourceTree = "<group>"; };
 		9103CF2928C8EA7800BBC349 /* FullAvailabilityInput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FullAvailabilityInput.xib; sourceTree = "<group>"; };
 		9103CF2B28C8EB5200BBC349 /* FullAvailabilityInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullAvailabilityInput.swift; sourceTree = "<group>"; };
@@ -306,6 +312,8 @@
 				916E3EAC29740F230036432E /* AvatarOptions.swift */,
 				916E3EB0297417A70036432E /* FacialFeatureOption.swift */,
 				916E3EB429744D680036432E /* AvatarColorOption.swift */,
+				9103B62C29775392004CCB33 /* ProfileIcon.swift */,
+				9103B630297775A2004CCB33 /* AvalabilityDetailListElement.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -329,6 +337,7 @@
 				916099EC296A96C400783A29 /* AutofillFeedback.xib */,
 				916E3EA829740B060036432E /* FacialFeatureIcon.xib */,
 				916E3EAE2974165C0036432E /* FacialFeatureOption.xib */,
+				9103B62E297774D1004CCB33 /* AvalabilityDetailListElement.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -618,6 +627,7 @@
 				9167C7E02966334E00BB4220 /* MessageGraphic3People.xib in Resources */,
 				913C119B28B208C700B5A66F /* AvailabilityBar.xib in Resources */,
 				91B2D42428957CA200D0AAD4 /* GoogleService-Info.plist in Resources */,
+				9103B62F297774D1004CCB33 /* AvalabilityDetailListElement.xib in Resources */,
 				91CAA92B2968BA7F0009348C /* AppAlert.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -694,6 +704,7 @@
 				91A4E813294BDB7C00AB7E11 /* AvailabilityConstants.swift in Sources */,
 				91E71ACF29618FCE0020ABC8 /* DarkenedScreen.swift in Sources */,
 				918C88CF28D3C8C40052850E /* CreateMeetingPreviewViewController.swift in Sources */,
+				9103B631297775A2004CCB33 /* AvalabilityDetailListElement.swift in Sources */,
 				91CAA92929669D360009348C /* HooliiMessage.swift in Sources */,
 				916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */,
 				91E71AC9295F73C10020ABC8 /* OnboardingCollapsedViewController.swift in Sources */,
@@ -706,6 +717,7 @@
 				916E3EA72973E0BE0036432E /* AvatarConstants.swift in Sources */,
 				91E71AD129623D6B0020ABC8 /* HorizontalOrientationViewController.swift in Sources */,
 				9103E59728A84A9900CA661B /* ThemedButton.swift in Sources */,
+				9103B62D29775392004CCB33 /* ProfileIcon.swift in Sources */,
 				916099EB296A4D9C00783A29 /* AlertLabels.swift in Sources */,
 				916E3EAB29740C650036432E /* FacialFeatureIcon.swift in Sources */,
 				9103E587289F4F5900CA661B /* YourAvailabilityViewController.swift in Sources */,
