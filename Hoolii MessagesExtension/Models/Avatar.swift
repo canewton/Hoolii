@@ -20,7 +20,7 @@ struct Avatar: Codable, Equatable {
     var skinTone:   Int
     var hairColor:  Int
     var backgroundIndex: Int
-    init(chinIndex:Int, earIndex: Int, browIndex: Int, glassIndex: Int , mouthIndex: Int, noseIndex: Int, hairIndex: Int, skinTone:  Int, hairColor: Int, backgroundIndex: Int, shiftConst: Int) {
+    init(chinIndex:Int, earIndex: Int, browIndex: Int, glassIndex: Int , mouthIndex: Int, noseIndex: Int, hairIndex: Int, skinTone:  Int, hairColor: Int, backgroundIndex: Int) {
         self.chinIndex = chinIndex
         self.earIndex = earIndex
         self.browIndex = browIndex
@@ -34,7 +34,14 @@ struct Avatar: Codable, Equatable {
     }
     
     init() {
-        self.init(chinIndex: 0, earIndex: 0, browIndex: 0, glassIndex: 0, mouthIndex: 0, noseIndex: 0, hairIndex: 8, skinTone: 0, hairColor: 0, backgroundIndex: 0, shiftConst: 0)
+        self.init(chinIndex: 0, earIndex: 0, browIndex: 0, glassIndex: 0, mouthIndex: 0, noseIndex: 0, hairIndex: 8, skinTone: 0, hairColor: 0, backgroundIndex: 0)
+    }
+    
+    init(randomized: Bool) {
+        if randomized == false {
+            self.init()
+        }
+        self.init(chinIndex: Int.random(in: 0..<AvatarConstants.chinOptions.count), earIndex: Int.random(in: 0..<AvatarConstants.earOptions.count), browIndex: Int.random(in: 0..<AvatarConstants.browOptions.count), glassIndex: Int.random(in: 0..<AvatarConstants.eyeOptions.count), mouthIndex: Int.random(in: 0..<AvatarConstants.mouthOptions.count), noseIndex: Int.random(in: 0..<AvatarConstants.noseOptions.count), hairIndex: Int.random(in: 0..<AvatarConstants.hairOptions.count), skinTone: Int.random(in: 0..<AppColors.skintoneArray.count), hairColor: Int.random(in: 0..<AvatarConstants.chinOptions.count), backgroundIndex: Int.random(in: 0..<AvatarConstants.chinOptions.count))
     }
     
     init(jsonValue: String) {
@@ -77,55 +84,4 @@ struct Avatar: Codable, Equatable {
         
         return facialFeatureOption
     }
-    
-//    static func recreateAvatar(size: CGSize, avatarIndices: Avatar) -> UIImage {
-//        // Create all of the images
-//        let backHairImage = UIImage(named: AvatarConstants.backHairArray[avatarIndices.hairIndex])?.withTintColor(AppColors.skintoneArray[avatarIndices.skinTone])
-//        let headImage = UIImage(named: "Ear 1 + Head")?.withTintColor(AppColors.skintoneArray[avatarIndices.skinTone])
-//        let earImage = UIImage(named: AvatarConstants.earArray[avatarIndices.earIndex])
-//        // Consider exceptions for beards
-//        var chinImage = UIImage(named: AvatarConstants.chinArray[avatarIndices.chinIndex])?.withTintColor(AppColors.skintoneArray[avatarIndices.skinTone])
-//        var beardImage = UIImage(named: "transparent")
-//        var mouthImage = UIImage(named: AvatarConstants.mouthArray[avatarIndices.mouthIndex])
-//        if (avatarIndices.chinIndex > 2) {
-//            chinImage = UIImage(named: AvatarConstants.chinArray[1])?.withTintColor(AppColors.skintoneArray[avatarIndices.skinTone])
-//            beardImage = UIImage(named: AvatarConstants.chinArray[avatarIndices.chinIndex])
-//            mouthImage = UIImage(named: AvatarConstants.mouthArray[0])
-//        }
-//        let noseImage = UIImage(named: AvatarConstants.noseArray[avatarIndices.noseIndex])
-//        let eyeImage = UIImage(named: "Eyes 1")
-//        let browImage = UIImage(named: AvatarConstants.browArray[avatarIndices.browIndex])
-//        let lensImage = UIImage(named:AvatarConstants.lensArray[avatarIndices.glassIndex])
-//        let sideHairImage = UIImage(named:AvatarConstants.hairSideArray[avatarIndices.hairIndex])
-//        let frontHairImage = UIImage(named:AvatarConstants.frontHairArray[avatarIndices.hairIndex])
-//        let hairTieImage = UIImage(named: AvatarConstants.hairTieArray[avatarIndices.hairIndex])
-//        let frameImage = UIImage(named: AvatarConstants.frameArray[avatarIndices.glassIndex])
-//
-//        // create Image context offscreen
-//        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-//
-//        // draw images into context
-//        backHairImage?.draw(at: .zero)
-//        headImage?.draw(at: .zero)
-//        earImage?.draw(at: .zero)
-//        chinImage?.draw(at: .zero)
-//        beardImage?.draw(at: .zero)
-//        noseImage?.draw(at: .zero)
-//        mouthImage?.draw(at: .zero)
-//        eyeImage?.draw(at: .zero)
-//        browImage?.draw(at: .zero)
-//        lensImage?.draw(at: .zero)
-//        sideHairImage?.draw(at: .zero)
-//        frontHairImage?.draw(at: .zero)
-//        hairTieImage?.draw(at: .zero)
-//        frameImage?.draw(at: .zero)
-//
-//        // Obtain image and end context
-//        let avatarImage = UIGraphicsGetImageFromCurrentImageContext()
-//
-//        UIGraphicsEndImageContext()
-//
-//        // Return avatar image
-//        return avatarImage!
-//    }
 }

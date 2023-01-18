@@ -21,6 +21,7 @@ class MessagesViewController: MSMessagesAppViewController {
 //        StoredValues.deleteKey(key: StoredValuesConstants.firstName)
 //        StoredValues.deleteKey(key: StoredValuesConstants.lastName)
 //        StoredValues.deleteKey(key: StoredValuesConstants.userAvatar)
+//        StoredValues.deleteKey(key: StoredValuesConstants.userSchedule)
 //        AF.request("https://hoolii.fly.dev/collective-schedule", method: .get).validate().responseJSON(completionHandler: handleResponse)
     }
     
@@ -98,7 +99,7 @@ class MessagesViewController: MSMessagesAppViewController {
             }
             
             if let currVC = MessagesViewController.currViewController as? AvatarCreatorViewController {
-                currVC.collectionViewBottomConstraint.isActive = false
+                currVC.collectionViewBottomConstraint?.isActive = false
             }
         } else {
             if CollectiveSchedule.shared.allSchedules.count > 0 {

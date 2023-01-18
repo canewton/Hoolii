@@ -106,7 +106,7 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         nameTextField.delegate = self
         nameTextField.autocapitalizationType = .words
         
-        if nameTextField.text?.trimmingCharacters(in: .whitespaces) == "Enter Full Name Here" {
+        if nameTextField.text?.trimmingCharacters(in: .whitespaces) == "Enter First and Last Name Here" {
             saveAvatarButton.isEnabled = false
         }
         
@@ -417,6 +417,8 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         ProfileButton.profileIcon.avatarDisplay.addEars(AvatarConstants.earOptions[avatar.earIndex].ears.image)
         ProfileButton.profileIcon.avatarDisplay.addHair(front: AvatarConstants.hairOptions[avatar.hairIndex].hairFront.image, midFront: AvatarConstants.hairOptions[avatar.hairIndex].hairMidFront.image, midBack: AvatarConstants.hairOptions[avatar.hairIndex].hairMidBack.image, back: AvatarConstants.hairOptions[avatar.hairIndex].hairBack.image, hairShift: AvatarConstants.hairOptions[avatar.hairIndex].hairShiftConst)
         ProfileButton.profileIcon.backgroundColor = AppColors.backgroundColorArray[avatar.backgroundIndex]
+        ProfileButton.profileIcon.avatarDisplay.setHairColor(color: AppColors.hairColorArray[avatar.hairColor])
+        ProfileButton.profileIcon.avatarDisplay.setSkinColor(color: AppColors.skintoneArray[avatar.skinTone])
         
         ProfileButton.profileIcon.topConstraint.constant = -1 * ProfileButton.profileIcon.avatarDisplay.getShiftConst() * ProfileButton.height + 1
         ProfileButton.profileIcon.bottomConstraint.constant = -1 * ProfileButton.profileIcon.avatarDisplay.getShiftConst() * ProfileButton.height - 1
