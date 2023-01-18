@@ -416,6 +416,7 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         ProfileButton.profileIcon.avatarDisplay.addBrows(AvatarConstants.browOptions[avatar.browIndex].brows.image)
         ProfileButton.profileIcon.avatarDisplay.addEars(AvatarConstants.earOptions[avatar.earIndex].ears.image)
         ProfileButton.profileIcon.avatarDisplay.addHair(front: AvatarConstants.hairOptions[avatar.hairIndex].hairFront.image, midFront: AvatarConstants.hairOptions[avatar.hairIndex].hairMidFront.image, midBack: AvatarConstants.hairOptions[avatar.hairIndex].hairMidBack.image, back: AvatarConstants.hairOptions[avatar.hairIndex].hairBack.image, hairShift: AvatarConstants.hairOptions[avatar.hairIndex].hairShiftConst)
+        ProfileButton.profileIcon.backgroundColor = AppColors.backgroundColorArray[avatar.backgroundIndex]
         
         ProfileButton.profileIcon.topConstraint.constant = -1 * ProfileButton.profileIcon.avatarDisplay.getShiftConst() * ProfileButton.height + 1
         ProfileButton.profileIcon.bottomConstraint.constant = -1 * ProfileButton.profileIcon.avatarDisplay.getShiftConst() * ProfileButton.height - 1

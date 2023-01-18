@@ -82,7 +82,7 @@ class AvailabilityDetail: UIView {
         let userContainer: UIView = UIView()
         userContainer.translatesAutoresizingMaskIntoConstraints = false
         
-        var profileIcon = ProfileIcon(initials: user.getInitials())
+        var profileIcon = ProfileIcon(initials: user.getInitials(), color: AppColors.backgroundColorArray[user.backgroundColor])
         
         if user.avatar != nil {
             profileIcon = ProfileIcon(avatar: user.avatar!)
@@ -104,11 +104,11 @@ class AvailabilityDetail: UIView {
         return userContainer
     }
     
-    func createIcon(text: String) -> UIView {
+    func createIcon(text: String, color: UIColor) -> UIView {
         let iconContainer: UIView = UIView()
         iconContainer.translatesAutoresizingMaskIntoConstraints = false
         
-        let icon = ProfileIcon(initials: text)
+        let icon = ProfileIcon(initials: text, color: color)
         
         iconContainer.addSubview(icon)
         
@@ -138,23 +138,23 @@ class AvailabilityDetail: UIView {
         }
         
         if isCollapsed {
-            let maxNumberUsers = 5
+            let maxNumberUsers = 6
             let numIcons = users.count > maxNumberUsers ? maxNumberUsers : users.count
             for i in 0..<numIcons {
-                if i == maxNumberUsers - 1 {
-                    let iconContainer: UIView = createIcon(text: "+\(users.count - maxNumberUsers - 1)")
+                if i == maxNumberUsers - 1 && users.count > maxNumberUsers {
+                    let iconContainer: UIView = createIcon(text: "+\(users.count - (maxNumberUsers - 1))", color: .systemGray4)
                     
                     userListContainer.addSubview(iconContainer)
                     
                     iconContainer.topAnchor.constraint(equalTo: userListContainer.topAnchor, constant: 0).isActive = true
-                    iconContainer.leftAnchor.constraint(equalTo: userListContainer.leftAnchor, constant: CGFloat(25 * i)).isActive = true
+                    iconContainer.leftAnchor.constraint(equalTo: userListContainer.leftAnchor, constant: 28.5 * CGFloat(i)).isActive = true
                 } else {
                     let userContainer: UIView = createUserIcon(user: users[i])
                     
                     userListContainer.addSubview(userContainer)
                     
                     userContainer.topAnchor.constraint(equalTo: userListContainer.topAnchor, constant: 0).isActive = true
-                    userContainer.leftAnchor.constraint(equalTo: userListContainer.leftAnchor, constant: CGFloat(25 * i)).isActive = true
+                    userContainer.leftAnchor.constraint(equalTo: userListContainer.leftAnchor, constant: 28.5 * CGFloat(i)).isActive = true
                 }
             }
         } else {
@@ -181,15 +181,17 @@ class AvailabilityDetail: UIView {
             
             for i in 0..<users.count {
                 scrollHeight += 60
-                
+
                 let listElem = AvalabilityDetailListElement.instanceFromNib(icon: createUserIcon(user: users[i]), text: "\(users[i].firstName) \(users[i].lastName)")
                 listElem.translatesAutoresizingMaskIntoConstraints = false
                 listElem.heightAnchor.constraint(equalToConstant: 50).isActive = true
-                
+
                 userStackList.addArrangedSubview(listElem)
-                
+
                 listElem.leftAnchor.constraint(equalTo: userStackList.leftAnchor).isActive = true
                 listElem.rightAnchor.constraint(equalTo: userStackList.rightAnchor).isActive = true
+            
+                self.layoutIfNeeded()
             }
             
             scrollView.contentSize = CGSize(width: scrollView.contentSize.width, height: scrollHeight)

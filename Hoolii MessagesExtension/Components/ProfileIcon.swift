@@ -35,15 +35,17 @@ public class ProfileIcon: UIView {
         generateUserAvatar(avatarInput: profileIconContent)
     }
     
-    convenience init(initials: String) {
+    convenience init(initials: String, color: UIColor) {
         self.init(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         
         let initialsLabel = UILabel(frame: CGRect(x: 14, y: 14, width: width, height: height))
-        initialsLabel.font = .systemFont(ofSize: 11, weight: .bold)
+        initialsLabel.font = .systemFont(ofSize: 14, weight: .semibold)
         initialsLabel.text = initials
         initialsLabel.textColor = .white
         initialsLabel.textAlignment = .center
         self.addSubview(initialsLabel)
+        
+        backgroundColor = color
 
         initialsLabel.center.x = CGFloat(width/2)
         initialsLabel.center.y = CGFloat(height/2)
