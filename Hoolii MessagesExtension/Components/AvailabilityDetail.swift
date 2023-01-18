@@ -85,7 +85,7 @@ class AvailabilityDetail: UIView {
         var profileIcon = ProfileIcon(initials: user.getInitials(), color: AppColors.backgroundColorArray[user.backgroundColor])
         
         if user.avatar != nil {
-            profileIcon = ProfileIcon(avatar: user.avatar!)
+            profileIcon = ProfileIcon(avatar: Avatar(avatarEncoded: user.avatar!))
         }
         
         userContainer.addSubview(profileIcon)

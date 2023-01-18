@@ -36,6 +36,21 @@ public class ProfileIcon: UIView {
         generateUserAvatar(avatarInput: profileIconContent)
     }
     
+    convenience init(avatarToImage: Avatar, height: CGFloat = 40, width: CGFloat = 40) {
+        self.init(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        self.height = height
+        self.width = width
+        
+        avatarDisplay = avatarToImage.toFacialFeatureOption()
+        
+        self.widthAnchor.constraint(equalToConstant: CGFloat(width)).isActive = true
+        self.heightAnchor.constraint(equalToConstant: CGFloat(height)).isActive = true
+        layer.cornerRadius = CGFloat(height/2)
+        
+        self.backgroundColor = AppColors.backgroundColorArray[avatarToImage.backgroundIndex]
+        generateUserAvatarImage(avatarInput: avatarToImage)
+    }
+    
     convenience init(initials: String, color: UIColor, height: CGFloat = 40, width: CGFloat = 40) {
         self.init(frame: CGRect(x: 0, y: 0, width: width, height: height))
         self.height = height
@@ -65,13 +80,29 @@ public class ProfileIcon: UIView {
         }
 
         let shiftConst = avatarDisplay.getShiftConst() * height
-        print("shiftConst: \(shiftConst) height: \(height)")
         self.addSubview(avatarDisplay)
         avatarDisplay.translatesAutoresizingMaskIntoConstraints = false
         topConstraint = avatarDisplay.topAnchor.constraint(equalTo: self.topAnchor, constant: (1/100) * pow(height, 5.0/4.0) - shiftConst)
         avatarDisplay.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 1).isActive = true
         avatarDisplay.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -1).isActive = true
         bottomConstraint = avatarDisplay.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: (-1/100) * pow(height, 5.0/4.0) - shiftConst)
+        
+        topConstraint.isActive = true
+        bottomConstraint.isActive = true
+    }
+    
+    func generateUserAvatarImage(avatarInput: Avatar) {
+        let avatarImage = UIImageView()
+        avatarImage.image = avatarInput.toImage(size: CGSize(width: 100, height: 100))
+        
+        let shiftConst = avatarDisplay.getShiftConst() * height
+        addSubview(avatarImage)
+        
+        avatarImage.translatesAutoresizingMaskIntoConstraints = false
+        topConstraint = avatarImage.topAnchor.constraint(equalTo: self.topAnchor, constant: (1/100) * pow(height, 5.0/4.0) - shiftConst)
+        avatarImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 1).isActive = true
+        avatarImage.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -1).isActive = true
+        bottomConstraint = avatarImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: (-1/100) * pow(height, 5.0/4.0) - shiftConst)
         
         topConstraint.isActive = true
         bottomConstraint.isActive = true

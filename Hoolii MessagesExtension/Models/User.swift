@@ -8,15 +8,15 @@
 import Foundation
 
 
-struct User: Codable, Equatable {
+class User: Codable, Equatable {
     
     // MARK: Properties
     var id: String
     var firstName: String
     var lastName: String
-    var avatar: Avatar?
+    var avatar: String?
     var backgroundColor: Int
-    init(id: String, firstName: String, lastName: String, avatar: Avatar?) {
+    init(id: String, firstName: String, lastName: String, avatar: String?) {
         self.id = id
         self.firstName = firstName
         self.lastName = lastName

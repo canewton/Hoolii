@@ -19,6 +19,7 @@ class HooliiMessage {
     var users: [User]
     var allSchedules: [String]
     let maxPeople: Int = 20
+    let encodingChars: KeyValuePairs<Character, Int> = ["g": 1, "h":2, "i":3, "j":4, "k":5, "l":6, "m":7, "n":8, "o":9, "p":10, "q":11, "r":12, "s":13, "t":14, "u":14, "v":15, "w":16, "x":17, "y":18, "z":19]
     
     // prepare the schedule to be sent in a message
     var queryItems: [URLQueryItem] {
@@ -137,7 +138,7 @@ class HooliiMessage {
                 }
                 j += 1
             }
-            output.append(dayString)
+            output.append(compressHexString(hexStr: dayString))
         }
         return output
     }
@@ -150,10 +151,11 @@ class HooliiMessage {
             var timeCollectives: [TimeRangeCollective] = []
             var lastUsers: [User] = []
             var time = startTime
-            while j < strings[i].count {
-                let startIndex = strings[i].index(strings[i].startIndex, offsetBy: j)
-                let endIndex = strings[i].index(strings[i].startIndex, offsetBy: j + 5)
-                let hexStr = strings[i][startIndex..<endIndex]
+            var decompressedString = decompressHexString(compressedStr: strings[i])
+            while j < decompressedString.count {
+                let startIndex = decompressedString.index(decompressedString.startIndex, offsetBy: j)
+                let endIndex = decompressedString.index(decompressedString.startIndex, offsetBy: j + 5)
+                let hexStr = decompressedString[startIndex..<endIndex]
                 let binary = hexStringToBinaryString(hexStr: String(hexStr))
                 let users: [User] = stringToUsers(binary: binary)
                 if users.count == 0 {
@@ -239,6 +241,66 @@ class HooliiMessage {
     func binaryStringToHexString(binartyStr: String) -> String {
         let hexStr = String(Int(binartyStr, radix: 2)!, radix: 16)
         return hexStr.padding(toLength: 5, withPad: "0", startingAt: 0)
+    }
+    
+    func compressHexString(hexStr: String) -> String{
+        var strArr: [Character] = Array(hexStr)
+        var duplicateCount = 0
+        var lastChar: Character = strArr[0]
+        var i = 1
+        while i < strArr.count {
+            if lastChar == strArr[i] {
+                duplicateCount += 1
+                if duplicateCount == 1 {
+                    if let index = encodingChars.firstIndex(where: { $0.1 == duplicateCount }) {
+                        strArr[i] = encodingChars[index].0
+                    }
+                    i += 1
+                } else if duplicateCount > 1 && duplicateCount <= 19 {
+                    strArr.remove(at: i)
+                    if let index = encodingChars.firstIndex(where: { $0.1 == duplicateCount }) {
+                        strArr[i - 1] = encodingChars[index].0
+                    }
+                } else if duplicateCount > 19 {
+                    duplicateCount = 0
+                    lastChar = strArr[i]
+                    i += 1
+                }
+            } else {
+                duplicateCount = 0
+                lastChar = strArr[i]
+                i += 1
+            }
+        }
+        
+        print(hexStr)
+        print(String(strArr))
+        
+        return String(strArr)
+    }
+    
+    func decompressHexString(compressedStr: String) -> String {
+        var strArr: [Character] = Array(compressedStr)
+        var strOutputArr: [Character] = Array(compressedStr)
+        var lastChar: Character = strArr[0]
+        var strOutputIndex: Int = 1
+        for i in 1..<strArr.count {
+            if let index = encodingChars.firstIndex(where: { $0.0 == strArr[i] }) {
+                strOutputArr.remove(at: strOutputIndex)
+                for _ in 0..<encodingChars[index].1 {
+                    strOutputArr.insert(lastChar, at: strOutputIndex)
+                    strOutputIndex += 1
+                }
+            } else {
+                lastChar = strArr[i]
+                strOutputIndex += 1
+            }
+        }
+        
+        print(compressedStr)
+        print(String(strOutputArr))
+        
+        return String(strOutputArr)
     }
     
     // only for going from 5 chars to 20 chars

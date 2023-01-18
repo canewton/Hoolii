@@ -37,6 +37,16 @@ struct Avatar: Codable, Equatable {
         self.init(chinIndex: 0, earIndex: 0, browIndex: 0, glassIndex: 0, mouthIndex: 0, noseIndex: 0, hairIndex: 8, skinTone: 0, hairColor: 0, backgroundIndex: 0)
     }
     
+    init(avatarEncoded: String) {
+        var indicies: [Int] = []
+        
+        for i in 0..<avatarEncoded.count {
+            indicies.append(Array(avatarEncoded)[i].wholeNumberValue!)
+        }
+        
+        self.init(chinIndex: indicies[0], earIndex: indicies[1], browIndex: indicies[2], glassIndex: indicies[3], mouthIndex: indicies[4], noseIndex: indicies[5], hairIndex: indicies[6], skinTone: indicies[7], hairColor: indicies[8], backgroundIndex: indicies[9])
+    }
+    
     init(randomized: Bool) {
         if randomized == false {
             self.init()
@@ -52,6 +62,10 @@ struct Avatar: Codable, Equatable {
     func getJsonValue() -> String {
         let encodedData = try! JSONEncoder().encode(self)
         return String(data: encodedData, encoding: .utf8)!
+    }
+    
+    func encodeAvatar() -> String {
+        return "\(chinIndex)\(earIndex)\(browIndex)\(glassIndex)\(mouthIndex)\(noseIndex)\(hairIndex)\(skinTone)\(hairColor)\(backgroundIndex)"
     }
     
     func toFacialFeatureOption() -> FacialFeatureOption {
@@ -83,5 +97,64 @@ struct Avatar: Codable, Equatable {
         facialFeatureOption.beardShiftConst = AvatarConstants.chinOptions[chinIndex].beardShiftConst
         
         return facialFeatureOption
+    }
+    
+    func toImage(size: CGSize) -> UIImage {
+        
+        let hairColor = AppColors.hairColorArray[hairColor]
+        let skinColor = AppColors.skintoneArray[skinTone]
+        
+        // create Image context offscreen
+        UIGraphicsBeginImageContext(size)
+
+        let areaSize1 = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+
+        // draw images into context
+        AvatarConstants.hairOptions[hairIndex].hairBack.image?.withTintColor(hairColor).draw(in: areaSize1)
+        UIImage(named: "Ear 1 + Head")?.withTintColor(skinColor).draw(in: areaSize1)
+        AvatarConstants.hairOptions[hairIndex].hairMidBack.image?.withTintColor(hairColor).draw(in: areaSize1)
+        AvatarConstants.hairOptions[hairIndex].hairMidFront.image?.withTintColor(hairColor).draw(in: areaSize1)
+        
+        let avatarImage1 = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        
+        let areaSize2 = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        
+        avatarImage1?.draw(in: areaSize2)
+        AvatarConstants.browOptions[browIndex].brows.image?.draw(in: areaSize2)
+        AvatarConstants.chinOptions[chinIndex].chin.image?.withTintColor(skinColor).draw(in: areaSize2)
+        AvatarConstants.eyeOptions[glassIndex].eyes.image?.draw(in: areaSize2)
+        
+        let avatarImage2 = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        
+        let areaSize3 = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        
+        avatarImage2?.draw(in: areaSize3)
+        AvatarConstants.noseOptions[noseIndex].nose.image?.draw(in: areaSize3)
+        AvatarConstants.hairOptions[hairIndex].hairFront.image?.withTintColor(hairColor).draw(in: areaSize3)
+        AvatarConstants.chinOptions[chinIndex].beard.image?.withTintColor(skinColor).draw(in: areaSize3)
+        
+        let avatarImage3 = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        
+        let areaSize4 = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        
+        avatarImage3?.draw(in: areaSize4)
+        AvatarConstants.earOptions[earIndex].ears.image?.draw(in: areaSize4)
+        AvatarConstants.eyeOptions[glassIndex].glasses.image?.draw(in: areaSize4)
+        AvatarConstants.mouthOptions[mouthIndex].mouth.image?.draw(in: areaSize4)
+        
+        let avatarImage4 = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        // Return avatar image
+        return avatarImage4!
     }
 }

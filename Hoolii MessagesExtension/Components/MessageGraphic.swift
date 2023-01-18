@@ -16,10 +16,10 @@ final class MessageGraphic: UIView {
             let circleCenterX = backgroundCircle.center.x
             let circleCenterY = backgroundCircle.center.y
             
-            var profileIcon = ProfileIcon(initials: userArr[i].getInitials(), color: AppColors.backgroundColorArray[userArr[i].backgroundColor], height: 100, width: 100)
+            var profileIcon = ProfileIcon(initials: userArr[i].getInitials(), color: AppColors.backgroundColorArray[userArr[i].backgroundColor], height: 150, width: 150)
             
             if userArr[i].avatar != nil {
-                profileIcon = ProfileIcon(avatar: userArr[i].avatar!, height: 100, width: 100)
+                profileIcon = ProfileIcon(avatarToImage: Avatar(avatarEncoded: userArr[i].avatar!), height: 150, width: 150)
             }
             
             profileIcon.layoutIfNeeded()
@@ -35,7 +35,6 @@ final class MessageGraphic: UIView {
             backgroundCircle.frame.size.width -= 10
             backgroundCircle.center.x = circleCenterX
             backgroundCircle.center.y = circleCenterY
-            //backgroundCircle.tintColor = AppColors.main
         }
         
         let renderer = UIGraphicsImageRenderer(bounds: bounds)
@@ -53,7 +52,7 @@ final class MessageGraphic: UIView {
     }
     
     func imageFromAvatar(icon: ProfileIcon) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: 100, height: 100), false, 0.0)
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 150, height: 150), false, 0.0)
         icon.layer.render(in: UIGraphicsGetCurrentContext()!)
         let img: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
