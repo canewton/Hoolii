@@ -319,7 +319,7 @@
                                                 <rect key="frame" x="0.0" y="59" width="360" height="695"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Select Meeting Times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNY-A3-BOP">
-                                                        <rect key="frame" x="30" y="398" width="164" height="20"/>
+                                                        <rect key="frame" x="30" y="405" width="164" height="20"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -417,6 +417,12 @@
                                                             <action selector="OnSetTimeframe:" destination="aQX-sg-Rru" eventType="touchUpInside" id="YlM-Fh-D8W"/>
                                                         </connections>
                                                     </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="You can not select more than seven dates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rvv-Ev-HnX">
+                                                        <rect key="frame" x="30" y="388" width="202" height="12"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="Szr-IL-x6L" firstAttribute="leading" secondItem="abc-g2-hbG" secondAttribute="leading" constant="30" id="14b-Gd-C2o"/>
@@ -426,13 +432,15 @@
                                                     <constraint firstItem="nLM-kf-lxg" firstAttribute="top" secondItem="71Z-dF-OKr" secondAttribute="bottom" constant="20" id="8cf-MI-dZZ"/>
                                                     <constraint firstItem="PNY-A3-BOP" firstAttribute="leading" secondItem="abc-g2-hbG" secondAttribute="leading" constant="30" id="9Dd-FE-nPC"/>
                                                     <constraint firstItem="HIn-s7-JzO" firstAttribute="leading" secondItem="abc-g2-hbG" secondAttribute="leading" constant="25" id="Cm0-ND-CLr"/>
-                                                    <constraint firstItem="PNY-A3-BOP" firstAttribute="top" secondItem="HIn-s7-JzO" secondAttribute="bottom" constant="20" id="Hyg-0b-FkD"/>
+                                                    <constraint firstItem="PNY-A3-BOP" firstAttribute="top" secondItem="HIn-s7-JzO" secondAttribute="bottom" constant="40" id="Hyg-0b-FkD"/>
                                                     <constraint firstAttribute="trailing" secondItem="HIn-s7-JzO" secondAttribute="trailing" constant="25" id="OZV-WN-qcM"/>
                                                     <constraint firstAttribute="trailing" secondItem="71Z-dF-OKr" secondAttribute="trailing" constant="30" id="cNS-lr-EDd"/>
                                                     <constraint firstItem="ixQ-a1-p1S" firstAttribute="top" secondItem="abc-g2-hbG" secondAttribute="top" constant="20" id="ftO-kb-u82"/>
                                                     <constraint firstAttribute="bottom" secondItem="mza-qD-eGz" secondAttribute="bottom" constant="30" id="gVT-ff-jpP"/>
                                                     <constraint firstAttribute="trailing" secondItem="Szr-IL-x6L" secondAttribute="trailing" constant="30" id="glL-Iv-qsR"/>
+                                                    <constraint firstItem="Rvv-Ev-HnX" firstAttribute="top" secondItem="HIn-s7-JzO" secondAttribute="bottom" constant="12" id="jo7-hG-dMP"/>
                                                     <constraint firstItem="71Z-dF-OKr" firstAttribute="leading" secondItem="abc-g2-hbG" secondAttribute="leading" constant="30" id="lJA-Ar-7ZU"/>
+                                                    <constraint firstItem="Rvv-Ev-HnX" firstAttribute="leading" secondItem="abc-g2-hbG" secondAttribute="leading" constant="30" id="ojf-up-B8n"/>
                                                     <constraint firstItem="3CU-yf-X69" firstAttribute="top" secondItem="abc-g2-hbG" secondAttribute="top" constant="30" id="pfe-A7-TWM"/>
                                                     <constraint firstItem="3CU-yf-X69" firstAttribute="leading" secondItem="abc-g2-hbG" secondAttribute="leading" constant="30" id="qwh-IB-aX2"/>
                                                     <constraint firstItem="71Z-dF-OKr" firstAttribute="top" secondItem="PNY-A3-BOP" secondAttribute="bottom" constant="15" id="tHa-Z1-kT9"/>
@@ -471,6 +479,7 @@
                         <outlet property="mainView" destination="abc-g2-hbG" id="aIL-aE-OyJ"/>
                         <outlet property="mainViewBottomConstraint" destination="vKV-8L-Jj0" id="pna-YV-rC5"/>
                         <outlet property="mainViewTopContraint" destination="HNe-Ty-mAq" id="2Xa-um-WtV"/>
+                        <outlet property="maxRangeText" destination="Rvv-Ev-HnX" id="m0k-Lp-wLh"/>
                         <outlet property="newMeetingField" destination="Szr-IL-x6L" id="2A8-tn-K52"/>
                         <outlet property="screenContent" destination="c6M-Ij-VWv" id="8LB-FT-jOV"/>
                         <outlet property="scrollView" destination="f0V-kD-TLZ" id="7ST-0U-h0W"/>

@@ -106,10 +106,10 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
             let shiftConst = profileIconContent.getShiftConst() * profileIcon.bounds.height
             profileIcon.addSubview(profileIconContent)
             profileIconContent.translatesAutoresizingMaskIntoConstraints = false
-            profileIconContent.topAnchor.constraint(equalTo: profileIcon.topAnchor, constant: 5 - shiftConst).isActive = true
-            profileIconContent.leftAnchor.constraint(equalTo: profileIcon.leftAnchor, constant: 5).isActive = true
-            profileIconContent.rightAnchor.constraint(equalTo: profileIcon.rightAnchor, constant: -5).isActive = true
-            profileIconContent.bottomAnchor.constraint(equalTo: profileIcon.bottomAnchor, constant: -5 - shiftConst).isActive = true
+            profileIconContent.topAnchor.constraint(equalTo: profileIcon.topAnchor, constant: 8 - shiftConst).isActive = true
+            profileIconContent.leftAnchor.constraint(equalTo: profileIcon.leftAnchor, constant: 8).isActive = true
+            profileIconContent.rightAnchor.constraint(equalTo: profileIcon.rightAnchor, constant: -8).isActive = true
+            profileIconContent.bottomAnchor.constraint(equalTo: profileIcon.bottomAnchor, constant: -8 - shiftConst).isActive = true
             
             profileIcon.backgroundColor = AppColors.backgroundColorArray[avatar.backgroundIndex]
         }

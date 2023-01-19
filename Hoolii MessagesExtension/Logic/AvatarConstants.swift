@@ -23,7 +23,7 @@ class AvatarConstants {
     static let hairOption12 = FacialFeatureOption.instanceFromNib().addHair(front: UIImage(named: "Female hair 12 front"), back: UIImage(named: "Female hair 12 back"))
     static let hairOption13 = FacialFeatureOption.instanceFromNib().addHair(UIImage(named: "Female hair 13"), hairShift: -0.07)
     static let hairOption14 = FacialFeatureOption.instanceFromNib().addHair(front: UIImage(named: "Female hair 14 front"), back: UIImage(named: "Female hair 14 back"))
-    static let hairOption15 = FacialFeatureOption.instanceFromNib().addHair(UIImage(named: "Female hair 15"), hairShift: -0.05)
+    static let hairOption15 = FacialFeatureOption.instanceFromNib().addHair(UIImage(named: "Female hair 15"), hairShift: -0.03)
     static let hairOption16 = FacialFeatureOption.instanceFromNib().addHair(UIImage(named: "Male hair 1"), hairShift: -0.05)
     static let hairOption17 = FacialFeatureOption.instanceFromNib().addHair(UIImage(named: "Male hair 2"))
     static let hairOption18 = FacialFeatureOption.instanceFromNib().addHair(UIImage(named: "Male hair 3"))
