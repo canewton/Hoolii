@@ -171,7 +171,6 @@
                                                                 </constraints>
                                                             </imageView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="FFy-UA-wtF"/>
                                                             <constraint firstItem="usr-vC-cI3" firstAttribute="centerY" secondItem="zoY-Dt-61o" secondAttribute="centerY" id="LSd-M0-S3T"/>
@@ -227,7 +226,6 @@
                                                                 </constraints>
                                                             </imageView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="95" id="2DL-GV-xM4"/>
                                                             <constraint firstItem="C3e-d7-W7q" firstAttribute="centerY" secondItem="7pQ-i1-VGc" secondAttribute="centerY" id="7fN-Mo-vKD"/>
@@ -238,7 +236,6 @@
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="kgV-mD-cnF" firstAttribute="top" secondItem="mNO-Sa-CkO" secondAttribute="top" id="6wd-hJ-t5P"/>
                                                     <constraint firstItem="7pQ-i1-VGc" firstAttribute="top" secondItem="mNO-Sa-CkO" secondAttribute="top" id="DO9-fH-41T"/>
@@ -274,7 +271,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WQd-dh-Tof"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="alert"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="g3o-Qc-4O3" secondAttribute="trailing" id="R3t-pm-qb0"/>
                             <constraint firstItem="g3o-Qc-4O3" firstAttribute="top" secondItem="YQG-WD-Jq4" secondAttribute="top" id="TfV-ik-Xo3"/>
@@ -1111,6 +1108,7 @@
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Rat-HC-B0K">
                                 <rect key="frame" x="20" y="585" width="320" height="105"/>
+                                <color key="backgroundColor" name="alert"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Eaa-xX-F6k">
                                     <size key="itemSize" width="98" height="98"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1125,7 +1123,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="98" height="98"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -1215,7 +1212,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="alert"/>
                                 <constraints>
                                     <constraint firstItem="moq-7D-BwU" firstAttribute="top" secondItem="3Vx-uR-K2S" secondAttribute="top" constant="12" id="FEl-1y-xJQ"/>
                                     <constraint firstItem="moq-7D-BwU" firstAttribute="centerX" secondItem="3Vx-uR-K2S" secondAttribute="centerX" id="WKt-qZ-haI"/>
@@ -1242,7 +1239,6 @@
                                         </connections>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="wgA-Ka-jKH" secondAttribute="trailing" id="0bn-Pi-9WA"/>
                                     <constraint firstItem="t5N-gP-xKA" firstAttribute="top" secondItem="xPu-UL-SeZ" secondAttribute="top" id="V2y-jw-Q78"/>
