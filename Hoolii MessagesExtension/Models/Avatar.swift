@@ -99,6 +99,17 @@ struct Avatar: Codable, Equatable {
         return facialFeatureOption
     }
     
+    func getShiftConst() -> CGFloat {
+        let hairShiftConst = AvatarConstants.hairOptions[hairIndex].hairShiftConst
+        let beardShiftConst = AvatarConstants.chinOptions[chinIndex].beardShiftConst
+        if hairShiftConst >= 0 && beardShiftConst >= 0 {
+            return hairShiftConst > beardShiftConst ? hairShiftConst : beardShiftConst
+        } else if hairShiftConst <= 0 && beardShiftConst >= 0 {
+            return hairShiftConst + beardShiftConst
+        }
+        return 0
+    }
+    
     func toImage(size: CGSize) -> UIImage {
         
         let hairColor = AppColors.hairColorArray[hairColor]
@@ -137,7 +148,7 @@ struct Avatar: Codable, Equatable {
         avatarImage2?.draw(in: areaSize3)
         AvatarConstants.noseOptions[noseIndex].nose.image?.draw(in: areaSize3)
         AvatarConstants.hairOptions[hairIndex].hairFront.image?.withTintColor(hairColor).draw(in: areaSize3)
-        AvatarConstants.chinOptions[chinIndex].beard.image?.withTintColor(skinColor).draw(in: areaSize3)
+        AvatarConstants.chinOptions[chinIndex].beard.image?.withTintColor(hairColor).draw(in: areaSize3)
         
         let avatarImage3 = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()

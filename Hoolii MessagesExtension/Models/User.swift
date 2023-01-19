@@ -8,7 +8,7 @@
 import Foundation
 
 
-class User: Codable, Equatable {
+struct User: Codable, Equatable {
     
     // MARK: Properties
     var id: String
@@ -22,6 +22,11 @@ class User: Codable, Equatable {
         self.lastName = lastName
         self.avatar = avatar
         self.backgroundColor = Int.random(in: 0..<AppColors.backgroundColorArray.count)
+        
+        if avatar != nil {
+            var imageStorage = ImageStorage(userID: id, avatarImage: Avatar(avatarEncoded: avatar!).toImage(size: CGSize(width: 100, height: 100)))
+            ImageStorage.avatarImages.append(imageStorage)
+        }
     }
     
     init(id: String, firstName: String, lastName: String) {

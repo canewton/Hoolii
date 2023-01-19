@@ -410,18 +410,18 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     }
     
     func changeProfileButtonAvatars(avatar: Avatar) {
-        ProfileButton.profileIcon.avatarDisplay.addBeardAndChin(beard: AvatarConstants.chinOptions[avatar.chinIndex].beard.image, chin: AvatarConstants.chinOptions[avatar.chinIndex].chin.image, beardShift: AvatarConstants.chinOptions[avatar.chinIndex].beardShiftConst)
-        ProfileButton.profileIcon.avatarDisplay.addNose(AvatarConstants.noseOptions[avatar.noseIndex].nose.image)
-        ProfileButton.profileIcon.avatarDisplay.addMouth(AvatarConstants.mouthOptions[avatar.mouthIndex].mouth.image)
-        ProfileButton.profileIcon.avatarDisplay.addBrows(AvatarConstants.browOptions[avatar.browIndex].brows.image)
-        ProfileButton.profileIcon.avatarDisplay.addEars(AvatarConstants.earOptions[avatar.earIndex].ears.image)
-        ProfileButton.profileIcon.avatarDisplay.addHair(front: AvatarConstants.hairOptions[avatar.hairIndex].hairFront.image, midFront: AvatarConstants.hairOptions[avatar.hairIndex].hairMidFront.image, midBack: AvatarConstants.hairOptions[avatar.hairIndex].hairMidBack.image, back: AvatarConstants.hairOptions[avatar.hairIndex].hairBack.image, hairShift: AvatarConstants.hairOptions[avatar.hairIndex].hairShiftConst)
+        ProfileButton.profileIcon.avatarDisplay!.addBeardAndChin(beard: AvatarConstants.chinOptions[avatar.chinIndex].beard.image, chin: AvatarConstants.chinOptions[avatar.chinIndex].chin.image, beardShift: AvatarConstants.chinOptions[avatar.chinIndex].beardShiftConst)
+        ProfileButton.profileIcon.avatarDisplay!.addNose(AvatarConstants.noseOptions[avatar.noseIndex].nose.image)
+        ProfileButton.profileIcon.avatarDisplay!.addMouth(AvatarConstants.mouthOptions[avatar.mouthIndex].mouth.image)
+        ProfileButton.profileIcon.avatarDisplay!.addBrows(AvatarConstants.browOptions[avatar.browIndex].brows.image)
+        ProfileButton.profileIcon.avatarDisplay!.addEars(AvatarConstants.earOptions[avatar.earIndex].ears.image)
+        ProfileButton.profileIcon.avatarDisplay!.addHair(front: AvatarConstants.hairOptions[avatar.hairIndex].hairFront.image, midFront: AvatarConstants.hairOptions[avatar.hairIndex].hairMidFront.image, midBack: AvatarConstants.hairOptions[avatar.hairIndex].hairMidBack.image, back: AvatarConstants.hairOptions[avatar.hairIndex].hairBack.image, hairShift: AvatarConstants.hairOptions[avatar.hairIndex].hairShiftConst)
         ProfileButton.profileIcon.backgroundColor = AppColors.backgroundColorArray[avatar.backgroundIndex]
-        ProfileButton.profileIcon.avatarDisplay.setHairColor(color: AppColors.hairColorArray[avatar.hairColor])
-        ProfileButton.profileIcon.avatarDisplay.setSkinColor(color: AppColors.skintoneArray[avatar.skinTone])
+        ProfileButton.profileIcon.avatarDisplay!.setHairColor(color: AppColors.hairColorArray[avatar.hairColor])
+        ProfileButton.profileIcon.avatarDisplay!.setSkinColor(color: AppColors.skintoneArray[avatar.skinTone])
         
-        ProfileButton.profileIcon.topConstraint.constant = -1 * ProfileButton.profileIcon.avatarDisplay.getShiftConst() * ProfileButton.height + 1
-        ProfileButton.profileIcon.bottomConstraint.constant = -1 * ProfileButton.profileIcon.avatarDisplay.getShiftConst() * ProfileButton.height - 1
+        ProfileButton.profileIcon.topConstraint.constant = -1 * ProfileButton.profileIcon.avatarDisplay!.getShiftConst() * ProfileButton.height + 1
+        ProfileButton.profileIcon.bottomConstraint.constant = -1 * ProfileButton.profileIcon.avatarDisplay!.getShiftConst() * ProfileButton.height - 1
     }
     
     //MARK: END OF AVATAR SAVNG FUNCTIONS

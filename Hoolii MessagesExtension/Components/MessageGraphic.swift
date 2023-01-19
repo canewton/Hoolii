@@ -9,6 +9,8 @@ import UIKit
 
 final class MessageGraphic: UIView {
     var userArr: [User] = []
+    let iconHeight: CGFloat = 100
+    let iconWidth: CGFloat = 100
     
     func convertToImage() -> UIImage? {
         for i in 0..<userArr.count {
@@ -16,10 +18,15 @@ final class MessageGraphic: UIView {
             let circleCenterX = backgroundCircle.center.x
             let circleCenterY = backgroundCircle.center.y
             
-            var profileIcon = ProfileIcon(initials: userArr[i].getInitials(), color: AppColors.backgroundColorArray[userArr[i].backgroundColor], height: 150, width: 150)
+            var profileIcon = ProfileIcon(initials: userArr[i].getInitials(), color: AppColors.backgroundColorArray[userArr[i].backgroundColor], height: iconHeight, width: iconWidth)
             
             if userArr[i].avatar != nil {
-                profileIcon = ProfileIcon(avatarToImage: Avatar(avatarEncoded: userArr[i].avatar!), height: 150, width: 150)
+                if userArr[i].id != StoredValues.get(key: StoredValuesConstants.userID) {
+                    profileIcon = ProfileIcon(avatar: Avatar(avatarEncoded: userArr[i].avatar!), userID: userArr[i].id, height: iconHeight, width: iconWidth)
+                } else {
+                    let storedAvatar = StoredValues.get(key: StoredValuesConstants.userAvatar)
+                    profileIcon = ProfileIcon(avatar: Avatar(jsonValue: storedAvatar!), height: iconHeight, width: iconWidth)
+                }
             }
             
             profileIcon.layoutIfNeeded()
@@ -52,7 +59,7 @@ final class MessageGraphic: UIView {
     }
     
     func imageFromAvatar(icon: ProfileIcon) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: 150, height: 150), false, 0.0)
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: iconWidth, height: iconHeight), false, 0.0)
         icon.layer.render(in: UIGraphicsGetCurrentContext()!)
         let img: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
