@@ -40,7 +40,7 @@ class AvatarConstants {
     static let hairOption29 = FacialFeatureOption.instanceFromNib().addHair(UIImage(named: "Male hair 14"), hairShift: 0.07)
     static let hairOption30 = FacialFeatureOption.instanceFromNib().addHair(UIImage(named: "Male hair 15"), hairShift: -0.05)
     static let hairOption31 = FacialFeatureOption.instanceFromNib().addHair(UIImage(named: "Male hair 16"), hairShift: -0.05)
-    static let hairOptions: [FacialFeatureOption] = [hairOption0, hairOption1, hairOption2, hairOption3, hairOption4, hairOption5, hairOption6, hairOption7, hairOption8, hairOption9, hairOption10, hairOption11, hairOption12, hairOption13, hairOption14, hairOption15, hairOption16, hairOption17, hairOption18, hairOption19, hairOption20, hairOption21, hairOption22, hairOption23, hairOption24, hairOption25, hairOption26, hairOption27, hairOption28, hairOption29, hairOption30, hairOption31]
+    static let hairOptions: [FacialFeatureOption] = [hairOption0, hairOption1, hairOption2, hairOption3, hairOption4, hairOption5, hairOption9, hairOption10, hairOption11, hairOption12, hairOption13, hairOption14, hairOption6, hairOption7, hairOption29, hairOption17, hairOption18, hairOption8, hairOption15, hairOption16, hairOption19, hairOption20, hairOption21, hairOption22, hairOption23, hairOption24, hairOption25, hairOption26, hairOption27, hairOption28, hairOption30, hairOption31]
     
     
     static let chinOption1 = FacialFeatureOption.instanceFromNib()

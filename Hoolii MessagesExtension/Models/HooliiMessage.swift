@@ -273,9 +273,6 @@ class HooliiMessage {
             }
         }
         
-        print(hexStr)
-        print(String(strArr))
-        
         return String(strArr)
     }
     
@@ -296,9 +293,6 @@ class HooliiMessage {
                 strOutputIndex += 1
             }
         }
-        
-        print(compressedStr)
-        print(String(strOutputArr))
         
         return String(strOutputArr)
     }
