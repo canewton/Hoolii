@@ -13,7 +13,7 @@ class OnboardingViewController: AppViewController, ViewControllerWithIdentifier 
     @IBOutlet weak var nextButtonWidth: NSLayoutConstraint!
     @IBOutlet weak var nextButton: UILabel!
     @IBOutlet weak var backButton: UILabel!
-    var profileViewController: CreateProfileViewController!
+    var profileViewController: AvatarCreatorViewController!
     static let storyboardIdentifier = "OnboardingViewController"
     weak var delegate: AnyObject?
     let numPages: Int = 3
@@ -132,7 +132,7 @@ protocol OnboardingViewControllerDelegate: AnyObject {
 extension MessagesViewController: OnboardingViewControllerDelegate {
     // allow this controller to transition to the YourAvailabilities screen
     func transitonToProfile(_ controller: OnboardingViewController, callback: @escaping (() -> Void)) {
-        let profileVC: CreateProfileViewController = instantiateController()
+        let profileVC: AvatarCreatorViewController = instantiateController()
         profileVC.dismissCallback = callback
         controller.profileViewController = profileVC
     }

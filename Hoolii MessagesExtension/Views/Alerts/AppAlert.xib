@@ -26,10 +26,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LA5-KJ-rjm">
-                    <rect key="frame" x="0.0" y="25" width="330" height="202"/>
+                    <rect key="frame" x="14" y="25" width="302" height="202"/>
                 </view>
                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0T7-Dp-PcT">
-                    <rect key="frame" x="0.0" y="258" width="330" height="49"/>
+                    <rect key="frame" x="14" y="258" width="302" height="49"/>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="6Aj-oQ-Ra9"/>
@@ -38,12 +38,12 @@
                 <constraint firstItem="LA5-KJ-rjm" firstAttribute="top" secondItem="yCd-HR-Brh" secondAttribute="top" constant="25" id="2Kz-Ws-trs"/>
                 <constraint firstItem="6Aj-oQ-Ra9" firstAttribute="bottom" secondItem="VS7-CX-Dwt" secondAttribute="bottom" constant="15" id="3JS-Bk-ATX"/>
                 <constraint firstItem="0T7-Dp-PcT" firstAttribute="top" secondItem="LA5-KJ-rjm" secondAttribute="bottom" constant="15" id="70v-MZ-fWx"/>
-                <constraint firstItem="6Aj-oQ-Ra9" firstAttribute="trailing" secondItem="LA5-KJ-rjm" secondAttribute="trailing" id="7XB-Fq-pIW"/>
-                <constraint firstItem="0T7-Dp-PcT" firstAttribute="leading" secondItem="6Aj-oQ-Ra9" secondAttribute="leading" id="8Hm-Ql-MHm"/>
+                <constraint firstItem="6Aj-oQ-Ra9" firstAttribute="trailing" secondItem="LA5-KJ-rjm" secondAttribute="trailing" constant="14" id="7XB-Fq-pIW"/>
+                <constraint firstItem="0T7-Dp-PcT" firstAttribute="leading" secondItem="6Aj-oQ-Ra9" secondAttribute="leading" constant="14" id="8Hm-Ql-MHm"/>
                 <constraint firstItem="0T7-Dp-PcT" firstAttribute="bottom" secondItem="yCd-HR-Brh" secondAttribute="bottom" constant="-60" id="ToM-K5-zLg"/>
                 <constraint firstItem="VS7-CX-Dwt" firstAttribute="centerX" secondItem="yCd-HR-Brh" secondAttribute="centerX" id="tk4-Ct-Xsb"/>
-                <constraint firstItem="6Aj-oQ-Ra9" firstAttribute="trailing" secondItem="0T7-Dp-PcT" secondAttribute="trailing" id="vet-vm-zGa"/>
-                <constraint firstItem="LA5-KJ-rjm" firstAttribute="leading" secondItem="6Aj-oQ-Ra9" secondAttribute="leading" id="wim-zp-wj6"/>
+                <constraint firstItem="6Aj-oQ-Ra9" firstAttribute="trailing" secondItem="0T7-Dp-PcT" secondAttribute="trailing" constant="14" id="vet-vm-zGa"/>
+                <constraint firstItem="LA5-KJ-rjm" firstAttribute="leading" secondItem="6Aj-oQ-Ra9" secondAttribute="leading" constant="14" id="wim-zp-wj6"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

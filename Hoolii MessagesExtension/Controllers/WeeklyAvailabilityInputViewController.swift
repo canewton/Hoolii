@@ -47,9 +47,11 @@ class WeeklyAvailabilityInputViewController: AppViewController, ViewControllerWi
     }
     
     func configureBottomBar() {
-        bottomBar.layer.shadowColor = AppColors.shadowColor.cgColor
-        bottomBar.layer.shadowOpacity = 0.6
-        bottomBar.layer.shadowOffset = .zero
-        bottomBar.layer.shadowRadius = 10
+        if traitCollection.userInterfaceStyle == .light {
+            bottomBar.layer.shadowColor = AppColors.shadowColor.cgColor
+            bottomBar.layer.shadowOpacity = 0.6
+            bottomBar.layer.shadowOffset = .zero
+            bottomBar.layer.shadowRadius = 10
+        }
     }
 }

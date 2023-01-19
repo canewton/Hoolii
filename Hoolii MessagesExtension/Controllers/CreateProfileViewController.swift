@@ -10,18 +10,14 @@ import Foundation
 import UIKit
 
 class CreateProfileViewController: AppViewController, ViewControllerWithIdentifier {
-    @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var backButton: BackButton!
-    @IBOutlet weak var AvatarCreatorButton: UIButton!
     @IBOutlet weak var profileIcon: UIView!
-    @IBOutlet weak var profileInitials: UILabel!
-    @IBOutlet weak var editButton: UIButton!
-    @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var profileAvailabilityPreviewContainer: UIView!
-    @IBOutlet weak var createProfileButton: ThemedButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var screenContent: UIView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var editProfileButton: UIView!
+    @IBOutlet weak var editAvailabilityButton: UIView!
     var profileAvailabilityPreview: ProfileAvailabilityPreview!
     var newMeetingViewController: NewMeetingViewController!
     var userHasEmptySchedule: Bool = true
@@ -33,37 +29,24 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
     static let storyboardIdentifier = "CreateProfileViewController"
     var delegate: AnyObject?
     
-    @IBAction func avatarButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "goToAvatar", sender: self)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if !StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
-            createProfileButton.removeFromSuperview()
-        }
         
         // set initial values of the profile if a profile has not yet been created
         StoredValues.setIfEmpty(key: StoredValuesConstants.firstName, value: "")
         StoredValues.setIfEmpty(key: StoredValuesConstants.lastName, value: "")
         StoredValues.setIfEmpty(key: StoredValuesConstants.userID, value: makeID(length: 20))
         
-        usernameField.delegate = self
         backButton.configure(viewController: self)
         
         configureAvailabilityPreview()
-        configureTextFields()
         configureProfileIcon()
-        configureEditButton()
-        
-        setInitials()
+        configureNameLabel()
+        configureEditButtons()
+        generateUserAvatar()
         
         scrollView.contentSize = CGSize(width: view.frame.width, height: screenContent.bounds.height)
         screenContent.frame.size.width = view.frame.width
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        usernameField.resignFirstResponder()
     }
     
     // make a random id with the specified length
@@ -79,9 +62,23 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
         return result
     }
     
+    func configureNameLabel() {
+        let firstName: String = StoredValues.get(key: StoredValuesConstants.firstName) ?? ""
+        let lastName: String = StoredValues.get(key: StoredValuesConstants.lastName) ?? ""
+        nameLabel.text = "\(firstName) \(lastName)"
+    }
+    
+    func configureEditButtons() {
+        let editAvailTap = UITapGestureRecognizer(target: self, action: #selector(onEditWeeklyAvailability(gesture: )))
+        editAvailabilityButton.addGestureRecognizer(editAvailTap)
+        
+        let editProfileTap = UITapGestureRecognizer(target: self, action: #selector(onEditProfile(gesture: )))
+        editProfileButton.addGestureRecognizer(editProfileTap)
+    }
+    
     // populate the edit weekly availability screen with the user's weekly availability data
     // navigate to the weekly availability screen
-    @IBAction func OnEditWeeklyAvailability(_ sender: Any) {
+    @objc func onEditWeeklyAvailability(gesture: UITapGestureRecognizer) {
         let weeklyAvailabilityVC = self.storyboard?
             .instantiateViewController(withIdentifier: "WeeklyAvailabilityInputViewController") as! WeeklyAvailabilityInputViewController
         weeklyAvailabilityVC.userSchedule = getUserAvailability()
@@ -89,37 +86,33 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
         self.transitionToScreen(viewController: weeklyAvailabilityVC)
     }
     
-    // Determine how the initials will look like
-    func setInitials() {
-        if firstNameTextField.text!.count > 0 && lastNameTextField.text!.count > 0 {
-            let firstName = firstNameTextField.text!.uppercased()
-            let lastName = lastNameTextField.text!.uppercased()
-            let firstNameIndex = firstName.index(firstName.startIndex, offsetBy: 1)
-            let lastNameIndex = lastName.index(lastName.startIndex, offsetBy: 1)
-            profileInitials.text = String(firstName.prefix(upTo: firstNameIndex)) + String(lastName.prefix(upTo: lastNameIndex))
-        } else if firstNameTextField.text!.count > 0 {
-            let firstName = firstNameTextField.text!.uppercased()
-            let index = firstName.index(firstName.startIndex, offsetBy: 1)
-            profileInitials.text = String(firstName.prefix(upTo: index))
-        } else if lastNameTextField.text!.count > 0 {
-            let lastName = lastNameTextField.text!.uppercased()
-            let index = lastName.index(lastName.startIndex, offsetBy: 1)
-            profileInitials.text = String(lastName.prefix(upTo: index))
-        } else {
-            profileInitials.text = ""
+    @objc func onEditProfile(gesture: UITapGestureRecognizer) {
+        let avatarCreatorVC = self.storyboard?
+            .instantiateViewController(withIdentifier: "AvatarCreatorViewController") as! AvatarCreatorViewController
+        avatarCreatorVC.editNameCallback = configureNameLabel
+        avatarCreatorVC.editProfileCallback = generateUserAvatar
+        self.transitionToScreen(viewController: avatarCreatorVC)
+    }
+    
+    func generateUserAvatar() {
+        for _ in 0..<profileIcon.subviews.count {
+            profileIcon.subviews[0].removeFromSuperview()
         }
-    }
-    
-    @objc func firstNameTextFieldDidChange(_ textField: UITextField) {
-        StoredValues.set(key: StoredValuesConstants.firstName, value: textField.text!.trimmingCharacters(in: .whitespaces))
-        setInitials()
-        StoredValues.set(key: StoredValuesConstants.initials, value: profileInitials.text!)
-    }
-    
-    @objc func lastNameTextFieldDidChange(_ textField: UITextField) {
-        StoredValues.set(key: StoredValuesConstants.lastName, value: textField.text!.trimmingCharacters(in: .whitespaces))
-        setInitials()
-        StoredValues.set(key: StoredValuesConstants.initials, value: profileInitials.text!)
+        
+        let storedAvatar = StoredValues.get(key: StoredValuesConstants.userAvatar)
+        if storedAvatar != nil {
+            let avatar = Avatar(jsonValue: storedAvatar!)
+            let profileIconContent = (avatar.toFacialFeatureOption())
+            let shiftConst = profileIconContent.getShiftConst() * profileIcon.bounds.height
+            profileIcon.addSubview(profileIconContent)
+            profileIconContent.translatesAutoresizingMaskIntoConstraints = false
+            profileIconContent.topAnchor.constraint(equalTo: profileIcon.topAnchor, constant: 8 - shiftConst).isActive = true
+            profileIconContent.leftAnchor.constraint(equalTo: profileIcon.leftAnchor, constant: 8).isActive = true
+            profileIconContent.rightAnchor.constraint(equalTo: profileIcon.rightAnchor, constant: -8).isActive = true
+            profileIconContent.bottomAnchor.constraint(equalTo: profileIcon.bottomAnchor, constant: -8 - shiftConst).isActive = true
+            
+            profileIcon.backgroundColor = AppColors.backgroundColorArray[avatar.backgroundIndex]
+        }
     }
     
     // get the user stored in local storage
@@ -127,7 +120,7 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
         let id: String = StoredValues.get(key: StoredValuesConstants.userID)!
         let firstName: String = StoredValues.get(key: StoredValuesConstants.firstName)!
         let lastName: String = StoredValues.get(key: StoredValuesConstants.lastName)!
-        return User(id: id, firstName: firstName, lastName: lastName, userAvatar: Avatar(chinIndex: 0, earIndex: 0, browIndex: 0, glassIndex: 0, mouthIndex: 0, noseIndex: 0, hairIndex: 0, skinTone: 0, hairColor: 0, backgroundIndex: 0))
+        return User(id: id, firstName: firstName, lastName: lastName, avatar: Avatar().encodeAvatar())
     }
     
     // if there is the weekly availability has not been set, return an empty scedule
@@ -165,45 +158,7 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
         profileAvailabilityPreview.topAnchor.constraint(equalTo: profileAvailabilityPreviewContainer.topAnchor).isActive = true
     }
     
-    func configureTextFields() {
-        firstNameTextField.addTarget(self, action: #selector(firstNameTextFieldDidChange(_:)), for: .editingChanged)
-        lastNameTextField.addTarget(self, action: #selector(lastNameTextFieldDidChange(_:)), for: .editingChanged)
-        firstNameTextField.text = StoredValues.get(key: StoredValuesConstants.firstName)
-        lastNameTextField.text = StoredValues.get(key: StoredValuesConstants.lastName)
-    }
-    
     func configureProfileIcon() {
-        profileIcon.layer.cornerRadius = 55
-    }
-    
-    func configureEditButton() {
-        let editIcon: UIImage = ScaledIcon(name: "edit", width: 14, height: 14, color: .label).image
-        editButton.setImage(editIcon, for: .normal)
-    }
-    
-    @IBAction func onCreateProfile(_ sender: Any) {
-        StoredValues.setIfEmpty(key: StoredValuesConstants.hasBeenOnboarded, value: "yes")
-        (delegate as? CreateProfileViewControllerDelegate)?.transitonToNewMeeting(self)
-        
-        self.dismiss(animated: true, completion: { () -> Void in self.prevController.dismiss(animated: true, completion: self.dismissCallback)})
-    }
-}
-
-extension CreateProfileViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-}
-
-protocol CreateProfileViewControllerDelegate: AnyObject {
-    func transitonToNewMeeting(_ controller: CreateProfileViewController)
-}
-
-extension MessagesViewController: CreateProfileViewControllerDelegate {
-    // allow this controller to transition to the YourAvailabilities screen
-    func transitonToNewMeeting(_ controller: CreateProfileViewController) {
-        let newMeetingVC: NewMeetingViewController = instantiateController()
-        controller.newMeetingViewController = newMeetingVC
+        profileIcon.layer.cornerRadius = 80
     }
 }

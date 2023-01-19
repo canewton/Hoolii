@@ -37,7 +37,14 @@ class AdaptsToKeyboard: AppViewController {
             object: nil
         )
         
-        offset = self.view.bounds.height - 600
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+        
+        offset = self.view.bounds.height - 575
     }
     
     @objc private func keyboardWillChangeFrame(_ notification: NSNotification) {
@@ -75,12 +82,7 @@ class AdaptsToKeyboard: AppViewController {
         )
     }
     
-    // Animate the bottom constraint so that the look of the app is the way it was before
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-        
-        view.removeGestureRecognizer(tap)
-        
+    @objc func keyboardWillHide() {
         UIView.animate(
             withDuration: animationDuration,
             delay: 0,
@@ -91,5 +93,12 @@ class AdaptsToKeyboard: AppViewController {
                 view.layoutIfNeeded()
             }
         )
+    }
+    
+    // Animate the bottom constraint so that the look of the app is the way it was before
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+        
+        view.removeGestureRecognizer(tap)
     }
 }

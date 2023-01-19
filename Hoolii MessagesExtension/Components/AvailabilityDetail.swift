@@ -45,10 +45,17 @@ class AvailabilityDetail: UIView {
         header.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         header.layer.cornerRadius = 15
         
-        layer.shadowColor = AppColors.shadowColor.cgColor
-        layer.shadowOpacity = 0.4
-        layer.shadowOffset = .zero
-        layer.shadowRadius = 2
+        if traitCollection.userInterfaceStyle == .light {
+            layer.shadowColor = AppColors.shadowColor.cgColor
+            layer.shadowOpacity = 0.4
+            layer.shadowOffset = .zero
+            layer.shadowRadius = 2
+        } else {
+            layer.shadowColor = UIColor.systemGray.cgColor
+            layer.shadowOpacity = 0.4
+            layer.shadowOffset = .zero
+            layer.shadowRadius = 2
+        }
         
         let closeTap = UITapGestureRecognizer(target: self, action: #selector(handleCloseTapGesture(gesture:)))
         closeTap.numberOfTapsRequired = 1
@@ -79,31 +86,55 @@ class AvailabilityDetail: UIView {
     }
     
     func createUserIcon(user: User) -> UIView {
-        return createIcon(text: user.getInitials())
-    }
-    
-    func createIcon(text: String) -> UIView {
         let userContainer: UIView = UIView()
-        let iconLabel: UILabel = UILabel(frame: CGRect(x: 14, y: 14, width: ProfileButton.width, height: ProfileButton.height))
-        iconLabel.text = text
-        
         userContainer.translatesAutoresizingMaskIntoConstraints = false
-        userContainer.widthAnchor.constraint(equalToConstant: CGFloat(ProfileButton.width)).isActive = true
-        userContainer.heightAnchor.constraint(equalToConstant: CGFloat(ProfileButton.height)).isActive = true
-        userContainer.layer.cornerRadius = 15
+        
+        var profileIcon = ProfileIcon(initials: user.getInitials(), color: AppColors.backgroundColorArray[user.backgroundColor])
+        
+        if user.avatar != nil {
+            if user.id != StoredValues.get(key: StoredValuesConstants.userID) {
+                profileIcon = ProfileIcon(avatar: Avatar(avatarEncoded: user.avatar!), userID: user.id)
+            } else {
+                profileIcon = ProfileButton.profileIcon
+            }
+        }
+        
+        userContainer.addSubview(profileIcon)
+        
+        profileIcon.topAnchor.constraint(equalTo: userContainer.topAnchor).isActive = true
+        profileIcon.bottomAnchor.constraint(equalTo: userContainer.bottomAnchor).isActive = true
+        profileIcon.leftAnchor.constraint(equalTo: userContainer.leftAnchor).isActive = true
+        profileIcon.rightAnchor.constraint(equalTo: userContainer.rightAnchor).isActive = true
+        
+        userContainer.layer.cornerRadius = profileIcon.width/2
         userContainer.layer.shadowColor = AppColors.shadowColor.cgColor
         userContainer.layer.shadowOpacity = 0.3
         userContainer.layer.shadowOffset = .zero
         userContainer.layer.shadowRadius = 1
-        userContainer.backgroundColor = AppColors.redBackground
         
-        userContainer.addSubview(iconLabel)
-        iconLabel.font = .systemFont(ofSize: 11, weight: .bold)
-        iconLabel.textColor = .white
-        iconLabel.textAlignment = .center
-        iconLabel.center.x = 15
-        iconLabel.center.y = 15
         return userContainer
+    }
+    
+    func createIcon(text: String, color: UIColor) -> UIView {
+        let iconContainer: UIView = UIView()
+        iconContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        let icon = ProfileIcon(initials: text, color: color)
+        
+        iconContainer.addSubview(icon)
+        
+        icon.topAnchor.constraint(equalTo: iconContainer.topAnchor).isActive = true
+        icon.bottomAnchor.constraint(equalTo: iconContainer.bottomAnchor).isActive = true
+        icon.leftAnchor.constraint(equalTo: iconContainer.leftAnchor).isActive = true
+        icon.rightAnchor.constraint(equalTo: iconContainer.rightAnchor).isActive = true
+        
+        iconContainer.layer.cornerRadius = icon.width/2
+        iconContainer.layer.shadowColor = AppColors.shadowColor.cgColor
+        iconContainer.layer.shadowOpacity = 0.3
+        iconContainer.layer.shadowOffset = .zero
+        iconContainer.layer.shadowRadius = 1
+        
+        return iconContainer
     }
     
     func configureUsers(users: [User]) {
@@ -118,23 +149,23 @@ class AvailabilityDetail: UIView {
         }
         
         if isCollapsed {
-            let maxNumberUsers = 7
+            let maxNumberUsers = 6
             let numIcons = users.count > maxNumberUsers ? maxNumberUsers : users.count
             for i in 0..<numIcons {
-                if i == maxNumberUsers - 1 {
-                    let iconContainer: UIView = createIcon(text: "+\(users.count - maxNumberUsers - 1)")
+                if i == maxNumberUsers - 1 && users.count > maxNumberUsers {
+                    let iconContainer: UIView = createIcon(text: "+\(users.count - (maxNumberUsers - 1))", color: .systemGray4)
                     
                     userListContainer.addSubview(iconContainer)
                     
                     iconContainer.topAnchor.constraint(equalTo: userListContainer.topAnchor, constant: 0).isActive = true
-                    iconContainer.leftAnchor.constraint(equalTo: userListContainer.leftAnchor, constant: CGFloat(25 * i)).isActive = true
+                    iconContainer.leftAnchor.constraint(equalTo: userListContainer.leftAnchor, constant: 28.5 * CGFloat(i)).isActive = true
                 } else {
                     let userContainer: UIView = createUserIcon(user: users[i])
                     
                     userListContainer.addSubview(userContainer)
                     
                     userContainer.topAnchor.constraint(equalTo: userListContainer.topAnchor, constant: 0).isActive = true
-                    userContainer.leftAnchor.constraint(equalTo: userListContainer.leftAnchor, constant: CGFloat(25 * i)).isActive = true
+                    userContainer.leftAnchor.constraint(equalTo: userListContainer.leftAnchor, constant: 28.5 * CGFloat(i)).isActive = true
                 }
             }
         } else {
@@ -160,29 +191,18 @@ class AvailabilityDetail: UIView {
             var scrollHeight: CGFloat = 0
             
             for i in 0..<users.count {
-                let userContainer: UIView = createUserIcon(user: users[i])
-                let userIconAndNameContainer: UIView = UIView()
-                let userFullName: UILabel = UILabel(frame: CGRect(x: 45, y: 0, width: 300, height: 30))
-                userFullName.text = "\(users[i].firstName) \(users[i].lastName)"
-                
-                scrollHeight += 56
-                
-                userIconAndNameContainer.addSubview(userContainer)
-                userIconAndNameContainer.addSubview(userFullName)
-                userIconAndNameContainer.backgroundColor = AppColors.lightGrey
-                userIconAndNameContainer.layer.cornerRadius = 5
-                
-                userContainer.topAnchor.constraint(equalTo: userIconAndNameContainer.topAnchor, constant: 8).isActive = true
-                userContainer.bottomAnchor.constraint(equalTo: userIconAndNameContainer.bottomAnchor, constant: -8).isActive = true
-                userContainer.leftAnchor.constraint(equalTo: userIconAndNameContainer.leftAnchor, constant: 8).isActive = true
-                
-                userFullName.center.y = 23
-                
-                userStackList.addArrangedSubview(userIconAndNameContainer)
-                
-                UIView.animate(withDuration: 0.3, animations: {
-                   self.layoutIfNeeded()
-                })
+                scrollHeight += 60
+
+                let listElem = AvalabilityDetailListElement.instanceFromNib(icon: createUserIcon(user: users[i]), text: "\(users[i].firstName) \(users[i].lastName)")
+                listElem.translatesAutoresizingMaskIntoConstraints = false
+                listElem.heightAnchor.constraint(equalToConstant: 50).isActive = true
+
+                userStackList.addArrangedSubview(listElem)
+
+                listElem.leftAnchor.constraint(equalTo: userStackList.leftAnchor).isActive = true
+                listElem.rightAnchor.constraint(equalTo: userStackList.rightAnchor).isActive = true
+            
+                self.layoutIfNeeded()
             }
             
             scrollView.contentSize = CGSize(width: scrollView.contentSize.width, height: scrollHeight)

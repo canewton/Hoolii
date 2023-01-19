@@ -11,11 +11,17 @@ import Alamofire
 
 class MessagesViewController: MSMessagesAppViewController {
     
+    static var currViewController: UIViewController!
+    
     override func viewDidLoad() {
-        print("loaded")
+//        print("loaded")
 //        StoredValues.deleteKey(key: StoredValuesConstants.newMeetingOnboarding)
 //        StoredValues.deleteKey(key: StoredValuesConstants.yourAvailabilityOnboarding)
 //        StoredValues.deleteKey(key: StoredValuesConstants.hasBeenOnboarded)
+//        StoredValues.deleteKey(key: StoredValuesConstants.firstName)
+//        StoredValues.deleteKey(key: StoredValuesConstants.lastName)
+//        StoredValues.deleteKey(key: StoredValuesConstants.userAvatar)
+//        StoredValues.deleteKey(key: StoredValuesConstants.userSchedule)
 //        AF.request("https://hoolii.fly.dev/collective-schedule", method: .get).validate().responseJSON(completionHandler: handleResponse)
     }
     
@@ -68,7 +74,7 @@ class MessagesViewController: MSMessagesAppViewController {
                 print(error)
             }
         }
-        conversation.insertText("https://www.when2meet.com/ ")
+        // conversation.insertText("https://www.when2meet.com/ ")
     }
     
     // MARK: Determine active view controller before extension becomes active
@@ -91,6 +97,10 @@ class MessagesViewController: MSMessagesAppViewController {
                 let yourAvailController: YourAvailabilitiesViewController = instantiateController()
                 controller = yourAvailController
             }
+            
+            if let currVC = MessagesViewController.currViewController as? AvatarCreatorViewController {
+                currVC.collectionViewBottomConstraint?.isActive = false
+            }
         } else {
             if CollectiveSchedule.shared.allSchedules.count > 0 {
                 let yourAvailabilitiesController: YourAvailabilitiesViewController = instantiateController()
@@ -98,6 +108,11 @@ class MessagesViewController: MSMessagesAppViewController {
             } else {
                 let newMeetingController: NewMeetingViewController = instantiateController()
                 controller = newMeetingController
+            }
+            
+            if let currVC = MessagesViewController.currViewController as? AvatarCreatorViewController {
+                currVC.collectionViewBottomConstraint = currVC.elemCollectionView.bottomAnchor.constraint(equalTo: currVC.bottomBar.topAnchor)
+                currVC.collectionViewBottomConstraint.isActive = true
             }
         }
         

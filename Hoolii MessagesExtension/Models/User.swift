@@ -14,12 +14,26 @@ struct User: Codable, Equatable {
     var id: String
     var firstName: String
     var lastName: String
-    var userAvatar: Avatar
-    init(id: String, firstName: String, lastName: String, userAvatar: Avatar) {
+    var avatar: String?
+    var backgroundColor: Int
+    init(id: String, firstName: String, lastName: String, avatar: String?) {
         self.id = id
         self.firstName = firstName
         self.lastName = lastName
-        self.userAvatar = userAvatar
+        self.avatar = avatar
+        self.backgroundColor = Int.random(in: 0..<AppColors.backgroundColorArray.count)
+        
+        if avatar != nil {
+            var imageStorage = ImageStorage(userID: id, avatarImage: Avatar(avatarEncoded: avatar!).toImage(size: CGSize(width: 100, height: 100)))
+            ImageStorage.avatarImages.append(imageStorage)
+        }
+    }
+    
+    init(id: String, firstName: String, lastName: String) {
+        self.id = id
+        self.firstName = firstName
+        self.lastName = lastName
+        self.backgroundColor = Int.random(in: 0..<AppColors.backgroundColorArray.count)
     }
     
     func getInitials() -> String {

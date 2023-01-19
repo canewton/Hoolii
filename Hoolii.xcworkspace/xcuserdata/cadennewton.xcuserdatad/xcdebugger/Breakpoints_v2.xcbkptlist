@@ -14,42 +14,10 @@
             filePath = "Hoolii MessagesExtension/Controllers/MessagesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "MessagesViewController"
             landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "B687CE12-F350-4455-9EC4-B0C5D713F8E0 - ab923ff21c19faac"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hoolii_MessagesExtension.MessagesViewController.SendMessage() -&gt; ()"
-                  moduleName = "Hoolii MessagesExtension"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cadennewton/Documents/Hoolii_Main/SchedulingApp/Hoolii%20MessagesExtension/Controllers/MessagesViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "43"
-                  endingLineNumber = "43"
-                  offsetFromSymbolStart = "484">
-               </Location>
-               <Location
-                  uuid = "B687CE12-F350-4455-9EC4-B0C5D713F8E0 - a455949a3486d0f9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Hoolii_MessagesExtension.MessagesViewController.SendMessage() -&gt; ()"
-                  moduleName = "Hoolii MessagesExtension"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cadennewton/Documents/Hoolii_Main/SchedulingApp/Hoolii%20MessagesExtension/Controllers/MessagesViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "44"
-                  endingLineNumber = "44"
-                  offsetFromSymbolStart = "44">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

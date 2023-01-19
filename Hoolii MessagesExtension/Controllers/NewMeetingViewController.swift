@@ -26,6 +26,7 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier, 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var setTimeframeButton: ThemedButton!
     @IBOutlet weak var screenContent: UIView!
+    @IBOutlet weak var maxRangeText: UILabel!
     var loadedSubviews = false
     
     let formatter = DateFormatter()
@@ -40,6 +41,7 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier, 
         configureMainViewConstraints()
         configureDatePickers()
         setTimeframeButton.isEnabled = false
+        maxRangeText.text = ""
         
         if !StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) && StoredValues.isKeyNil(key: StoredValuesConstants.newMeetingOnboarding) {
             AlertManager.createNewMeetingAlert(controller: self)
@@ -131,6 +133,14 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier, 
             setTimeframeButton.isEnabled = true
         } else {
             setTimeframeButton.isEnabled = false
+        }
+        
+        if CollectiveSchedule.shared.dates.count > 7 {
+            maxRangeText.text = "You can not select more than seven dates"
+            setTimeframeButton.isEnabled = false
+        } else {
+            maxRangeText.text = ""
+            setTimeframeButton.isEnabled = true
         }
     }
     
