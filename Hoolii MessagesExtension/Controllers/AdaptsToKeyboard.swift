@@ -44,7 +44,7 @@ class AdaptsToKeyboard: AppViewController {
             object: nil
         )
         
-        offset = self.view.bounds.height - 600
+        offset = self.view.bounds.height - 575
     }
     
     @objc private func keyboardWillChangeFrame(_ notification: NSNotification) {

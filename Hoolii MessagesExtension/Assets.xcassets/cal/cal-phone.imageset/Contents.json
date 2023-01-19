@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "phone (1).svg",
+      "filename" : "phone (1).png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "phone (1) 1.svg",
+      "filename" : "phone (1) 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "phone (1) 2.svg",
+      "filename" : "phone (1) 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

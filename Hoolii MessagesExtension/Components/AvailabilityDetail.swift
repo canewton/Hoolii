@@ -45,10 +45,17 @@ class AvailabilityDetail: UIView {
         header.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         header.layer.cornerRadius = 15
         
-        layer.shadowColor = AppColors.shadowColor.cgColor
-        layer.shadowOpacity = 0.4
-        layer.shadowOffset = .zero
-        layer.shadowRadius = 2
+        if traitCollection.userInterfaceStyle == .light {
+            layer.shadowColor = AppColors.shadowColor.cgColor
+            layer.shadowOpacity = 0.4
+            layer.shadowOffset = .zero
+            layer.shadowRadius = 2
+        } else {
+            layer.shadowColor = UIColor.systemGray.cgColor
+            layer.shadowOpacity = 0.4
+            layer.shadowOffset = .zero
+            layer.shadowRadius = 2
+        }
         
         let closeTap = UITapGestureRecognizer(target: self, action: #selector(handleCloseTapGesture(gesture:)))
         closeTap.numberOfTapsRequired = 1

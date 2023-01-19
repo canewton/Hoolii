@@ -208,10 +208,18 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     }
     
     func configureBottomBar() {
-        bottomBar.layer.shadowColor = AppColors.shadowColor.cgColor
-        bottomBar.layer.shadowOpacity = 0.4
-        bottomBar.layer.shadowOffset = .zero
-        bottomBar.layer.shadowRadius = 10
+        if traitCollection.userInterfaceStyle == .light {
+            bottomBar.layer.shadowColor = AppColors.shadowColor.cgColor
+            bottomBar.layer.shadowOpacity = 0.4
+            bottomBar.layer.shadowOffset = .zero
+            bottomBar.layer.shadowRadius = 10
+        } else {
+            bottomBar.layer.shadowColor = UIColor.systemGray.cgColor
+            bottomBar.layer.shadowOpacity = 0.2
+            bottomBar.layer.shadowOffset = .zero
+            bottomBar.layer.shadowRadius = 2
+            bottomBar.layer.shadowOffset = CGSize(width: 0, height: -2)
+        }
         
         saveAvatarButton.setImage(ScaledIcon(name: "checkmark", width: 15, height: 15, color: .label).image, for: .normal)
     }

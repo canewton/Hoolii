@@ -16,8 +16,8 @@ class MessagesViewController: MSMessagesAppViewController {
     override func viewDidLoad() {
 //        print("loaded")
 //        StoredValues.deleteKey(key: StoredValuesConstants.newMeetingOnboarding)
-//        StoredValues.deleteKey(key: StoredValuesConstants.yourAvailabilityOnboarding)
-//        StoredValues.deleteKey(key: StoredValuesConstants.hasBeenOnboarded)
+        StoredValues.deleteKey(key: StoredValuesConstants.yourAvailabilityOnboarding)
+        StoredValues.deleteKey(key: StoredValuesConstants.hasBeenOnboarded)
 //        StoredValues.deleteKey(key: StoredValuesConstants.firstName)
 //        StoredValues.deleteKey(key: StoredValuesConstants.lastName)
 //        StoredValues.deleteKey(key: StoredValuesConstants.userAvatar)
