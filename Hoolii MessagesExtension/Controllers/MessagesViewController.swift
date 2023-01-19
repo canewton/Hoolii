@@ -16,8 +16,8 @@ class MessagesViewController: MSMessagesAppViewController {
     override func viewDidLoad() {
 //        print("loaded")
 //        StoredValues.deleteKey(key: StoredValuesConstants.newMeetingOnboarding)
-        StoredValues.deleteKey(key: StoredValuesConstants.yourAvailabilityOnboarding)
-        StoredValues.deleteKey(key: StoredValuesConstants.hasBeenOnboarded)
+//        StoredValues.deleteKey(key: StoredValuesConstants.yourAvailabilityOnboarding)
+//        StoredValues.deleteKey(key: StoredValuesConstants.hasBeenOnboarded)
 //        StoredValues.deleteKey(key: StoredValuesConstants.firstName)
 //        StoredValues.deleteKey(key: StoredValuesConstants.lastName)
 //        StoredValues.deleteKey(key: StoredValuesConstants.userAvatar)
@@ -74,7 +74,7 @@ class MessagesViewController: MSMessagesAppViewController {
                 print(error)
             }
         }
-        conversation.insertText("https://www.when2meet.com/ ")
+        // conversation.insertText("https://www.when2meet.com/ ")
     }
     
     // MARK: Determine active view controller before extension becomes active
