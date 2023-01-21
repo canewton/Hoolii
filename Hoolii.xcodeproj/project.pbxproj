@@ -61,7 +61,7 @@
 		916099EF296A97D600783A29 /* AutofillFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916099EE296A97D600783A29 /* AutofillFeedback.swift */; };
 		916099F0296B95A800783A29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9142F982285FA20F0070661F /* Assets.xcassets */; };
 		916099F1296B95C000783A29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9142F982285FA20F0070661F /* Assets.xcassets */; };
-		9167C7DA296627DE00BB4220 /* MessageGraphic.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9167C7D9296627DE00BB4220 /* MessageGraphic.xib */; };
+		9167C7DA296627DE00BB4220 /* MessageGraphic0People.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9167C7D9296627DE00BB4220 /* MessageGraphic0People.xib */; };
 		9167C7DC296628ED00BB4220 /* MessageGraphic1People.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9167C7DB296628ED00BB4220 /* MessageGraphic1People.xib */; };
 		9167C7DE2966330600BB4220 /* MessageGraphic2People.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9167C7DD2966330600BB4220 /* MessageGraphic2People.xib */; };
 		9167C7E02966334E00BB4220 /* MessageGraphic3People.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9167C7DF2966334E00BB4220 /* MessageGraphic3People.xib */; };
@@ -200,7 +200,7 @@
 		916099EA296A4D9C00783A29 /* AlertLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertLabels.swift; sourceTree = "<group>"; };
 		916099EC296A96C400783A29 /* AutofillFeedback.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AutofillFeedback.xib; sourceTree = "<group>"; };
 		916099EE296A97D600783A29 /* AutofillFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutofillFeedback.swift; sourceTree = "<group>"; };
-		9167C7D9296627DE00BB4220 /* MessageGraphic.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageGraphic.xib; sourceTree = "<group>"; };
+		9167C7D9296627DE00BB4220 /* MessageGraphic0People.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageGraphic0People.xib; sourceTree = "<group>"; };
 		9167C7DB296628ED00BB4220 /* MessageGraphic1People.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageGraphic1People.xib; sourceTree = "<group>"; };
 		9167C7DD2966330600BB4220 /* MessageGraphic2People.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageGraphic2People.xib; sourceTree = "<group>"; };
 		9167C7DF2966334E00BB4220 /* MessageGraphic3People.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageGraphic3People.xib; sourceTree = "<group>"; };
@@ -483,7 +483,7 @@
 		91CABD952966275D002FB91C /* MessageGraphicComponents */ = {
 			isa = PBXGroup;
 			children = (
-				9167C7D9296627DE00BB4220 /* MessageGraphic.xib */,
+				9167C7D9296627DE00BB4220 /* MessageGraphic0People.xib */,
 				9167C7DB296628ED00BB4220 /* MessageGraphic1People.xib */,
 				9167C7DD2966330600BB4220 /* MessageGraphic2People.xib */,
 				9167C7DF2966334E00BB4220 /* MessageGraphic3People.xib */,
@@ -603,7 +603,7 @@
 				9103CF2E28C9197600BBC349 /* DayHeaderView.xib in Resources */,
 				9167C7E2296633C400BB4220 /* MessageGraphic4People.xib in Resources */,
 				9103CF2A28C8EA7800BBC349 /* FullAvailabilityInput.xib in Resources */,
-				9167C7DA296627DE00BB4220 /* MessageGraphic.xib in Resources */,
+				9167C7DA296627DE00BB4220 /* MessageGraphic0People.xib in Resources */,
 				916099ED296A96C400783A29 /* AutofillFeedback.xib in Resources */,
 				916E3EA929740B060036432E /* FacialFeatureIcon.xib in Resources */,
 				916099E9296A4AE000783A29 /* AlertLabels.xib in Resources */,

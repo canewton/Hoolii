@@ -15,7 +15,7 @@ class AdaptsToKeyboard: AppViewController {
     var animationDuration: Double = 0
     var animationCurveOptions: UIView.AnimationOptions = UIView.AnimationOptions()
     var keyboardHeight: CGFloat = 0
-    var tap: UITapGestureRecognizer = UITapGestureRecognizer()
+    var tap: UILongPressGestureRecognizer = UILongPressGestureRecognizer()
     var offset: CGFloat = 0
     
     
@@ -27,7 +27,8 @@ class AdaptsToKeyboard: AppViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        tap = UILongPressGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        tap.minimumPressDuration = 0
         
         // Observe keyboard frame changes.
         NotificationCenter.default.addObserver(
@@ -44,7 +45,7 @@ class AdaptsToKeyboard: AppViewController {
             object: nil
         )
         
-        offset = self.view.bounds.height - 575
+        offset = self.view.bounds.height - 650
     }
     
     @objc private func keyboardWillChangeFrame(_ notification: NSNotification) {

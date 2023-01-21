@@ -38,6 +38,11 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         
         ProfileButton.configure(viewController: self)
         
+        StoredValues.setIfEmpty(key: StoredValuesConstants.firstName, value: "")
+        StoredValues.setIfEmpty(key: StoredValuesConstants.lastName, value: "")
+        StoredValues.setIfEmpty(key: StoredValuesConstants.userID, value: "")
+        StoredValues.setIfEmpty(key: StoredValuesConstants.userAvatar, value: "")
+        
         firstName = StoredValues.get(key: StoredValuesConstants.firstName)!
         lastName = StoredValues.get(key: StoredValuesConstants.lastName)!
         id = StoredValues.get(key: StoredValuesConstants.userID)!

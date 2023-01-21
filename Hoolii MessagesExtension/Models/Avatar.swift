@@ -55,8 +55,12 @@ struct Avatar: Codable, Equatable {
     }
     
     init(jsonValue: String) {
-        let dataFromJsonString = jsonValue.data(using: .utf8)!
-        self = try! JSONDecoder().decode(Avatar.self, from: dataFromJsonString)
+        if jsonValue != "" {
+            let dataFromJsonString = jsonValue.data(using: .utf8)!
+            self = try! JSONDecoder().decode(Avatar.self, from: dataFromJsonString)
+        } else {
+            self.init()
+        }
     }
     
     func getJsonValue() -> String {
