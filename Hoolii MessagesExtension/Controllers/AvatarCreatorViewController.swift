@@ -25,12 +25,17 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     @IBOutlet weak var editTextIcon: UIImageView!
     @IBOutlet weak var screenLabel: UILabel!
     
+    @IBOutlet weak var avatarOptionsHeight: NSLayoutConstraint!
+    @IBOutlet weak var backgroundHeight: NSLayoutConstraint!
+    @IBOutlet weak var mainProfileViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var colorScrollHeight: NSLayoutConstraint!
+    @IBOutlet weak var colorScrollSpacingHeight: NSLayoutConstraint!
+    
     static var storyboardIdentifier: String = "AvatarCreatorViewController"
     var delegate: AnyObject?
     
     // Outlet for element table
     @IBOutlet weak var elemCollectionView: UICollectionView!
-    @IBOutlet weak var colorScrollHeight: NSLayoutConstraint!
     
     var currFacialFeature: Int = 0
     var itemIndex = 0
@@ -82,6 +87,11 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
             screenLabel.text = "Edit Profile"
         }
         
+        print("avatar creator view height \(view.bounds.height)")
+        mainProfileViewHeight.constant = view.bounds.height * 1.0/1000.0 * 200
+        backgroundHeight.constant = view.bounds.height * 1.0/1000.0 * 100
+        colorScrollSpacingHeight.constant = view.bounds.height * 1.0/1000.0 * 12
+        
         avatarView.addSubview(avatarContent)
         avatarContent.translatesAutoresizingMaskIntoConstraints = false
         avatarContent.topAnchor.constraint(equalTo: avatarView.topAnchor).isActive = true
@@ -93,7 +103,7 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         setUpColorStack(colors: AppColors.skintoneArray)
         configureBottomBar()
         
-        backgroundColor.layer.cornerRadius = 50
+        backgroundColor.layer.cornerRadius = backgroundHeight.constant/2
         
         // declare delegate and source for collection
         elemCollectionView.dataSource = self
@@ -200,7 +210,8 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         }
         
         for i in 0..<colors.count {
-            let colorView = AvatarColorOption(color: colors[i], colorIndex: i)
+            colorScrollHeight.constant = view.bounds.height * 1/900 * 40
+            let colorView = AvatarColorOption(color: colors[i], colorIndex: i, unselectedHeight: colorScrollHeight.constant, selectedHeight: colorScrollHeight.constant * 3.0/4.0)
             colorOptionsStack.addArrangedSubview(colorView)
             colorView.centerYAnchor.constraint(equalTo: colorOptionsStack.centerYAnchor).isActive = true
             colorView.callback = colorTapped

@@ -1284,15 +1284,19 @@
                     <connections>
                         <outlet property="avatarContainerImgView" destination="ccM-5I-7XT" id="uBn-9i-f9K"/>
                         <outlet property="avatarOptions" destination="0SU-Tc-N9n" id="nlR-05-1He"/>
+                        <outlet property="avatarOptionsHeight" destination="3xc-Jb-lmk" id="diT-y5-ZVS"/>
                         <outlet property="avatarView" destination="ccM-5I-7XT" id="Gyb-OW-qzH"/>
                         <outlet property="backgroundColor" destination="D6R-dy-F7N" id="qtv-YO-FNu"/>
+                        <outlet property="backgroundHeight" destination="0dd-Mh-xsB" id="yPN-Zf-cbX"/>
                         <outlet property="bottomBar" destination="3Vx-uR-K2S" id="pAp-Qk-oGp"/>
                         <outlet property="collectionViewBottomConstraint" destination="sgU-vo-pF6" id="WA7-WO-j92"/>
                         <outlet property="colorOptionsStack" destination="mGZ-ii-K0j" id="Vxt-fk-gPk"/>
-                        <outlet property="colorScrollHeight" destination="dNr-Cn-6ag" id="VQO-ja-pyj"/>
+                        <outlet property="colorScrollHeight" destination="dNr-Cn-6ag" id="028-u5-rXb"/>
+                        <outlet property="colorScrollSpacingHeight" destination="7d1-py-QwT" id="Aqu-yo-jcD"/>
                         <outlet property="editTextIcon" destination="wgA-Ka-jKH" id="yaW-Lj-eBR"/>
                         <outlet property="elemCollectionView" destination="Rat-HC-B0K" id="Tlz-8c-kW1"/>
                         <outlet property="facialFeatureOptionsLabel" destination="3PS-Yy-h06" id="r3X-Fz-4to"/>
+                        <outlet property="mainProfileViewHeight" destination="3tk-2l-0cW" id="1Le-e7-k2s"/>
                         <outlet property="nameTextField" destination="t5N-gP-xKA" id="QYq-eF-A3m"/>
                         <outlet property="saveAvatarButton" destination="moq-7D-BwU" id="OAo-bl-rog"/>
                         <outlet property="screenLabel" destination="Gla-ya-sky" id="p4U-Jk-2Pp"/>

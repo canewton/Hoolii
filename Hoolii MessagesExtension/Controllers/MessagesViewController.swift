@@ -15,13 +15,13 @@ class MessagesViewController: MSMessagesAppViewController {
     
     override func viewDidLoad() {
 //        print("loaded")
-//        StoredValues.deleteKey(key: StoredValuesConstants.newMeetingOnboarding)
-//        StoredValues.deleteKey(key: StoredValuesConstants.yourAvailabilityOnboarding)
-//        StoredValues.deleteKey(key: StoredValuesConstants.hasBeenOnboarded)
-//        StoredValues.deleteKey(key: StoredValuesConstants.firstName)
-//        StoredValues.deleteKey(key: StoredValuesConstants.lastName)
-//        StoredValues.deleteKey(key: StoredValuesConstants.userAvatar)
-//        StoredValues.deleteKey(key: StoredValuesConstants.userSchedule)
+        StoredValues.deleteKey(key: StoredValuesConstants.newMeetingOnboarding)
+        StoredValues.deleteKey(key: StoredValuesConstants.yourAvailabilityOnboarding)
+        StoredValues.deleteKey(key: StoredValuesConstants.hasBeenOnboarded)
+        StoredValues.deleteKey(key: StoredValuesConstants.firstName)
+        StoredValues.deleteKey(key: StoredValuesConstants.lastName)
+        StoredValues.deleteKey(key: StoredValuesConstants.userAvatar)
+        StoredValues.deleteKey(key: StoredValuesConstants.userSchedule)
 //        AF.request("https://hoolii.fly.dev/collective-schedule", method: .get).validate().responseJSON(completionHandler: handleResponse)
     }
     
