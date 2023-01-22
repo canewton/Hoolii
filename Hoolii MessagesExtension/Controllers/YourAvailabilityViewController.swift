@@ -36,17 +36,19 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        print("collective schedule")
+//        for i in 0..<CollectiveSchedule.shared.allSchedules.count {
+//            print("\(CollectiveSchedule.shared.allSchedules[i].user.avatar!) : \(CollectiveSchedule.shared.allSchedules[i].user.firstName)")
+//        }
+        
         ProfileButton.configure(viewController: self)
         
-        StoredValues.setIfEmpty(key: StoredValuesConstants.firstName, value: "")
-        StoredValues.setIfEmpty(key: StoredValuesConstants.lastName, value: "")
-        StoredValues.setIfEmpty(key: StoredValuesConstants.userID, value: "")
-        StoredValues.setIfEmpty(key: StoredValuesConstants.userAvatar, value: "")
+        StoredValues.setIfEmpty(key: StoredValuesConstants.userID, value: makeID(length: 20))
         
-        firstName = StoredValues.get(key: StoredValuesConstants.firstName)!
-        lastName = StoredValues.get(key: StoredValuesConstants.lastName)!
+        firstName = StoredValues.get(key: StoredValuesConstants.firstName) ?? ""
+        lastName = StoredValues.get(key: StoredValuesConstants.lastName) ?? ""
         id = StoredValues.get(key: StoredValuesConstants.userID)!
-        userAvatar = Avatar(jsonValue: StoredValues.get(key: StoredValuesConstants.userAvatar)!)
+        userAvatar = Avatar(jsonValue: StoredValues.get(key: StoredValuesConstants.userAvatar) ?? "")
         
         configureMeetingName()
         
@@ -157,6 +159,19 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         
         meetingTitle.text = name
         CollectiveSchedule.shared.meetingName = name
+    }
+    
+    // make a random id with the specified length
+    func makeID(length: Int) -> String {
+        var result = ""
+        let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+        for _ in 1...length {
+            let character = characters[characters.index(
+                characters.startIndex, offsetBy: Int.random(in: 0...(characters.count - 1))
+            )]
+            result = result + String(character)
+        }
+        return result
     }
     
     // Determine if the group view or the user view should be displayed

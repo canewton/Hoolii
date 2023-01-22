@@ -35,7 +35,6 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
         // set initial values of the profile if a profile has not yet been created
         StoredValues.setIfEmpty(key: StoredValuesConstants.firstName, value: "")
         StoredValues.setIfEmpty(key: StoredValuesConstants.lastName, value: "")
-        StoredValues.setIfEmpty(key: StoredValuesConstants.userID, value: makeID(length: 20))
         
         backButton.configure(viewController: self)
         
@@ -48,20 +47,7 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
         scrollView.contentSize = CGSize(width: view.frame.width, height: screenContent.bounds.height)
         screenContent.frame.size.width = view.frame.width
     }
-    
-    // make a random id with the specified length
-    func makeID(length: Int) -> String {
-        var result = ""
-        let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-        for _ in 1...length {
-            let character = characters[characters.index(
-                characters.startIndex, offsetBy: Int.random(in: 0...(characters.count - 1))
-            )]
-            result = result + String(character)
-        }
-        return result
-    }
-    
+
     func configureNameLabel() {
         let firstName: String = StoredValues.get(key: StoredValuesConstants.firstName) ?? ""
         let lastName: String = StoredValues.get(key: StoredValuesConstants.lastName) ?? ""

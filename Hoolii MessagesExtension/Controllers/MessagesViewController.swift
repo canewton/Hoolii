@@ -14,13 +14,14 @@ class MessagesViewController: MSMessagesAppViewController {
     static var currViewController: UIViewController!
     
     override func viewDidLoad() {
-        StoredValues.deleteKey(key: StoredValuesConstants.newMeetingOnboarding)
-        StoredValues.deleteKey(key: StoredValuesConstants.yourAvailabilityOnboarding)
-        StoredValues.deleteKey(key: StoredValuesConstants.hasBeenOnboarded)
-        StoredValues.deleteKey(key: StoredValuesConstants.firstName)
-        StoredValues.deleteKey(key: StoredValuesConstants.lastName)
-        StoredValues.deleteKey(key: StoredValuesConstants.userAvatar)
-        StoredValues.deleteKey(key: StoredValuesConstants.userSchedule)
+//        StoredValues.deleteKey(key: StoredValuesConstants.newMeetingOnboarding)
+//        StoredValues.deleteKey(key: StoredValuesConstants.yourAvailabilityOnboarding)
+//        StoredValues.deleteKey(key: StoredValuesConstants.hasBeenOnboarded)
+//        StoredValues.deleteKey(key: StoredValuesConstants.firstName)
+//        StoredValues.deleteKey(key: StoredValuesConstants.lastName)
+//        StoredValues.deleteKey(key: StoredValuesConstants.userAvatar)
+//        StoredValues.deleteKey(key: StoredValuesConstants.userSchedule)
+//        StoredValues.deleteKey(key: StoredValuesConstants.userID)
 //        AF.request("https://hoolii.fly.dev/collective-schedule", method: .get).validate().responseJSON(completionHandler: handleResponse)
     }
     
@@ -86,6 +87,7 @@ class MessagesViewController: MSMessagesAppViewController {
     private func presentViewController(for conversation: MSConversation, with presenentationStyle: MSMessagesAppPresentationStyle) {
         // Parse a `Schedule` from the conversation's `selectedMessage` or create a new `Schedule`.
         CollectiveSchedule.shared = HooliiMessage(message: conversation.selectedMessage)?.getCollectiveSchedule() ?? CollectiveSchedule()
+        ImageStorage.addImages(users: CollectiveSchedule.shared.allSchedules.map({ return $0.user }))
                 
         let controller: AppViewController
         if presentationStyle == .compact {
