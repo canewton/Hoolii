@@ -87,7 +87,6 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
             screenLabel.text = "Edit Profile"
         }
         
-        print("avatar creator view height \(view.bounds.height)")
         mainProfileViewHeight.constant = view.bounds.height * 1.0/1000.0 * 200
         backgroundHeight.constant = view.bounds.height * 1.0/1000.0 * 100
         colorScrollSpacingHeight.constant = view.bounds.height * 1.0/1000.0 * 12
