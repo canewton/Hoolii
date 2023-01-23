@@ -36,11 +36,6 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        print("collective schedule")
-//        for i in 0..<CollectiveSchedule.shared.allSchedules.count {
-//            print("\(CollectiveSchedule.shared.allSchedules[i].user.avatar!) : \(CollectiveSchedule.shared.allSchedules[i].user.firstName)")
-//        }
-        
         ProfileButton.configure(viewController: self)
         
         StoredValues.setIfEmpty(key: StoredValuesConstants.userID, value: makeID(length: 20))
@@ -53,10 +48,10 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         configureMeetingName()
         
         // create new schedule for user if user has not filled it out yet
-        if CollectiveSchedule.shared.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName, avatar: Avatar().encodeAvatar())) == nil {
+        if CollectiveSchedule.shared.getScheduleWithUser(id) == nil {
             userSchedule = CollectiveSchedule.shared.appendEmptySchedule(user: User(id: id, firstName: firstName, lastName: lastName, avatar: userAvatar.encodeAvatar()))
         } else {
-            userSchedule = CollectiveSchedule.shared.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName, avatar: userAvatar.encodeAvatar()))!
+            userSchedule = CollectiveSchedule.shared.getScheduleWithUser(id)!
         }
         
         // determine if this person was the one who created the meeting
@@ -131,7 +126,8 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     }
     
     func sendMessage() {
-        CollectiveSchedule.shared.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName, avatar: userAvatar.encodeAvatar()), schedule: userSchedule)
+        userSchedule.user = User(id: id, firstName: StoredValues.get(key: StoredValuesConstants.firstName)!, lastName: StoredValues.get(key: StoredValuesConstants.lastName)!, avatar: ProfileButton.profileIcon.avatar?.encodeAvatar())
+        CollectiveSchedule.shared.setScheduleWithUser(userSchedule.user, schedule: userSchedule)
         (delegate as? YourAvaialabilitiesViewControllerDelegate)?.dismissExtension()
     }
     

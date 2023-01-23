@@ -1163,7 +1163,7 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="wEs-Pc-B2U"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="YtQ-6L-m3T"/>
                             </scrollView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbw-kT-qGW" userLabel="colorScroll">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbw-kT-qGW" userLabel="colorScroll">
                                 <rect key="frame" x="0.0" y="494" width="360" height="40"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="mGZ-ii-K0j">

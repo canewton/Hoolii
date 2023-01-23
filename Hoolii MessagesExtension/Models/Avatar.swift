@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+let encodingChars: KeyValuePairs<Int, Character> = [0: "0", 1:"1", 2:"2", 3:"3", 4:"4", 5:"5", 6:"6", 7:"7", 8:"8", 9:"9", 10:"a", 11:"b", 12:"c", 13:"d", 14:"e", 15:"f", 16:"g", 17:"h", 18:"i", 19:"j", 20:"k", 21:"l", 22:"m", 23:"n", 24:"o", 25:"p", 26:"q", 27:"r", 28:"t", 29:"u", 30:"v", 31:"w", 32:"x", 33:"y", 34:"z"]
+
 struct Avatar: Codable, Equatable {
     // MARK: Properties
     var chinIndex: Int
@@ -20,6 +22,7 @@ struct Avatar: Codable, Equatable {
     var skinTone:   Int
     var hairColor:  Int
     var backgroundIndex: Int
+    
     init(chinIndex:Int, earIndex: Int, browIndex: Int, glassIndex: Int , mouthIndex: Int, noseIndex: Int, hairIndex: Int, skinTone:  Int, hairColor: Int, backgroundIndex: Int) {
         self.chinIndex = chinIndex
         self.earIndex = earIndex
@@ -38,13 +41,9 @@ struct Avatar: Codable, Equatable {
     }
     
     init(avatarEncoded: String) {
-        var indicies: [Int] = []
+        let avatarEncodedArr = Array(avatarEncoded)
         
-        for i in 0..<avatarEncoded.count {
-            indicies.append(Array(avatarEncoded)[i].wholeNumberValue!)
-        }
-        
-        self.init(chinIndex: indicies[0], earIndex: indicies[1], browIndex: indicies[2], glassIndex: indicies[3], mouthIndex: indicies[4], noseIndex: indicies[5], hairIndex: indicies[6], skinTone: indicies[7], hairColor: indicies[8], backgroundIndex: indicies[9])
+        self.init(chinIndex: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[0] })!].0, earIndex: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[1] })!].0, browIndex: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[2] })!].0, glassIndex: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[3] })!].0, mouthIndex: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[4] })!].0, noseIndex: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[5] })!].0, hairIndex: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[6] })!].0, skinTone: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[7] })!].0, hairColor: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[8] })!].0, backgroundIndex: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[9] })!].0)
     }
     
     init(randomized: Bool) {
@@ -69,7 +68,7 @@ struct Avatar: Codable, Equatable {
     }
     
     func encodeAvatar() -> String {
-        return "\(chinIndex)\(earIndex)\(browIndex)\(glassIndex)\(mouthIndex)\(noseIndex)\(hairIndex)\(skinTone)\(hairColor)\(backgroundIndex)"
+        return "\( encodingChars[chinIndex].1 )\( encodingChars[earIndex].1 )\( encodingChars[browIndex].1 )\( encodingChars[glassIndex].1 )\( encodingChars[mouthIndex].1 )\( encodingChars[noseIndex].1 )\( encodingChars[hairIndex].1 )\( encodingChars[skinTone].1 )\( encodingChars[hairColor].1 )\( encodingChars[backgroundIndex].1 )"
     }
     
     func toFacialFeatureOption() -> FacialFeatureOption {

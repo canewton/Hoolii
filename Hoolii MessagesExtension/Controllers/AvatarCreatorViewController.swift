@@ -440,6 +440,7 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         
         ProfileButton.profileIcon.topConstraint.constant = -1 * ProfileButton.profileIcon.avatarDisplay!.getShiftConst() * ProfileButton.height + 1
         ProfileButton.profileIcon.bottomConstraint.constant = -1 * ProfileButton.profileIcon.avatarDisplay!.getShiftConst() * ProfileButton.height - 1
+        ProfileButton.profileIcon.avatar = avatar
     }
     
     //MARK: END OF AVATAR SAVNG FUNCTIONS

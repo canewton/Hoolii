@@ -66,6 +66,19 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     
     public func SendMessage() {
+//        print("sending post request")
+//        print(HooliiMessage(message: activeConversation?.selectedMessage)?.getCollectiveSchedule().allSchedules[0].toString())
+//        if HooliiMessage(message: activeConversation?.selectedMessage)?.getCollectiveSchedule() == nil {
+//            AF.request("https://hoolii.fly.dev/collective-schedule", method: .post, parameters: CollectiveSchedule.shared).validate().responseJSON{ response in
+//                switch response.result {
+//                case .success(let data):
+//                    print(data)
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+//        }
+        print(CollectiveSchedule.shared.toString())
         guard let conversation = activeConversation else { fatalError("Expected a conversation") }
         let message = composeMessage(CollectiveSchedule.shared, CollectiveSchedule.shared.meetingName, conversation.selectedMessage?.session)
         
