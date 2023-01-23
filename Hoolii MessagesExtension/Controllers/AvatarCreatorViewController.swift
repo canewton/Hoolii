@@ -33,6 +33,7 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     
     static var storyboardIdentifier: String = "AvatarCreatorViewController"
     var delegate: AnyObject?
+    var collectionViewArr: [FacialFeatureOption?] = []
     
     // Outlet for element table
     @IBOutlet weak var elemCollectionView: UICollectionView!
@@ -235,6 +236,15 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     }
     
     func displayFacialFeatureOptions(index: Int) {
+        print(collectionViewArr.count)
+        for _ in 0..<collectionViewArr.count {
+            collectionViewArr[0]?.removeFromSuperview()
+            collectionViewArr[0] = nil
+            collectionViewArr.remove(at: 0)
+        }
+        for i in 0..<AvatarConstants.facialFeatureSelectionList[index].options.count {
+            collectionViewArr.append(AvatarConstants.facialFeatureSelectionList[index].options[i])
+        }
         facialFeatureIconIndex = index
         
         switch AvatarConstants.facialFeatureSelectionList[index].iconName {
@@ -307,58 +317,54 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     
     // returns the number of images that cells are being made from
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].options.count
+        return collectionViewArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        cell.layer.cornerRadius = 5
-        cell.layer.borderColor = UIColor.gray.cgColor
+        cell.contentView.layer.cornerRadius = 5
+        cell.contentView.layer.borderColor = UIColor.gray.cgColor
         
         if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Hair" && generatedAvatar.hairIndex == indexPath.item {
-            cell.layer.borderWidth = 2
+            cell.contentView.layer.borderWidth = 2
         } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Head" && generatedAvatar.chinIndex == indexPath.item {
-            cell.layer.borderWidth = 2
+            cell.contentView.layer.borderWidth = 2
         } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Brows" && generatedAvatar.browIndex == indexPath.item {
-            cell.layer.borderWidth = 2
+            cell.contentView.layer.borderWidth = 2
         } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Nose" && generatedAvatar.noseIndex == indexPath.item {
-            cell.layer.borderWidth = 2
+            cell.contentView.layer.borderWidth = 2
         } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Ears" && generatedAvatar.earIndex == indexPath.item {
-            cell.layer.borderWidth = 2
+            cell.contentView.layer.borderWidth = 2
         } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Eyes" && generatedAvatar.glassIndex == indexPath.item {
-            cell.layer.borderWidth = 2
+            cell.contentView.layer.borderWidth = 2
         } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Mouth" && generatedAvatar.mouthIndex == indexPath.item {
-            cell.layer.borderWidth = 2
+            cell.contentView.layer.borderWidth = 2
         } else {
-            cell.layer.borderWidth = 0
+            cell.contentView.layer.borderWidth = 0
         }
         
-        for _ in 0..<cell.subviews.count {
-            cell.subviews[0].removeFromSuperview()
-        }
+        weak var avatarOption = collectionViewArr[indexPath.item]
+        cell.contentView.addSubview(avatarOption!)
+        avatarOption?.translatesAutoresizingMaskIntoConstraints = false
+        avatarOption?.leftAnchor.constraint(equalTo: cell.contentView.leftAnchor).isActive = true
+        avatarOption?.rightAnchor.constraint(equalTo: cell.contentView.rightAnchor).isActive = true
+        avatarOption?.topAnchor.constraint(equalTo: cell.contentView.topAnchor).isActive = true
+        avatarOption?.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor).isActive = true
         
-        let avatarOption = AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].options[indexPath.item]
-        cell.addSubview(avatarOption)
-        avatarOption.translatesAutoresizingMaskIntoConstraints = false
-        avatarOption.leftAnchor.constraint(equalTo: cell.leftAnchor).isActive = true
-        avatarOption.rightAnchor.constraint(equalTo: cell.rightAnchor).isActive = true
-        avatarOption.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
-        avatarOption.bottomAnchor.constraint(equalTo: cell.bottomAnchor).isActive = true
-        
-        avatarOption.setSkinColor(color: AppColors.skintoneArray[generatedAvatar.skinTone])
-        avatarOption.setHairColor(color: AppColors.hairColorArray[generatedAvatar.hairColor])
+        avatarOption?.setSkinColor(color: AppColors.skintoneArray[generatedAvatar.skinTone])
+        avatarOption?.setHairColor(color: AppColors.hairColorArray[generatedAvatar.hairColor])
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        for i in 0..<collectionView.subviews.count {
-            collectionView.subviews[i].layer.borderWidth = 0
+        for i in 0..<collectionView.visibleCells.count {
+            collectionView.visibleCells[i].contentView.layer.borderWidth = 0
         }
         
         let cell = collectionView.cellForItem(at: indexPath)!
-        let facialFeature = cell.subviews[0] as! FacialFeatureOption
-        collectionView.cellForItem(at: indexPath)!.layer.borderWidth = 2
+        let facialFeature = cell.contentView.subviews[0] as! FacialFeatureOption
+        collectionView.cellForItem(at: indexPath)!.contentView.layer.borderWidth = 2
         
         switch AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName {
         case "Hair":

@@ -22,7 +22,10 @@ class MessagesViewController: MSMessagesAppViewController {
 //        StoredValues.deleteKey(key: StoredValuesConstants.userAvatar)
 //        StoredValues.deleteKey(key: StoredValuesConstants.userSchedule)
 //        StoredValues.deleteKey(key: StoredValuesConstants.userID)
-//        AF.request("https://hoolii.fly.dev/collective-schedule", method: .get).validate().responseJSON(completionHandler: handleResponse)
+//        let message = HooliiMessage(message: activeConversation?.selectedMessage)
+//        if message?.getCollectiveSchedule() != nil {
+//            AF.request("https://hoolii.fly.dev/collective-schedule?id=\(HooliiMessage.websiteScheduleID)", method: .get).validate().responseJSON(completionHandler: handleResponse)
+//        }
     }
     
     func handleResponse(_ response: AFDataResponse<Any>) {
@@ -33,8 +36,8 @@ class MessagesViewController: MSMessagesAppViewController {
             print(successRes)
 
             do {
-//                let users = try JSONDecoder().decode([User].self, from: response.data!)
-//                print(users)
+                let collectiveSchedule = try JSONDecoder().decode(CollectiveSchedule.self, from: response.data!)
+                print(collectiveSchedule)
                 debugPrint(response.data!)
 
             } catch let error as NSError {
@@ -66,19 +69,7 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     
     public func SendMessage() {
-//        print("sending post request")
-//        print(HooliiMessage(message: activeConversation?.selectedMessage)?.getCollectiveSchedule().allSchedules[0].toString())
-//        if HooliiMessage(message: activeConversation?.selectedMessage)?.getCollectiveSchedule() == nil {
-//            AF.request("https://hoolii.fly.dev/collective-schedule", method: .post, parameters: CollectiveSchedule.shared).validate().responseJSON{ response in
-//                switch response.result {
-//                case .success(let data):
-//                    print(data)
-//                case .failure(let error):
-//                    print(error)
-//                }
-//            }
-//        }
-        print(CollectiveSchedule.shared.toString())
+//        print(CollectiveSchedule.shared.toString())
         guard let conversation = activeConversation else { fatalError("Expected a conversation") }
         let message = composeMessage(CollectiveSchedule.shared, CollectiveSchedule.shared.meetingName, conversation.selectedMessage?.session)
         
@@ -87,7 +78,31 @@ class MessagesViewController: MSMessagesAppViewController {
                 print(error)
             }
         }
-        // conversation.insertText("https://www.when2meet.com/ ")
+        
+//        print("sending post request")
+//        print(HooliiMessage(message: activeConversation?.selectedMessage)?.getCollectiveSchedule().allSchedules[0].toString())
+//        if HooliiMessage(message: activeConversation?.selectedMessage)?.getCollectiveSchedule() == nil {
+//            print(CollectiveSchedule.shared)
+//            AF.request("https://hoolii.fly.dev/collective-schedule", method: .post, parameters: CollectiveSchedule.shared).validate().responseJSON{ response in
+//                switch response.result {
+//                case .success(let data):
+//                    let jsonData = data as! [String: Any]
+//                    let id = jsonData["_id"]
+//                    conversation.insertText("http://192.168.50.161:5173/schedule/\(id!) ")
+//
+//                    AF.request("https://hoolii.fly.dev/collective-schedule?id=\(id)", method: .get).validate().responseJSON { response in
+//                        switch response.result {
+//                        case .success(let data):
+//                            print(data)
+//                        case .failure(let error):
+//                            print(error)
+//                        }
+//                    }
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+//        }
     }
     
     // MARK: Determine active view controller before extension becomes active
