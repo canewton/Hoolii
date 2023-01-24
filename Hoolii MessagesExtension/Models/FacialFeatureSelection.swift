@@ -9,9 +9,9 @@ import Foundation
 
 struct FacialFeatureSelection {
     var iconName: String
-    var options: [FacialFeatureOption]
+    var options: [AvatarImageCollection]
     
-    init(iconName: String, options: [FacialFeatureOption]) {
+    init(iconName: String, options: [AvatarImageCollection]) {
         self.iconName = iconName
         self.options = options
     }

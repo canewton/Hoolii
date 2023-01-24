@@ -333,7 +333,7 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name Meeting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLM-kf-lxg">
-                                                        <rect key="frame" x="30" y="502.33333333333331" width="110" height="19.333333333333428"/>
+                                                        <rect key="frame" x="30" y="502.33333333333326" width="110" height="19.333333333333485"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1122,7 +1122,6 @@
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="4dQ-vg-aWh">
                                             <rect key="frame" x="0.0" y="0.0" width="98" height="98"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" name="main"/>
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
                                 </cells>
@@ -1493,9 +1492,6 @@
         <image name="edit" width="14" height="14"/>
         <namedColor name="alert">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="main">
-            <color red="0.56099998950958252" green="0.88999998569488525" blue="0.79199999570846558" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

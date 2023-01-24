@@ -71,40 +71,9 @@ struct Avatar: Codable, Equatable {
         return "\( encodingChars[chinIndex].1 )\( encodingChars[earIndex].1 )\( encodingChars[browIndex].1 )\( encodingChars[glassIndex].1 )\( encodingChars[mouthIndex].1 )\( encodingChars[noseIndex].1 )\( encodingChars[hairIndex].1 )\( encodingChars[skinTone].1 )\( encodingChars[hairColor].1 )\( encodingChars[backgroundIndex].1 )"
     }
     
-    func toFacialFeatureOption() -> FacialFeatureOption {
-        let facialFeatureOption = FacialFeatureOption.instanceFromNib()
-        
-        facialFeatureOption.chin.image = AvatarConstants.chinOptions[chinIndex].chin.image
-        facialFeatureOption.beard.image = AvatarConstants.chinOptions[chinIndex].beard.image
-        facialFeatureOption.ears.image = AvatarConstants.earOptions[earIndex].ears.image
-        facialFeatureOption.brows.image = AvatarConstants.browOptions[browIndex].brows.image
-        facialFeatureOption.eyes.image = AvatarConstants.eyeOptions[glassIndex].eyes.image
-        facialFeatureOption.glasses.image = AvatarConstants.eyeOptions[glassIndex].glasses.image
-        facialFeatureOption.mouth.image = AvatarConstants.mouthOptions[mouthIndex].mouth.image
-        facialFeatureOption.nose.image = AvatarConstants.noseOptions[noseIndex].nose.image
-        facialFeatureOption.hairFront.image = AvatarConstants.hairOptions[hairIndex].hairFront.image
-        facialFeatureOption.hairBack.image = AvatarConstants.hairOptions[hairIndex].hairBack.image
-        facialFeatureOption.hairMidFront.image = AvatarConstants.hairOptions[hairIndex].hairMidFront.image
-        facialFeatureOption.hairMidBack.image = AvatarConstants.hairOptions[hairIndex].hairMidBack.image
-        
-        facialFeatureOption.face.tintColor = AppColors.skintoneArray[skinTone]
-        facialFeatureOption.chin.tintColor = AppColors.skintoneArray[skinTone]
-        facialFeatureOption.hairBack.tintColor = AppColors.hairColorArray[hairColor]
-        facialFeatureOption.hairFront.tintColor = AppColors.hairColorArray[hairColor]
-        facialFeatureOption.hairMidBack.tintColor = AppColors.hairColorArray[hairColor]
-        facialFeatureOption.hairMidFront.tintColor = AppColors.hairColorArray[hairColor]
-        facialFeatureOption.brows.tintColor = AppColors.hairColorArray[hairColor]
-        facialFeatureOption.beard.tintColor = AppColors.hairColorArray[hairColor]
-        
-        facialFeatureOption.hairShiftConst = AvatarConstants.hairOptions[hairIndex].hairShiftConst
-        facialFeatureOption.beardShiftConst = AvatarConstants.chinOptions[chinIndex].beardShiftConst
-        
-        return facialFeatureOption
-    }
-    
     func getShiftConst() -> CGFloat {
-        let hairShiftConst = AvatarConstants.hairOptions[hairIndex].hairShiftConst
-        let beardShiftConst = AvatarConstants.chinOptions[chinIndex].beardShiftConst
+        let hairShiftConst = AvatarConstants.hairOptions[hairIndex].hairShift
+        let beardShiftConst = AvatarConstants.chinOptions[chinIndex].beardShift
         if hairShiftConst >= 0 && beardShiftConst >= 0 {
             return hairShiftConst > beardShiftConst ? hairShiftConst : beardShiftConst
         } else if hairShiftConst <= 0 && beardShiftConst >= 0 {
@@ -124,10 +93,10 @@ struct Avatar: Codable, Equatable {
         let areaSize1 = CGRect(x: 0, y: 0, width: size.width, height: size.height)
 
         // draw images into context
-        AvatarConstants.hairOptions[hairIndex].hairBack.image?.withTintColor(hairColor).draw(in: areaSize1)
+        UIImage(named: AvatarConstants.hairOptions[hairIndex].hairBack)?.withTintColor(hairColor).draw(in: areaSize1)
         UIImage(named: "Ear 1 + Head")?.withTintColor(skinColor).draw(in: areaSize1)
-        AvatarConstants.hairOptions[hairIndex].hairMidBack.image?.withTintColor(hairColor).draw(in: areaSize1)
-        AvatarConstants.hairOptions[hairIndex].hairMidFront.image?.withTintColor(hairColor).draw(in: areaSize1)
+        UIImage(named: AvatarConstants.hairOptions[hairIndex].hairMidBack)?.withTintColor(hairColor).draw(in: areaSize1)
+        UIImage(named: AvatarConstants.hairOptions[hairIndex].hairMidFront)?.withTintColor(hairColor).draw(in: areaSize1)
         
         let avatarImage1 = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -137,9 +106,9 @@ struct Avatar: Codable, Equatable {
         let areaSize2 = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         
         avatarImage1?.draw(in: areaSize2)
-        AvatarConstants.browOptions[browIndex].brows.image?.draw(in: areaSize2)
-        AvatarConstants.chinOptions[chinIndex].chin.image?.withTintColor(skinColor).draw(in: areaSize2)
-        AvatarConstants.eyeOptions[glassIndex].eyes.image?.draw(in: areaSize2)
+        UIImage(named: AvatarConstants.browOptions[browIndex].brows)?.draw(in: areaSize2)
+        UIImage(named: AvatarConstants.chinOptions[chinIndex].chin)?.withTintColor(skinColor).draw(in: areaSize2)
+        UIImage(named: AvatarConstants.eyeOptions[glassIndex].eyes)?.draw(in: areaSize2)
         
         let avatarImage2 = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -149,9 +118,9 @@ struct Avatar: Codable, Equatable {
         let areaSize3 = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         
         avatarImage2?.draw(in: areaSize3)
-        AvatarConstants.noseOptions[noseIndex].nose.image?.draw(in: areaSize3)
-        AvatarConstants.hairOptions[hairIndex].hairFront.image?.withTintColor(hairColor).draw(in: areaSize3)
-        AvatarConstants.chinOptions[chinIndex].beard.image?.withTintColor(hairColor).draw(in: areaSize3)
+        UIImage(named: AvatarConstants.noseOptions[noseIndex].nose)?.draw(in: areaSize3)
+        UIImage(named: AvatarConstants.hairOptions[hairIndex].hairFront)?.withTintColor(hairColor).draw(in: areaSize3)
+        UIImage(named: AvatarConstants.chinOptions[chinIndex].beard)?.withTintColor(hairColor).draw(in: areaSize3)
         
         let avatarImage3 = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -161,9 +130,9 @@ struct Avatar: Codable, Equatable {
         let areaSize4 = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         
         avatarImage3?.draw(in: areaSize4)
-        AvatarConstants.earOptions[earIndex].ears.image?.draw(in: areaSize4)
-        AvatarConstants.eyeOptions[glassIndex].glasses.image?.draw(in: areaSize4)
-        AvatarConstants.mouthOptions[mouthIndex].mouth.image?.draw(in: areaSize4)
+        UIImage(named: AvatarConstants.earOptions[earIndex].ears)?.draw(in: areaSize4)
+        UIImage(named: AvatarConstants.eyeOptions[glassIndex].glasses)?.draw(in: areaSize4)
+        UIImage(named: AvatarConstants.mouthOptions[mouthIndex].mouth)?.draw(in: areaSize4)
         
         let avatarImage4 = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()

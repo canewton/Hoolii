@@ -33,9 +33,11 @@ public class ProfileIcon: UIView {
         self.heightAnchor.constraint(equalToConstant: CGFloat(height)).isActive = true
         layer.cornerRadius = CGFloat(height/2)
         
-        let profileIconContent = (avatar.toFacialFeatureOption())
+        let profileIconContent = FacialFeatureOption.instanceFromNib(images: AvatarImageCollection(avatar: avatar))
+        profileIconContent.setHairColor(color: AppColors.hairColorArray[avatar.hairColor])
+        profileIconContent.setSkinColor(color: AppColors.skintoneArray[avatar.skinTone])
         self.backgroundColor = AppColors.backgroundColorArray[avatar.backgroundIndex]
-        generateUserAvatar(avatarInput: profileIconContent)
+        generateUserAvatar(avatarInput: profileIconContent, shiftConst: avatar.getShiftConst())
     }
     
     convenience init(avatar: Avatar, userID: String, height: CGFloat = 40, width: CGFloat = 40) {
@@ -74,13 +76,13 @@ public class ProfileIcon: UIView {
         initialsLabel.center.y = CGFloat(height/2)
     }
     
-    func generateUserAvatar(avatarInput: FacialFeatureOption) {
+    func generateUserAvatar(avatarInput: FacialFeatureOption, shiftConst: CGFloat) {
         avatarDisplay = avatarInput
         for _ in 0..<self.subviews.count {
             self.subviews[0].removeFromSuperview()
         }
 
-        let shiftConst = avatarInput.getShiftConst() * height
+        let shiftConst = shiftConst * height
         self.addSubview(avatarInput)
         avatarInput.translatesAutoresizingMaskIntoConstraints = false
         topConstraint = avatarInput.topAnchor.constraint(equalTo: self.topAnchor, constant: (1/30) * pow(height, 5.0/4.0) - shiftConst)

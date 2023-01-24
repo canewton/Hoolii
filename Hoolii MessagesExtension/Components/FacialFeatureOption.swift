@@ -25,11 +25,19 @@ final class FacialFeatureOption: UIView {
     var hairShiftConst: CGFloat = 0
     var beardShiftConst: CGFloat = 0
     
-    class func instanceFromNib() -> FacialFeatureOption {
+    class func instanceFromNib(images: AvatarImageCollection) -> FacialFeatureOption {
         let facialFeatureOption = UINib(nibName: "FacialFeatureOption", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? FacialFeatureOption
         
-        facialFeatureOption?.chin.image = UIImage(named: "Chin 1")
-        facialFeatureOption?.face.image = UIImage(named: "Ear 1 + Head")
+        facialFeatureOption?.setFromImageCollection(images: images)
+        
+        facialFeatureOption?.chin.tintColor = AppColors.skintoneArray[0]
+        facialFeatureOption?.face.tintColor = AppColors.skintoneArray[0]
+        
+        return facialFeatureOption!
+    }
+    
+    class func instanceFromNib() -> FacialFeatureOption {
+        let facialFeatureOption = UINib(nibName: "FacialFeatureOption", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? FacialFeatureOption
         
         facialFeatureOption?.chin.tintColor = AppColors.skintoneArray[0]
         facialFeatureOption?.face.tintColor = AppColors.skintoneArray[0]
@@ -69,133 +77,22 @@ final class FacialFeatureOption: UIView {
         face.tintColor = color
     }
     
-    @discardableResult func addChin(_ image: UIImage?) -> FacialFeatureOption {
-        chin.image = image
+    func setFromImageCollection(images: AvatarImageCollection) {
+        chin.image = images.chin == "" ? nil : UIImage(named: images.chin)
+        face.image = images.head == "" ? nil : UIImage(named: images.head)
+        nose.image = images.nose == "" ? nil : UIImage(named: images.nose)
+        hairFront.image = images.hairFront == "" ? nil : UIImage(named: images.hairFront)
+        hairBack.image = images.hairBack == "" ? nil : UIImage(named: images.hairBack)
+        beard.image = images.beard == "" ? nil : UIImage(named: images.beard)
+        ears.image = images.ears == "" ? nil : UIImage(named: images.ears)
+        glasses.image = images.glasses == "" ? nil : UIImage(named: images.glasses)
+        hairMidBack.image = images.hairMidBack == "" ? nil : UIImage(named: images.hairMidBack)
+        hairMidFront.image = images.hairMidFront == "" ? nil : UIImage(named: images.hairMidFront)
+        brows.image = images.brows == "" ? nil : UIImage(named: images.brows)
+        mouth.image = images.mouth == "" ? nil : UIImage(named: images.mouth)
+        eyes.image = images.eyes == "" ? nil : UIImage(named: images.eyes)
         
-        chin.tintColor = AppColors.skintoneArray[0]
-        return self
-    }
-    
-    @discardableResult func addNose(_ image: UIImage?) -> FacialFeatureOption {
-        nose.image = image
-        return self
-    }
-    
-    @discardableResult func addHair(front: UIImage?, back: UIImage?) -> FacialFeatureOption {
-        hairFront.image = front
-        hairBack.image = back
-        
-        hairFront.tintColor = AppColors.hairColorArray[0]
-        hairBack.tintColor = AppColors.hairColorArray[0]
-        return self
-    }
-    
-    @discardableResult func addHair(_ front: UIImage?) -> FacialFeatureOption {
-        hairFront.image = front
-        
-        hairFront.tintColor = AppColors.hairColorArray[0]
-        return self
-    }
-    
-    @discardableResult func addHair(front: UIImage?, middle: UIImage?, back: UIImage?) -> FacialFeatureOption {
-        hairFront.image = front
-        hairBack.image = back
-        hairMidBack.image = middle
-        
-        hairFront.tintColor = AppColors.hairColorArray[0]
-        hairBack.tintColor = AppColors.hairColorArray[0]
-        hairMidBack.tintColor = AppColors.hairColorArray[0]
-        return self
-    }
-    
-    @discardableResult func addHair(front: UIImage?, midFront: UIImage?, midBack: UIImage?, back: UIImage?) -> FacialFeatureOption {
-        hairFront.image = front
-        hairBack.image = back
-        hairMidBack.image = midBack
-        hairMidFront.image = midFront
-        
-        hairFront.tintColor = AppColors.hairColorArray[0]
-        hairBack.tintColor = AppColors.hairColorArray[0]
-        hairMidBack.tintColor = AppColors.hairColorArray[0]
-        hairMidFront.tintColor = AppColors.hairColorArray[0]
-        return self
-    }
-    
-    @discardableResult func addHair(front: UIImage?, back: UIImage?, hairShift: CGFloat) -> FacialFeatureOption {
-        hairShiftConst = hairShift
-        return addHair(front: front, back: back)
-    }
-    
-    @discardableResult func addHair(_ front: UIImage?, hairShift: CGFloat) -> FacialFeatureOption {
-        hairShiftConst = hairShift
-        return addHair(front)
-    }
-    
-    @discardableResult func addHair(front: UIImage?, middle: UIImage?, back: UIImage?, hairShift: CGFloat) -> FacialFeatureOption {
-        hairShiftConst = hairShift
-        return addHair(front: front, middle: middle, back: back)
-    }
-    
-    @discardableResult func addHair(front: UIImage?, midFront: UIImage?, midBack: UIImage?, back: UIImage?, hairShift: CGFloat) -> FacialFeatureOption {
-        hairShiftConst = hairShift
-        return addHair(front: front, midFront: midFront, midBack: midBack, back: back)
-    }
-    
-    @discardableResult func addEyes(_ image: UIImage?) -> FacialFeatureOption {
-        eyes.image = UIImage(named: "Eyes 1")
-        glasses.image = image
-        return self
-    }
-    
-    @discardableResult func addBeard(_ image: UIImage?) -> FacialFeatureOption {
-        beard.image = image
-        chin.image = AvatarConstants.chinOption2.chin.image
-        
-        beard.tintColor = AppColors.hairColorArray[0]
-        return self
-    }
-    
-    @discardableResult func addBeardAndChin(beard: UIImage?, chin: UIImage?) -> FacialFeatureOption {
-        self.beard.image = beard
-        self.chin.image = chin
-        
-        self.beard.tintColor = AppColors.hairColorArray[0]
-        return self
-    }
-    
-    @discardableResult func addBeard(_ image: UIImage?, beardShift: CGFloat) -> FacialFeatureOption {
-        beardShiftConst = beardShift
-        return addBeard(image)
-    }
-    
-    @discardableResult func addBeardAndChin(beard: UIImage?, chin: UIImage?, beardShift: CGFloat) -> FacialFeatureOption {
-        beardShiftConst = beardShift
-        return addBeardAndChin(beard: beard, chin: chin)
-    }
-    
-    @discardableResult func addEars(_ image: UIImage?) -> FacialFeatureOption {
-        ears.image = image
-        return self
-    }
-    
-    @discardableResult func addBrows(_ image: UIImage?) -> FacialFeatureOption {
-        brows.image = image
-        
-        brows.tintColor = AppColors.hairColorArray[0]
-        return self
-    }
-    
-    @discardableResult func addMouth(_ image: UIImage?) -> FacialFeatureOption {
-        mouth.image = image
-        return self
-    }
-    
-    func getShiftConst() -> CGFloat {
-        if hairShiftConst >= 0 && beardShiftConst >= 0 {
-            return hairShiftConst > beardShiftConst ? hairShiftConst : beardShiftConst
-        } else if hairShiftConst <= 0 && beardShiftConst >= 0 {
-            return hairShiftConst + beardShiftConst
-        }
-        return 0
+        setSkinColor(color: AppColors.skintoneArray[images.skinTone])
+        setHairColor(color: AppColors.hairColorArray[images.hairColor])
     }
 }

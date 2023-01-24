@@ -87,6 +87,7 @@
 		916E3EB3297438360036432E /* FacialFeatureSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E3EB2297438360036432E /* FacialFeatureSelection.swift */; };
 		916E3EB529744D680036432E /* AvatarColorOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E3EB429744D680036432E /* AvatarColorOption.swift */; };
 		918C88CF28D3C8C40052850E /* CreateMeetingPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918C88CE28D3C8C40052850E /* CreateMeetingPreviewViewController.swift */; };
+		919EDFC0297F33AF00B76C18 /* AvatarImageCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919EDFBF297F33AF00B76C18 /* AvatarImageCollection.swift */; };
 		91A4E813294BDB7C00AB7E11 /* AvailabilityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4E812294BDB7C00AB7E11 /* AvailabilityConstants.swift */; };
 		91A4E815294C075200AB7E11 /* AvatarCreatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4E814294C075200AB7E11 /* AvatarCreatorViewController.swift */; };
 		91A4E835295EFC0B00AB7E11 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4E834295EFC0B00AB7E11 /* OnboardingViewController.swift */; };
@@ -226,6 +227,7 @@
 		916E3EB2297438360036432E /* FacialFeatureSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacialFeatureSelection.swift; sourceTree = "<group>"; };
 		916E3EB429744D680036432E /* AvatarColorOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarColorOption.swift; sourceTree = "<group>"; };
 		918C88CE28D3C8C40052850E /* CreateMeetingPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMeetingPreviewViewController.swift; sourceTree = "<group>"; };
+		919EDFBF297F33AF00B76C18 /* AvatarImageCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageCollection.swift; sourceTree = "<group>"; };
 		91A4E812294BDB7C00AB7E11 /* AvailabilityConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityConstants.swift; sourceTree = "<group>"; };
 		91A4E814294C075200AB7E11 /* AvatarCreatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCreatorViewController.swift; sourceTree = "<group>"; };
 		91A4E834295EFC0B00AB7E11 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 				91CAA92829669D360009348C /* HooliiMessage.swift */,
 				916E3EB2297438360036432E /* FacialFeatureSelection.swift */,
 				911CA39F29789FAE00666FD0 /* ImageStorage.swift */,
+				919EDFBF297F33AF00B76C18 /* AvatarImageCollection.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -712,6 +715,7 @@
 				916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */,
 				91E71AC9295F73C10020ABC8 /* OnboardingCollapsedViewController.swift in Sources */,
 				91A76E5628B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift in Sources */,
+				919EDFC0297F33AF00B76C18 /* AvatarImageCollection.swift in Sources */,
 				9103E58A289F50BC00CA661B /* NewMeetingViewController.swift in Sources */,
 				479D3FC4296A80940009F213 /* Avatar.swift in Sources */,
 				913C119528B0AAFA00B5A66F /* AppViewController.swift in Sources */,

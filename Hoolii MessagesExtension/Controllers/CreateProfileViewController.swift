@@ -89,8 +89,11 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
         let storedAvatar = StoredValues.get(key: StoredValuesConstants.userAvatar)
         if storedAvatar != nil {
             let avatar = Avatar(jsonValue: storedAvatar!)
-            let profileIconContent = (avatar.toFacialFeatureOption())
-            let shiftConst = profileIconContent.getShiftConst() * profileIcon.bounds.height
+            let avatarImages = AvatarImageCollection(avatar: avatar)
+            let profileIconContent = FacialFeatureOption.instanceFromNib(images: avatarImages)
+            profileIconContent.setHairColor(color: AppColors.hairColorArray[avatar.hairColor])
+            profileIconContent.setSkinColor(color: AppColors.skintoneArray[avatar.skinTone])
+            let shiftConst = avatar.getShiftConst() * profileIcon.bounds.height
             profileIcon.addSubview(profileIconContent)
             profileIconContent.translatesAutoresizingMaskIntoConstraints = false
             profileIconContent.topAnchor.constraint(equalTo: profileIcon.topAnchor, constant: 8 - shiftConst).isActive = true
