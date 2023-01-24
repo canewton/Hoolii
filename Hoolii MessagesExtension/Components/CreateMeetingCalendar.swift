@@ -30,6 +30,7 @@ class CreateMeetingCalendar: UIViewController, ViewControllerWithIdentifier {
     var isSelecting = true
     var dateRangeSelection: [Date] = []
     var firstDateSelected: Date = Date()
+    var lastDateSelected: Date = Date()
     
     // Set styling, images, and colors
     override func viewDidLoad() {
@@ -87,29 +88,40 @@ class CreateMeetingCalendar: UIViewController, ViewControllerWithIdentifier {
                 isSelecting = true
                 dateRangeSelection.append(cellState.date)
                 firstDateSelected = cellState.date
+                lastDateSelected = cellState.date
             }
         } else {
             if cellState.isSelected && isSelecting == false {
                 calendarView.selectDates(from: cellState.date, to: cellState.date, keepSelectionIfMultiSelectionAllowed: false)
             } else if !cellState.isSelected && isSelecting == true {
-                if dateRangeSelection[0] > cellState.date {
-                    let dateRange = calendarView.generateDateRange(from: cellState.date, to: dateRangeSelection[dateRangeSelection.count - 1])
-                    calendarView.selectDates(dateRange, keepSelectionIfMultiSelectionAllowed: true)
-                    dateRangeSelection = dateRange
+                if firstDateSelected > cellState.date {
+                    let lastDateSelectedRange = referenceCalendar.date(byAdding: .day, value: -14, to: lastDateSelected)!
+                    if cellState.date > lastDateSelectedRange {
+                        let dateRange = calendarView.generateDateRange(from: cellState.date, to: firstDateSelected)
+                        calendarView.selectDates(dateRange, keepSelectionIfMultiSelectionAllowed: true)
+                        dateRangeSelection = dateRange
+                        lastDateSelected = cellState.date
+                    }
                 } else {
-                    let dateRange = calendarView.generateDateRange(from: dateRangeSelection[0], to: cellState.date)
-                    calendarView.selectDates(dateRange, keepSelectionIfMultiSelectionAllowed: true)
-                    dateRangeSelection = dateRange
+                    let lastDateSelectedRange = referenceCalendar.date(byAdding: .day, value: 14, to: lastDateSelected)!
+                    if cellState.date < lastDateSelectedRange {
+                        let dateRange = calendarView.generateDateRange(from: firstDateSelected, to: cellState.date)
+                        calendarView.selectDates(dateRange, keepSelectionIfMultiSelectionAllowed: true)
+                        dateRangeSelection = dateRange
+                        lastDateSelected = cellState.date
+                    }
                 }
-            } else if isSelecting == true {
+            } else if isSelecting == true && dateRangeSelection.count > 0 {
                 if dateRangeSelection[dateRangeSelection.count - 1] > cellState.date && firstDateSelected == dateRangeSelection[0] {
                     let followingDay = referenceCalendar.date(byAdding: .day, value: 1, to: cellState.date)!
                     calendarView.deselectDates(from: followingDay, to: dateRangeSelection[dateRangeSelection.count - 1], triggerSelectionDelegate: true)
                     dateRangeSelection = calendarView.generateDateRange(from: firstDateSelected, to: cellState.date)
+                    lastDateSelected = cellState.date
                 } else if dateRangeSelection[0] < cellState.date && firstDateSelected == dateRangeSelection[dateRangeSelection.count - 1] {
                     let previousDay = referenceCalendar.date(byAdding: .day, value: -1, to: cellState.date)!
                     calendarView.deselectDates(from: dateRangeSelection[0], to: previousDay, triggerSelectionDelegate: true)
                     dateRangeSelection = calendarView.generateDateRange(from: cellState.date, to: firstDateSelected)
+                    lastDateSelected = cellState.date
                 }
             }
         }

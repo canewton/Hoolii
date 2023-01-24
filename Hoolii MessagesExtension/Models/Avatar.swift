@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+let encodingChars: KeyValuePairs<Int, Character> = [0: "0", 1:"1", 2:"2", 3:"3", 4:"4", 5:"5", 6:"6", 7:"7", 8:"8", 9:"9", 10:"a", 11:"b", 12:"c", 13:"d", 14:"e", 15:"f", 16:"g", 17:"h", 18:"i", 19:"j", 20:"k", 21:"l", 22:"m", 23:"n", 24:"o", 25:"p", 26:"q", 27:"r", 28:"t", 29:"u", 30:"v", 31:"w", 32:"x", 33:"y", 34:"z"]
+
 struct Avatar: Codable, Equatable {
     // MARK: Properties
     var chinIndex: Int
@@ -20,6 +22,7 @@ struct Avatar: Codable, Equatable {
     var skinTone:   Int
     var hairColor:  Int
     var backgroundIndex: Int
+    
     init(chinIndex:Int, earIndex: Int, browIndex: Int, glassIndex: Int , mouthIndex: Int, noseIndex: Int, hairIndex: Int, skinTone:  Int, hairColor: Int, backgroundIndex: Int) {
         self.chinIndex = chinIndex
         self.earIndex = earIndex
@@ -38,13 +41,9 @@ struct Avatar: Codable, Equatable {
     }
     
     init(avatarEncoded: String) {
-        var indicies: [Int] = []
+        let avatarEncodedArr = Array(avatarEncoded)
         
-        for i in 0..<avatarEncoded.count {
-            indicies.append(Array(avatarEncoded)[i].wholeNumberValue!)
-        }
-        
-        self.init(chinIndex: indicies[0], earIndex: indicies[1], browIndex: indicies[2], glassIndex: indicies[3], mouthIndex: indicies[4], noseIndex: indicies[5], hairIndex: indicies[6], skinTone: indicies[7], hairColor: indicies[8], backgroundIndex: indicies[9])
+        self.init(chinIndex: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[0] })!].0, earIndex: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[1] })!].0, browIndex: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[2] })!].0, glassIndex: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[3] })!].0, mouthIndex: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[4] })!].0, noseIndex: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[5] })!].0, hairIndex: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[6] })!].0, skinTone: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[7] })!].0, hairColor: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[8] })!].0, backgroundIndex: encodingChars[encodingChars.firstIndex(where: { $0.1 == avatarEncodedArr[9] })!].0)
     }
     
     init(randomized: Bool) {
@@ -55,8 +54,12 @@ struct Avatar: Codable, Equatable {
     }
     
     init(jsonValue: String) {
-        let dataFromJsonString = jsonValue.data(using: .utf8)!
-        self = try! JSONDecoder().decode(Avatar.self, from: dataFromJsonString)
+        if jsonValue != "" {
+            let dataFromJsonString = jsonValue.data(using: .utf8)!
+            self = try! JSONDecoder().decode(Avatar.self, from: dataFromJsonString)
+        } else {
+            self.init()
+        }
     }
     
     func getJsonValue() -> String {
@@ -65,43 +68,12 @@ struct Avatar: Codable, Equatable {
     }
     
     func encodeAvatar() -> String {
-        return "\(chinIndex)\(earIndex)\(browIndex)\(glassIndex)\(mouthIndex)\(noseIndex)\(hairIndex)\(skinTone)\(hairColor)\(backgroundIndex)"
-    }
-    
-    func toFacialFeatureOption() -> FacialFeatureOption {
-        let facialFeatureOption = FacialFeatureOption.instanceFromNib()
-        
-        facialFeatureOption.chin.image = AvatarConstants.chinOptions[chinIndex].chin.image
-        facialFeatureOption.beard.image = AvatarConstants.chinOptions[chinIndex].beard.image
-        facialFeatureOption.ears.image = AvatarConstants.earOptions[earIndex].ears.image
-        facialFeatureOption.brows.image = AvatarConstants.browOptions[browIndex].brows.image
-        facialFeatureOption.eyes.image = AvatarConstants.eyeOptions[glassIndex].eyes.image
-        facialFeatureOption.glasses.image = AvatarConstants.eyeOptions[glassIndex].glasses.image
-        facialFeatureOption.mouth.image = AvatarConstants.mouthOptions[mouthIndex].mouth.image
-        facialFeatureOption.nose.image = AvatarConstants.noseOptions[noseIndex].nose.image
-        facialFeatureOption.hairFront.image = AvatarConstants.hairOptions[hairIndex].hairFront.image
-        facialFeatureOption.hairBack.image = AvatarConstants.hairOptions[hairIndex].hairBack.image
-        facialFeatureOption.hairMidFront.image = AvatarConstants.hairOptions[hairIndex].hairMidFront.image
-        facialFeatureOption.hairMidBack.image = AvatarConstants.hairOptions[hairIndex].hairMidBack.image
-        
-        facialFeatureOption.face.tintColor = AppColors.skintoneArray[skinTone]
-        facialFeatureOption.chin.tintColor = AppColors.skintoneArray[skinTone]
-        facialFeatureOption.hairBack.tintColor = AppColors.hairColorArray[hairColor]
-        facialFeatureOption.hairFront.tintColor = AppColors.hairColorArray[hairColor]
-        facialFeatureOption.hairMidBack.tintColor = AppColors.hairColorArray[hairColor]
-        facialFeatureOption.hairMidFront.tintColor = AppColors.hairColorArray[hairColor]
-        facialFeatureOption.brows.tintColor = AppColors.hairColorArray[hairColor]
-        facialFeatureOption.beard.tintColor = AppColors.hairColorArray[hairColor]
-        
-        facialFeatureOption.hairShiftConst = AvatarConstants.hairOptions[hairIndex].hairShiftConst
-        facialFeatureOption.beardShiftConst = AvatarConstants.chinOptions[chinIndex].beardShiftConst
-        
-        return facialFeatureOption
+        return "\( encodingChars[chinIndex].1 )\( encodingChars[earIndex].1 )\( encodingChars[browIndex].1 )\( encodingChars[glassIndex].1 )\( encodingChars[mouthIndex].1 )\( encodingChars[noseIndex].1 )\( encodingChars[hairIndex].1 )\( encodingChars[skinTone].1 )\( encodingChars[hairColor].1 )\( encodingChars[backgroundIndex].1 )"
     }
     
     func getShiftConst() -> CGFloat {
-        let hairShiftConst = AvatarConstants.hairOptions[hairIndex].hairShiftConst
-        let beardShiftConst = AvatarConstants.chinOptions[chinIndex].beardShiftConst
+        let hairShiftConst = AvatarConstants.hairOptions[hairIndex].hairShift
+        let beardShiftConst = AvatarConstants.chinOptions[chinIndex].beardShift
         if hairShiftConst >= 0 && beardShiftConst >= 0 {
             return hairShiftConst > beardShiftConst ? hairShiftConst : beardShiftConst
         } else if hairShiftConst <= 0 && beardShiftConst >= 0 {
@@ -121,10 +93,10 @@ struct Avatar: Codable, Equatable {
         let areaSize1 = CGRect(x: 0, y: 0, width: size.width, height: size.height)
 
         // draw images into context
-        AvatarConstants.hairOptions[hairIndex].hairBack.image?.withTintColor(hairColor).draw(in: areaSize1)
+        UIImage(named: AvatarConstants.hairOptions[hairIndex].hairBack)?.withTintColor(hairColor).draw(in: areaSize1)
         UIImage(named: "Ear 1 + Head")?.withTintColor(skinColor).draw(in: areaSize1)
-        AvatarConstants.hairOptions[hairIndex].hairMidBack.image?.withTintColor(hairColor).draw(in: areaSize1)
-        AvatarConstants.hairOptions[hairIndex].hairMidFront.image?.withTintColor(hairColor).draw(in: areaSize1)
+        UIImage(named: AvatarConstants.hairOptions[hairIndex].hairMidBack)?.withTintColor(hairColor).draw(in: areaSize1)
+        UIImage(named: AvatarConstants.hairOptions[hairIndex].hairMidFront)?.withTintColor(hairColor).draw(in: areaSize1)
         
         let avatarImage1 = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -134,9 +106,9 @@ struct Avatar: Codable, Equatable {
         let areaSize2 = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         
         avatarImage1?.draw(in: areaSize2)
-        AvatarConstants.browOptions[browIndex].brows.image?.draw(in: areaSize2)
-        AvatarConstants.chinOptions[chinIndex].chin.image?.withTintColor(skinColor).draw(in: areaSize2)
-        AvatarConstants.eyeOptions[glassIndex].eyes.image?.draw(in: areaSize2)
+        UIImage(named: AvatarConstants.browOptions[browIndex].brows)?.draw(in: areaSize2)
+        UIImage(named: AvatarConstants.chinOptions[chinIndex].chin)?.withTintColor(skinColor).draw(in: areaSize2)
+        UIImage(named: AvatarConstants.eyeOptions[glassIndex].eyes)?.draw(in: areaSize2)
         
         let avatarImage2 = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -146,9 +118,9 @@ struct Avatar: Codable, Equatable {
         let areaSize3 = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         
         avatarImage2?.draw(in: areaSize3)
-        AvatarConstants.noseOptions[noseIndex].nose.image?.draw(in: areaSize3)
-        AvatarConstants.hairOptions[hairIndex].hairFront.image?.withTintColor(hairColor).draw(in: areaSize3)
-        AvatarConstants.chinOptions[chinIndex].beard.image?.withTintColor(hairColor).draw(in: areaSize3)
+        UIImage(named: AvatarConstants.noseOptions[noseIndex].nose)?.draw(in: areaSize3)
+        UIImage(named: AvatarConstants.hairOptions[hairIndex].hairFront)?.withTintColor(hairColor).draw(in: areaSize3)
+        UIImage(named: AvatarConstants.chinOptions[chinIndex].beard)?.withTintColor(hairColor).draw(in: areaSize3)
         
         let avatarImage3 = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -158,9 +130,9 @@ struct Avatar: Codable, Equatable {
         let areaSize4 = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         
         avatarImage3?.draw(in: areaSize4)
-        AvatarConstants.earOptions[earIndex].ears.image?.draw(in: areaSize4)
-        AvatarConstants.eyeOptions[glassIndex].glasses.image?.draw(in: areaSize4)
-        AvatarConstants.mouthOptions[mouthIndex].mouth.image?.draw(in: areaSize4)
+        UIImage(named: AvatarConstants.earOptions[earIndex].ears)?.draw(in: areaSize4)
+        UIImage(named: AvatarConstants.eyeOptions[glassIndex].glasses)?.draw(in: areaSize4)
+        UIImage(named: AvatarConstants.mouthOptions[mouthIndex].mouth)?.draw(in: areaSize4)
         
         let avatarImage4 = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()

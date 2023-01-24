@@ -15,12 +15,17 @@ class AvatarColorOption: UIView {
     var insideView: UIView!
     var outsideView: UIView!
     var colorIndex: Int!
+    var unselectedHeight: CGFloat
+    var selectedHeight: CGFloat
     
     required init?(coder: NSCoder) {
         fatalError()
     }
     
     override init(frame: CGRect) {
+        unselectedHeight = 40
+        selectedHeight = 30
+        
         super.init(frame: frame)
         
         let colorTapRecognizer = UITapGestureRecognizer(target:self, action: #selector(colorTapped(colorTapRecognizer:)))
@@ -42,34 +47,36 @@ class AvatarColorOption: UIView {
     }
     
     func selectWithoutAnimation() {
-        insideView.layer.cornerRadius = 15
-        heightConstraint.constant = 30
-        widthConstraint.constant = 30
+        insideView.layer.cornerRadius = selectedHeight/2
+        heightConstraint.constant = selectedHeight
+        widthConstraint.constant = selectedHeight
     }
     
     func deselect() {
         self.layoutIfNeeded()
         UIView.animate(withDuration: 0.2, animations: { () -> Void in
             self.insideView.layer.cornerRadius = 8
-            self.heightConstraint.constant = 40
-            self.widthConstraint.constant = 40
+            self.heightConstraint.constant = self.unselectedHeight
+            self.widthConstraint.constant = self.unselectedHeight
             self.layoutIfNeeded()
         })
     }
     
-    convenience init(color: UIColor, colorIndex: Int) {
-        self.init(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+    convenience init(color: UIColor, colorIndex: Int, unselectedHeight: CGFloat, selectedHeight: CGFloat) {
+        self.init(frame: CGRect(x: 0, y: 0, width: unselectedHeight, height: unselectedHeight))
         
         self.colorIndex = colorIndex
+        self.selectedHeight = selectedHeight
+        self.unselectedHeight = unselectedHeight
         
         outsideView = UIView()
         outsideView.backgroundColor = .clear
-        outsideView.layer.cornerRadius = 20
-        outsideView.layer.borderWidth = 3
+        outsideView.layer.cornerRadius = unselectedHeight/2
+        outsideView.layer.borderWidth = 3 * 1/40 * unselectedHeight
         outsideView.layer.borderColor = UIColor.gray.cgColor
         outsideView.translatesAutoresizingMaskIntoConstraints = false
-        outsideView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        outsideView.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        outsideView.heightAnchor.constraint(equalToConstant: unselectedHeight).isActive = true
+        outsideView.widthAnchor.constraint(equalToConstant: unselectedHeight).isActive = true
         
         addSubview(outsideView)
         
@@ -80,11 +87,11 @@ class AvatarColorOption: UIView {
         
         addSubview(insideView)
         
-        heightAnchor.constraint(equalToConstant: 40).isActive = true
-        widthAnchor.constraint(equalToConstant: 40).isActive = true
+        heightAnchor.constraint(equalToConstant: unselectedHeight).isActive = true
+        widthAnchor.constraint(equalToConstant: unselectedHeight).isActive = true
         
-        heightConstraint = insideView.heightAnchor.constraint(equalToConstant: 40)
-        widthConstraint = insideView.widthAnchor.constraint(equalToConstant: 40)
+        heightConstraint = insideView.heightAnchor.constraint(equalToConstant: unselectedHeight)
+        widthConstraint = insideView.widthAnchor.constraint(equalToConstant: unselectedHeight)
         heightConstraint.isActive = true
         widthConstraint.isActive = true
         

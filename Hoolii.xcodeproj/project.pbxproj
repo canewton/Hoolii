@@ -61,7 +61,7 @@
 		916099EF296A97D600783A29 /* AutofillFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916099EE296A97D600783A29 /* AutofillFeedback.swift */; };
 		916099F0296B95A800783A29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9142F982285FA20F0070661F /* Assets.xcassets */; };
 		916099F1296B95C000783A29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9142F982285FA20F0070661F /* Assets.xcassets */; };
-		9167C7DA296627DE00BB4220 /* MessageGraphic.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9167C7D9296627DE00BB4220 /* MessageGraphic.xib */; };
+		9167C7DA296627DE00BB4220 /* MessageGraphic0People.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9167C7D9296627DE00BB4220 /* MessageGraphic0People.xib */; };
 		9167C7DC296628ED00BB4220 /* MessageGraphic1People.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9167C7DB296628ED00BB4220 /* MessageGraphic1People.xib */; };
 		9167C7DE2966330600BB4220 /* MessageGraphic2People.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9167C7DD2966330600BB4220 /* MessageGraphic2People.xib */; };
 		9167C7E02966334E00BB4220 /* MessageGraphic3People.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9167C7DF2966334E00BB4220 /* MessageGraphic3People.xib */; };
@@ -87,6 +87,7 @@
 		916E3EB3297438360036432E /* FacialFeatureSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E3EB2297438360036432E /* FacialFeatureSelection.swift */; };
 		916E3EB529744D680036432E /* AvatarColorOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E3EB429744D680036432E /* AvatarColorOption.swift */; };
 		918C88CF28D3C8C40052850E /* CreateMeetingPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918C88CE28D3C8C40052850E /* CreateMeetingPreviewViewController.swift */; };
+		919EDFC0297F33AF00B76C18 /* AvatarImageCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919EDFBF297F33AF00B76C18 /* AvatarImageCollection.swift */; };
 		91A4E813294BDB7C00AB7E11 /* AvailabilityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4E812294BDB7C00AB7E11 /* AvailabilityConstants.swift */; };
 		91A4E815294C075200AB7E11 /* AvatarCreatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4E814294C075200AB7E11 /* AvatarCreatorViewController.swift */; };
 		91A4E835295EFC0B00AB7E11 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4E834295EFC0B00AB7E11 /* OnboardingViewController.swift */; };
@@ -200,7 +201,7 @@
 		916099EA296A4D9C00783A29 /* AlertLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertLabels.swift; sourceTree = "<group>"; };
 		916099EC296A96C400783A29 /* AutofillFeedback.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AutofillFeedback.xib; sourceTree = "<group>"; };
 		916099EE296A97D600783A29 /* AutofillFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutofillFeedback.swift; sourceTree = "<group>"; };
-		9167C7D9296627DE00BB4220 /* MessageGraphic.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageGraphic.xib; sourceTree = "<group>"; };
+		9167C7D9296627DE00BB4220 /* MessageGraphic0People.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageGraphic0People.xib; sourceTree = "<group>"; };
 		9167C7DB296628ED00BB4220 /* MessageGraphic1People.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageGraphic1People.xib; sourceTree = "<group>"; };
 		9167C7DD2966330600BB4220 /* MessageGraphic2People.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageGraphic2People.xib; sourceTree = "<group>"; };
 		9167C7DF2966334E00BB4220 /* MessageGraphic3People.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageGraphic3People.xib; sourceTree = "<group>"; };
@@ -226,6 +227,7 @@
 		916E3EB2297438360036432E /* FacialFeatureSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacialFeatureSelection.swift; sourceTree = "<group>"; };
 		916E3EB429744D680036432E /* AvatarColorOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarColorOption.swift; sourceTree = "<group>"; };
 		918C88CE28D3C8C40052850E /* CreateMeetingPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMeetingPreviewViewController.swift; sourceTree = "<group>"; };
+		919EDFBF297F33AF00B76C18 /* AvatarImageCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageCollection.swift; sourceTree = "<group>"; };
 		91A4E812294BDB7C00AB7E11 /* AvailabilityConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityConstants.swift; sourceTree = "<group>"; };
 		91A4E814294C075200AB7E11 /* AvatarCreatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCreatorViewController.swift; sourceTree = "<group>"; };
 		91A4E834295EFC0B00AB7E11 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 				91CAA92829669D360009348C /* HooliiMessage.swift */,
 				916E3EB2297438360036432E /* FacialFeatureSelection.swift */,
 				911CA39F29789FAE00666FD0 /* ImageStorage.swift */,
+				919EDFBF297F33AF00B76C18 /* AvatarImageCollection.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -483,7 +486,7 @@
 		91CABD952966275D002FB91C /* MessageGraphicComponents */ = {
 			isa = PBXGroup;
 			children = (
-				9167C7D9296627DE00BB4220 /* MessageGraphic.xib */,
+				9167C7D9296627DE00BB4220 /* MessageGraphic0People.xib */,
 				9167C7DB296628ED00BB4220 /* MessageGraphic1People.xib */,
 				9167C7DD2966330600BB4220 /* MessageGraphic2People.xib */,
 				9167C7DF2966334E00BB4220 /* MessageGraphic3People.xib */,
@@ -603,7 +606,7 @@
 				9103CF2E28C9197600BBC349 /* DayHeaderView.xib in Resources */,
 				9167C7E2296633C400BB4220 /* MessageGraphic4People.xib in Resources */,
 				9103CF2A28C8EA7800BBC349 /* FullAvailabilityInput.xib in Resources */,
-				9167C7DA296627DE00BB4220 /* MessageGraphic.xib in Resources */,
+				9167C7DA296627DE00BB4220 /* MessageGraphic0People.xib in Resources */,
 				916099ED296A96C400783A29 /* AutofillFeedback.xib in Resources */,
 				916E3EA929740B060036432E /* FacialFeatureIcon.xib in Resources */,
 				916099E9296A4AE000783A29 /* AlertLabels.xib in Resources */,
@@ -712,6 +715,7 @@
 				916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */,
 				91E71AC9295F73C10020ABC8 /* OnboardingCollapsedViewController.swift in Sources */,
 				91A76E5628B35BEB00F93DE2 /* FilterAvailabilitiesSwitch.swift in Sources */,
+				919EDFC0297F33AF00B76C18 /* AvatarImageCollection.swift in Sources */,
 				9103E58A289F50BC00CA661B /* NewMeetingViewController.swift in Sources */,
 				479D3FC4296A80940009F213 /* Avatar.swift in Sources */,
 				913C119528B0AAFA00B5A66F /* AppViewController.swift in Sources */,
@@ -825,7 +829,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -880,7 +884,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -909,7 +913,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.HooliiApp.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -938,7 +942,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cnewton.HooliiApp.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

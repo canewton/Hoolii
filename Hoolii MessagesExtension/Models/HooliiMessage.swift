@@ -19,6 +19,7 @@ class HooliiMessage {
     var users: [User]
     var allSchedules: [String]
     let maxPeople: Int = 20
+    static var websiteScheduleID: String = ""
     let encodingChars: KeyValuePairs<Character, Int> = ["g": 1, "h":2, "i":3, "j":4, "k":5, "l":6, "m":7, "n":8, "o":9, "p":10, "q":11, "r":12, "s":13, "t":14, "u":14, "v":15, "w":16, "x":17, "y":18, "z":19]
     
     // prepare the schedule to be sent in a message
@@ -42,6 +43,7 @@ class HooliiMessage {
         items.append(URLQueryItem(name: "meetingName", value: meetingName))
         items.append(URLQueryItem(name: "startTime", value: startTimeEncodedString))
         items.append(URLQueryItem(name: "endTime", value: endTimeEncodedString))
+        items.append(URLQueryItem(name: "websiteScheduleID", value: HooliiMessage.websiteScheduleID))
         
         return items
     }
@@ -77,6 +79,8 @@ class HooliiMessage {
                 let dataFromJsonString = queryItem.value!.data(using: .utf8)!
                 let datesAsStrings = try! JSONDecoder().decode([String].self, from: dataFromJsonString)
                 dates = datesAsStrings.map{CalendarDate($0).date}
+            } else if queryItem.name == "websiteScheduleID" {
+                HooliiMessage.websiteScheduleID = queryItem.value!
             }
         }
     }

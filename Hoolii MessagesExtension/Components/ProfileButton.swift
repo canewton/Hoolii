@@ -29,11 +29,11 @@ public class ProfileButton: UIView {
         }
         
         addSubview(ProfileButton.profileIcon)
-        ProfileButton.profileIcon.translatesAutoresizingMaskIntoConstraints = false
-        ProfileButton.profileIcon.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        ProfileButton.profileIcon.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        ProfileButton.profileIcon.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        ProfileButton.profileIcon.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        
+        heightAnchor.constraint(equalToConstant: 40).isActive = true
+        widthAnchor.constraint(equalToConstant: 40).isActive = true
+        ProfileButton.profileIcon.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        ProfileButton.profileIcon.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         tap = UITapGestureRecognizer(target: self, action: #selector(onPressed))
         self.addGestureRecognizer(tap)
@@ -46,11 +46,23 @@ public class ProfileButton: UIView {
     
     // transition to the profile screen when this button is pressed
     @objc func onPressed() {
-        let profileVC = ProfileButton.viewController.storyboard?
-            .instantiateViewController(withIdentifier: "CreateProfileViewController") as! CreateProfileViewController
+        delegate = (ProfileButton.viewController as! ViewControllerWithIdentifier).delegate
+        let profileVC: CreateProfileViewController = (delegate as! ProfileButtonDelegate).getProfileVC()
         ProfileButton.viewController.transitionToScreen(viewController: profileVC)
         if callback != nil {
             callback!()
         }
+    }
+}
+
+protocol ProfileButtonDelegate: AnyObject {
+    func getProfileVC() -> CreateProfileViewController
+}
+
+extension MessagesViewController: ProfileButtonDelegate {
+    // allow this controller to transition to the YourAvailabilities screen
+    func getProfileVC() -> CreateProfileViewController {
+        let profileVC: CreateProfileViewController = instantiateController()
+        return profileVC
     }
 }

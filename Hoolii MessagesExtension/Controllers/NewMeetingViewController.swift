@@ -50,16 +50,17 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier, 
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if scrollView.contentSize.height - view.frame.size.height < 70 && !loadedSubviews {
+        if mainView.frame.size.height - view.bounds.height < 70 && !loadedSubviews {
             scrollView.isScrollEnabled = false
             setTimeframeButton.removeFromSuperview()
             view.addSubview(setTimeframeButton)
             setTimeframeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             setTimeframeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40).isActive = true
+            mainView.bottomAnchor.constraint(equalTo: screenContent.bottomAnchor).isActive = true
             loadedSubviews = true
         }
         
-        let scrollViewContentSize = screenContent.bounds.height > view.frame.size.height ? screenContent.bounds.height : view.frame.size.height
+        let scrollViewContentSize = mainView.frame.height > view.frame.size.height ? mainView.frame.height : view.frame.size.height
         screenContent.translatesAutoresizingMaskIntoConstraints = false
         scrollView.contentSize = CGSize(width: view.frame.width, height: scrollViewContentSize)
         screenContent.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true

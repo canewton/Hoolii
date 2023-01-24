@@ -48,20 +48,7 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
         scrollView.contentSize = CGSize(width: view.frame.width, height: screenContent.bounds.height)
         screenContent.frame.size.width = view.frame.width
     }
-    
-    // make a random id with the specified length
-    func makeID(length: Int) -> String {
-        var result = ""
-        let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-        for _ in 1...length {
-            let character = characters[characters.index(
-                characters.startIndex, offsetBy: Int.random(in: 0...(characters.count - 1))
-            )]
-            result = result + String(character)
-        }
-        return result
-    }
-    
+
     func configureNameLabel() {
         let firstName: String = StoredValues.get(key: StoredValuesConstants.firstName) ?? ""
         let lastName: String = StoredValues.get(key: StoredValuesConstants.lastName) ?? ""
@@ -102,8 +89,11 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
         let storedAvatar = StoredValues.get(key: StoredValuesConstants.userAvatar)
         if storedAvatar != nil {
             let avatar = Avatar(jsonValue: storedAvatar!)
-            let profileIconContent = (avatar.toFacialFeatureOption())
-            let shiftConst = profileIconContent.getShiftConst() * profileIcon.bounds.height
+            let avatarImages = AvatarImageCollection(avatar: avatar)
+            let profileIconContent = FacialFeatureOption.instanceFromNib(images: avatarImages)
+            profileIconContent.setHairColor(color: AppColors.hairColorArray[avatar.hairColor])
+            profileIconContent.setSkinColor(color: AppColors.skintoneArray[avatar.skinTone])
+            let shiftConst = avatar.getShiftConst() * profileIcon.bounds.height
             profileIcon.addSubview(profileIconContent)
             profileIconContent.translatesAutoresizingMaskIntoConstraints = false
             profileIconContent.topAnchor.constraint(equalTo: profileIcon.topAnchor, constant: 8 - shiftConst).isActive = true
@@ -113,6 +103,19 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
             
             profileIcon.backgroundColor = AppColors.backgroundColorArray[avatar.backgroundIndex]
         }
+    }
+    
+    // make a random id with the specified length
+    func makeID(length: Int) -> String {
+        var result = ""
+        let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+        for _ in 1...length {
+            let character = characters[characters.index(
+                characters.startIndex, offsetBy: Int.random(in: 0...(characters.count - 1))
+            )]
+            result = result + String(character)
+        }
+        return result
     }
     
     // get the user stored in local storage

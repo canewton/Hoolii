@@ -95,7 +95,7 @@ class AvailabilityDetail: UIView {
             if user.id != StoredValues.get(key: StoredValuesConstants.userID) {
                 profileIcon = ProfileIcon(avatar: Avatar(avatarEncoded: user.avatar!), userID: user.id)
             } else {
-                profileIcon = ProfileButton.profileIcon
+                profileIcon = ProfileIcon(avatar: ProfileButton.profileIcon.avatar!)
             }
         }
         

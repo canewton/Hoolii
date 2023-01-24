@@ -66,7 +66,7 @@ class AvailabilityLogic {
                 var earliestTime: TimeStamp = unsortedTimeStampCollection[earliestTimeIndex][0]
                 
                 for j in 1..<unsortedTimeStampCollection.count {
-                    if earliestTime.time > unsortedTimeStampCollection[j][0].time {
+                    if unsortedTimeStampCollection[j].count > 0 && earliestTime.time > unsortedTimeStampCollection[j][0].time {
                         earliestTime = unsortedTimeStampCollection[j][0]
                         earliestTimeIndex = j
                     }

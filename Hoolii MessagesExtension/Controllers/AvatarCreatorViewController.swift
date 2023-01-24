@@ -25,17 +25,24 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     @IBOutlet weak var editTextIcon: UIImageView!
     @IBOutlet weak var screenLabel: UILabel!
     
+    @IBOutlet weak var avatarOptionsHeight: NSLayoutConstraint!
+    @IBOutlet weak var backgroundHeight: NSLayoutConstraint!
+    @IBOutlet weak var mainProfileViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var colorScrollHeight: NSLayoutConstraint!
+    @IBOutlet weak var colorScrollSpacingHeight: NSLayoutConstraint!
+    
     static var storyboardIdentifier: String = "AvatarCreatorViewController"
     var delegate: AnyObject?
+    var collectionViewArr: [FacialFeatureOption] = []
     
     // Outlet for element table
     @IBOutlet weak var elemCollectionView: UICollectionView!
-    @IBOutlet weak var colorScrollHeight: NSLayoutConstraint!
     
     var currFacialFeature: Int = 0
     var itemIndex = 0
     var facialFeatureIconIndex: Int = 0
-    var avatarContent: FacialFeatureOption!
+    var avatarContent: AvatarImageCollection!
+    var avatarDisplay: FacialFeatureOption!
     let colorScrollHeightConstant: CGFloat = 40
     var editNameCallback: (() -> Void)!
     var editProfileCallback: (() -> Void)!
@@ -55,7 +62,7 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         super.viewDidLoad()
         
         MessagesViewController.currViewController = self
-        
+
         let firstName: String = StoredValues.get(key: StoredValuesConstants.firstName) ?? ""
         let lastName: String = StoredValues.get(key: StoredValuesConstants.lastName) ?? ""
         let fullName: String = "\(firstName) \(lastName)"
@@ -68,11 +75,10 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         let storedAvatar = StoredValues.get(key: StoredValuesConstants.userAvatar)
         if storedAvatar != nil {
             generatedAvatar = Avatar(jsonValue: storedAvatar!)
-            avatarContent = generatedAvatar.toFacialFeatureOption()
+            avatarContent = AvatarImageCollection(avatar: generatedAvatar)
             backgroundColor.backgroundColor = AppColors.backgroundColorArray[generatedAvatar.backgroundIndex]
         } else {
-            avatarContent = FacialFeatureOption.instanceFromNib()
-            avatarContent = avatarContent.addHair(front: AvatarConstants.hairOption8.hairFront.image, back: AvatarConstants.hairOption8.hairBack.image).addMouth(AvatarConstants.mouthOption1.mouth.image).addEyes(AvatarConstants.eyeOption1.eyes.image).addNose(AvatarConstants.noseOption1.nose.image)
+            avatarContent = AvatarImageCollection().addHair(front: AvatarConstants.hairOption8.hairFront, back: AvatarConstants.hairOption8.hairBack).addMouth(AvatarConstants.mouthOption1.mouth).addEyes(AvatarConstants.eyeOption1.eyes).addNose(AvatarConstants.noseOption1.nose)
             backgroundColor.backgroundColor = AppColors.backgroundColorArray[0]
         }
         
@@ -82,25 +88,30 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
             screenLabel.text = "Edit Profile"
         }
         
-        avatarView.addSubview(avatarContent)
-        avatarContent.translatesAutoresizingMaskIntoConstraints = false
-        avatarContent.topAnchor.constraint(equalTo: avatarView.topAnchor).isActive = true
-        avatarContent.leftAnchor.constraint(equalTo: avatarView.leftAnchor).isActive = true
-        avatarContent.rightAnchor.constraint(equalTo: avatarView.rightAnchor).isActive = true
-        avatarContent.bottomAnchor.constraint(equalTo: avatarView.bottomAnchor).isActive = true
+        mainProfileViewHeight.constant = view.bounds.height * 1.0/1000.0 * 200
+        backgroundHeight.constant = view.bounds.height * 1.0/1000.0 * 100
+        colorScrollSpacingHeight.constant = view.bounds.height * 1.0/1000.0 * 12
+        
+        avatarDisplay = FacialFeatureOption.instanceFromNib(images: avatarContent)
+        avatarView.addSubview(avatarDisplay)
+        avatarDisplay.translatesAutoresizingMaskIntoConstraints = false
+        avatarDisplay.topAnchor.constraint(equalTo: avatarView.topAnchor).isActive = true
+        avatarDisplay.leftAnchor.constraint(equalTo: avatarView.leftAnchor).isActive = true
+        avatarDisplay.rightAnchor.constraint(equalTo: avatarView.rightAnchor).isActive = true
+        avatarDisplay.bottomAnchor.constraint(equalTo: avatarView.bottomAnchor).isActive = true
         
         avatarOptions.displayFacialFeatureOptionsCallback = displayFacialFeatureOptions
         setUpColorStack(colors: AppColors.skintoneArray)
         configureBottomBar()
         
-        backgroundColor.layer.cornerRadius = 50
+        backgroundColor.layer.cornerRadius = backgroundHeight.constant/2
         
         // declare delegate and source for collection
         elemCollectionView.dataSource = self
         elemCollectionView.delegate = self
         
-        avatarContent.setHairColor(color: AppColors.hairColorArray[generatedAvatar.hairColor])
-        avatarContent.setSkinColor(color: AppColors.skintoneArray[generatedAvatar.skinTone])
+        avatarDisplay.setHairColor(color: AppColors.hairColorArray[generatedAvatar.hairColor])
+        avatarDisplay.setSkinColor(color: AppColors.skintoneArray[generatedAvatar.skinTone])
         
         displayFacialFeatureOptions(index: 0)
         nameTextField.delegate = self
@@ -119,11 +130,6 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         nameTextField.becomeFirstResponder()
         let newPosition = nameTextField.endOfDocument
         nameTextField.selectedTextRange = nameTextField.textRange(from: newPosition, to: newPosition)
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        elemCollectionView.collectionViewLayout.invalidateLayout()
     }
     
     /**
@@ -200,7 +206,8 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         }
         
         for i in 0..<colors.count {
-            let colorView = AvatarColorOption(color: colors[i], colorIndex: i)
+            colorScrollHeight.constant = view.bounds.height * 1/900 * 40
+            let colorView = AvatarColorOption(color: colors[i], colorIndex: i, unselectedHeight: colorScrollHeight.constant, selectedHeight: colorScrollHeight.constant * 3.0/4.0)
             colorOptionsStack.addArrangedSubview(colorView)
             colorView.centerYAnchor.constraint(equalTo: colorOptionsStack.centerYAnchor).isActive = true
             colorView.callback = colorTapped
@@ -225,6 +232,13 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     }
     
     func displayFacialFeatureOptions(index: Int) {
+        for _ in 0..<collectionViewArr.count {
+            collectionViewArr.remove(at: 0)
+        }
+        for i in 0..<AvatarConstants.facialFeatureSelectionList[index].options.count {
+            collectionViewArr.append(FacialFeatureOption.instanceFromNib(images: AvatarConstants.facialFeatureSelectionList[index].options[i]))
+        }
+        
         facialFeatureIconIndex = index
         
         switch AvatarConstants.facialFeatureSelectionList[index].iconName {
@@ -266,15 +280,18 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         switch AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName {
         case "Hair":
             (colorOptionsStack.arrangedSubviews[generatedAvatar.hairColor] as! AvatarColorOption).deselect()
-            avatarContent.setHairColor(color: AppColors.hairColorArray[colorIndex])
+            avatarContent.hairColor = colorIndex
+            avatarDisplay.setHairColor(color: AppColors.hairColorArray[colorIndex])
             generatedAvatar.hairColor = colorIndex
         case "Head":
             (colorOptionsStack.arrangedSubviews[generatedAvatar.skinTone] as! AvatarColorOption).deselect()
-            avatarContent.setSkinColor(color: AppColors.skintoneArray[colorIndex])
+            avatarContent.skinTone = colorIndex
+            avatarDisplay.setSkinColor(color: AppColors.skintoneArray[colorIndex])
             generatedAvatar.skinTone = colorIndex
         case "Brows":
             (colorOptionsStack.arrangedSubviews[generatedAvatar.hairColor] as! AvatarColorOption).deselect()
-            avatarContent.setHairColor(color: AppColors.hairColorArray[colorIndex])
+            avatarContent.skinTone = colorIndex
+            avatarDisplay.setHairColor(color: AppColors.hairColorArray[colorIndex])
             generatedAvatar.hairColor = colorIndex
         case "Background":
             (colorOptionsStack.arrangedSubviews[generatedAvatar.backgroundIndex] as! AvatarColorOption).deselect()
@@ -297,85 +314,85 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     
     // returns the number of images that cells are being made from
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].options.count
+        return collectionViewArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        cell.layer.cornerRadius = 5
-        cell.layer.borderColor = UIColor.gray.cgColor
+        cell.contentView.layer.cornerRadius = 5
+        cell.contentView.layer.borderColor = UIColor.gray.cgColor
         
         if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Hair" && generatedAvatar.hairIndex == indexPath.item {
-            cell.layer.borderWidth = 2
+            cell.contentView.layer.borderWidth = 2
         } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Head" && generatedAvatar.chinIndex == indexPath.item {
-            cell.layer.borderWidth = 2
+            cell.contentView.layer.borderWidth = 2
         } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Brows" && generatedAvatar.browIndex == indexPath.item {
-            cell.layer.borderWidth = 2
+            cell.contentView.layer.borderWidth = 2
         } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Nose" && generatedAvatar.noseIndex == indexPath.item {
-            cell.layer.borderWidth = 2
+            cell.contentView.layer.borderWidth = 2
         } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Ears" && generatedAvatar.earIndex == indexPath.item {
-            cell.layer.borderWidth = 2
+            cell.contentView.layer.borderWidth = 2
         } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Eyes" && generatedAvatar.glassIndex == indexPath.item {
-            cell.layer.borderWidth = 2
+            cell.contentView.layer.borderWidth = 2
         } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Mouth" && generatedAvatar.mouthIndex == indexPath.item {
-            cell.layer.borderWidth = 2
+            cell.contentView.layer.borderWidth = 2
         } else {
-            cell.layer.borderWidth = 0
+            cell.contentView.layer.borderWidth = 0
         }
         
-        for _ in 0..<cell.subviews.count {
-            cell.subviews[0].removeFromSuperview()
+        for _ in 0..<cell.contentView.subviews.count {
+            cell.contentView.subviews[0].removeFromSuperview()
         }
         
-        let avatarOption = AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].options[indexPath.item]
-        cell.addSubview(avatarOption)
-        avatarOption.translatesAutoresizingMaskIntoConstraints = false
-        avatarOption.leftAnchor.constraint(equalTo: cell.leftAnchor).isActive = true
-        avatarOption.rightAnchor.constraint(equalTo: cell.rightAnchor).isActive = true
-        avatarOption.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
-        avatarOption.bottomAnchor.constraint(equalTo: cell.bottomAnchor).isActive = true
+        weak var cellContent = collectionViewArr[indexPath.item]
+        cell.contentView.addSubview(cellContent!)
+        cellContent!.translatesAutoresizingMaskIntoConstraints = false
+        cellContent!.leftAnchor.constraint(equalTo: cell.contentView.leftAnchor).isActive = true
+        cellContent!.rightAnchor.constraint(equalTo: cell.contentView.rightAnchor).isActive = true
+        cellContent!.topAnchor.constraint(equalTo: cell.contentView.topAnchor).isActive = true
+        cellContent!.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor).isActive = true
         
-        avatarOption.setSkinColor(color: AppColors.skintoneArray[generatedAvatar.skinTone])
-        avatarOption.setHairColor(color: AppColors.hairColorArray[generatedAvatar.hairColor])
+        cellContent!.setSkinColor(color: AppColors.skintoneArray[generatedAvatar.skinTone])
+        cellContent!.setHairColor(color: AppColors.hairColorArray[generatedAvatar.hairColor])
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        for i in 0..<collectionView.subviews.count {
-            collectionView.subviews[i].layer.borderWidth = 0
+        for i in 0..<collectionView.visibleCells.count {
+            collectionView.visibleCells[i].contentView.layer.borderWidth = 0
         }
         
         let cell = collectionView.cellForItem(at: indexPath)!
-        let facialFeature = cell.subviews[0] as! FacialFeatureOption
-        collectionView.cellForItem(at: indexPath)!.layer.borderWidth = 2
+        let facialFeature = cell.contentView.subviews[0] as! FacialFeatureOption
+        collectionView.cellForItem(at: indexPath)!.contentView.layer.borderWidth = 2
         
         switch AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName {
         case "Hair":
-            avatarContent.hairBack.image = facialFeature.hairBack.image
-            avatarContent.hairFront.image = facialFeature.hairFront.image
-            avatarContent.hairMidBack.image = facialFeature.hairMidBack.image
-            avatarContent.hairMidFront.image = facialFeature.hairMidFront.image
+            avatarDisplay.hairBack.image = facialFeature.hairBack.image
+            avatarDisplay.hairFront.image = facialFeature.hairFront.image
+            avatarDisplay.hairMidBack.image = facialFeature.hairMidBack.image
+            avatarDisplay.hairMidFront.image = facialFeature.hairMidFront.image
             generatedAvatar.hairIndex = indexPath.item
         case "Head":
-            avatarContent.chin.image = facialFeature.chin.image
-            avatarContent.beard.image = facialFeature.beard.image
+            avatarDisplay.chin.image = facialFeature.chin.image
+            avatarDisplay.beard.image = facialFeature.beard.image
             generatedAvatar.chinIndex = indexPath.item
         case "Brows":
-            avatarContent.brows.image = facialFeature.brows.image
+            avatarDisplay.brows.image = facialFeature.brows.image
             generatedAvatar.browIndex = indexPath.item
         case "Nose":
-            avatarContent.nose.image = facialFeature.nose.image
+            avatarDisplay.nose.image = facialFeature.nose.image
             generatedAvatar.noseIndex = indexPath.item
         case "Ears":
-            avatarContent.ears.image = facialFeature.ears.image
+            avatarDisplay.ears.image = facialFeature.ears.image
             generatedAvatar.earIndex = indexPath.item
         case "Eyes":
-            avatarContent.eyes.image = facialFeature.eyes.image
-            avatarContent.glasses.image = facialFeature.glasses.image
+            avatarDisplay.eyes.image = facialFeature.eyes.image
+            avatarDisplay.glasses.image = facialFeature.glasses.image
             generatedAvatar.glassIndex = indexPath.item
         case "Mouth":
-            avatarContent.mouth.image = facialFeature.mouth.image
+            avatarDisplay.mouth.image = facialFeature.mouth.image
             generatedAvatar.mouthIndex = indexPath.item
         default:
             return
@@ -403,6 +420,10 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         storeAvatar()
         
+        for _ in 0..<collectionViewArr.count {
+            collectionViewArr.remove(at: 0)
+        }
+        
         changeProfileButtonAvatars(avatar: generatedAvatar)
         
         if editProfileCallback != nil {
@@ -411,25 +432,37 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         
         if StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
             StoredValues.setIfEmpty(key: StoredValuesConstants.hasBeenOnboarded, value: "yes")
-            self.dismiss(animated: true, completion: { () -> Void in self.prevController.dismiss(animated: true, completion: self.dismissCallback)})
+            self.dismiss(animated: true, completion: { () -> Void in self.prevController.dismiss(animated: true, completion: self.onDismiss)})
         } else {
-            self.dismiss(animated: true)
+            self.dismiss(animated: true, completion: self.onDismissClear)
         }
     }
     
+    func onDismiss() {
+        onDismissClear()
+        dismissCallback()
+    }
+    
+    func onDismissClear() {
+//        for _ in 0..<collectionViewArr.count {
+//            collectionViewArr.remove(at: 0)
+//        }
+//        for cell in elemCollectionView.visibleCells {
+//            cell.contentView.subviews[0].removeFromSuperview()
+//        }
+//        elemCollectionView.reloadData()
+    }
+    
     func changeProfileButtonAvatars(avatar: Avatar) {
-        ProfileButton.profileIcon.avatarDisplay!.addBeardAndChin(beard: AvatarConstants.chinOptions[avatar.chinIndex].beard.image, chin: AvatarConstants.chinOptions[avatar.chinIndex].chin.image, beardShift: AvatarConstants.chinOptions[avatar.chinIndex].beardShiftConst)
-        ProfileButton.profileIcon.avatarDisplay!.addNose(AvatarConstants.noseOptions[avatar.noseIndex].nose.image)
-        ProfileButton.profileIcon.avatarDisplay!.addMouth(AvatarConstants.mouthOptions[avatar.mouthIndex].mouth.image)
-        ProfileButton.profileIcon.avatarDisplay!.addBrows(AvatarConstants.browOptions[avatar.browIndex].brows.image)
-        ProfileButton.profileIcon.avatarDisplay!.addEars(AvatarConstants.earOptions[avatar.earIndex].ears.image)
-        ProfileButton.profileIcon.avatarDisplay!.addHair(front: AvatarConstants.hairOptions[avatar.hairIndex].hairFront.image, midFront: AvatarConstants.hairOptions[avatar.hairIndex].hairMidFront.image, midBack: AvatarConstants.hairOptions[avatar.hairIndex].hairMidBack.image, back: AvatarConstants.hairOptions[avatar.hairIndex].hairBack.image, hairShift: AvatarConstants.hairOptions[avatar.hairIndex].hairShiftConst)
+        print(avatar.skinTone)
+        ProfileButton.profileIcon.avatarDisplay!.setFromImageCollection(images: AvatarImageCollection(avatar: avatar))
         ProfileButton.profileIcon.backgroundColor = AppColors.backgroundColorArray[avatar.backgroundIndex]
         ProfileButton.profileIcon.avatarDisplay!.setHairColor(color: AppColors.hairColorArray[avatar.hairColor])
         ProfileButton.profileIcon.avatarDisplay!.setSkinColor(color: AppColors.skintoneArray[avatar.skinTone])
         
-        ProfileButton.profileIcon.topConstraint.constant = -1 * ProfileButton.profileIcon.avatarDisplay!.getShiftConst() * ProfileButton.height + 1
-        ProfileButton.profileIcon.bottomConstraint.constant = -1 * ProfileButton.profileIcon.avatarDisplay!.getShiftConst() * ProfileButton.height - 1
+        ProfileButton.profileIcon.topConstraint.constant = -1 * ProfileButton.profileIcon.avatar!.getShiftConst() * ProfileButton.height + 1
+        ProfileButton.profileIcon.bottomConstraint.constant = -1 * ProfileButton.profileIcon.avatar!.getShiftConst() * ProfileButton.height - 1
+        ProfileButton.profileIcon.avatar = avatar
     }
     
     //MARK: END OF AVATAR SAVNG FUNCTIONS

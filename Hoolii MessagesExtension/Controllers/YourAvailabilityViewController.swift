@@ -38,18 +38,20 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         
         ProfileButton.configure(viewController: self)
         
-        firstName = StoredValues.get(key: StoredValuesConstants.firstName)!
-        lastName = StoredValues.get(key: StoredValuesConstants.lastName)!
+        StoredValues.setIfEmpty(key: StoredValuesConstants.userID, value: makeID(length: 20))
+        
+        firstName = StoredValues.get(key: StoredValuesConstants.firstName) ?? ""
+        lastName = StoredValues.get(key: StoredValuesConstants.lastName) ?? ""
         id = StoredValues.get(key: StoredValuesConstants.userID)!
-        userAvatar = Avatar(jsonValue: StoredValues.get(key: StoredValuesConstants.userAvatar)!)
+        userAvatar = Avatar(jsonValue: StoredValues.get(key: StoredValuesConstants.userAvatar) ?? "")
         
         configureMeetingName()
         
         // create new schedule for user if user has not filled it out yet
-        if CollectiveSchedule.shared.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName, avatar: Avatar().encodeAvatar())) == nil {
+        if CollectiveSchedule.shared.getScheduleWithUser(id) == nil {
             userSchedule = CollectiveSchedule.shared.appendEmptySchedule(user: User(id: id, firstName: firstName, lastName: lastName, avatar: userAvatar.encodeAvatar()))
         } else {
-            userSchedule = CollectiveSchedule.shared.getScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName, avatar: userAvatar.encodeAvatar()))!
+            userSchedule = CollectiveSchedule.shared.getScheduleWithUser(id)!
         }
         
         // determine if this person was the one who created the meeting
@@ -124,7 +126,8 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     }
     
     func sendMessage() {
-        CollectiveSchedule.shared.setScheduleWithUser(User(id: id, firstName: firstName, lastName: lastName, avatar: userAvatar.encodeAvatar()), schedule: userSchedule)
+        userSchedule.user = User(id: id, firstName: StoredValues.get(key: StoredValuesConstants.firstName)!, lastName: StoredValues.get(key: StoredValuesConstants.lastName)!, avatar: ProfileButton.profileIcon.avatar?.encodeAvatar())
+        CollectiveSchedule.shared.setScheduleWithUser(userSchedule.user, schedule: userSchedule)
         (delegate as? YourAvaialabilitiesViewControllerDelegate)?.dismissExtension()
     }
     
@@ -152,6 +155,19 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         
         meetingTitle.text = name
         CollectiveSchedule.shared.meetingName = name
+    }
+    
+    // make a random id with the specified length
+    func makeID(length: Int) -> String {
+        var result = ""
+        let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+        for _ in 1...length {
+            let character = characters[characters.index(
+                characters.startIndex, offsetBy: Int.random(in: 0...(characters.count - 1))
+            )]
+            result = result + String(character)
+        }
+        return result
     }
     
     // Determine if the group view or the user view should be displayed

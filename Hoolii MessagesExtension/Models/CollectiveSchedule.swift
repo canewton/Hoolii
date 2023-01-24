@@ -8,7 +8,7 @@
 import Foundation
 import Messages
 
-class CollectiveSchedule {
+class CollectiveSchedule: Codable {
     static var shared = CollectiveSchedule()
     init() {}
     var allSchedules: [Schedule] = []
@@ -16,6 +16,10 @@ class CollectiveSchedule {
     var meetingName: String = ""
     var startTime: HourMinuteTime = HourMinuteTime(hour: 0, minute: 0)
     var endTime: HourMinuteTime = HourMinuteTime(hour: 0, minute: 0)
+    
+    func toString() -> String {
+        return "allSchedules: \(allSchedules.map({ return "\($0.user), " })) --- dates: \(dates)"
+    }
 }
 
 /// Extends `CollectiveSchedule` to be able to be represented by and created with an array of `NSURLQueryItems`s
@@ -68,9 +72,9 @@ extension CollectiveSchedule {
     
     // TODO save user schedule progress even after meeting details have changed
     
-    func getScheduleWithUser(_ user: User) -> Schedule? {
+    func getScheduleWithUser(_ userId: String) -> Schedule? {
         for i in 0..<allSchedules.count {
-            if user == allSchedules[i].user {
+            if userId == allSchedules[i].user.id {
                 if dates.count != allSchedules[i].datesFree.count {
                     allSchedules[i].datesFree = dates.map{Day(date: ScheduleDate($0), timesFree: [])}
                     return allSchedules[i]

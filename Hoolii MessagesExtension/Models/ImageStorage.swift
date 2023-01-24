@@ -17,4 +17,10 @@ struct ImageStorage {
         self.userID = userID
         self.avatarImage = avatarImage
     }
+    
+    static func addImages(users: [User]) {
+        for i in 0..<users.count {
+            avatarImages.append(ImageStorage(userID: users[i].id, avatarImage: Avatar(avatarEncoded: users[i].avatar!).toImage(size: CGSize(width: 100, height: 100))))
+        }
+    }
 }
