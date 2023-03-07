@@ -7,7 +7,6 @@
 
 import UIKit
 import Messages
-import Alamofire
 
 class MessagesViewController: MSMessagesAppViewController {
     
@@ -28,26 +27,26 @@ class MessagesViewController: MSMessagesAppViewController {
 //        }
     }
     
-    func handleResponse(_ response: AFDataResponse<Any>) {
-        switch (response.result) {
-            case .success(let successRes):
-            
-            print("success")
-            print(successRes)
-
-            do {
-                let collectiveSchedule = try JSONDecoder().decode(CollectiveSchedule.self, from: response.data!)
-                print(collectiveSchedule)
-                debugPrint(response.data!)
-
-            } catch let error as NSError {
-                print("Failed to load: \(error.localizedDescription)")
-            }
-
-            case .failure(let error):
-                print("Request error: \(error.localizedDescription)")
-        }
-    }
+//    func handleResponse(_ response: AFDataResponse<Any>) {
+//        switch (response.result) {
+//            case .success(let successRes):
+//
+//            print("success")
+//            print(successRes)
+//
+//            do {
+//                let collectiveSchedule = try JSONDecoder().decode(CollectiveSchedule.self, from: response.data!)
+//                print(collectiveSchedule)
+//                debugPrint(response.data!)
+//
+//            } catch let error as NSError {
+//                print("Failed to load: \(error.localizedDescription)")
+//            }
+//
+//            case .failure(let error):
+//                print("Request error: \(error.localizedDescription)")
+//        }
+//    }
     
     // MARK: - Conversation Handling
     fileprivate func composeMessage(_ collectiveSchedule: CollectiveSchedule, _ caption: String, _ session: MSSession? = nil) -> MSMessage {
