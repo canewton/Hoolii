@@ -7,6 +7,24 @@
 
 import UIKit
 
+struct AvatarCellData {
+    var images: AvatarImageCollection
+    var facialFeatureSelection: String
+    var skinColor: UIColor
+    var hairColor: UIColor
+    var avatar: Avatar
+    var cellIndex: Int
+    
+    init(images: AvatarImageCollection, facialFeatureSelection: String, skinColor: UIColor, hairColor: UIColor, avatar: Avatar, cellIndex: Int) {
+        self.images = images
+        self.facialFeatureSelection = facialFeatureSelection
+        self.skinColor = skinColor
+        self.hairColor = hairColor
+        self.avatar = avatar
+        self.cellIndex = cellIndex
+    }
+}
+
 class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifier, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
     
     // MARK: VARIABLE DECLARATION START
@@ -33,7 +51,7 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     
     static var storyboardIdentifier: String = "AvatarCreatorViewController"
     var delegate: AnyObject?
-    var collectionViewArr: [FacialFeatureOption] = []
+    var collectionViewArr: [AvatarImageCollection] = []
     
     // Outlet for element table
     @IBOutlet weak var elemCollectionView: UICollectionView!
@@ -236,7 +254,7 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
             collectionViewArr.remove(at: 0)
         }
         for i in 0..<AvatarConstants.facialFeatureSelectionList[index].options.count {
-            collectionViewArr.append(FacialFeatureOption.instanceFromNib(images: AvatarConstants.facialFeatureSelectionList[index].options[i]))
+            collectionViewArr.append(AvatarConstants.facialFeatureSelectionList[index].options[i])
         }
         
         facialFeatureIconIndex = index
@@ -318,44 +336,24 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        cell.contentView.layer.cornerRadius = 5
-        cell.contentView.layer.borderColor = UIColor.gray.cgColor
-        
-        if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Hair" && generatedAvatar.hairIndex == indexPath.item {
-            cell.contentView.layer.borderWidth = 2
-        } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Head" && generatedAvatar.chinIndex == indexPath.item {
-            cell.contentView.layer.borderWidth = 2
-        } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Brows" && generatedAvatar.browIndex == indexPath.item {
-            cell.contentView.layer.borderWidth = 2
-        } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Nose" && generatedAvatar.noseIndex == indexPath.item {
-            cell.contentView.layer.borderWidth = 2
-        } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Ears" && generatedAvatar.earIndex == indexPath.item {
-            cell.contentView.layer.borderWidth = 2
-        } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Eyes" && generatedAvatar.glassIndex == indexPath.item {
-            cell.contentView.layer.borderWidth = 2
-        } else if AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName == "Mouth" && generatedAvatar.mouthIndex == indexPath.item {
-            cell.contentView.layer.borderWidth = 2
-        } else {
-            cell.contentView.layer.borderWidth = 0
-        }
-        
-        for _ in 0..<cell.contentView.subviews.count {
-            cell.contentView.subviews[0].removeFromSuperview()
-        }
-        
-        weak var cellContent = collectionViewArr[indexPath.item]
-        cell.contentView.addSubview(cellContent!)
-        cellContent!.translatesAutoresizingMaskIntoConstraints = false
-        cellContent!.leftAnchor.constraint(equalTo: cell.contentView.leftAnchor).isActive = true
-        cellContent!.rightAnchor.constraint(equalTo: cell.contentView.rightAnchor).isActive = true
-        cellContent!.topAnchor.constraint(equalTo: cell.contentView.topAnchor).isActive = true
-        cellContent!.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor).isActive = true
-        
-        cellContent!.setSkinColor(color: AppColors.skintoneArray[generatedAvatar.skinTone])
-        cellContent!.setHairColor(color: AppColors.hairColorArray[generatedAvatar.hairColor])
-        
+        collectionView.register(AvatarCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! AvatarCollectionViewCell
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        (cell as! AvatarCollectionViewCell).data = nil
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        (cell as! AvatarCollectionViewCell).data = AvatarCellData(
+            images: collectionViewArr[indexPath.item],
+            facialFeatureSelection: AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName,
+            skinColor: AppColors.skintoneArray[generatedAvatar.skinTone],
+            hairColor: AppColors.hairColorArray[generatedAvatar.hairColor],
+            avatar: generatedAvatar,
+            cellIndex: indexPath.item
+        )
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -363,9 +361,9 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
             collectionView.visibleCells[i].contentView.layer.borderWidth = 0
         }
         
-        let cell = collectionView.cellForItem(at: indexPath)!
-        let facialFeature = cell.contentView.subviews[0] as! FacialFeatureOption
-        collectionView.cellForItem(at: indexPath)!.contentView.layer.borderWidth = 2
+        let cell = collectionView.cellForItem(at: indexPath) as! AvatarCollectionViewCell
+        let facialFeature = cell.cellContent!
+        cell.selectCell()
         
         switch AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName {
         case "Hair":
@@ -420,37 +418,24 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         storeAvatar()
         
-        for _ in 0..<collectionViewArr.count {
-            collectionViewArr.remove(at: 0)
-        }
-        
         changeProfileButtonAvatars(avatar: generatedAvatar)
         
         if editProfileCallback != nil {
             editProfileCallback()
         }
         
-        if StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
-            StoredValues.setIfEmpty(key: StoredValuesConstants.hasBeenOnboarded, value: "yes")
-            self.dismiss(animated: true, completion: { () -> Void in self.prevController.dismiss(animated: true, completion: self.onDismiss)})
-        } else {
-            self.dismiss(animated: true, completion: self.onDismissClear)
-        }
-    }
-    
-    func onDismiss() {
-        onDismissClear()
-        dismissCallback()
-    }
-    
-    func onDismissClear() {
 //        for _ in 0..<collectionViewArr.count {
 //            collectionViewArr.remove(at: 0)
 //        }
-//        for cell in elemCollectionView.visibleCells {
-//            cell.contentView.subviews[0].removeFromSuperview()
-//        }
 //        elemCollectionView.reloadData()
+        elemCollectionView = nil
+        
+        if StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
+            StoredValues.setIfEmpty(key: StoredValuesConstants.hasBeenOnboarded, value: "yes")
+            self.dismiss(animated: true, completion: { () -> Void in self.prevController.dismiss(animated: true, completion: self.dismissCallback)})
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     func changeProfileButtonAvatars(avatar: Avatar) {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class FacialFeatureOption: UIView {
+class FacialFeatureOption: UIView {
     
     @IBOutlet weak var chin: UIImageView!
     @IBOutlet weak var nose: UIImageView!
@@ -94,5 +94,21 @@ final class FacialFeatureOption: UIView {
         
         setSkinColor(color: AppColors.skintoneArray[images.skinTone])
         setHairColor(color: AppColors.hairColorArray[images.hairColor])
+    }
+    
+    func freeMemory() {
+        chin.image = nil
+        nose.image = nil
+        hairFront.image = nil
+        eyes.image = nil
+        face.image = nil
+        hairBack.image = nil
+        beard.image = nil
+        ears.image = nil
+        glasses.image = nil
+        hairMidBack.image = nil
+        hairMidFront.image = nil
+        brows.image = nil
+        mouth.image = nil
     }
 }

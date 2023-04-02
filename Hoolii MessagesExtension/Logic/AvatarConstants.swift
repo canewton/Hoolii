@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AvatarConstants {
+struct AvatarConstants {
     static let hairOption0 = AvatarImageCollection()
     static let hairOption1 = AvatarImageCollection().addHair(front: "Female hair 1 front", back: "Female hair 1 back", hairShift: 0.02)
     static let hairOption2 = AvatarImageCollection().addHair(front: "Female hair 2 front", back: "Female hair 2 back")
