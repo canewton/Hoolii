@@ -127,6 +127,7 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         // declare delegate and source for collection
         elemCollectionView.dataSource = self
         elemCollectionView.delegate = self
+        elemCollectionView.register(UINib(nibName: "FacialFeatureOption", bundle: nil), forCellWithReuseIdentifier: "Cell")
         
         avatarDisplay.setHairColor(color: AppColors.hairColorArray[generatedAvatar.hairColor])
         avatarDisplay.setSkinColor(color: AppColors.skintoneArray[generatedAvatar.skinTone])
@@ -336,7 +337,6 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        collectionView.register(AvatarCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! AvatarCollectionViewCell
         return cell
     }

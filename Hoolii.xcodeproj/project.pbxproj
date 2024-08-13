@@ -161,8 +161,6 @@
 		9103CF3328C989C300BBC349 /* AutofillButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AutofillButton.xib; sourceTree = "<group>"; };
 		9103CF3528C989EA00BBC349 /* AutofillButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutofillButton.swift; sourceTree = "<group>"; };
 		9103CF3728D2F28700BBC349 /* ScheduleDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDate.swift; sourceTree = "<group>"; };
-		9103E5722896479100CA661B /* libFirebaseDatabase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseDatabase.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9103E574289647B700CA661B /* libFirebaseCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9103E5772896DA0400CA661B /* AvailabilityBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityBar.swift; sourceTree = "<group>"; };
 		9103E5792897550500CA661B /* TimeBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBlock.swift; sourceTree = "<group>"; };
 		9103E57B289B897600CA661B /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
@@ -388,8 +386,6 @@
 		9142F979285FA20E0070661F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9103E574289647B700CA661B /* libFirebaseCore.a */,
-				9103E5722896479100CA661B /* libFirebaseDatabase.a */,
 				9142F97A285FA20E0070661F /* Messages.framework */,
 				2059F873623DEA6DE6C9C3A3 /* libPods-Hoolii.a */,
 				FB9FB6186E1010E8D04B74A1 /* libPods-Hoolii MessagesExtension.a */,

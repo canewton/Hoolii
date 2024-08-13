@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -37,7 +37,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9b-Mj-yUL" customClass="ThemedButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
-                                <rect key="frame" x="95" y="220" width="170" height="30"/>
+                                <rect key="frame" x="95" y="186" width="170" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="3th-xY-wnB"/>
                                     <constraint firstAttribute="width" constant="170" id="Jfu-OW-bgu"/>
@@ -59,7 +59,7 @@
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MO0-7A-GMK">
-                                <rect key="frame" x="0.0" y="71" width="360" height="199"/>
+                                <rect key="frame" x="0.0" y="71" width="360" height="165"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9bo-7t-nXx"/>
@@ -86,7 +86,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UYB-Cq-LnI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="63.768115942028992" y="2258.0357142857142"/>
+            <point key="canvasLocation" x="62.790697674418603" y="2257.7253218884121"/>
         </scene>
         <!--Create Profile View Controller-->
         <scene sceneID="LSq-7F-vna">
@@ -352,7 +352,7 @@
                                                         <rect key="frame" x="30" y="432.33333333333331" width="300" height="50"/>
                                                         <subviews>
                                                             <datePicker contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" style="inline" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Veo-2z-OT0">
-                                                                <rect key="frame" x="170" y="0.0" width="110" height="50.333333333333336"/>
+                                                                <rect key="frame" x="170" y="-1" width="110" height="52"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="110" id="QSb-Nw-8Om"/>
                                                                 </constraints>
@@ -379,7 +379,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <datePicker contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" style="inline" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xec-wf-rN4">
-                                                                <rect key="frame" x="20" y="0.0" width="110" height="50.333333333333336"/>
+                                                                <rect key="frame" x="20" y="-1" width="110" height="52"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="110" id="SuT-4P-IiC"/>
                                                                 </constraints>
@@ -497,10 +497,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XbI-sK-Our">
-                                <rect key="frame" x="0.0" y="129" width="360" height="571"/>
+                                <rect key="frame" x="0.0" y="129" width="360" height="537"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNu-2R-fyl">
-                                <rect key="frame" x="0.0" y="700" width="360" height="50"/>
+                                <rect key="frame" x="0.0" y="666" width="360" height="84"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bbi-IE-P3T" customClass="ThemedButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
                                         <rect key="frame" x="230" y="10" width="100" height="30"/>
@@ -683,10 +683,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qe0-W9-eOT">
-                                <rect key="frame" x="0.0" y="99" width="360" height="601"/>
+                                <rect key="frame" x="0.0" y="99" width="360" height="567"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u3A-D7-KL9">
-                                <rect key="frame" x="0.0" y="700" width="360" height="50"/>
+                                <rect key="frame" x="0.0" y="666" width="360" height="84"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rFr-hp-2cu" customClass="ThemedButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
                                         <rect key="frame" x="130" y="10" width="100" height="30"/>
@@ -763,7 +763,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JDi-zv-FaQ" customClass="ThemedButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
-                                <rect key="frame" x="95" y="220" width="170" height="30"/>
+                                <rect key="frame" x="95" y="186" width="170" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="SyX-Ti-cS8"/>
                                     <constraint firstAttribute="width" constant="170" id="cvZ-j9-Ck6"/>
@@ -1107,7 +1107,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Rat-HC-B0K">
-                                <rect key="frame" x="20" y="585" width="320" height="105"/>
+                                <rect key="frame" x="20" y="585" width="320" height="71"/>
                                 <color key="backgroundColor" name="alert"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Eaa-xX-F6k">
                                     <size key="itemSize" width="98" height="98"/>
@@ -1205,7 +1205,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Vx-uR-K2S">
-                                <rect key="frame" x="0.0" y="690" width="360" height="60"/>
+                                <rect key="frame" x="0.0" y="656" width="360" height="94"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moq-7D-BwU" userLabel="saveAvatarButton" customClass="ThemedButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
                                         <rect key="frame" x="125" y="12" width="110" height="35"/>
@@ -1331,7 +1331,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="B2E-tv-Zd5"/>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="HAV-qj-Dd5">
-                                <rect key="frame" x="120" y="620" width="120" height="30"/>
+                                <rect key="frame" x="120" y="586" width="120" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="GhE-Cy-RFP"/>
                                     <constraint firstAttribute="height" constant="30" id="PQ9-QM-FDa"/>
@@ -1340,7 +1340,7 @@
                                 <color key="currentPageIndicatorTintColor" systemColor="linkColor"/>
                             </pageControl>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ht-Aa-Tjo">
-                                <rect key="frame" x="40" y="680" width="65" height="30"/>
+                                <rect key="frame" x="40" y="646" width="65" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="VFh-56-qLY"/>
                                     <constraint firstAttribute="height" constant="30" id="wMT-a5-T3N"/>
@@ -1350,7 +1350,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFn-2X-aTb">
-                                <rect key="frame" x="255" y="680" width="65" height="30"/>
+                                <rect key="frame" x="255" y="646" width="65" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="Njn-tC-5A3"/>
                                     <constraint firstAttribute="height" constant="30" id="S07-5G-hOm"/>
@@ -1418,7 +1418,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEB-OL-Auc" customClass="ThemedButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
-                                <rect key="frame" x="100" y="215.66666666666666" width="160" height="34.333333333333343"/>
+                                <rect key="frame" x="100" y="181.66666666666666" width="160" height="34.333333333333343"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34.5" id="DHq-Xl-uLI"/>
                                     <constraint firstAttribute="width" constant="160" id="dLf-TT-4Gn"/>
@@ -1430,7 +1430,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cal-with-background" translatesAutoresizingMaskIntoConstraints="NO" id="88D-W9-lKk">
-                                <rect key="frame" x="180" y="58.999999999999986" width="180" height="146.66666666666663"/>
+                                <rect key="frame" x="180" y="59.000000000000007" width="180" height="112.66666666666669"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="aKm-6K-bwg"/>
                                 </constraints>
@@ -1494,28 +1494,28 @@
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemCyanColor">
-            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.1960784314" green="0.67843137249999996" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemMintColor">
-            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
