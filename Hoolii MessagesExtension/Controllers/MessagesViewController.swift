@@ -41,14 +41,6 @@ class MessagesViewController: MSMessagesAppViewController {
         controller.didMove(toParent: self)
     }
     
-    // MARK: Switch view controller
-    // Tells the view controller that the extension is about to transition to a new presentation style
-//    override func willTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
-//        super.willTransition(to: presentationStyle)
-//        // when a new view controller is transitioned to, remove the view controller that is currently on the screen
-//        removeAllChildViewControllers()
-//    }
-    
     // Tells the view controller that the extenson has transitioned to a new presentation style -> compact or exmpanded
     override func didTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
         super.didTransition(to: presentationStyle)
@@ -57,13 +49,6 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     
     // MARK: Convenience
-//    private func removeAllChildViewControllers() {
-//        for child in children {
-//            child.willMove(toParent: nil)
-//            child.view.removeFromSuperview()
-//            child.removeFromParent()
-//        }
-//    }
     
     func instantiateController<T: ViewControllerWithIdentifier>() -> T {
         guard var controller = storyboard?.instantiateViewController(withIdentifier: T.storyboardIdentifier)
