@@ -34,10 +34,7 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     @IBOutlet weak var colorOptionsStack: UIStackView!
     @IBOutlet weak var avatarContainerImgView: UIView!
     @IBOutlet weak var avatarView: UIView!
-    @IBOutlet weak var bottomBar: UIView!
-    @IBOutlet weak var saveAvatarButton: ThemedButton!
     @IBOutlet weak var backgroundColor: UIView!
-    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var facialFeatureOptionsLabel: UILabel!
     @IBOutlet weak var collectionViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var editTextIcon: UIImageView!
@@ -81,30 +78,8 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         
         MessagesViewController.currViewController = self
 
-        let firstName: String = StoredValues.get(key: StoredValuesConstants.firstName) ?? ""
-        let lastName: String = StoredValues.get(key: StoredValuesConstants.lastName) ?? ""
-        let fullName: String = "\(firstName) \(lastName)"
-        if fullName.trimmingCharacters(in: .whitespaces) != "" {
-            nameTextField.text = fullName
-        } else {
-            nameTextField.text = "Enter First and Last Name Here"
-        }
-        
-        let storedAvatar = StoredValues.get(key: StoredValuesConstants.userAvatar)
-        if storedAvatar != nil {
-            generatedAvatar = Avatar(jsonValue: storedAvatar!)
-            avatarContent = AvatarImageCollection(avatar: generatedAvatar)
-            backgroundColor.backgroundColor = AppColors.backgroundColorArray[generatedAvatar.backgroundIndex]
-        } else {
-            avatarContent = AvatarImageCollection().addHair(front: AvatarConstants.hairOption8.hairFront, back: AvatarConstants.hairOption8.hairBack).addMouth(AvatarConstants.mouthOption1.mouth).addEyes(AvatarConstants.eyeOption1.eyes).addNose(AvatarConstants.noseOption1.nose)
-            backgroundColor.backgroundColor = AppColors.backgroundColorArray[0]
-        }
-        
-        if StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
-            screenLabel.text = "Create A New Profile"
-        } else {
-            screenLabel.text = "Edit Profile"
-        }
+        avatarContent = AvatarImageCollection().addHair(front: AvatarConstants.hairOption8.hairFront, back: AvatarConstants.hairOption8.hairBack).addMouth(AvatarConstants.mouthOption1.mouth).addEyes(AvatarConstants.eyeOption1.eyes).addNose(AvatarConstants.noseOption1.nose)
+        backgroundColor.backgroundColor = AppColors.backgroundColorArray[0]
         
         mainProfileViewHeight.constant = view.bounds.height * 1.0/1000.0 * 200
         backgroundHeight.constant = view.bounds.height * 1.0/1000.0 * 100
@@ -120,7 +95,6 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         
         avatarOptions.displayFacialFeatureOptionsCallback = displayFacialFeatureOptions
         setUpColorStack(colors: AppColors.skintoneArray)
-        configureBottomBar()
         
         backgroundColor.layer.cornerRadius = backgroundHeight.constant/2
         
@@ -133,22 +107,6 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         avatarDisplay.setSkinColor(color: AppColors.skintoneArray[generatedAvatar.skinTone])
         
         displayFacialFeatureOptions(index: 0)
-        nameTextField.delegate = self
-        nameTextField.autocapitalizationType = .words
-        
-        if nameTextField.text?.trimmingCharacters(in: .whitespaces) == "Enter First and Last Name Here" {
-            saveAvatarButton.isEnabled = false
-        }
-        
-        let editTextTap = UITapGestureRecognizer(target: self, action: #selector(editTextOnTap(gesture:)))
-        editTextIcon.isUserInteractionEnabled = true
-        editTextIcon.addGestureRecognizer(editTextTap)
-    }
-    
-    @objc func editTextOnTap(gesture: UITapGestureRecognizer) {
-        nameTextField.becomeFirstResponder()
-        let newPosition = nameTextField.endOfDocument
-        nameTextField.selectedTextRange = nameTextField.textRange(from: newPosition, to: newPosition)
     }
     
     /**
@@ -157,59 +115,6 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-
-    @IBAction func onEditNameBegin(_ sender: Any) {
-        if nameTextField.text?.trimmingCharacters(in: .whitespaces) == "Enter First and Last Name Here" {
-            nameTextField.text = ""
-        }
-    }
-    
-    @IBAction func onEditNameEnd(_ sender: Any) {
-        if nameTextField.text?.trimmingCharacters(in: .whitespaces) == "" {
-            nameTextField.text = "Enter First and Last Name Here"
-        }
-        
-        if nameTextField.text?.trimmingCharacters(in: .whitespaces) != "Enter Full Name Here" {
-            saveAvatarButton.isEnabled = true
-            
-            let fullName = nameTextField.text!.trimmingCharacters(in: .whitespaces)
-            var firstName = ""
-            var lastName = ""
-            var components = fullName.components(separatedBy: " ")
-            if components.count > 0 {
-                firstName = components.removeFirst()
-                lastName = ""
-                for i in 0..<(components.count) {
-                    lastName += "\(components[i]) "
-                }
-                lastName = lastName.trimmingCharacters(in: .whitespaces)
-            }
-            
-            let firstNameUppercased = firstName.uppercased()
-            let lastNameUppercased = lastName.uppercased()
-            var initials = ""
-            
-            if firstNameUppercased.count > 0 {
-                let firstNameIndex = firstNameUppercased.index(firstNameUppercased.startIndex, offsetBy: 1)
-                initials += firstNameUppercased.prefix(upTo: firstNameIndex)
-            }
-            if lastNameUppercased.count > 0 {
-                let lastNameIndex = lastNameUppercased.index(lastNameUppercased.startIndex, offsetBy: 1)
-                initials += lastNameUppercased.prefix(upTo: lastNameIndex)
-            }
-            
-            StoredValues.set(key: StoredValuesConstants.firstName, value: firstName)
-            StoredValues.set(key: StoredValuesConstants.lastName, value: lastName)
-            StoredValues.set(key: StoredValuesConstants.initials, value: initials)
-            
-            if editNameCallback != nil {
-                editNameCallback()
-            }
-            
-        } else {
-            saveAvatarButton.isEnabled = false
-        }
     }
     
    /**
@@ -231,23 +136,6 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
             colorView.centerYAnchor.constraint(equalTo: colorOptionsStack.centerYAnchor).isActive = true
             colorView.callback = colorTapped
         }
-    }
-    
-    func configureBottomBar() {
-        if traitCollection.userInterfaceStyle == .light {
-            bottomBar.layer.shadowColor = AppColors.shadowColor.cgColor
-            bottomBar.layer.shadowOpacity = 0.4
-            bottomBar.layer.shadowOffset = .zero
-            bottomBar.layer.shadowRadius = 10
-        } else {
-            bottomBar.layer.shadowColor = UIColor.systemGray.cgColor
-            bottomBar.layer.shadowOpacity = 0.2
-            bottomBar.layer.shadowOffset = .zero
-            bottomBar.layer.shadowRadius = 2
-            bottomBar.layer.shadowOffset = CGSize(width: 0, height: -2)
-        }
-        
-        saveAvatarButton.setImage(ScaledIcon(name: "checkmark", width: 15, height: 15, color: .label).image, for: .normal)
     }
     
     func displayFacialFeatureOptions(index: Int) {
@@ -408,50 +296,4 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         return itemSize
     }
     
-    //MARK: COLLECTION VIEW METHODS END HERE
-    
-    
-    //MARK: METHODS FOR SAVING AVATARS START HERE
-    
-    func storeAvatar() {
-        // Update generatedAVatar with the user's current selection of variables
-        StoredValues.set(key: StoredValuesConstants.userAvatar, value: generatedAvatar.getJsonValue())
-    }
-    
-    @IBAction func saveButtonPressed(_ sender: UIButton) {
-        storeAvatar()
-        
-        changeProfileButtonAvatars(avatar: generatedAvatar)
-        
-        if editProfileCallback != nil {
-            editProfileCallback()
-        }
-        
-//        for _ in 0..<collectionViewArr.count {
-//            collectionViewArr.remove(at: 0)
-//        }
-//        elemCollectionView.reloadData()
-        elemCollectionView = nil
-        
-        if StoredValues.isKeyNil(key: StoredValuesConstants.hasBeenOnboarded) {
-            StoredValues.setIfEmpty(key: StoredValuesConstants.hasBeenOnboarded, value: "yes")
-            self.dismiss(animated: true, completion: { () -> Void in self.prevController.dismiss(animated: true, completion: self.dismissCallback)})
-        } else {
-            self.dismiss(animated: true, completion: nil)
-        }
-    }
-    
-    func changeProfileButtonAvatars(avatar: Avatar) {
-        print(avatar.skinTone)
-        ProfileButton.profileIcon.avatarDisplay!.setFromImageCollection(images: AvatarImageCollection(avatar: avatar))
-        ProfileButton.profileIcon.backgroundColor = AppColors.backgroundColorArray[avatar.backgroundIndex]
-        ProfileButton.profileIcon.avatarDisplay!.setHairColor(color: AppColors.hairColorArray[avatar.hairColor])
-        ProfileButton.profileIcon.avatarDisplay!.setSkinColor(color: AppColors.skintoneArray[avatar.skinTone])
-        
-        ProfileButton.profileIcon.topConstraint.constant = -1 * ProfileButton.profileIcon.avatar!.getShiftConst() * ProfileButton.height + 1
-        ProfileButton.profileIcon.bottomConstraint.constant = -1 * ProfileButton.profileIcon.avatar!.getShiftConst() * ProfileButton.height - 1
-        ProfileButton.profileIcon.avatar = avatar
-    }
-    
-    //MARK: END OF AVATAR SAVNG FUNCTIONS
 }
