@@ -68,6 +68,10 @@ class AvatarImageCollection {
     
     init() {}
     
+    deinit {
+        print("deinit avatar")
+    }
+    
     @discardableResult func addChin(_ string: String) -> AvatarImageCollection {
         if chin != "" {
             chin = string

@@ -20,6 +20,7 @@ class AvatarCollectionViewCell: UICollectionViewCell {
                 contentView.layer.cornerRadius = 5
                 contentView.layer.borderColor = UIColor.gray.cgColor
                 
+                cellContent?.freeMemory()
                 cellContent?.removeFromSuperview()
                 cellContent = nil
                 

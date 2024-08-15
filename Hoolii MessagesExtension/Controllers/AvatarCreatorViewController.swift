@@ -251,13 +251,7 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     }
     
     func displayFacialFeatureOptions(index: Int) {
-        for _ in 0..<collectionViewArr.count {
-            collectionViewArr.remove(at: 0)
-        }
-        for i in 0..<AvatarConstants.facialFeatureSelectionList[index].options.count {
-            collectionViewArr.append(AvatarConstants.facialFeatureSelectionList[index].options[i])
-        }
-        
+        collectionViewArr = AvatarConstants.facialFeatureSelectionList[index].options
         facialFeatureIconIndex = index
         
         switch AvatarConstants.facialFeatureSelectionList[index].iconName {
@@ -291,6 +285,7 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     
     // Dismiss screen if user presses back button to return to profile creation
     @IBAction func BackButtonPressed(_ sender: UIButton) {
+        collectionViewArr = []
         self.dismiss(animated: true)
     }
     
@@ -337,16 +332,8 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! AvatarCollectionViewCell
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        (cell as! AvatarCollectionViewCell).data = nil
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        (cell as! AvatarCollectionViewCell).data = AvatarCellData(
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AvatarCell", for: indexPath) as! AvatarCollectionViewCell
+        cell.data = AvatarCellData(
             images: collectionViewArr[indexPath.item],
             facialFeatureSelection: AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName,
             skinColor: AppColors.skintoneArray[generatedAvatar.skinTone],
@@ -354,7 +341,23 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
             avatar: generatedAvatar,
             cellIndex: indexPath.item
         )
+        return cell
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        (cell as! AvatarCollectionViewCell).data = nil
+//    }
+    
+//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        (cell as! AvatarCollectionViewCell).data = AvatarCellData(
+//            images: collectionViewArr[indexPath.item],
+//            facialFeatureSelection: AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName,
+//            skinColor: AppColors.skintoneArray[generatedAvatar.skinTone],
+//            hairColor: AppColors.hairColorArray[generatedAvatar.hairColor],
+//            avatar: generatedAvatar,
+//            cellIndex: indexPath.item
+//        )
+//    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         for i in 0..<collectionView.visibleCells.count {

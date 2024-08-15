@@ -78,6 +78,21 @@ class FacialFeatureOption: UIView {
     }
     
     func setFromImageCollection(images: AvatarImageCollection) {
+//        let mouthPath = Bundle.main.path(forResource: "Mouth", ofType: "png")!
+//        chin.image = images.chin == "" ? nil : UIImage(contentsOfFile: mouthPath)
+//        face.image = images.head == "" ? nil : UIImage(contentsOfFile: mouthPath)
+//        nose.image = images.nose == "" ? nil : UIImage(contentsOfFile: mouthPath)
+//        hairFront.image = images.hairFront == "" ? nil : UIImage(contentsOfFile: mouthPath)
+//        hairBack.image = images.hairBack == "" ? nil : UIImage(contentsOfFile: mouthPath)
+//        beard.image = images.beard == "" ? nil : UIImage(contentsOfFile: mouthPath)
+//        ears.image = images.ears == "" ? nil : UIImage(contentsOfFile: mouthPath)
+//        glasses.image = images.glasses == "" ? nil : UIImage(contentsOfFile: mouthPath)
+//        hairMidBack.image = images.hairMidBack == "" ? nil : UIImage(contentsOfFile: mouthPath)
+//        hairMidFront.image = images.hairMidFront == "" ? nil : UIImage(contentsOfFile: mouthPath)
+//        brows.image = images.brows == "" ? nil : UIImage(contentsOfFile: mouthPath)
+//        mouth.image = images.mouth == "" ? nil : UIImage(contentsOfFile: mouthPath)
+//        eyes.image = images.eyes == "" ? nil : UIImage(contentsOfFile: mouthPath)
+        
         chin.image = images.chin == "" ? nil : UIImage(named: images.chin)
         face.image = images.head == "" ? nil : UIImage(named: images.head)
         nose.image = images.nose == "" ? nil : UIImage(named: images.nose)
@@ -97,18 +112,45 @@ class FacialFeatureOption: UIView {
     }
     
     func freeMemory() {
-        chin.image = nil
-        nose.image = nil
-        hairFront.image = nil
-        eyes.image = nil
-        face.image = nil
-        hairBack.image = nil
-        beard.image = nil
-        ears.image = nil
-        glasses.image = nil
-        hairMidBack.image = nil
-        hairMidFront.image = nil
-        brows.image = nil
-        mouth.image = nil
+        chin.removeFromSuperview()
+        chin = nil
+        nose.removeFromSuperview()
+        nose = nil
+        hairFront.removeFromSuperview()
+        hairFront = nil
+        eyes.removeFromSuperview()
+        eyes = nil
+        face.removeFromSuperview()
+        face = nil
+        hairBack.removeFromSuperview()
+        hairBack = nil
+        beard.removeFromSuperview()
+        beard = nil
+        ears.removeFromSuperview()
+        ears = nil
+        glasses.removeFromSuperview()
+        glasses = nil
+        hairMidBack.removeFromSuperview()
+        hairMidBack = nil
+        hairMidFront.removeFromSuperview()
+        hairMidFront = nil
+        brows.removeFromSuperview()
+        brows = nil
+        mouth.removeFromSuperview()
+        mouth = nil
+        
+//        chin.image = nil
+//        nose.image = nil
+//        hairFront.image = nil
+//        eyes.image = nil
+//        face.image = nil
+//        hairBack.image = nil
+//        beard.image = nil
+//        ears.image = nil
+//        glasses.image = nil
+//        hairMidBack.image = nil
+//        hairMidFront.image = nil
+//        brows.image = nil
+//        mouth.image = nil
     }
 }
