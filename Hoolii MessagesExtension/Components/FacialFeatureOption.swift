@@ -30,51 +30,13 @@ class FacialFeatureOption: UIView {
         
         facialFeatureOption?.setFromImageCollection(images: images)
         
-        facialFeatureOption?.chin.tintColor = AppColors.skintoneArray[0]
-        facialFeatureOption?.face.tintColor = AppColors.skintoneArray[0]
-        
         return facialFeatureOption!
     }
     
     class func instanceFromNib() -> FacialFeatureOption {
         let facialFeatureOption = UINib(nibName: "FacialFeatureOption", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? FacialFeatureOption
         
-        facialFeatureOption?.chin.tintColor = AppColors.skintoneArray[0]
-        facialFeatureOption?.face.tintColor = AppColors.skintoneArray[0]
-        
         return facialFeatureOption!
-    }
-    
-    func setHairColor(color: UIColor) {
-        hairBack.tintColor = color
-        hairFront.tintColor = color
-        hairMidBack.tintColor = color
-        hairMidFront.tintColor = color
-        brows.tintColor = color
-        beard.tintColor = color
-        
-        if hairMidFront.image == UIImage(named: "Male hair 7 side") {
-            hairMidFront.tintColor = adjustedColorForColor(c: color, percent: 0.6)
-        }
-    }
-    
-    func adjustedColorForColor( c: UIColor, percent: CGFloat) -> UIColor {
-        var r,g,b,a: CGFloat
-        r = 0.0
-        g = 0.0
-        b = 0.0
-        a = 0.0
-
-        if c.getRed(&r, green: &g, blue: &b, alpha: &a) {
-            return UIColor(red: max(r * percent, 0.0), green: max(g * percent, 0.0), blue: max(b * percent, 0.0), alpha: a)
-        }
-
-        return UIColor()
-    }
-    
-    func setSkinColor(color: UIColor) {
-        chin.tintColor = color
-        face.tintColor = color
     }
     
     func setFromImageCollection(images: AvatarImageCollection) {
@@ -106,9 +68,6 @@ class FacialFeatureOption: UIView {
         brows.image = images.brows == "" ? nil : UIImage(named: images.brows)
         mouth.image = images.mouth == "" ? nil : UIImage(named: images.mouth)
         eyes.image = images.eyes == "" ? nil : UIImage(named: images.eyes)
-        
-        setSkinColor(color: AppColors.skintoneArray[images.skinTone])
-        setHairColor(color: AppColors.hairColorArray[images.hairColor])
     }
     
     func freeMemory() {

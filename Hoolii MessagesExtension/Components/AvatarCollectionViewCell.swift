@@ -34,8 +34,6 @@ class AvatarCollectionViewCell: UICollectionViewCell {
                 cellContent!.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
                 
                 changeAvatarImage(images: data!.images)
-                setSkinColor(color: data!.skinColor)
-                setHairColor(color: data!.hairColor)
                 
                 if data!.facialFeatureSelection == "Hair" && data!.avatar.hairIndex == data!.cellIndex {
                     selectCell()
@@ -60,14 +58,6 @@ class AvatarCollectionViewCell: UICollectionViewCell {
                 cellContent = nil
             }
         }
-    }
-    
-    func setHairColor(color: UIColor) {
-        cellContent!.setHairColor(color: color)
-    }
-    
-    func setSkinColor(color: UIColor) {
-        cellContent!.setSkinColor(color: color)
     }
     
     func selectCell() {

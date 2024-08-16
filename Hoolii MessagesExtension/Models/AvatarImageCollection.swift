@@ -28,49 +28,7 @@ class AvatarImageCollection {
     var hairShift: CGFloat = 0
     var beardShift: CGFloat = 0
     
-    init(chin: String, nose: String, hairFront: String, hairBack: String, hairMidFront: String, hairMidBack: String, ears: String, eyes: String, beard: String, brows: String, mouth: String, glasses: String, skinTone: Int, hairColor: Int, backgroundColor: Int, hairShift: CGFloat, beardShift: CGFloat) {
-        self.chin = chin
-        self.nose = nose
-        self.hairFront = hairFront
-        self.hairBack = hairBack
-        self.hairMidFront = hairMidFront
-        self.hairMidBack = hairMidBack
-        self.ears = ears
-        self.eyes = eyes
-        self.beard = beard
-        self.brows = brows
-        self.mouth = mouth
-        self.glasses = glasses
-        self.skinTone = skinTone
-        self.hairColor = hairColor
-        self.backgroundColor = backgroundColor
-        self.hairShift = hairShift
-        self.beardShift = beardShift
-    }
-    
-    init(avatar: Avatar) {
-        self.chin = AvatarConstants.chinOptions[avatar.chinIndex].chin
-        self.nose = AvatarConstants.noseOptions[avatar.noseIndex].nose
-        self.hairFront = AvatarConstants.hairOptions[avatar.hairIndex].hairFront
-        self.hairBack = AvatarConstants.hairOptions[avatar.hairIndex].hairBack
-        self.hairMidBack = AvatarConstants.hairOptions[avatar.hairIndex].hairMidBack
-        self.hairMidFront = AvatarConstants.hairOptions[avatar.hairIndex].hairMidFront
-        self.ears = AvatarConstants.earOptions[avatar.earIndex].ears
-        self.eyes = AvatarConstants.eyeOptions[avatar.glassIndex].eyes
-        self.beard = AvatarConstants.chinOptions[avatar.chinIndex].beard
-        self.brows = AvatarConstants.browOptions[avatar.browIndex].brows
-        self.mouth = AvatarConstants.mouthOptions[avatar.mouthIndex].mouth
-        self.glasses = AvatarConstants.eyeOptions[avatar.glassIndex].glasses
-        
-        self.skinTone = avatar.skinTone
-        self.hairColor = avatar.hairColor
-    }
-    
     init() {}
-    
-    deinit {
-        print("deinit avatar")
-    }
     
     @discardableResult func addChin(_ string: String) -> AvatarImageCollection {
         if chin != "" {
@@ -171,14 +129,5 @@ class AvatarImageCollection {
     @discardableResult func addMouth(_ string: String) -> AvatarImageCollection {
         mouth = string
         return self
-    }
-    
-    func getShiftConst() -> CGFloat {
-        if self.hairShift >= 0 && self.beardShift >= 0 {
-            return hairShift > beardShift ? hairShift : beardShift
-        } else if hairShift <= 0 && beardShift >= 0 {
-            return hairShift + beardShift
-        }
-        return 0
     }
 }

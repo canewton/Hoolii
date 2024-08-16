@@ -8,19 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		479D3FC4296A80940009F213 /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479D3FC2296A7B940009F213 /* Avatar.swift */; };
-		9103E58E289F99F100CA661B /* ViewControllerWithIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E58D289F99F100CA661B /* ViewControllerWithIdentifier.swift */; };
-		9103E59328A72C5A00CA661B /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E59228A72C5A00CA661B /* AppColors.swift */; };
-		911A80EF2C6E303000F5B865 /* ScaledIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911A80EE2C6E303000F5B865 /* ScaledIcon.swift */; };
-		913C118D28A9830600B5A66F /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C118C28A9830600B5A66F /* BackButton.swift */; };
-		913C119528B0AAFA00B5A66F /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C119428B0AAFA00B5A66F /* AppViewController.swift */; };
 		9142F970285FA20E0070661F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9142F96F285FA20E0070661F /* Assets.xcassets */; };
 		9142F976285FA20E0070661F /* Hoolii MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9142F975285FA20E0070661F /* Hoolii MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9142F97B285FA20E0070661F /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9142F97A285FA20E0070661F /* Messages.framework */; };
-		9142F97E285FA20E0070661F /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142F97D285FA20E0070661F /* MessagesViewController.swift */; };
 		9142F981285FA20E0070661F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9142F97F285FA20E0070661F /* MainInterface.storyboard */; };
 		916099F0296B95A800783A29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9142F982285FA20F0070661F /* Assets.xcassets */; };
 		916099F1296B95C000783A29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9142F982285FA20F0070661F /* Assets.xcassets */; };
-		916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D270B288319E4003C96BD /* CreateProfileViewController.swift */; };
 		916E3EA72973E0BE0036432E /* AvatarConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E3EA62973E0BE0036432E /* AvatarConstants.swift */; };
 		916E3EA929740B060036432E /* FacialFeatureIcon.xib in Resources */ = {isa = PBXBuildFile; fileRef = 916E3EA829740B060036432E /* FacialFeatureIcon.xib */; };
 		916E3EAB29740C650036432E /* FacialFeatureIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E3EAA29740C650036432E /* FacialFeatureIcon.swift */; };
@@ -28,7 +21,6 @@
 		916E3EAF2974165C0036432E /* FacialFeatureOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 916E3EAE2974165C0036432E /* FacialFeatureOption.xib */; };
 		916E3EB1297417A70036432E /* FacialFeatureOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E3EB0297417A70036432E /* FacialFeatureOption.swift */; };
 		916E3EB3297438360036432E /* FacialFeatureSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E3EB2297438360036432E /* FacialFeatureSelection.swift */; };
-		916E3EB529744D680036432E /* AvatarColorOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E3EB429744D680036432E /* AvatarColorOption.swift */; };
 		9197A6842C6C636C006B7A31 /* Mouth.png in Resources */ = {isa = PBXBuildFile; fileRef = 9197A6832C6C636C006B7A31 /* Mouth.png */; };
 		9197A6852C6C636C006B7A31 /* Mouth.png in Resources */ = {isa = PBXBuildFile; fileRef = 9197A6832C6C636C006B7A31 /* Mouth.png */; };
 		9197A6872C6C639C006B7A31 /* Chin1.svg in Resources */ = {isa = PBXBuildFile; fileRef = 9197A6862C6C639C006B7A31 /* Chin1.svg */; };
@@ -72,20 +64,13 @@
 		6186FBB547B0CC2FA8646E18 /* Pods-Hoolii.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hoolii.release.xcconfig"; path = "Target Support Files/Pods-Hoolii/Pods-Hoolii.release.xcconfig"; sourceTree = "<group>"; };
 		64BE8558663AC40F9266F4E1 /* Pods-Hoolii.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hoolii.debug.xcconfig"; path = "Target Support Files/Pods-Hoolii/Pods-Hoolii.debug.xcconfig"; sourceTree = "<group>"; };
 		687D8B39CA7BF0E3240E0268 /* Pods-Hoolii MessagesExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hoolii MessagesExtension.debug.xcconfig"; path = "Target Support Files/Pods-Hoolii MessagesExtension/Pods-Hoolii MessagesExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		9103E58D289F99F100CA661B /* ViewControllerWithIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerWithIdentifier.swift; sourceTree = "<group>"; };
-		9103E59228A72C5A00CA661B /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
-		911A80EE2C6E303000F5B865 /* ScaledIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledIcon.swift; sourceTree = "<group>"; };
-		913C118C28A9830600B5A66F /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
-		913C119428B0AAFA00B5A66F /* AppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
 		9142F96C285FA20A0070661F /* Hoolii.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hoolii.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9142F96F285FA20E0070661F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9142F975285FA20E0070661F /* Hoolii MessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Hoolii MessagesExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9142F97A285FA20E0070661F /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
-		9142F97D285FA20E0070661F /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		9142F980285FA20E0070661F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		9142F982285FA20F0070661F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Hoolii MessagesExtension/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		9142F984285FA20F0070661F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		916D270B288319E4003C96BD /* CreateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewController.swift; sourceTree = "<group>"; };
 		916E3EA62973E0BE0036432E /* AvatarConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarConstants.swift; sourceTree = "<group>"; };
 		916E3EA829740B060036432E /* FacialFeatureIcon.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FacialFeatureIcon.xib; sourceTree = "<group>"; };
 		916E3EAA29740C650036432E /* FacialFeatureIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacialFeatureIcon.swift; sourceTree = "<group>"; };
@@ -93,7 +78,6 @@
 		916E3EAE2974165C0036432E /* FacialFeatureOption.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FacialFeatureOption.xib; sourceTree = "<group>"; };
 		916E3EB0297417A70036432E /* FacialFeatureOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacialFeatureOption.swift; sourceTree = "<group>"; };
 		916E3EB2297438360036432E /* FacialFeatureSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacialFeatureSelection.swift; sourceTree = "<group>"; };
-		916E3EB429744D680036432E /* AvatarColorOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarColorOption.swift; sourceTree = "<group>"; };
 		9197A6832C6C636C006B7A31 /* Mouth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mouth.png; sourceTree = "<group>"; };
 		9197A6862C6C639C006B7A31 /* Chin1.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Chin1.svg; path = "Hoolii MessagesExtension/Assets.xcassets/Chin1.svg"; sourceTree = SOURCE_ROOT; };
 		919EDFBF297F33AF00B76C18 /* AvatarImageCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageCollection.swift; sourceTree = "<group>"; };
@@ -139,13 +123,10 @@
 		9103E5762896D9DE00CA661B /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				913C118C28A9830600B5A66F /* BackButton.swift */,
 				916E3EAA29740C650036432E /* FacialFeatureIcon.swift */,
 				916E3EAC29740F230036432E /* AvatarOptions.swift */,
 				916E3EB0297417A70036432E /* FacialFeatureOption.swift */,
-				916E3EB429744D680036432E /* AvatarColorOption.swift */,
 				91B0261029D92A0B003F9D89 /* AvatarCollectionViewCell.swift */,
-				911A80EE2C6E303000F5B865 /* ScaledIcon.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -158,14 +139,6 @@
 				916E3EAE2974165C0036432E /* FacialFeatureOption.xib */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		9103E59128A72C2800CA661B /* Theme */ = {
-			isa = PBXGroup;
-			children = (
-				9103E59228A72C5A00CA661B /* AppColors.swift */,
-			);
-			path = Theme;
 			sourceTree = "<group>";
 		};
 		9142F965285FA20A0070661F = {
@@ -215,7 +188,6 @@
 				916D270A2883190E003C96BD /* Controllers */,
 				91F40B6D286164C900B6912D /* Hoolii MessagesExtension.entitlements */,
 				9142F992285FFDAE0070661F /* Models */,
-				9103E59128A72C2800CA661B /* Theme */,
 				9103E57F289F459700CA661B /* Views */,
 				9142F982285FA20F0070661F /* Assets.xcassets */,
 				9142F984285FA20F0070661F /* Info.plist */,
@@ -237,10 +209,6 @@
 		916D270A2883190E003C96BD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				913C119428B0AAFA00B5A66F /* AppViewController.swift */,
-				9103E58D289F99F100CA661B /* ViewControllerWithIdentifier.swift */,
-				9142F97D285FA20E0070661F /* MessagesViewController.swift */,
-				916D270B288319E4003C96BD /* CreateProfileViewController.swift */,
 				91A4E814294C075200AB7E11 /* AvatarCreatorViewController.swift */,
 			);
 			path = Controllers;
@@ -420,23 +388,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				911A80EF2C6E303000F5B865 /* ScaledIcon.swift in Sources */,
-				916E3EB529744D680036432E /* AvatarColorOption.swift in Sources */,
 				916E3EB1297417A70036432E /* FacialFeatureOption.swift in Sources */,
 				916E3EAD29740F230036432E /* AvatarOptions.swift in Sources */,
-				913C118D28A9830600B5A66F /* BackButton.swift in Sources */,
-				916D270C288319E4003C96BD /* CreateProfileViewController.swift in Sources */,
 				919EDFC0297F33AF00B76C18 /* AvatarImageCollection.swift in Sources */,
 				479D3FC4296A80940009F213 /* Avatar.swift in Sources */,
-				913C119528B0AAFA00B5A66F /* AppViewController.swift in Sources */,
 				916E3EA72973E0BE0036432E /* AvatarConstants.swift in Sources */,
 				916E3EAB29740C650036432E /* FacialFeatureIcon.swift in Sources */,
-				9142F97E285FA20E0070661F /* MessagesViewController.swift in Sources */,
 				91A4E815294C075200AB7E11 /* AvatarCreatorViewController.swift in Sources */,
-				9103E59328A72C5A00CA661B /* AppColors.swift in Sources */,
 				91B0261129D92A0C003F9D89 /* AvatarCollectionViewCell.swift in Sources */,
 				916E3EB3297438360036432E /* FacialFeatureSelection.swift in Sources */,
-				9103E58E289F99F100CA661B /* ViewControllerWithIdentifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

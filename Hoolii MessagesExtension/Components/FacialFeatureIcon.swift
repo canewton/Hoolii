@@ -40,7 +40,7 @@ final class FacialFeatureIcon: UIView {
     }
     
     func select() {
-        self.backgroundColor = AppColors.main
+        self.backgroundColor = UIColor(named: "main")
     }
     
     func deselect() {

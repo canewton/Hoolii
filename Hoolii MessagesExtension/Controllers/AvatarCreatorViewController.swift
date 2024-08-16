@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Messages
 
 struct AvatarCellData {
     var images: AvatarImageCollection
@@ -25,26 +26,16 @@ struct AvatarCellData {
     }
 }
 
-class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifier, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
+class AvatarCreatorViewController: MSMessagesAppViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
     
     // MARK: VARIABLE DECLARATION START
     
     // Outlets for display of Avatar
     @IBOutlet weak var avatarOptions: AvatarOptions!
-    @IBOutlet weak var colorOptionsStack: UIStackView!
-    @IBOutlet weak var avatarContainerImgView: UIView!
-    @IBOutlet weak var avatarView: UIView!
-    @IBOutlet weak var backgroundColor: UIView!
     @IBOutlet weak var facialFeatureOptionsLabel: UILabel!
     @IBOutlet weak var collectionViewBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var editTextIcon: UIImageView!
-    @IBOutlet weak var screenLabel: UILabel!
     
     @IBOutlet weak var avatarOptionsHeight: NSLayoutConstraint!
-    @IBOutlet weak var backgroundHeight: NSLayoutConstraint!
-    @IBOutlet weak var mainProfileViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var colorScrollHeight: NSLayoutConstraint!
-    @IBOutlet weak var colorScrollSpacingHeight: NSLayoutConstraint!
     
     static var storyboardIdentifier: String = "AvatarCreatorViewController"
     var delegate: AnyObject?
@@ -59,12 +50,6 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     var avatarContent: AvatarImageCollection!
     var avatarDisplay: FacialFeatureOption!
     let colorScrollHeightConstant: CGFloat = 40
-    var editNameCallback: (() -> Void)!
-    var editProfileCallback: (() -> Void)!
-    
-    // For onboarding
-    var prevController: UIViewController!
-    var dismissCallback: (() -> Void)!
     
     // Define the actual avatar variable being made/stored
     var generatedAvatar: Avatar = Avatar()
@@ -73,96 +58,24 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     
     
     override func viewDidLoad() {
-        // Function loaded: set all initial colors for elements
         super.viewDidLoad()
-        
-        MessagesViewController.currViewController = self
-
         avatarContent = AvatarImageCollection().addHair(front: AvatarConstants.hairOption8.hairFront, back: AvatarConstants.hairOption8.hairBack).addMouth(AvatarConstants.mouthOption1.mouth).addEyes(AvatarConstants.eyeOption1.eyes).addNose(AvatarConstants.noseOption1.nose)
-        backgroundColor.backgroundColor = AppColors.backgroundColorArray[0]
-        
-        mainProfileViewHeight.constant = view.bounds.height * 1.0/1000.0 * 200
-        backgroundHeight.constant = view.bounds.height * 1.0/1000.0 * 100
-        colorScrollSpacingHeight.constant = view.bounds.height * 1.0/1000.0 * 12
         
         avatarDisplay = FacialFeatureOption.instanceFromNib(images: avatarContent)
-        avatarView.addSubview(avatarDisplay)
         avatarDisplay.translatesAutoresizingMaskIntoConstraints = false
-        avatarDisplay.topAnchor.constraint(equalTo: avatarView.topAnchor).isActive = true
-        avatarDisplay.leftAnchor.constraint(equalTo: avatarView.leftAnchor).isActive = true
-        avatarDisplay.rightAnchor.constraint(equalTo: avatarView.rightAnchor).isActive = true
-        avatarDisplay.bottomAnchor.constraint(equalTo: avatarView.bottomAnchor).isActive = true
         
         avatarOptions.displayFacialFeatureOptionsCallback = displayFacialFeatureOptions
-        setUpColorStack(colors: AppColors.skintoneArray)
-        
-        backgroundColor.layer.cornerRadius = backgroundHeight.constant/2
-        
-        // declare delegate and source for collection
         elemCollectionView.dataSource = self
         elemCollectionView.delegate = self
         elemCollectionView.register(UINib(nibName: "FacialFeatureOption", bundle: nil), forCellWithReuseIdentifier: "Cell")
         
-        avatarDisplay.setHairColor(color: AppColors.hairColorArray[generatedAvatar.hairColor])
-        avatarDisplay.setSkinColor(color: AppColors.skintoneArray[generatedAvatar.skinTone])
-        
         displayFacialFeatureOptions(index: 0)
-    }
-    
-    /**
-     * Called when 'return' key pressed. return NO to ignore.
-     */
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-   /**
-    * Called when the user click on the view (outside the UITextField).
-    */
-    override func touchesBegan(_ touches: Set<UITouch>, with: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
-    func setUpColorStack(colors: [UIColor]) {
-        for _ in 0..<colorOptionsStack.subviews.count {
-            colorOptionsStack.subviews[0].removeFromSuperview()
-        }
-        
-        for i in 0..<colors.count {
-            colorScrollHeight.constant = view.bounds.height * 1/900 * 40
-            let colorView = AvatarColorOption(color: colors[i], colorIndex: i, unselectedHeight: colorScrollHeight.constant, selectedHeight: colorScrollHeight.constant * 3.0/4.0)
-            colorOptionsStack.addArrangedSubview(colorView)
-            colorView.centerYAnchor.constraint(equalTo: colorOptionsStack.centerYAnchor).isActive = true
-            colorView.callback = colorTapped
-        }
     }
     
     func displayFacialFeatureOptions(index: Int) {
         collectionViewArr = AvatarConstants.facialFeatureSelectionList[index].options
         facialFeatureIconIndex = index
-        
-        switch AvatarConstants.facialFeatureSelectionList[index].iconName {
-        case "Hair":
-            colorScrollHeight.constant = colorScrollHeightConstant
-            setUpColorStack(colors: AppColors.hairColorArray)
-            (colorOptionsStack.arrangedSubviews[generatedAvatar.hairColor] as! AvatarColorOption).selectWithoutAnimation()
-        case "Head":
-            colorScrollHeight.constant = colorScrollHeightConstant
-            setUpColorStack(colors: AppColors.skintoneArray)
-            (colorOptionsStack.arrangedSubviews[generatedAvatar.skinTone] as! AvatarColorOption).selectWithoutAnimation()
-        case "Brows":
-            colorScrollHeight.constant = colorScrollHeightConstant
-            setUpColorStack(colors: AppColors.hairColorArray)
-            (colorOptionsStack.arrangedSubviews[generatedAvatar.hairColor] as! AvatarColorOption).selectWithoutAnimation()
-        case "Background":
-            colorScrollHeight.constant = colorScrollHeightConstant
-            setUpColorStack(colors: AppColors.backgroundColorArray)
-            (colorOptionsStack.arrangedSubviews[generatedAvatar.backgroundIndex] as! AvatarColorOption).selectWithoutAnimation()
-        default:
-            colorScrollHeight.constant = 0
-        }
-        
+                
         facialFeatureOptionsLabel.text = AvatarConstants.facialFeatureSelectionList[index].iconName
         if AvatarConstants.facialFeatureSelectionList[index].iconName == "Background" {
             facialFeatureOptionsLabel.text = ""
@@ -171,50 +84,10 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         elemCollectionView.reloadData()
     }
     
-    // Dismiss screen if user presses back button to return to profile creation
-    @IBAction func BackButtonPressed(_ sender: UIButton) {
-        collectionViewArr = []
-        self.dismiss(animated: true)
-    }
-    
-    // MARK: COLOR SELECTION METHODS BEGIN HERE
-    func colorTapped(colorIndex: Int) {
-        switch AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName {
-        case "Hair":
-            (colorOptionsStack.arrangedSubviews[generatedAvatar.hairColor] as! AvatarColorOption).deselect()
-            avatarContent.hairColor = colorIndex
-            avatarDisplay.setHairColor(color: AppColors.hairColorArray[colorIndex])
-            generatedAvatar.hairColor = colorIndex
-        case "Head":
-            (colorOptionsStack.arrangedSubviews[generatedAvatar.skinTone] as! AvatarColorOption).deselect()
-            avatarContent.skinTone = colorIndex
-            avatarDisplay.setSkinColor(color: AppColors.skintoneArray[colorIndex])
-            generatedAvatar.skinTone = colorIndex
-        case "Brows":
-            (colorOptionsStack.arrangedSubviews[generatedAvatar.hairColor] as! AvatarColorOption).deselect()
-            avatarContent.skinTone = colorIndex
-            avatarDisplay.setHairColor(color: AppColors.hairColorArray[colorIndex])
-            generatedAvatar.hairColor = colorIndex
-        case "Background":
-            (colorOptionsStack.arrangedSubviews[generatedAvatar.backgroundIndex] as! AvatarColorOption).deselect()
-            backgroundColor.backgroundColor = AppColors.backgroundColorArray[colorIndex]
-            generatedAvatar.backgroundIndex = colorIndex
-        default:
-            return
-        }
-        elemCollectionView.reloadData()
-    }
-    
-    //MARK: COLOR SELECTION FUNCTS END HERE
-    
-    
-    //MARK: METHODS/VARS FOR UPKEEP OF COLLECTION VIEW BEGIN HERE
-    // Returns the number of sections in the view
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    // returns the number of images that cells are being made from
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return collectionViewArr.count
     }
@@ -224,28 +97,13 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
         cell.data = AvatarCellData(
             images: collectionViewArr[indexPath.item],
             facialFeatureSelection: AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName,
-            skinColor: AppColors.skintoneArray[generatedAvatar.skinTone],
-            hairColor: AppColors.hairColorArray[generatedAvatar.hairColor],
+            skinColor: UIColor(red: 230/255.0, green: 186/255.0, blue: 157/255.0, alpha: 1.0),
+            hairColor: UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0),
             avatar: generatedAvatar,
             cellIndex: indexPath.item
         )
         return cell
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        (cell as! AvatarCollectionViewCell).data = nil
-//    }
-    
-//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        (cell as! AvatarCollectionViewCell).data = AvatarCellData(
-//            images: collectionViewArr[indexPath.item],
-//            facialFeatureSelection: AvatarConstants.facialFeatureSelectionList[facialFeatureIconIndex].iconName,
-//            skinColor: AppColors.skintoneArray[generatedAvatar.skinTone],
-//            hairColor: AppColors.hairColorArray[generatedAvatar.hairColor],
-//            avatar: generatedAvatar,
-//            cellIndex: indexPath.item
-//        )
-//    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         for i in 0..<collectionView.visibleCells.count {
