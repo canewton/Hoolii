@@ -115,7 +115,7 @@ class MessagesViewController: MSMessagesAppViewController {
                 
         let controller: AppViewController
         if presentationStyle == .compact {
-            if CollectiveSchedule.shared.endTime == HourMinuteTime(hour: 0, minute: 0) {
+            if CollectiveSchedule.shared.dates.count == 0 {
                 let onboardingCollapsedController: OnboardingCollapsedViewController = instantiateController()
                 controller = onboardingCollapsedController
             } else {

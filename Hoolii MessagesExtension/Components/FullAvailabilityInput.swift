@@ -47,7 +47,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         configureDatesHorizontalList()
         configureTopBar()
         
-        if userSchedule.datesFree[0].date.date != nil {
+        if userSchedule.datesFree.count > 0 && userSchedule.datesFree[0].date.date != nil {
             showAutoFillButton()
             monthLabel.text = CalendarDate(userSchedule.datesFree[0].date.date!).getMonthSymbol()
         }

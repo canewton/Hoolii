@@ -138,7 +138,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     // Determine the name of the meeting
     func configureMeetingName() {
         var name: String = CollectiveSchedule.shared.meetingName
-        if name == "" {
+        if name == "" && CollectiveSchedule.shared.dates.count > 0 {
             
             let date: CalendarDate = CalendarDate(CollectiveSchedule.shared.dates[0])
             
