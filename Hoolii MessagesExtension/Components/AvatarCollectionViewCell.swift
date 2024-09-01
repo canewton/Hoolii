@@ -34,22 +34,8 @@ class AvatarCollectionViewCell: UICollectionViewCell {
                 cellContent!.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
                 
                 changeAvatarImage(images: data!.images)
-                setSkinColor(color: data!.skinColor)
-                setHairColor(color: data!.hairColor)
                 
-                if data!.facialFeatureSelection == "Hair" && data!.avatar.hairIndex == data!.cellIndex {
-                    selectCell()
-                } else if data!.facialFeatureSelection == "Head" && data!.avatar.chinIndex == data!.cellIndex {
-                    selectCell()
-                } else if data!.facialFeatureSelection == "Brows" && data!.avatar.browIndex == data!.cellIndex {
-                    selectCell()
-                } else if data!.facialFeatureSelection == "Nose" && data!.avatar.noseIndex == data!.cellIndex {
-                    selectCell()
-                } else if data!.facialFeatureSelection == "Ears" && data!.avatar.earIndex == data!.cellIndex {
-                    selectCell()
-                } else if data!.facialFeatureSelection == "Eyes" && data!.avatar.glassIndex == data!.cellIndex {
-                    selectCell()
-                } else if data!.facialFeatureSelection == "Mouth" && data!.avatar.mouthIndex == data!.cellIndex {
+                if data!.avatar.avatarIndex == data!.cellIndex {
                     selectCell()
                 } else {
                     deselectCell()
@@ -60,14 +46,6 @@ class AvatarCollectionViewCell: UICollectionViewCell {
                 cellContent = nil
             }
         }
-    }
-    
-    func setHairColor(color: UIColor) {
-        cellContent!.setHairColor(color: color)
-    }
-    
-    func setSkinColor(color: UIColor) {
-        cellContent!.setSkinColor(color: color)
     }
     
     func selectCell() {
