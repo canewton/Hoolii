@@ -65,9 +65,7 @@ class AvatarCreatorViewController: AppViewController, ViewControllerWithIdentifi
     override func viewDidLoad() {
         // Function loaded: set all initial colors for elements
         super.viewDidLoad()
-        
-        MessagesViewController.currViewController = self
-
+    
         let firstName: String = StoredValues.get(key: StoredValuesConstants.firstName) ?? ""
         let lastName: String = StoredValues.get(key: StoredValuesConstants.lastName) ?? ""
         let fullName: String = "\(firstName) \(lastName)"
