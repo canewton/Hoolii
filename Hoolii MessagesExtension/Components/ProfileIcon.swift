@@ -34,10 +34,8 @@ public class ProfileIcon: UIView {
         layer.cornerRadius = CGFloat(height/2)
         
         let profileIconContent = FacialFeatureOption.instanceFromNib(images: AvatarImageCollection(avatar: avatar))
-        profileIconContent.setHairColor(color: AppColors.hairColorArray[avatar.hairColor])
-        profileIconContent.setSkinColor(color: AppColors.skintoneArray[avatar.skinTone])
         self.backgroundColor = AppColors.backgroundColorArray[avatar.backgroundIndex]
-        generateUserAvatar(avatarInput: profileIconContent, shiftConst: avatar.getShiftConst())
+        generateUserAvatar(avatarInput: profileIconContent)
     }
     
     convenience init(avatar: Avatar, userID: String, height: CGFloat = 40, width: CGFloat = 40) {
@@ -76,19 +74,18 @@ public class ProfileIcon: UIView {
         initialsLabel.center.y = CGFloat(height/2)
     }
     
-    func generateUserAvatar(avatarInput: FacialFeatureOption, shiftConst: CGFloat) {
+    func generateUserAvatar(avatarInput: FacialFeatureOption) {
         avatarDisplay = avatarInput
         for _ in 0..<self.subviews.count {
             self.subviews[0].removeFromSuperview()
         }
 
-        let shiftConst = shiftConst * height
         self.addSubview(avatarInput)
         avatarInput.translatesAutoresizingMaskIntoConstraints = false
-        topConstraint = avatarInput.topAnchor.constraint(equalTo: self.topAnchor, constant: (1/30) * pow(height, 5.0/4.0) - shiftConst)
+        topConstraint = avatarInput.topAnchor.constraint(equalTo: self.topAnchor)
         avatarInput.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 1).isActive = true
         avatarInput.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -1).isActive = true
-        bottomConstraint = avatarInput.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: (-1/30) * pow(height, 5.0/4.0) - shiftConst)
+        bottomConstraint = avatarInput.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         
         topConstraint.isActive = true
         bottomConstraint.isActive = true
@@ -99,14 +96,13 @@ public class ProfileIcon: UIView {
         avatarImage.image = findAvatarImageInMemory(userID: userID)
         avatarImage.contentMode = .scaleAspectFit
         
-        let shiftConst = avatarInput.getShiftConst() * height
         addSubview(avatarImage)
         
         avatarImage.translatesAutoresizingMaskIntoConstraints = false
-        topConstraint = avatarImage.topAnchor.constraint(equalTo: self.topAnchor, constant: (1/30) * pow(height, 5.0/4.0) - shiftConst)
+        topConstraint = avatarImage.topAnchor.constraint(equalTo: self.topAnchor)
         avatarImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 1).isActive = true
         avatarImage.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -1).isActive = true
-        bottomConstraint = avatarImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: (-1/30) * pow(height, 5.0/4.0) - shiftConst)
+        bottomConstraint = avatarImage.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         
         topConstraint.isActive = true
         bottomConstraint.isActive = true

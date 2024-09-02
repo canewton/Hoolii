@@ -91,15 +91,12 @@ class CreateProfileViewController: AppViewController, ViewControllerWithIdentifi
             let avatar = Avatar(jsonValue: storedAvatar!)
             let avatarImages = AvatarImageCollection(avatar: avatar)
             let profileIconContent = FacialFeatureOption.instanceFromNib(images: avatarImages)
-            profileIconContent.setHairColor(color: AppColors.hairColorArray[avatar.hairColor])
-            profileIconContent.setSkinColor(color: AppColors.skintoneArray[avatar.skinTone])
-            let shiftConst = avatar.getShiftConst() * profileIcon.bounds.height
             profileIcon.addSubview(profileIconContent)
             profileIconContent.translatesAutoresizingMaskIntoConstraints = false
-            profileIconContent.topAnchor.constraint(equalTo: profileIcon.topAnchor, constant: 8 - shiftConst).isActive = true
-            profileIconContent.leftAnchor.constraint(equalTo: profileIcon.leftAnchor, constant: 8).isActive = true
-            profileIconContent.rightAnchor.constraint(equalTo: profileIcon.rightAnchor, constant: -8).isActive = true
-            profileIconContent.bottomAnchor.constraint(equalTo: profileIcon.bottomAnchor, constant: -8 - shiftConst).isActive = true
+            profileIconContent.topAnchor.constraint(equalTo: profileIcon.topAnchor).isActive = true
+            profileIconContent.leftAnchor.constraint(equalTo: profileIcon.leftAnchor).isActive = true
+            profileIconContent.rightAnchor.constraint(equalTo: profileIcon.rightAnchor).isActive = true
+            profileIconContent.bottomAnchor.constraint(equalTo: profileIcon.bottomAnchor).isActive = true
             
             profileIcon.backgroundColor = AppColors.backgroundColorArray[avatar.backgroundIndex]
         }

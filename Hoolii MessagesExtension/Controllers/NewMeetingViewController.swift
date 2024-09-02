@@ -78,8 +78,8 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier, 
     func configureDatePickers() {
         fromTimePicker.tintColor = AppColors.main
         toTimePicker.tintColor = AppColors.main
-        CollectiveSchedule.shared.startTime = HourMinuteTime(date: fromTimePicker.date)
-        CollectiveSchedule.shared.endTime = HourMinuteTime(date: toTimePicker.date)
+        fromTimePicker.date = CollectiveSchedule.shared.startTime.toDate()
+        toTimePicker.date = CollectiveSchedule.shared.endTime.toDate()
     }
     
     func configureNameField() {
@@ -112,7 +112,9 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier, 
         if fromTime >= toTime - 60 {
             toTime = fromTime + 60
         }
+        CollectiveSchedule.shared.startTime = fromTime
         CollectiveSchedule.shared.endTime = toTime
+        fromTimePicker.date = fromTime.toDate()
         toTimePicker.date = toTime.toDate()
     }
     
@@ -123,13 +125,12 @@ class NewMeetingViewController: AdaptsToKeyboard, ViewControllerWithIdentifier, 
             fromTime = toTime - 60
         }
         CollectiveSchedule.shared.startTime = fromTime
+        CollectiveSchedule.shared.endTime = toTime
         fromTimePicker.date = fromTime.toDate()
+        toTimePicker.date = toTime.toDate()
     }
     
     func addDateCallback() {
-        CollectiveSchedule.shared.startTime = HourMinuteTime(date: fromTimePicker.date)
-        CollectiveSchedule.shared.endTime = HourMinuteTime(date: toTimePicker.date)
-        
         if CollectiveSchedule.shared.dates.count > 0 {
             setTimeframeButton.isEnabled = true
         } else {

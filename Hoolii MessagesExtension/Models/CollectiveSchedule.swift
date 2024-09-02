@@ -14,8 +14,8 @@ class CollectiveSchedule: Codable {
     var allSchedules: [Schedule] = []
     var dates: [Date] = []
     var meetingName: String = ""
-    var startTime: HourMinuteTime = HourMinuteTime(hour: 0, minute: 0)
-    var endTime: HourMinuteTime = HourMinuteTime(hour: 0, minute: 0)
+    var startTime: HourMinuteTime = HourMinuteTime(hour: 9, minute: 0)
+    var endTime: HourMinuteTime = HourMinuteTime(hour: 21, minute: 0)
     
     func toString() -> String {
         return "allSchedules: \(allSchedules.map({ return "\($0.user), " })) --- dates: \(dates)"

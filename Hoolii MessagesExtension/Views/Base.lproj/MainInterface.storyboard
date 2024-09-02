@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -37,7 +37,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9b-Mj-yUL" customClass="ThemedButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
-                                <rect key="frame" x="95" y="220" width="170" height="30"/>
+                                <rect key="frame" x="95" y="186" width="170" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="3th-xY-wnB"/>
                                     <constraint firstAttribute="width" constant="170" id="Jfu-OW-bgu"/>
@@ -59,7 +59,7 @@
                                 <color key="backgroundColor" systemColor="systemMintColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MO0-7A-GMK">
-                                <rect key="frame" x="0.0" y="71" width="360" height="199"/>
+                                <rect key="frame" x="0.0" y="71" width="360" height="165"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9bo-7t-nXx"/>
@@ -86,7 +86,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UYB-Cq-LnI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="63.768115942028992" y="2258.0357142857142"/>
+            <point key="canvasLocation" x="62.790697674418603" y="2257.7253218884121"/>
         </scene>
         <!--Create Profile View Controller-->
         <scene sceneID="LSq-7F-vna">
@@ -352,12 +352,12 @@
                                                         <rect key="frame" x="30" y="432.33333333333331" width="300" height="50"/>
                                                         <subviews>
                                                             <datePicker contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" style="inline" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Veo-2z-OT0">
-                                                                <rect key="frame" x="170" y="0.0" width="110" height="50.333333333333336"/>
+                                                                <rect key="frame" x="170" y="-1" width="110" height="52"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="110" id="QSb-Nw-8Om"/>
                                                                 </constraints>
-                                                                <date key="date" timeIntervalSinceReferenceDate="685771200.19750595">
-                                                                    <!--2022-09-25 04:00:00 +0000-->
+                                                                <date key="date" timeIntervalSinceReferenceDate="685760400.19750595">
+                                                                    <!--2022-09-25 01:00:00 +0000-->
                                                                 </date>
                                                                 <connections>
                                                                     <action selector="onToTimeChanged:" destination="aQX-sg-Rru" eventType="valueChanged" id="e83-Ge-BKx"/>
@@ -379,12 +379,12 @@
                                                                 </constraints>
                                                             </view>
                                                             <datePicker contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" style="inline" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xec-wf-rN4">
-                                                                <rect key="frame" x="20" y="0.0" width="110" height="50.333333333333336"/>
+                                                                <rect key="frame" x="20" y="-1" width="110" height="52"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="110" id="SuT-4P-IiC"/>
                                                                 </constraints>
-                                                                <date key="date" timeIntervalSinceReferenceDate="685728000.19750595">
-                                                                    <!--2022-09-24 16:00:00 +0000-->
+                                                                <date key="date" timeIntervalSinceReferenceDate="685717200.19750595">
+                                                                    <!--2022-09-24 13:00:00 +0000-->
                                                                 </date>
                                                                 <connections>
                                                                     <action selector="onFromTimeChanged:" destination="aQX-sg-Rru" eventType="valueChanged" id="ebG-VN-EY6"/>
@@ -497,10 +497,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XbI-sK-Our">
-                                <rect key="frame" x="0.0" y="129" width="360" height="571"/>
+                                <rect key="frame" x="0.0" y="129" width="360" height="537"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNu-2R-fyl">
-                                <rect key="frame" x="0.0" y="700" width="360" height="50"/>
+                                <rect key="frame" x="0.0" y="666" width="360" height="84"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bbi-IE-P3T" customClass="ThemedButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
                                         <rect key="frame" x="230" y="10" width="100" height="30"/>
@@ -683,10 +683,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qe0-W9-eOT">
-                                <rect key="frame" x="0.0" y="99" width="360" height="601"/>
+                                <rect key="frame" x="0.0" y="99" width="360" height="567"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u3A-D7-KL9">
-                                <rect key="frame" x="0.0" y="700" width="360" height="50"/>
+                                <rect key="frame" x="0.0" y="666" width="360" height="84"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rFr-hp-2cu" customClass="ThemedButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
                                         <rect key="frame" x="130" y="10" width="100" height="30"/>
@@ -763,7 +763,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JDi-zv-FaQ" customClass="ThemedButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
-                                <rect key="frame" x="95" y="220" width="170" height="30"/>
+                                <rect key="frame" x="95" y="186" width="170" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="SyX-Ti-cS8"/>
                                     <constraint firstAttribute="width" constant="170" id="cvZ-j9-Ck6"/>
@@ -1107,7 +1107,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Rat-HC-B0K">
-                                <rect key="frame" x="20" y="585" width="320" height="105"/>
+                                <rect key="frame" x="20" y="467" width="320" height="189"/>
                                 <color key="backgroundColor" name="alert"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Eaa-xX-F6k">
                                     <size key="itemSize" width="98" height="98"/>
@@ -1116,7 +1116,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="afW-cA-9hh" customClass="AvatarCollectionViewCell" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AvatarCell" id="afW-cA-9hh" customClass="AvatarCollectionViewCell" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="98" height="98"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="4dQ-vg-aWh">
@@ -1145,37 +1145,8 @@
                                     <constraint firstItem="D6R-dy-F7N" firstAttribute="centerY" secondItem="ccM-5I-7XT" secondAttribute="centerY" id="yEc-O7-8TT"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g7q-qw-0K1">
-                                <rect key="frame" x="0.0" y="412" width="360" height="58"/>
-                                <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXN-oL-Q37" userLabel="featureScroll">
-                                        <rect key="frame" x="0.0" y="0.0" width="360" height="58"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0SU-Tc-N9n" customClass="AvatarOptions" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="0.0" width="360" height="58"/>
-                                                <color key="backgroundColor" red="0.56099998950958252" green="0.88999998569488525" blue="0.79199999570846558" alpha="0.33565778921771522" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </stackView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="3xc-Jb-lmk"/>
-                                            <constraint firstAttribute="trailing" secondItem="0SU-Tc-N9n" secondAttribute="trailing" id="7kg-td-XkJ"/>
-                                            <constraint firstItem="0SU-Tc-N9n" firstAttribute="top" secondItem="dXN-oL-Q37" secondAttribute="top" id="TYV-3O-hVf"/>
-                                            <constraint firstItem="0SU-Tc-N9n" firstAttribute="leading" secondItem="dXN-oL-Q37" secondAttribute="leading" id="hc2-9P-nxd"/>
-                                            <constraint firstAttribute="bottom" secondItem="0SU-Tc-N9n" secondAttribute="bottom" id="l1r-Gv-HF6"/>
-                                        </constraints>
-                                        <viewLayoutGuide key="contentLayoutGuide" id="wEs-Pc-B2U"/>
-                                        <viewLayoutGuide key="frameLayoutGuide" id="YtQ-6L-m3T"/>
-                                    </scrollView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="dXN-oL-Q37" firstAttribute="leading" secondItem="g7q-qw-0K1" secondAttribute="leading" id="XXJ-km-OwK"/>
-                                    <constraint firstAttribute="bottom" secondItem="dXN-oL-Q37" secondAttribute="bottom" id="a4W-tm-WRU"/>
-                                    <constraint firstAttribute="trailing" secondItem="dXN-oL-Q37" secondAttribute="trailing" id="glD-JI-WRG"/>
-                                    <constraint firstItem="dXN-oL-Q37" firstAttribute="top" secondItem="g7q-qw-0K1" secondAttribute="top" id="maS-QL-8cW"/>
-                                </constraints>
-                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbw-kT-qGW" userLabel="colorScroll">
-                                <rect key="frame" x="0.0" y="494" width="360" height="40"/>
+                                <rect key="frame" x="0.0" y="417" width="360" height="40"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="mGZ-ii-K0j">
                                         <rect key="frame" x="0.0" y="0.0" width="360" height="40"/>
@@ -1198,14 +1169,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Head" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3PS-Yy-h06">
-                                <rect key="frame" x="20" y="549" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Vx-uR-K2S">
-                                <rect key="frame" x="0.0" y="690" width="360" height="60"/>
+                                <rect key="frame" x="0.0" y="656" width="360" height="94"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moq-7D-BwU" userLabel="saveAvatarButton" customClass="ThemedButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
                                         <rect key="frame" x="125" y="12" width="110" height="35"/>
@@ -1264,29 +1229,24 @@
                         <viewLayoutGuide key="safeArea" id="eh4-fR-69B"/>
                         <color key="backgroundColor" name="alert"/>
                         <constraints>
-                            <constraint firstItem="Rat-HC-B0K" firstAttribute="top" secondItem="3PS-Yy-h06" secondAttribute="bottom" constant="15" id="0os-Eb-BsO"/>
-                            <constraint firstItem="g7q-qw-0K1" firstAttribute="leading" secondItem="WEN-cC-eAG" secondAttribute="leading" id="1DN-lt-VTg"/>
+                            <constraint firstItem="tbw-kT-qGW" firstAttribute="top" secondItem="xPu-UL-SeZ" secondAttribute="bottom" constant="15" id="1v6-eB-lcu"/>
                             <constraint firstItem="ccM-5I-7XT" firstAttribute="centerX" secondItem="WEN-cC-eAG" secondAttribute="centerX" id="1z7-7c-JSO"/>
                             <constraint firstItem="Gla-ya-sky" firstAttribute="top" secondItem="biv-kg-mvA" secondAttribute="bottom" constant="30" id="C0T-mQ-Tyk"/>
                             <constraint firstItem="xPu-UL-SeZ" firstAttribute="top" secondItem="ccM-5I-7XT" secondAttribute="bottom" constant="6" id="DQo-A8-9kQ"/>
-                            <constraint firstItem="eh4-fR-69B" firstAttribute="trailing" secondItem="g7q-qw-0K1" secondAttribute="trailing" id="DTm-nW-tQY"/>
                             <constraint firstItem="biv-kg-mvA" firstAttribute="top" secondItem="eh4-fR-69B" secondAttribute="top" constant="15" id="FXk-M8-2on"/>
-                            <constraint firstItem="g7q-qw-0K1" firstAttribute="top" secondItem="xPu-UL-SeZ" secondAttribute="bottom" constant="10" id="Gfy-3h-DvC"/>
                             <constraint firstItem="Gla-ya-sky" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" constant="30" id="HDS-1N-TiH"/>
                             <constraint firstItem="3Vx-uR-K2S" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" id="MLN-Li-LjJ"/>
                             <constraint firstItem="Rat-HC-B0K" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" constant="20" id="NBd-d7-wLp"/>
                             <constraint firstItem="xPu-UL-SeZ" firstAttribute="centerX" secondItem="WEN-cC-eAG" secondAttribute="centerX" id="NJy-JX-Wl4"/>
                             <constraint firstAttribute="trailing" secondItem="tbw-kT-qGW" secondAttribute="trailing" id="RKG-0D-guk"/>
-                            <constraint firstItem="3PS-Yy-h06" firstAttribute="top" secondItem="tbw-kT-qGW" secondAttribute="bottom" constant="15" id="Rfe-S7-Ff1"/>
                             <constraint firstItem="3Vx-uR-K2S" firstAttribute="top" secondItem="eh4-fR-69B" secondAttribute="bottom" constant="-60" id="ScQ-Xs-tvW"/>
+                            <constraint firstItem="Rat-HC-B0K" firstAttribute="top" secondItem="tbw-kT-qGW" secondAttribute="bottom" constant="10" id="Zmr-8S-Fpe"/>
                             <constraint firstItem="3Vx-uR-K2S" firstAttribute="bottom" secondItem="WEN-cC-eAG" secondAttribute="bottom" id="gQM-cK-yuX"/>
                             <constraint firstItem="tbw-kT-qGW" firstAttribute="leading" secondItem="WEN-cC-eAG" secondAttribute="leading" id="heo-hS-iaB"/>
                             <constraint firstItem="3Vx-uR-K2S" firstAttribute="trailing" secondItem="eh4-fR-69B" secondAttribute="trailing" id="hfR-1r-6x0"/>
-                            <constraint firstItem="3PS-Yy-h06" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" constant="20" id="jPN-e5-NGr"/>
                             <constraint firstItem="biv-kg-mvA" firstAttribute="leading" secondItem="eh4-fR-69B" secondAttribute="leading" constant="19.999999999999996" id="kke-12-0sC"/>
                             <constraint firstItem="ccM-5I-7XT" firstAttribute="top" secondItem="Gla-ya-sky" secondAttribute="bottom" constant="10" id="mVh-VS-3vX"/>
                             <constraint firstItem="3Vx-uR-K2S" firstAttribute="top" secondItem="Rat-HC-B0K" secondAttribute="bottom" id="sgU-vo-pF6"/>
-                            <constraint firstItem="tbw-kT-qGW" firstAttribute="top" secondItem="g7q-qw-0K1" secondAttribute="bottom" constant="12" id="vcq-zG-J8u"/>
                             <constraint firstItem="eh4-fR-69B" firstAttribute="trailing" secondItem="Rat-HC-B0K" secondAttribute="trailing" constant="20" id="wu0-cs-dFb"/>
                         </constraints>
                     </view>
@@ -1294,8 +1254,6 @@
                     <size key="freeformSize" width="360" height="750"/>
                     <connections>
                         <outlet property="avatarContainerImgView" destination="ccM-5I-7XT" id="uBn-9i-f9K"/>
-                        <outlet property="avatarOptions" destination="0SU-Tc-N9n" id="nlR-05-1He"/>
-                        <outlet property="avatarOptionsHeight" destination="3xc-Jb-lmk" id="diT-y5-ZVS"/>
                         <outlet property="avatarView" destination="ccM-5I-7XT" id="Gyb-OW-qzH"/>
                         <outlet property="backgroundColor" destination="D6R-dy-F7N" id="qtv-YO-FNu"/>
                         <outlet property="backgroundHeight" destination="0dd-Mh-xsB" id="yPN-Zf-cbX"/>
@@ -1303,10 +1261,8 @@
                         <outlet property="collectionViewBottomConstraint" destination="sgU-vo-pF6" id="WA7-WO-j92"/>
                         <outlet property="colorOptionsStack" destination="mGZ-ii-K0j" id="Vxt-fk-gPk"/>
                         <outlet property="colorScrollHeight" destination="dNr-Cn-6ag" id="028-u5-rXb"/>
-                        <outlet property="colorScrollSpacingHeight" destination="vcq-zG-J8u" id="iSF-qF-07d"/>
                         <outlet property="editTextIcon" destination="wgA-Ka-jKH" id="yaW-Lj-eBR"/>
                         <outlet property="elemCollectionView" destination="Rat-HC-B0K" id="Tlz-8c-kW1"/>
-                        <outlet property="facialFeatureOptionsLabel" destination="3PS-Yy-h06" id="r3X-Fz-4to"/>
                         <outlet property="mainProfileViewHeight" destination="3tk-2l-0cW" id="1Le-e7-k2s"/>
                         <outlet property="nameTextField" destination="t5N-gP-xKA" id="QYq-eF-A3m"/>
                         <outlet property="saveAvatarButton" destination="moq-7D-BwU" id="OAo-bl-rog"/>
@@ -1331,7 +1287,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="B2E-tv-Zd5"/>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="HAV-qj-Dd5">
-                                <rect key="frame" x="120" y="620" width="120" height="30"/>
+                                <rect key="frame" x="120" y="586" width="120" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="GhE-Cy-RFP"/>
                                     <constraint firstAttribute="height" constant="30" id="PQ9-QM-FDa"/>
@@ -1340,7 +1296,7 @@
                                 <color key="currentPageIndicatorTintColor" systemColor="linkColor"/>
                             </pageControl>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ht-Aa-Tjo">
-                                <rect key="frame" x="40" y="680" width="65" height="30"/>
+                                <rect key="frame" x="40" y="646" width="65" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="VFh-56-qLY"/>
                                     <constraint firstAttribute="height" constant="30" id="wMT-a5-T3N"/>
@@ -1350,7 +1306,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFn-2X-aTb">
-                                <rect key="frame" x="255" y="680" width="65" height="30"/>
+                                <rect key="frame" x="255" y="646" width="65" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="Njn-tC-5A3"/>
                                     <constraint firstAttribute="height" constant="30" id="S07-5G-hOm"/>
@@ -1418,7 +1374,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEB-OL-Auc" customClass="ThemedButton" customModule="Hoolii_MessagesExtension" customModuleProvider="target">
-                                <rect key="frame" x="100" y="215.66666666666666" width="160" height="34.333333333333343"/>
+                                <rect key="frame" x="100" y="181.66666666666666" width="160" height="34.333333333333343"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34.5" id="DHq-Xl-uLI"/>
                                     <constraint firstAttribute="width" constant="160" id="dLf-TT-4Gn"/>
@@ -1430,7 +1386,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cal-with-background" translatesAutoresizingMaskIntoConstraints="NO" id="88D-W9-lKk">
-                                <rect key="frame" x="180" y="58.999999999999986" width="180" height="146.66666666666663"/>
+                                <rect key="frame" x="180" y="59.000000000000007" width="180" height="112.66666666666669"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="aKm-6K-bwg"/>
                                 </constraints>
@@ -1494,28 +1450,28 @@
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemCyanColor">
-            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.1960784314" green="0.67843137249999996" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemMintColor">
-            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
