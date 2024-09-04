@@ -26,7 +26,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     var lastName: String!
     var id: String!
     var userAvatar: Avatar!
-    let availabilityBarWidth: CGFloat = 120 // width of the interactive column that determines availability
+    var availabilityBarWidth: CGFloat = 120 // width of the interactive column that determines availability
     let timeIndicatorViewHeight: CGFloat = 15 // might need to delete
     
     // MARK: Properties
@@ -63,6 +63,9 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         
         // fix bug when onboarding screen goes back to this screen
         bottomBarConstraint.isActive = true
+        
+        let totalSpacing = CGFloat(userSchedule.datesFree.count * 10)
+        availabilityBarWidth = (UIScreen.main.bounds.width - 100 - totalSpacing) / CGFloat(userSchedule.datesFree.count) // width of the interactive column that determines
         
         configureEditButton()
         configureFilterSwitch()

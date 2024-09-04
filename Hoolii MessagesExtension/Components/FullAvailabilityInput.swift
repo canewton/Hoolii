@@ -27,7 +27,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     var userSchedule: Schedule!
     var setScheduleCallback: ((Schedule) -> Void)!
     
-    var availabilityBarWidth: CGFloat = 60
+    var availabilityBarWidth: CGFloat = 120
     let timeIndicatorViewHeight: CGFloat = 15 // height of the segments inside the bar
     var startTime: HourMinuteTime!
     var endTime: HourMinuteTime!
@@ -42,6 +42,9 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     }
     
     func setUpComponents() {
+        let totalSpacing = CGFloat(userSchedule.datesFree.count * 10)
+        availabilityBarWidth = (UIScreen.main.bounds.width - 100 - totalSpacing) / CGFloat(userSchedule.datesFree.count) // width of the interactive column that determines
+        
         configureAvailabilityBars()
         configureTimeIndicatorVerticalList()
         configureDatesHorizontalList()
@@ -91,8 +94,6 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     private func configureAvailabilityBars() {
         let startTime: HourMinuteTime = startTime
         let endTime: HourMinuteTime = endTime
-        let totalSpacing = CGFloat(userSchedule.datesFree.count * 10)
-        availabilityBarWidth = (UIScreen.main.bounds.width - 100 - totalSpacing) / CGFloat(userSchedule.datesFree.count) // width of the interactive column that determines
         
         for i in 0..<userSchedule.datesFree.count {
             if let availabilityBar = AvailabilityBar.instanceFromNib(startime: startTime, endTime: endTime) {

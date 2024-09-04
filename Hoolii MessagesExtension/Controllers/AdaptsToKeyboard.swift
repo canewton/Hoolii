@@ -44,8 +44,6 @@ class AdaptsToKeyboard: AppViewController {
             name: UIResponder.keyboardWillHideNotification,
             object: nil
         )
-        
-        offset = self.view.bounds.height - 650
     }
     
     @objc private func keyboardWillChangeFrame(_ notification: NSNotification) {
@@ -75,9 +73,9 @@ class AdaptsToKeyboard: AppViewController {
             delay: 0,
             options: animationCurveOptions,
             animations: { [unowned self] in
-                let bottomInset = keyboardHeight > 0 ? keyboardHeight : view.safeAreaInsets.bottom
-                self.bottomConstraint?.constant = bottomInset - offset
-                self.topConstraint?.constant = -bottomInset + offset
+                let bottomInset = keyboardHeight - (UIScreen.main.bounds.height - 750)
+                self.bottomConstraint?.constant = bottomInset
+                self.topConstraint?.constant = -bottomInset
                 view.layoutIfNeeded()
             }
         )

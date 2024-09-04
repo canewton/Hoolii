@@ -101,6 +101,14 @@ class MessagesViewController: MSMessagesAppViewController {
 //        }
     }
     
+    @MainActor
+    override func didReceive(_ message: MSMessage,conversation: MSConversation){
+        super.didReceive(message, conversation: conversation)
+        CollectiveSchedule.shared = HooliiMessage(message: conversation.selectedMessage)?.getCollectiveSchedule() ?? CollectiveSchedule()
+        ImageStorage.clearImages()
+        ImageStorage.addImages(users: CollectiveSchedule.shared.allSchedules.map({ return $0.user }))
+    }
+    
     // MARK: Determine active view controller before extension becomes active
     override func willBecomeActive(with conversation: MSConversation) {
         super.willBecomeActive(with: conversation)
