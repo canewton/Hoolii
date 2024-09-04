@@ -4,6 +4,8 @@
 
 Effective coordination can be challenging with a large group, especially when schedules are busy. Introducing Hoolii, an iMessage extension designed to make planning hangouts easy. Hoolii gathers availability information from a group chat and presents the optimal times for scheduling a meeting. Hoolii's website and mobile app are currently in development.
 
+Demo: https://www.youtube.com/watch?v=bcU2ooBY0SU 
+
 ## Running the code
 
 1. Clone the repository
