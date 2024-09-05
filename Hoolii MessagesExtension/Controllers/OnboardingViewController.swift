@@ -16,7 +16,7 @@ class OnboardingViewController: AppViewController, ViewControllerWithIdentifier 
     var profileViewController: AvatarCreatorViewController!
     static let storyboardIdentifier = "OnboardingViewController"
     weak var delegate: AnyObject?
-    let numPages: Int = 3
+    let numPages: Int = 4
     var currentPage = 0
     var loadedSubviews = false
     var prevController: UIViewController!
@@ -46,19 +46,29 @@ class OnboardingViewController: AppViewController, ViewControllerWithIdentifier 
         if !loadedSubviews {
             scrollView.contentSize = CGSize(width: self.view.frame.width * CGFloat(numPages), height: scrollView.frame.size.height)
             
+            let page0 = UINib(nibName: "OnboardingScreen0", bundle: nil).instantiate(withOwner: OnboardingViewController.self, options: nil)[0] as! UIView
+            
             let page1 = UINib(nibName: "OnboardingScreen1", bundle: nil).instantiate(withOwner: OnboardingViewController.self, options: nil)[0] as! UIView
             
             let page2 = UINib(nibName: "OnboardingScreen2", bundle: nil).instantiate(withOwner: OnboardingViewController.self, options: nil)[0] as! UIView
             
             let page3 = UINib(nibName: "OnboardingScreen3", bundle: nil).instantiate(withOwner: OnboardingViewController.self, options: nil)[0] as! UIView
             
-            let page1container = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: scrollView.frame.size.height))
-            let page2container = UIView(frame: CGRect(x: view.frame.size.width, y: 0, width: view.frame.size.width, height: scrollView.frame.size.height))
-            let page3container = UIView(frame: CGRect(x: view.frame.size.width * 2, y: 0, width: view.frame.size.width, height: scrollView.frame.size.height))
+            let page0container = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: scrollView.frame.size.height))
+            let page1container = UIView(frame: CGRect(x: view.frame.size.width, y: 0, width: view.frame.size.width, height: scrollView.frame.size.height))
+            let page2container = UIView(frame: CGRect(x: view.frame.size.width * 2, y: 0, width: view.frame.size.width, height: scrollView.frame.size.height))
+            let page3container = UIView(frame: CGRect(x: view.frame.size.width * 3, y: 0, width: view.frame.size.width, height: scrollView.frame.size.height))
             
+            page0container.addSubview(page0)
             page1container.addSubview(page1)
             page2container.addSubview(page2)
             page3container.addSubview(page3)
+            
+            page0.translatesAutoresizingMaskIntoConstraints = false
+            page0.topAnchor.constraint(equalTo: page0container.topAnchor).isActive = true
+            page0.bottomAnchor.constraint(equalTo: page0container.bottomAnchor).isActive = true
+            page0.leftAnchor.constraint(equalTo: page0container.leftAnchor).isActive = true
+            page0.rightAnchor.constraint(equalTo: page0container.rightAnchor).isActive = true
             
             page1.translatesAutoresizingMaskIntoConstraints = false
             page1.topAnchor.constraint(equalTo: page1container.topAnchor).isActive = true
@@ -78,6 +88,7 @@ class OnboardingViewController: AppViewController, ViewControllerWithIdentifier 
             page3.leftAnchor.constraint(equalTo: page3container.leftAnchor).isActive = true
             page3.rightAnchor.constraint(equalTo: page3container.rightAnchor).isActive = true
             
+            scrollView.addSubview(page0container)
             scrollView.addSubview(page1container)
             scrollView.addSubview(page2container)
             scrollView.addSubview(page3container)

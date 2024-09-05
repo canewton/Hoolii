@@ -33,6 +33,7 @@
 		9103E59028A028C600CA661B /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E58F28A028C600CA661B /* DateCell.swift */; };
 		9103E59328A72C5A00CA661B /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E59228A72C5A00CA661B /* AppColors.swift */; };
 		9103E59728A84A9900CA661B /* ThemedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9103E59628A84A9900CA661B /* ThemedButton.swift */; };
+		9116F82E2C897871008701DB /* OnboardingScreen0.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9116F82D2C897871008701DB /* OnboardingScreen0.xib */; };
 		911CA3A029789FAE00666FD0 /* ImageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911CA39F29789FAE00666FD0 /* ImageStorage.swift */; };
 		9125EEA128A89E8E005C5ED3 /* AdaptsToKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9125EEA028A89E8E005C5ED3 /* AdaptsToKeyboard.swift */; };
 		913C118B28A9787E00B5A66F /* ScaledIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C118A28A9787E00B5A66F /* ScaledIcon.swift */; };
@@ -220,6 +221,7 @@
 		9103E58F28A028C600CA661B /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		9103E59228A72C5A00CA661B /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		9103E59628A84A9900CA661B /* ThemedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedButton.swift; sourceTree = "<group>"; };
+		9116F82D2C897871008701DB /* OnboardingScreen0.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnboardingScreen0.xib; sourceTree = "<group>"; };
 		911CA39F29789FAE00666FD0 /* ImageStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStorage.swift; sourceTree = "<group>"; };
 		9125EEA028A89E8E005C5ED3 /* AdaptsToKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptsToKeyboard.swift; sourceTree = "<group>"; };
 		913C118A28A9787E00B5A66F /* ScaledIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledIcon.swift; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 		916099E0296A4A2B00783A29 /* OnboardingScreens */ = {
 			isa = PBXGroup;
 			children = (
+				9116F82D2C897871008701DB /* OnboardingScreen0.xib */,
 				916099E1296A4A4E00783A29 /* OnboardingScreen1.xib */,
 				916099E3296A4A6A00783A29 /* OnboardingScreen2.xib */,
 				916099E5296A4A8200783A29 /* OnboardingScreen3.xib */,
@@ -816,6 +819,7 @@
 				91B3B8C92C8408E800A5C555 /* Animals-avatar_3.png in Resources */,
 				91B3B8CB2C8408E800A5C555 /* Animals-avatar_15.png in Resources */,
 				91B3B8D82C8408E800A5C555 /* Animals-avatar_31.png in Resources */,
+				9116F82E2C897871008701DB /* OnboardingScreen0.xib in Resources */,
 				91B3B8C12C8408E800A5C555 /* Animals-avatar_8.png in Resources */,
 				91B3B8AD2C8408E800A5C555 /* Animals-avatar_5.png in Resources */,
 				91B3B8B72C8408E800A5C555 /* Animals-avatar_27.png in Resources */,

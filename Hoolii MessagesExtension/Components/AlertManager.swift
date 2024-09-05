@@ -8,7 +8,7 @@
 import UIKit
 class AlertManager {
     static func createNewMeetingAlert(controller: UIViewController) {
-        let alert = AppAlert.instanceFromNib(image: UIImage(named: "cal-phone"), title: "You're all set!", description: "You can start creating your new hoolii", dismissButtonText: "Create a hoolii")!
+        let alert = AppAlert.instanceFromNib(image: UIImage(named: "cal-phone"), title: "You're all set!", description: "You can start creating your new Hoolii", dismissButtonText: "Create a Hoolii")!
         let darkenedScreen: DarkenedScreen = DarkenedScreen(viewController: controller)
         alert.backgroundColor = AppColors.alert
         darkenedScreen.addAlert(alert: alert)
@@ -21,7 +21,7 @@ class AlertManager {
     }
     
     static func yourAvailabilityAlert(controller: UIViewController) {
-        let alert = AppAlert.instanceFromNib(image: UIImage(named: "phone-graphic"), title: "Welcome to the hoolii!", description: "Start planning your hangout by filling out the times you're free.", labelOnBottom: false, dismissButtonText: "Join hoolii")!
+        let alert = AppAlert.instanceFromNib(image: UIImage(named: "phone-graphic"), title: "Plan your meeting!", description: "Start planning your hangout by filling out the times you're free.", labelOnBottom: false, dismissButtonText: "Start Planning")!
         let darkenedScreen: DarkenedScreen = DarkenedScreen(viewController: controller)
         alert.backgroundColor = AppColors.alert
         darkenedScreen.addAlert(alert: alert)
