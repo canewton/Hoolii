@@ -117,11 +117,13 @@ class HooliiMessage {
         var output: [String] = []
         for i in 0..<daysAndTimesFree.count {
             var dayString = ""
-            var lastUsers: [User] = []
             let baseIndex: Int = hourMinuteTimeToIndex(time: startTime)
             let endIndex: Int = hourMinuteTimeToIndex(time: endTime)
             var timesFreeIndex = 0
             var j = baseIndex
+            while timesFreeIndex < daysAndTimesFree[i].timesFree.count && j > hourMinuteTimeToIndex(time: daysAndTimesFree[i].timesFree[timesFreeIndex].to) {
+                timesFreeIndex += 1
+            }
             while j < endIndex {
                 if timesFreeIndex >= daysAndTimesFree[i].timesFree.count {
                     dayString += usersToString(usersInput: [])
@@ -130,11 +132,8 @@ class HooliiMessage {
                     let toIndex = hourMinuteTimeToIndex(time: daysAndTimesFree[i].timesFree[timesFreeIndex].to)
                     if j < fromIndex {
                         dayString += usersToString(usersInput: [])
-                    } else if j == fromIndex {
-                        lastUsers = daysAndTimesFree[i].timesFree[timesFreeIndex].users
-                        dayString += usersToString(usersInput: lastUsers)
-                    } else if j < toIndex {
-                        dayString += usersToString(usersInput: lastUsers)
+                    } else if j == fromIndex || j < toIndex {
+                        dayString += usersToString(usersInput: daysAndTimesFree[i].timesFree[timesFreeIndex].users)
                     } else if j == toIndex {
                         timesFreeIndex += 1
                         j -= 1
@@ -248,6 +247,10 @@ class HooliiMessage {
     }
     
     func compressHexString(hexStr: String) -> String{
+        if hexStr == "" {
+            return ""
+        }
+        
         var strArr: [Character] = Array(hexStr)
         var duplicateCount = 0
         var lastChar: Character = strArr[0]
@@ -281,6 +284,10 @@ class HooliiMessage {
     }
     
     func decompressHexString(compressedStr: String) -> String {
+        if compressedStr == "" {
+            return ""
+        }
+        
         var strArr: [Character] = Array(compressedStr)
         var strOutputArr: [Character] = Array(compressedStr)
         var lastChar: Character = strArr[0]
@@ -303,6 +310,10 @@ class HooliiMessage {
     
     // only for going from 5 chars to 20 chars
     func hexStringToBinaryString(hexStr: String) -> String {
+        if hexStr == "" {
+            return ""
+        }
+        
         var binaryStr: String = String(Int(hexStr, radix: 16)!, radix: 2)
         for _ in 0..<(20 - binaryStr.count) {
             binaryStr = "0" + binaryStr

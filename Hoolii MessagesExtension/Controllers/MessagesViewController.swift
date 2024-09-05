@@ -50,7 +50,7 @@ class MessagesViewController: MSMessagesAppViewController {
         
         // URLComponents are a structure that parses URLs into and constructs URLs from their constituent parts
         var components = URLComponents()
-        components.queryItems = HooliiMessage(collectiveSchedule: CollectiveSchedule.shared).queryItems
+        components.queryItems = HooliiMessage(collectiveSchedule: collectiveSchedule).queryItems
         print(components.queryItems)
         
         let layout = MSMessageTemplateLayout()

@@ -25,25 +25,13 @@ struct Day: Codable {
             timesFree.append(TimeRange(from: availability, to: availability + AvailabilityConstants.timeInterval))
         }
         
-        checkInsertTop(availability: availability)
-        for i in 0..<(timesFree.count - 1) {
-            if i >= timesFree.count - 1 {
-                break
-            }
-            
-            // check if adding an availability merges two disconected availability blocks
-            let mergedWithTopBlock: Bool = checkMergeWithTopBlock(availability: availability, blockIndex: i)
-            let mergedWithBottomBlock: Bool = checkMergeWithBottomBlock(availability: availability, blockIndex: i + 1)
-            
-            if (!mergedWithTopBlock
-                && !mergedWithBottomBlock
-                && availability < timesFree[i].to
-                && availability > timesFree[i + 1].from) {
-                timesFree.insert(TimeRange(from: availability, to: availability + AvailabilityConstants.timeInterval), at: i)
-            }
+        var inserted = checkInsertTop(availability: availability)
+        if !inserted {
+            inserted = checkInsertMiddle(availability: availability)
         }
-        checkInsertBottom(availability: availability)
-        
+        if !inserted {
+            inserted = checkInsertBottom(availability: availability)
+        }
     }
     
     // when removing an availability, check to see if it splits a block of time into two disconnected blocks of time
@@ -88,13 +76,13 @@ struct Day: Codable {
     
     // merge two disconected availability blocks relative to the bottom
     @discardableResult private mutating func checkMergeWithBottomBlock(availability: HourMinuteTime, blockIndex: Int) -> Bool {
-        if blockIndex > 0 && timesFree[blockIndex - 1].to == timesFree[blockIndex].from {
+        if blockIndex > 0 && blockIndex < timesFree.count && timesFree[blockIndex - 1].to == timesFree[blockIndex].from {
             let begining: HourMinuteTime = timesFree[blockIndex - 1].from
             let end: HourMinuteTime = timesFree[blockIndex].to
             timesFree.remove(at: blockIndex)
             timesFree.remove(at: blockIndex - 1)
             timesFree.insert(TimeRange(from: begining, to: end), at: blockIndex - 1)
-        } else if availability + AvailabilityConstants.timeInterval == timesFree[blockIndex].from {
+        } else if blockIndex < timesFree.count && availability + AvailabilityConstants.timeInterval == timesFree[blockIndex].from {
             let end: HourMinuteTime = timesFree[blockIndex].to
             timesFree.remove(at: blockIndex)
             timesFree.insert(TimeRange(from: availability, to: end), at: blockIndex)
@@ -104,19 +92,41 @@ struct Day: Codable {
     }
     
     // insert an availability on its own above all the other availability timeframes
-    private mutating func checkInsertTop(availability: HourMinuteTime) {
+    private mutating func checkInsertTop(availability: HourMinuteTime) -> Bool {
         let mergedWithBottomBlock = checkMergeWithBottomBlock(availability: availability, blockIndex: 0)
         if !mergedWithBottomBlock && availability < timesFree[0].from {
             timesFree.insert(TimeRange(from: availability, to: availability + AvailabilityConstants.timeInterval), at: 0)
+            return true
         }
+        return false
+    }
+    
+    // insert an availability in the middle
+    private mutating func checkInsertMiddle(availability: HourMinuteTime) -> Bool {
+        for i in 0..<(timesFree.count - 1) {
+            // check if adding an availability merges two disconected availability blocks
+            let mergedWithTopBlock: Bool = checkMergeWithTopBlock(availability: availability, blockIndex: i)
+            let mergedWithBottomBlock: Bool = checkMergeWithBottomBlock(availability: availability, blockIndex: i + 1)
+            
+            if (!mergedWithTopBlock
+                && !mergedWithBottomBlock
+                && availability > timesFree[i].to
+                && availability < timesFree[i + 1].from) {
+                timesFree.insert(TimeRange(from: availability, to: availability + AvailabilityConstants.timeInterval), at: i + 1)
+                return true
+            }
+        }
+        return false
     }
     
     // insert an availability on its own below all the other availability timeframes
-    private mutating func checkInsertBottom(availability: HourMinuteTime) {
+    private mutating func checkInsertBottom(availability: HourMinuteTime) -> Bool {
         let mergedWithTopBlock: Bool = checkMergeWithTopBlock(availability: availability, blockIndex: timesFree.count - 1)
         if !mergedWithTopBlock && availability > timesFree[timesFree.count - 1].to {
             timesFree.append(TimeRange(from: availability, to: availability + AvailabilityConstants.timeInterval))
+            return true
         }
+        return false
     }
 }
 

@@ -113,8 +113,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
     }
     
     // when there is a new schedule passed in, remove all of the availability bars from this view and reinstantiate all of the availability bars
-    func updateUserSchedule(schedule: Schedule) {
-        userSchedule = schedule
+    func updateUserSchedule() {
         for _ in 0..<availabilityBarHorizontalList.subviews.count {
             availabilityBarHorizontalList.subviews[0].removeFromSuperview()
             backgroundStackView.subviews[0].removeFromSuperview()
@@ -184,7 +183,7 @@ class FullAvailabilityInput: UIView, UIScrollViewDelegate {
         if autofilledAvailabilities == false {
             displayAutofillFeedback(text: "No weekly availabilities fit into this timeframe.")
         }
-        updateUserSchedule(schedule: userSchedule)
+        updateUserSchedule()
         setScheduleCallback(userSchedule)
     }
     
