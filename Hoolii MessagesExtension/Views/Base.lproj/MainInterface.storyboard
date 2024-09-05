@@ -1282,7 +1282,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8RV-gw-Pz8">
-                                <rect key="frame" x="0.0" y="48" width="360" height="535"/>
+                                <rect key="frame" x="0.0" y="48" width="360" height="508"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="0T7-U4-fyh"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="B2E-tv-Zd5"/>
                             </scrollView>
@@ -1343,7 +1343,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UCd-DB-Tei" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="698.55072463768124" y="99.776785714285708"/>
+            <point key="canvasLocation" x="697.67441860465112" y="99.141630901287556"/>
         </scene>
         <!--Onboarding Collapsed View Controller-->
         <scene sceneID="tx9-Pk-bPH">

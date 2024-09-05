@@ -15,10 +15,10 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cal-pointing-colors" translatesAutoresizingMaskIntoConstraints="NO" id="yJR-SE-fVI">
-                    <rect key="frame" x="20" y="67" width="310" height="366"/>
+                    <rect key="frame" x="20" y="67" width="310" height="337"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See who's available" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8V-mq-o0S">
-                    <rect key="frame" x="78.666666666666671" y="453" width="192.66666666666663" height="26"/>
+                    <rect key="frame" x="78.666666666666671" y="424" width="192.66666666666663" height="26"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="26" id="Wt2-gj-wsN"/>
                     </constraints>
@@ -27,7 +27,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Darker colors represent when everyone is most available" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5c-2z-PQe">
-                    <rect key="frame" x="30" y="494" width="290" height="41"/>
+                    <rect key="frame" x="30" y="465" width="290" height="41"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="290" id="e9J-nv-9Rm"/>
                         <constraint firstAttribute="height" constant="41" id="ejA-Vx-Oob"/>
@@ -40,7 +40,7 @@
             <viewLayoutGuide key="safeArea" id="OI8-51-a4E"/>
             <constraints>
                 <constraint firstItem="l5c-2z-PQe" firstAttribute="centerX" secondItem="zvz-Wh-Tcy" secondAttribute="centerX" id="A9P-9L-nAF"/>
-                <constraint firstAttribute="bottom" secondItem="l5c-2z-PQe" secondAttribute="bottom" constant="15" id="GrS-In-7Wh"/>
+                <constraint firstItem="OI8-51-a4E" firstAttribute="bottom" secondItem="l5c-2z-PQe" secondAttribute="bottom" constant="10" id="GrS-In-7Wh"/>
                 <constraint firstItem="T8V-mq-o0S" firstAttribute="top" secondItem="yJR-SE-fVI" secondAttribute="bottom" constant="20" id="Pte-sp-qzo"/>
                 <constraint firstItem="yJR-SE-fVI" firstAttribute="leading" secondItem="OI8-51-a4E" secondAttribute="leading" constant="20" id="ecO-hB-NkQ"/>
                 <constraint firstItem="l5c-2z-PQe" firstAttribute="top" secondItem="T8V-mq-o0S" secondAttribute="bottom" constant="15" id="iee-aJ-XkV"/>

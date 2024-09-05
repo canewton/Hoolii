@@ -14,11 +14,11 @@
             <rect key="frame" x="0.0" y="0.0" width="350" height="550"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cal-thinking-calendars" translatesAutoresizingMaskIntoConstraints="NO" id="woV-IH-QE2">
-                    <rect key="frame" x="0.0" y="47" width="350" height="371"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="cal-thinking-calendars" translatesAutoresizingMaskIntoConstraints="NO" id="woV-IH-QE2">
+                    <rect key="frame" x="0.0" y="23" width="350" height="371"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plan and send meetings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0at-tJ-zqX">
-                    <rect key="frame" x="58" y="458" width="234" height="26"/>
+                    <rect key="frame" x="58" y="424" width="234" height="26"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="26" id="3Rx-lf-E7Y"/>
                     </constraints>
@@ -27,7 +27,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Figure out the perfect day and time for your hangouts! " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5AN-dC-iLh">
-                    <rect key="frame" x="25" y="499" width="300" height="41"/>
+                    <rect key="frame" x="25" y="465" width="300" height="41"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="300" id="GX8-KF-JjM"/>
                         <constraint firstAttribute="height" constant="41" id="dtp-EV-ubq"/>
@@ -42,7 +42,7 @@
                 <constraint firstItem="5AN-dC-iLh" firstAttribute="top" secondItem="0at-tJ-zqX" secondAttribute="bottom" constant="15" id="2bt-0X-ZX0"/>
                 <constraint firstItem="woV-IH-QE2" firstAttribute="top" secondItem="AIx-ve-39X" secondAttribute="top" id="574-tq-reH"/>
                 <constraint firstItem="woV-IH-QE2" firstAttribute="trailing" secondItem="AIx-ve-39X" secondAttribute="trailing" id="DDM-hB-akJ"/>
-                <constraint firstAttribute="bottom" secondItem="5AN-dC-iLh" secondAttribute="bottom" constant="10" id="GAk-py-8Ew"/>
+                <constraint firstItem="AIx-ve-39X" firstAttribute="bottom" secondItem="5AN-dC-iLh" secondAttribute="bottom" constant="10" id="GAk-py-8Ew"/>
                 <constraint firstItem="0at-tJ-zqX" firstAttribute="centerX" secondItem="zKt-cF-tmP" secondAttribute="centerX" id="cEq-AW-1gF"/>
                 <constraint firstItem="0at-tJ-zqX" firstAttribute="top" secondItem="woV-IH-QE2" secondAttribute="bottom" constant="40" id="kbF-ui-sWN"/>
                 <constraint firstItem="woV-IH-QE2" firstAttribute="leading" secondItem="AIx-ve-39X" secondAttribute="leading" id="pqr-pL-yzI"/>

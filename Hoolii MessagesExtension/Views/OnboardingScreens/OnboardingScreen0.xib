@@ -15,7 +15,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Hoolii!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0at-tJ-zqX">
-                    <rect key="frame" x="83" y="458" width="184" height="26"/>
+                    <rect key="frame" x="83" y="424" width="184" height="26"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="26" id="3Rx-lf-E7Y"/>
                     </constraints>
@@ -24,7 +24,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Around here, a Hoolii is a meeting or hangout with your friends" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5AN-dC-iLh">
-                    <rect key="frame" x="25" y="499" width="300" height="41"/>
+                    <rect key="frame" x="25" y="465" width="300" height="41"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="300" id="GX8-KF-JjM"/>
                         <constraint firstAttribute="height" constant="41" id="dtp-EV-ubq"/>
@@ -44,7 +44,7 @@
             <viewLayoutGuide key="safeArea" id="AIx-ve-39X"/>
             <constraints>
                 <constraint firstItem="5AN-dC-iLh" firstAttribute="top" secondItem="0at-tJ-zqX" secondAttribute="bottom" constant="15" id="2bt-0X-ZX0"/>
-                <constraint firstAttribute="bottom" secondItem="5AN-dC-iLh" secondAttribute="bottom" constant="10" id="GAk-py-8Ew"/>
+                <constraint firstItem="AIx-ve-39X" firstAttribute="bottom" secondItem="5AN-dC-iLh" secondAttribute="bottom" constant="10" id="GAk-py-8Ew"/>
                 <constraint firstItem="7ES-Fk-cIN" firstAttribute="centerY" secondItem="zKt-cF-tmP" secondAttribute="centerY" id="Vbl-kQ-vqN"/>
                 <constraint firstItem="0at-tJ-zqX" firstAttribute="centerX" secondItem="zKt-cF-tmP" secondAttribute="centerX" id="cEq-AW-1gF"/>
                 <constraint firstItem="7ES-Fk-cIN" firstAttribute="centerX" secondItem="zKt-cF-tmP" secondAttribute="centerX" id="dZc-kj-sI6"/>
