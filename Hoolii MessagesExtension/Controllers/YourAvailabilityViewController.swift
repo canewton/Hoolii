@@ -12,11 +12,11 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     @IBOutlet weak var bottomBar: UIView!
     @IBOutlet weak var filterAvailabilitiesSwitch: FilterAvailabilitiesSwitch!
     @IBOutlet weak var availabilityInputContainer: UIView!
-    @IBOutlet weak var editMeetingIcon: UIImageView!
-    @IBOutlet weak var editMeetingButton: UIView!
-    @IBOutlet weak var topBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var editMeetingIcon: UIImageView?
+    @IBOutlet weak var editMeetingButton: UIView?
     @IBOutlet weak var meetingTitle: UILabel!
     @IBOutlet weak var bottomBarConstraint: NSLayoutConstraint!
+    @IBOutlet weak var subtitle: UILabel!
     var availabilityInput: FullAvailabilityInput!
     var isShowingPersonalView: Bool = true
     var isCreatingMeeting = false
@@ -46,6 +46,7 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         userAvatar = Avatar(jsonValue: StoredValues.get(key: StoredValuesConstants.userAvatar) ?? "")
         
         configureMeetingName()
+        subtitle.isHidden = true
         
         // create new schedule for user if user has not filled it out yet
         if CollectiveSchedule.shared.getScheduleWithUser(id) == nil {
@@ -57,8 +58,8 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
         // determine if this person was the one who created the meeting
         // they have a chance to edit the meeting if they were the one who created it
         if !isCreatingMeeting {
-            editMeetingButton.removeFromSuperview()
-            topBarHeightConstraint.constant = 55
+            editMeetingButton?.removeFromSuperview()
+            subtitle.isHidden = false
         }
         
         // fix bug when onboarding screen goes back to this screen
@@ -180,11 +181,17 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
             availabilityInput.hideAutoFillButton()
             displayGroupView()
             isShowingPersonalView = false
+            subtitle.text = "Tap or drag to show group availability"
+            subtitle.isHidden = false
+            editMeetingButton?.isHidden = true
         } else {
             displayPersonalView()
             availabilityInput.hideAvailiabilityDetail()
             availabilityInput.showAutoFillButton()
             isShowingPersonalView = true
+            subtitle.text = "Tap or drag to input your availability"
+            subtitle.isHidden = isCreatingMeeting
+            editMeetingButton?.isHidden = false
         }
     }
     
@@ -246,12 +253,12 @@ class YourAvailabilitiesViewController: AppViewController, ViewControllerWithIde
     
     func configureEditButton() {
         let editIcon: UIImage = ScaledIcon(name: "edit", width: 12, height: 12, color: .secondaryLabel).image
-        editMeetingIcon.image = editIcon
+        editMeetingIcon?.image = editIcon
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(onEditMeeting(gesture:)))
         tap.numberOfTapsRequired = 1
         tap.numberOfTouchesRequired = 1
-        editMeetingButton.addGestureRecognizer(tap)
+        editMeetingButton?.addGestureRecognizer(tap)
     }
 }
 

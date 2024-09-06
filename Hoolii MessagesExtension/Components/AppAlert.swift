@@ -13,10 +13,11 @@ final class AppAlert: UIView {
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var dismissButton: UILabel!
     @IBOutlet weak var labelsBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var closeButton: UIImageView?
     
-    var dismissCallback: (() -> Void)?
+    var closeAlertCallback: (() -> Void)?
     
-    class func instanceFromNib(image: UIImage?, title: String, description: String, labelOnBottom: Bool = true, dismissButtonText: String? = nil) -> AppAlert? {
+    class func instanceFromNib(image: UIImage?, title: String, description: String, labelOnBottom: Bool = true, dismissButtonText: String? = nil, cornerCloseButton: Bool = false) -> AppAlert? {
         let appAlert = UINib(nibName: "AppAlert", bundle: nil).instantiate(withOwner: self, options: nil)[0] as? AppAlert
         let imageView: UIImageView = UIImageView()
         imageView.image = image
@@ -25,6 +26,10 @@ final class AppAlert: UIView {
         let labelsView = UINib(nibName: "AlertLabels", bundle: nil).instantiate(withOwner: self, options: nil)[0] as! AlertLabels
         labelsView.alertTitle.text = title
         labelsView.alertDescription.text = description
+        
+        if !cornerCloseButton {
+            appAlert?.closeButton?.removeFromSuperview()
+        }
         
         if labelOnBottom {
             appAlert?.topView.addSubview(imageView)
@@ -80,15 +85,21 @@ final class AppAlert: UIView {
         tap.numberOfTapsRequired = 1
         tap.numberOfTouchesRequired = 1
         dismissButton.addGestureRecognizer(tap)
+        closeButton?.addGestureRecognizer(tap)
     }
     
     @objc func onDismiss(gesture: UITapGestureRecognizer) {
-        if dismissCallback != nil {
-            dismissCallback!()
+        if closeAlertCallback != nil {
+            closeAlertCallback!()
         }
+    }
+    
+    func addDismissCallback(callback: @escaping (() -> Void)) {
+        closeAlertCallback = callback
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
 }

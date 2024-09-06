@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VS7-CX-Dwt">
-                    <rect key="frame" x="90" y="327" width="150" height="25"/>
+                    <rect key="frame" x="90" y="293" width="150" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="Q1G-9u-WPl"/>
                         <constraint firstAttribute="width" constant="150" id="X1w-F9-Tqx"/>
@@ -31,6 +31,14 @@
                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0T7-Dp-PcT">
                     <rect key="frame" x="14" y="258" width="302" height="49"/>
                 </view>
+                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ELU-es-o9q">
+                    <rect key="frame" x="300" y="17.666666666666664" width="15" height="10"/>
+                    <color key="tintColor" systemColor="labelColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="5IU-5S-jX2"/>
+                        <constraint firstAttribute="width" constant="15" id="aNb-xh-Za4"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="6Aj-oQ-Ra9"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -41,13 +49,16 @@
                 <constraint firstItem="6Aj-oQ-Ra9" firstAttribute="trailing" secondItem="LA5-KJ-rjm" secondAttribute="trailing" constant="14" id="7XB-Fq-pIW"/>
                 <constraint firstItem="0T7-Dp-PcT" firstAttribute="leading" secondItem="6Aj-oQ-Ra9" secondAttribute="leading" constant="14" id="8Hm-Ql-MHm"/>
                 <constraint firstItem="0T7-Dp-PcT" firstAttribute="bottom" secondItem="yCd-HR-Brh" secondAttribute="bottom" constant="-60" id="ToM-K5-zLg"/>
+                <constraint firstItem="ELU-es-o9q" firstAttribute="top" secondItem="yCd-HR-Brh" secondAttribute="top" constant="15" id="c8F-I9-rXs"/>
                 <constraint firstItem="VS7-CX-Dwt" firstAttribute="centerX" secondItem="yCd-HR-Brh" secondAttribute="centerX" id="tk4-Ct-Xsb"/>
                 <constraint firstItem="6Aj-oQ-Ra9" firstAttribute="trailing" secondItem="0T7-Dp-PcT" secondAttribute="trailing" constant="14" id="vet-vm-zGa"/>
                 <constraint firstItem="LA5-KJ-rjm" firstAttribute="leading" secondItem="6Aj-oQ-Ra9" secondAttribute="leading" constant="14" id="wim-zp-wj6"/>
+                <constraint firstItem="6Aj-oQ-Ra9" firstAttribute="trailing" secondItem="ELU-es-o9q" secondAttribute="trailing" constant="15" id="zdy-cG-1J3"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="bottomView" destination="0T7-Dp-PcT" id="OBt-KW-f6F"/>
+                <outlet property="closeButton" destination="ELU-es-o9q" id="j3U-87-uQU"/>
                 <outlet property="dismissButton" destination="VS7-CX-Dwt" id="umB-pL-Ywk"/>
                 <outlet property="labelsBottomConstraint" destination="ToM-K5-zLg" id="a3G-e9-b6W"/>
                 <outlet property="topView" destination="LA5-KJ-rjm" id="A3M-J9-Pzj"/>
@@ -56,6 +67,10 @@
         </view>
     </objects>
     <resources>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

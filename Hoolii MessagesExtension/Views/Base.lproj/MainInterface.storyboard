@@ -321,8 +321,8 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Meeting Dates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3CU-yf-X69">
-                                                        <rect key="frame" x="30" y="30" width="139" height="20"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What days might work?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3CU-yf-X69">
+                                                        <rect key="frame" x="30" y="30" width="177" height="20"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -589,8 +589,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MK0-nP-scU">
                                 <rect key="frame" x="0.0" y="59" width="360" height="70"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Meeting Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hwm-Ot-hLB">
-                                        <rect key="frame" x="30" y="15" width="253" height="22"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meeting Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hwm-Ot-hLB">
+                                        <rect key="frame" x="30" y="15" width="122" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="cgC-Yu-0xl"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -600,7 +603,7 @@
                                         <color key="backgroundColor" systemColor="systemMintColor"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ts4-pd-heY">
-                                        <rect key="frame" x="30" y="44.666666666666671" width="134.33333333333334" height="15"/>
+                                        <rect key="frame" x="30" y="47" width="134.33333333333334" height="15"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2wM-Le-ts1">
                                                 <rect key="frame" x="0.0" y="0.0" width="12" height="15"/>
@@ -615,7 +618,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="53z-ao-4g8" firstAttribute="centerY" secondItem="Ts4-pd-heY" secondAttribute="centerY" id="Bbz-Tl-xge"/>
                                             <constraint firstItem="53z-ao-4g8" firstAttribute="leading" secondItem="2wM-Le-ts1" secondAttribute="trailing" constant="4" id="JTf-nE-uwb"/>
@@ -626,15 +629,23 @@
                                             <constraint firstAttribute="bottom" secondItem="2wM-Le-ts1" secondAttribute="bottom" id="wLv-sZ-H0u"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap or drag to input your availability" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yXN-Z8-krV">
+                                        <rect key="frame" x="30.000000000000014" y="47" width="202.33333333333337" height="14.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="Ts4-pd-heY" firstAttribute="leading" secondItem="MK0-nP-scU" secondAttribute="leading" constant="30" id="9MQ-b2-7bJ"/>
+                                    <constraint firstItem="yXN-Z8-krV" firstAttribute="top" secondItem="Hwm-Ot-hLB" secondAttribute="bottom" constant="8" id="DE0-ty-8fe"/>
                                     <constraint firstItem="Hwm-Ot-hLB" firstAttribute="top" secondItem="MK0-nP-scU" secondAttribute="top" constant="15" id="JVd-db-g18"/>
                                     <constraint firstItem="B8u-Bb-8Bp" firstAttribute="leading" secondItem="Hwm-Ot-hLB" secondAttribute="trailing" constant="15" id="UEQ-Rk-p10"/>
                                     <constraint firstItem="Hwm-Ot-hLB" firstAttribute="leading" secondItem="MK0-nP-scU" secondAttribute="leading" constant="30" id="Ut9-Hm-k0q"/>
                                     <constraint firstItem="Ts4-pd-heY" firstAttribute="top" secondItem="Hwm-Ot-hLB" secondAttribute="bottom" constant="8" id="bjp-GN-dUh"/>
                                     <constraint firstItem="B8u-Bb-8Bp" firstAttribute="top" secondItem="MK0-nP-scU" secondAttribute="top" constant="8" id="gR3-LH-mnf"/>
+                                    <constraint firstItem="yXN-Z8-krV" firstAttribute="leading" secondItem="MK0-nP-scU" secondAttribute="leading" constant="30" id="gbG-5c-JN3"/>
                                     <constraint firstAttribute="trailing" secondItem="B8u-Bb-8Bp" secondAttribute="trailing" constant="30" id="uXH-e0-CL3"/>
                                     <constraint firstAttribute="height" constant="70" id="y8t-Rf-mD9"/>
                                 </constraints>
@@ -667,7 +678,7 @@
                         <outlet property="filterAvailabilitiesSwitch" destination="l8Y-O7-v2w" id="AH0-Cs-kO9"/>
                         <outlet property="meetingTitle" destination="Hwm-Ot-hLB" id="qYJ-Vz-IdA"/>
                         <outlet property="sendButton" destination="Bbi-IE-P3T" id="cMN-jU-kQe"/>
-                        <outlet property="topBarHeightConstraint" destination="y8t-Rf-mD9" id="g4A-mA-OeJ"/>
+                        <outlet property="subtitle" destination="yXN-Z8-krV" id="G3h-Pu-ffK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LqO-5z-ZiD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -718,10 +729,18 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap or drag to input your availability" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCE-JU-U2h">
+                                        <rect key="frame" x="29.999999999999986" y="44.666666666666671" width="201.66666666666663" height="14.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="jCE-JU-U2h" firstAttribute="top" secondItem="pMx-Ts-COm" secondAttribute="bottom" constant="8" id="1tj-7q-TV5"/>
                                     <constraint firstItem="pMx-Ts-COm" firstAttribute="leading" secondItem="SH3-wA-Sqh" secondAttribute="leading" constant="30" id="7iH-Oo-bxJ"/>
+                                    <constraint firstItem="jCE-JU-U2h" firstAttribute="leading" secondItem="SH3-wA-Sqh" secondAttribute="leading" constant="30" id="OyJ-RO-eC8"/>
                                     <constraint firstItem="pMx-Ts-COm" firstAttribute="top" secondItem="SH3-wA-Sqh" secondAttribute="top" constant="15" id="hLC-Ly-GN1"/>
                                     <constraint firstAttribute="height" constant="40" id="uEA-RQ-O1F"/>
                                 </constraints>

@@ -59,7 +59,7 @@ class AlertManager {
     }
     
     static func saveWeeklyAvailabilityAlert(controller: UIViewController, dismissCallback: @escaping (() -> Void)) {
-        let alert = AppAlert.instanceFromNib(image: UIImage(named: "cal-jumping"), title: "Saved!", description: "You can now autofill your weekly availability for all future hangouts")!
+        let alert = AppAlert.instanceFromNib(image: UIImage(named: "cal-jumping"), title: "Saved!", description: "You can now autofill your weekly availability for all future hangouts", cornerCloseButton: true)!
         let darkenedScreen: DarkenedScreen = DarkenedScreen(viewController: controller)
         alert.backgroundColor = AppColors.alert
         darkenedScreen.addAlert(alert: alert)
