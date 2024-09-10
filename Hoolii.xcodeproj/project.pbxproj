@@ -234,7 +234,6 @@
 		913C119A28B208C600B5A66F /* AvailabilityBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvailabilityBar.xib; sourceTree = "<group>"; };
 		913EF79928693DBB00D5DB08 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		9142F96C285FA20A0070661F /* Hoolii.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hoolii.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9142F96F285FA20E0070661F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9142F975285FA20E0070661F /* Hoolii MessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Hoolii MessagesExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9142F97A285FA20E0070661F /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		9142F97D285FA20E0070661F /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
@@ -456,7 +455,6 @@
 		9142F965285FA20A0070661F = {
 			isa = PBXGroup;
 			children = (
-				9142F96E285FA20A0070661F /* Hoolii */,
 				9142F97C285FA20E0070661F /* Hoolii MessagesExtension */,
 				9142F979285FA20E0070661F /* Frameworks */,
 				9142F96D285FA20A0070661F /* Products */,
@@ -471,14 +469,6 @@
 				9142F975285FA20E0070661F /* Hoolii MessagesExtension.appex */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		9142F96E285FA20A0070661F /* Hoolii */ = {
-			isa = PBXGroup;
-			children = (
-				9142F96F285FA20E0070661F /* Assets.xcassets */,
-			);
-			path = Hoolii;
 			sourceTree = "<group>";
 		};
 		9142F979285FA20E0070661F /* Frameworks */ = {
