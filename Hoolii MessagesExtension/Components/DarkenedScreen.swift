@@ -61,7 +61,11 @@ final class DarkenedScreen: UIViewController {
         alert.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         
         if let appAlert = alert as? AppAlert {
-            appAlert.addDismissCallback(callback: dissmissScreen)
+            if appAlert.closeAlertCallback == nil && appAlert.closeButton != nil {
+                appAlert.addDismissCallback(callback: dissmissScreen)
+            } else {
+                appAlert.closeAlertCallback = {() -> Void in self.dismiss(animated: true)}
+            }
         } else if let appAlert = alert as? AppActionableAlert {
             appAlert.darkenedScreen = self
         }

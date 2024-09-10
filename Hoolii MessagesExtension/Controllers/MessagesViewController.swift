@@ -69,7 +69,7 @@ class MessagesViewController: MSMessagesAppViewController {
         guard let conversation = activeConversation else { fatalError("Expected a conversation") }
         let message = composeMessage(CollectiveSchedule.shared, CollectiveSchedule.shared.meetingName, conversation.selectedMessage?.session)
         
-        conversation.insert(message) { error in
+        conversation.send(message) { error in
             if let error = error {
                 print(error)
             }
@@ -104,7 +104,32 @@ class MessagesViewController: MSMessagesAppViewController {
     @MainActor
     override func didReceive(_ message: MSMessage,conversation: MSConversation){
         super.didReceive(message, conversation: conversation)
-        CollectiveSchedule.shared = HooliiMessage(message: conversation.selectedMessage)?.getCollectiveSchedule() ?? CollectiveSchedule()
+        let id = StoredValues.get(key: StoredValuesConstants.userID)
+        
+        if id != nil {
+            var userSchedule: Schedule? = nil
+            for i in 0..<CollectiveSchedule.shared.allSchedules.count {
+                if id == CollectiveSchedule.shared.allSchedules[i].user.id {
+                    userSchedule = CollectiveSchedule.shared.allSchedules[i]
+                }
+            }
+            
+            CollectiveSchedule.shared = HooliiMessage(message: conversation.selectedMessage)?.getCollectiveSchedule() ?? CollectiveSchedule()
+            
+            if userSchedule != nil {
+                var saved = false
+                for i in 0..<CollectiveSchedule.shared.allSchedules.count {
+                    if id == CollectiveSchedule.shared.allSchedules[i].user.id {
+                        CollectiveSchedule.shared.allSchedules[i] = userSchedule!
+                        saved = true
+                    }
+                }
+                if !saved {
+                    CollectiveSchedule.shared.allSchedules.append(userSchedule!)
+                }
+            }
+        }
+        
         ImageStorage.clearImages()
         ImageStorage.addImages(users: CollectiveSchedule.shared.allSchedules.map({ return $0.user }))
     }

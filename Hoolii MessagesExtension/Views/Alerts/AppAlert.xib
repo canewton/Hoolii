@@ -15,6 +15,12 @@
             <rect key="frame" x="0.0" y="0.0" width="330" height="367"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LA5-KJ-rjm">
+                    <rect key="frame" x="14" y="25" width="302" height="202"/>
+                </view>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0T7-Dp-PcT">
+                    <rect key="frame" x="14" y="258" width="302" height="49"/>
+                </view>
                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VS7-CX-Dwt">
                     <rect key="frame" x="90" y="293" width="150" height="25"/>
                     <constraints>
@@ -25,12 +31,6 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LA5-KJ-rjm">
-                    <rect key="frame" x="14" y="25" width="302" height="202"/>
-                </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0T7-Dp-PcT">
-                    <rect key="frame" x="14" y="258" width="302" height="49"/>
-                </view>
                 <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ELU-es-o9q">
                     <rect key="frame" x="300" y="17.666666666666664" width="15" height="10"/>
                     <color key="tintColor" systemColor="labelColor"/>

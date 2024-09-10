@@ -85,7 +85,11 @@ final class AppAlert: UIView {
         tap.numberOfTapsRequired = 1
         tap.numberOfTouchesRequired = 1
         dismissButton.addGestureRecognizer(tap)
-        closeButton?.addGestureRecognizer(tap)
+        
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(onDismiss(gesture:)))
+        tap.numberOfTapsRequired = 1
+        tap.numberOfTouchesRequired = 1
+        closeButton?.addGestureRecognizer(tap2)
     }
     
     @objc func onDismiss(gesture: UITapGestureRecognizer) {
